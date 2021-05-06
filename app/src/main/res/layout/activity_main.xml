@@ -7,7 +7,7 @@
 		
 		<variable
 			name="viewModel"
-			type="org.befour.sms.presentation.main.MainViewModel" />
+			type="org.positive.sms.presentation.main.MainViewModel" />
 	</data>
 	
 	<androidx.constraintlayout.widget.ConstraintLayout
