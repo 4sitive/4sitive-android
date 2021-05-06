@@ -1,10 +1,6 @@
 name: PR build validation check
 
 on:
-  push:
-    branches-ignore: 
-      - main
-      - develop
   pull_request:
     branches:
       - develop
