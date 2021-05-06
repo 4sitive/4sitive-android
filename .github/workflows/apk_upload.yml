@@ -1,0 +1,41 @@
+name: UploadApk
+
+on:
+  schedule:
+    - cron: '0 12 * * 2'
+    
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: androidsdk/android-30:latest
+
+    steps:
+      - name: Checkout reopsitory
+        uses: actions/checkout@v2
+        
+      - name: Assemble apk
+        run: ./gradlew app:assembleDebug
+
+      - name: Prepare Keystore
+        env:
+          KEYSTORE_CONTENTS: ${{secrets.KEYSTORE_CONTENTS}}
+          KEYSTORE_FILE: ${{secrets.KEYSTORE_FILE}}
+        run: echo $KEYSTORE_CONTENTS | base64 -d > $KEYSTORE_FILE
+
+      - name: Signing apk
+        env:
+          KEYSTORE_FILE: ${{secrets.KEYSTORE_FILE}}
+          KEY_ALIAS_NAME: ${{secrets.KEY_ALIAS_NAME}}
+          KEY_PASSWORD: ${{secrets.KEY_PASSWORD}}
+        run: apksigner sign -v --out app/build/outputs/apk/debug/signed-app-debug.apk --ks $KEYSTORE_FILE --ks-key-alias $KEY_ALIAS_NAME --ks-pass pass:$KEY_PASSWORD --key-pass pass:$KEY_PASSWORD app/build/outputs/apk/debug/app-debug.apk
+      
+      - name: Verify sign
+        run: apksigner verify -v --print-certs app/build/outputs/apk/debug/signed-app-debug.apk
+
+      - name: Upload apk to slack
+        env:
+          SLACK_TOKEN: ${{secrets.SLACK_TOKEN}}
+          SLACK_CHANNEL: ${{secrets.SLACK_CHANNEL}}
+        run: curl -H "Authorization:$SLACK_TOKEN" -F "channels=$SLACK_CHANNEL" -F "filename=app-debug.apk" -F "file=@app/build/outputs/apk/debug/app-debug.apk" https://slack.com/api/files.upload
