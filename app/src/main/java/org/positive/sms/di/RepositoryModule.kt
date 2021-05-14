@@ -4,6 +4,8 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import org.positive.sms.data.repository.AuthRepository
+import org.positive.sms.data.repository.AuthRepositoryImpl
 import org.positive.sms.data.repository.ServerTimeRepository
 import org.positive.sms.data.repository.ServerTimeRepositoryImpl
 
@@ -15,4 +17,9 @@ abstract class RepositoryModule {
     abstract fun provideServerTimeRepository(
         serverTimeRepositoryImpl: ServerTimeRepositoryImpl
     ): ServerTimeRepository
+
+    @Binds
+    abstract fun provideAuthRepository(
+        authRepositoryImpl: AuthRepositoryImpl
+    ): AuthRepository
 }
