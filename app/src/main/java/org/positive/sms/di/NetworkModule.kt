@@ -1,5 +1,9 @@
 package org.positive.sms.di
 
+import android.content.Context
+import com.chuckerteam.chucker.api.ChuckerCollector
+import com.chuckerteam.chucker.api.ChuckerInterceptor
+import com.chuckerteam.chucker.api.RetentionManager
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -17,6 +21,7 @@ import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Named
 
+
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
@@ -29,8 +34,17 @@ object NetworkModule {
     }
 
     @Provides
-    fun provideOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor) = OkHttpClient.Builder()
+    fun provideChuckerInterceptor(context: Context) = ChuckerInterceptor.Builder(context)
+        .collector(ChuckerCollector(context, true))
+        .build()
+
+    @Provides
+    fun provideOkHttpClient(
+        httpLoggingInterceptor: HttpLoggingInterceptor,
+        chuckerInterceptor: ChuckerInterceptor
+    ) = OkHttpClient.Builder()
         .addInterceptor(AuthInterceptor())
+        .addInterceptor(chuckerInterceptor)
         .addInterceptor(httpLoggingInterceptor)
         .build()
 
