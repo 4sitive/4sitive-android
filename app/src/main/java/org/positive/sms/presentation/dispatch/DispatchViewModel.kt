@@ -1,18 +1,22 @@
-package org.positive.sms.presentation.login
+package org.positive.sms.presentation.dispatch
 
+import androidx.lifecycle.LiveData
 import dagger.hilt.android.lifecycle.HiltViewModel
+import org.positive.sms.common.SingleLiveEvent
 import org.positive.sms.data.model.GrantType
-import org.positive.sms.data.model.PostOauthAuthorizationCodeRequest
 import org.positive.sms.data.pref.AppSharedPreference
 import org.positive.sms.data.repository.AuthRepository
 import org.positive.sms.presentation.base.BaseViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class LoginViewModel @Inject constructor(
+class DispatchViewModel @Inject constructor(
     private val authRepository: AuthRepository,
     private val sharedPreferences: AppSharedPreference
 ) : BaseViewModel() {
+
+    private val _tokenIssueCompleteEvent = SingleLiveEvent<Nothing>()
+    val tokenIssueCompleteEvent: LiveData<Nothing> get() = _tokenIssueCompleteEvent
 
     fun postAuthorizationCode(code: String) {
         authRepository.postOauthAuthorizationCode(
@@ -24,6 +28,7 @@ class LoginViewModel @Inject constructor(
             .autoDispose {
                 success {
                     sharedPreferences.authToken = it.accessToken
+                    _tokenIssueCompleteEvent.call()
                 }
                 error {
                     showErrorMessage(it.message.orEmpty())

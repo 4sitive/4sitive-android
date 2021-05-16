@@ -1,5 +1,6 @@
 package org.positive.sms.presentation.login
 
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.webkit.WebResourceRequest
@@ -25,12 +26,9 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
                     view: WebView?,
                     request: WebResourceRequest?
                 ): Boolean {
-                    val requestedUrl = request?.url
-                    if (requestedUrl != null && requestedUrl.host == "127.0.0.1") {
-                        requestedUrl.getQueryParameter("code")?.let {
-                            viewModel.postAuthorizationCode(it)
-                            return true
-                        }
+                    if (request?.url?.scheme == "positive") {
+                        startActivity(Intent(Intent.ACTION_VIEW, request.url))
+                        return true
                     }
                     return false
                 }
@@ -40,11 +38,17 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
             val uri = Uri.parse("https://account.4sitive.com/oauth/authorize")
                 .buildUpon()
                 .appendQueryParameter("client_id", "4sitive")
-                .appendQueryParameter("redirect_uri", "http://127.0.0.1:8080/authorized")
+                .appendQueryParameter("redirect_uri", "positive://login")
                 .appendQueryParameter("response_type", "code")
                 .build()
 
             loadUrl(uri.toString())
+//
+//            postDelayed(
+//                {
+//                    startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("positive://login")))
+//                }, 3000
+//            )
         }
     }
 }
