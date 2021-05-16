@@ -22,4 +22,7 @@ jobs:
           java-version: '1.8'
           
       - name: Check Build Validation
+        env:
+          OAUTH_CLIENT_ID: ${{secrets.OAUTH_CLIENT_ID}}
+          OAUTH_CLIENT_SECRET: ${{secrets.OAUTH_CLIENT_SECRET}}
         run: ./gradlew app:compileDebugSources
