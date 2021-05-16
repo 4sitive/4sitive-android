@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.util.AttributeSet
+import android.view.KeyEvent
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
@@ -29,6 +30,14 @@ class PsWebView : WebView {
 
     init {
         initWebView()
+    }
+
+    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+        if ((keyCode == KeyEvent.KEYCODE_BACK) && canGoBack()) {
+            goBack()
+            return true
+        }
+        return super.onKeyDown(keyCode, event)
     }
 
     private fun initWebView() {
