@@ -1,12 +1,13 @@
 package org.positive.sms.di
 
+import com.google.gson.FieldNamingPolicy
+import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import okhttp3.*
+import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import org.positive.sms.BuildConfig
 import org.positive.sms.common.PsConstants
 import org.positive.sms.data.api.AuthApi
 import org.positive.sms.data.api.ServerTimeApi
@@ -37,26 +38,37 @@ object NetworkModule {
     fun provideCallAdapterFactory(): CallAdapter.Factory = RxJava3CallAdapterFactory.create()
 
     @Provides
+    fun provideGsonConverterFactory(): GsonConverterFactory {
+        val gson = GsonBuilder()
+            .registerTypeAdapterFactory(NullableTypeAdapterFactory())
+            .setFieldNamingStrategy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
+            .create()
+        return GsonConverterFactory.create(gson)
+    }
+
+    @Provides
     fun provideServerTimeRetrofit(
         okHttpClient: OkHttpClient,
-        callAdapterFactory: CallAdapter.Factory
+        callAdapterFactory: CallAdapter.Factory,
+        gsonConverterFactory: GsonConverterFactory
     ): Retrofit = Retrofit.Builder()
         .baseUrl(SERVER_TIME_BASE_URL)
         .client(okHttpClient)
         .addCallAdapterFactory(callAdapterFactory)
-        .addConverterFactory(GsonConverterFactory.create())
+        .addConverterFactory(gsonConverterFactory)
         .build()
 
     @Provides
     @Named("account")
     fun provideAccountServerRetrofit(
         okHttpClient: OkHttpClient,
-        callAdapterFactory: CallAdapter.Factory
+        callAdapterFactory: CallAdapter.Factory,
+        gsonConverterFactory: GsonConverterFactory
     ): Retrofit = Retrofit.Builder()
         .baseUrl(PsConstants.ACCOUNT_SERVER_BASE_URL)
         .client(okHttpClient)
         .addCallAdapterFactory(callAdapterFactory)
-        .addConverterFactory(GsonConverterFactory.create())
+        .addConverterFactory(gsonConverterFactory)
         .build()
 
     @Provides
@@ -66,21 +78,5 @@ object NetworkModule {
     @Provides
     fun provideAuthApi(@Named("account") retrofit: Retrofit): AuthApi =
         retrofit.create(AuthApi::class.java)
-
-    class AuthInterceptor : Interceptor {
-
-        private val credentials: String =
-            Credentials.basic(BuildConfig.OAUTH_CLIENT_ID, BuildConfig.OAUTH_CLIENT_SECRET)
-
-        override fun intercept(chain: Interceptor.Chain): Response {
-            val request: Request = chain.request()
-            val authenticatedRequest: Request = request
-                .newBuilder()
-                .addHeader("Authorization", credentials)
-                .addHeader("Content-Type", "application/x-www-form-urlencoded")
-                .build()
-
-            return chain.proceed(authenticatedRequest)
-        }
-    }
 }
+

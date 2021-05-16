@@ -4,6 +4,7 @@ import io.reactivex.rxjava3.core.Single
 import org.positive.sms.data.api.AuthApi
 import org.positive.sms.data.model.GrantType
 import org.positive.sms.data.model.PostOauthAuthorizationCodeResponse
+import org.positive.sms.extension.declaredSerializedName
 import javax.inject.Inject
 
 class AuthRepositoryImpl @Inject constructor(
@@ -14,6 +15,9 @@ class AuthRepositoryImpl @Inject constructor(
         code: String,
         grantType: GrantType,
         redirectUri: String
-    ): Single<PostOauthAuthorizationCodeResponse> =
-        authApi.postOauthAuthorizationCode(code, "authorization_code", redirectUri)
+    ): Single<PostOauthAuthorizationCodeResponse> = authApi.postOauthAuthorizationCode(
+        code,
+        grantType.declaredSerializedName(),
+        redirectUri
+    )
 }

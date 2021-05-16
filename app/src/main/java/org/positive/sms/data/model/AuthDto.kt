@@ -3,15 +3,10 @@ package org.positive.sms.data.model
 import com.google.gson.annotations.SerializedName
 
 data class PostOauthAuthorizationCodeResponse(
-    @SerializedName("access_token")
     val accessToken: String,
-    @SerializedName("refresh_token")
     val refreshToken: String? = null,
-    @SerializedName("expires_in")
-    val expiresInSeconds: Int? = null,
-    @SerializedName("token_type")
+    val expiresIn: Int? = null,
     val tokenType: String? = null,
-    @SerializedName("scope")
     val scope: List<String>? = null
 )
 
