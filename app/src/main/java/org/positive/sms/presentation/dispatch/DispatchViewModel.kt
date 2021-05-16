@@ -2,6 +2,7 @@ package org.positive.sms.presentation.dispatch
 
 import androidx.lifecycle.LiveData
 import dagger.hilt.android.lifecycle.HiltViewModel
+import org.positive.sms.common.PsConstants
 import org.positive.sms.common.SingleLiveEvent
 import org.positive.sms.data.model.GrantType
 import org.positive.sms.data.pref.AppSharedPreference
@@ -22,7 +23,7 @@ class DispatchViewModel @Inject constructor(
         authRepository.postOauthAuthorizationCode(
             code = code,
             grantType = GrantType.AUTHORIZATION_CODE,
-            redirectUri = "positive://login"
+            redirectUri = PsConstants.APP_SCHEME + "://login"
         ).compose(apiLoading())
             .autoDispose {
                 success {

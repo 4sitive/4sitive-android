@@ -6,6 +6,8 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import okhttp3.*
 import okhttp3.logging.HttpLoggingInterceptor
+import org.positive.sms.BuildConfig
+import org.positive.sms.common.PsConstants
 import org.positive.sms.data.api.AuthApi
 import org.positive.sms.data.api.ServerTimeApi
 import retrofit2.CallAdapter
@@ -19,7 +21,6 @@ import javax.inject.Named
 object NetworkModule {
 
     private const val SERVER_TIME_BASE_URL = "https://worldtimeapi.org/"
-    private const val ACCOUNT_SERVER_BASE_URL = "https://account.4sitive.com/"
 
     @Provides
     fun provideHttpLoggingInterceptor() = HttpLoggingInterceptor().apply {
@@ -52,7 +53,7 @@ object NetworkModule {
         okHttpClient: OkHttpClient,
         callAdapterFactory: CallAdapter.Factory
     ): Retrofit = Retrofit.Builder()
-        .baseUrl(ACCOUNT_SERVER_BASE_URL)
+        .baseUrl(PsConstants.ACCOUNT_SERVER_BASE_URL)
         .client(okHttpClient)
         .addCallAdapterFactory(callAdapterFactory)
         .addConverterFactory(GsonConverterFactory.create())
@@ -69,7 +70,7 @@ object NetworkModule {
     class AuthInterceptor : Interceptor {
 
         private val credentials: String =
-            Credentials.basic("4sitive", "secret")
+            Credentials.basic(BuildConfig.OAUTH_CLIENT_ID, BuildConfig.OAUTH_CLIENT_SECRET)
 
         override fun intercept(chain: Interceptor.Chain): Response {
             val request: Request = chain.request()

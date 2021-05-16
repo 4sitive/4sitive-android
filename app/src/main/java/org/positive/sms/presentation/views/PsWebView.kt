@@ -8,6 +8,7 @@ import android.util.AttributeSet
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import org.positive.sms.common.PsConstants
 
 class PsWebView : WebView {
 
@@ -53,16 +54,11 @@ class PsWebView : WebView {
         }
 
         private fun isPositiveScheme(url: Uri): Boolean {
-            if (url.scheme == APP_SCHEME_VALUE) {
+            if (url.scheme == PsConstants.APP_SCHEME) {
                 context.startActivity(Intent(Intent.ACTION_VIEW, url))
                 return true
             }
             return false
         }
-    }
-
-    companion object {
-        // TODO: depend on variant
-        private const val APP_SCHEME_VALUE = "positive"
     }
 }
