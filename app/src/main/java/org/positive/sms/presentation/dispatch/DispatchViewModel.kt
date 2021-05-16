@@ -23,8 +23,7 @@ class DispatchViewModel @Inject constructor(
             code = code,
             grantType = GrantType.AUTHORIZATION_CODE,
             redirectUri = "positive://login"
-        )
-            .compose(apiLoading())
+        ).compose(apiLoading())
             .autoDispose {
                 success {
                     sharedPreferences.authToken = it.accessToken
