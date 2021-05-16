@@ -15,15 +15,11 @@ class LoginViewModel @Inject constructor(
 ) : BaseViewModel() {
 
     fun postAuthorizationCode(code: String) {
-        val request = PostOauthAuthorizationCodeRequest(
-            clientId = "4sitive",
-            clientSecret = "secret",
+        authRepository.postOauthAuthorizationCode(
             code = code,
             grantType = GrantType.AUTHORIZATION_CODE,
             redirectUri = "http://127.0.0.1:8080/authorized"
         )
-
-        authRepository.postOauthAuthorizationCode(request)
             .compose(apiLoading())
             .autoDispose {
                 success {
