@@ -14,6 +14,7 @@ ext {
     // Networking lib
     okhttpVersion = '4.2.2'
     retrofitVersion = '2.9.0'
+    chuckerVersion = '3.4.0'
 
     // RxJava
     rxJavaVersion = '3.0.12'
