@@ -4,13 +4,17 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import okhttp3.OkHttpClient
+import okhttp3.*
 import okhttp3.logging.HttpLoggingInterceptor
+import org.positive.sms.BuildConfig
+import org.positive.sms.common.PsConstants
+import org.positive.sms.data.api.AuthApi
 import org.positive.sms.data.api.ServerTimeApi
 import retrofit2.CallAdapter
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Named
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -25,6 +29,7 @@ object NetworkModule {
 
     @Provides
     fun provideOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor) = OkHttpClient.Builder()
+        .addInterceptor(AuthInterceptor())
         .addInterceptor(httpLoggingInterceptor)
         .build()
 
@@ -43,6 +48,39 @@ object NetworkModule {
         .build()
 
     @Provides
+    @Named("account")
+    fun provideAccountServerRetrofit(
+        okHttpClient: OkHttpClient,
+        callAdapterFactory: CallAdapter.Factory
+    ): Retrofit = Retrofit.Builder()
+        .baseUrl(PsConstants.ACCOUNT_SERVER_BASE_URL)
+        .client(okHttpClient)
+        .addCallAdapterFactory(callAdapterFactory)
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+
+    @Provides
     fun provideServerTimeApi(retrofit: Retrofit): ServerTimeApi =
         retrofit.create(ServerTimeApi::class.java)
+
+    @Provides
+    fun provideAuthApi(@Named("account") retrofit: Retrofit): AuthApi =
+        retrofit.create(AuthApi::class.java)
+
+    class AuthInterceptor : Interceptor {
+
+        private val credentials: String =
+            Credentials.basic(BuildConfig.OAUTH_CLIENT_ID, BuildConfig.OAUTH_CLIENT_SECRET)
+
+        override fun intercept(chain: Interceptor.Chain): Response {
+            val request: Request = chain.request()
+            val authenticatedRequest: Request = request
+                .newBuilder()
+                .addHeader("Authorization", credentials)
+                .addHeader("Content-Type", "application/x-www-form-urlencoded")
+                .build()
+
+            return chain.proceed(authenticatedRequest)
+        }
+    }
 }

@@ -17,7 +17,14 @@ class AppSharedPreferenceImpl @Inject constructor(context: Context) : AppSharedP
             sharedPreferences.edit().putLong(UNIX_TIME_KEY, value).apply()
         }
 
+    override var authToken: String?
+        get() = sharedPreferences.getString(AUTH_TOKEN_KEY, null)
+        set(value) {
+            sharedPreferences.edit().putString(AUTH_TOKEN_KEY, value).apply()
+        }
+
     companion object {
         private const val UNIX_TIME_KEY = "UNIX_TIME_KEY"
+        private const val AUTH_TOKEN_KEY = "AUTH_TOKEN_KEY"
     }
 }
