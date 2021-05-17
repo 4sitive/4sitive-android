@@ -16,6 +16,9 @@ jobs:
         uses: actions/checkout@v2
         
       - name: Assemble apk
+        env:
+          OAUTH_CLIENT_ID: ${{secrets.OAUTH_CLIENT_ID}}
+          OAUTH_CLIENT_SECRET: ${{secrets.OAUTH_CLIENT_SECRET}}
         run: ./gradlew app:assembleDebug
 
       - name: Prepare Keystore
