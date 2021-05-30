@@ -12,6 +12,7 @@
 		android:roundIcon="@mipmap/ic_launcher_round"
 		android:supportsRtl="true"
 		android:theme="@style/Theme.SmsService">
+		
 		<activity android:name="org.positive.sms.presentation.login.LoginActivity">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
@@ -19,6 +20,7 @@
 				<category android:name="android.intent.category.LAUNCHER" />
 			</intent-filter>
 		</activity>
+		
 		<activity
 			android:name=".presentation.dispatch.DispatchActivity"
 			android:launchMode="singleTask"
@@ -32,6 +34,9 @@
 				<data android:scheme="positive" />
 			</intent-filter>
 		</activity>
+		
+		<activity android:name=".presentation.main.MainActivity"/>
+		
 	</application>
 
 </manifest>

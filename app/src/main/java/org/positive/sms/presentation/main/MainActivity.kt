@@ -1,9 +1,11 @@
 package org.positive.sms.presentation.main
 
+import android.content.Context
 import android.os.Bundle
 import dagger.hilt.android.AndroidEntryPoint
 import org.positive.sms.R
 import org.positive.sms.databinding.ActivityMainBinding
+import org.positive.sms.extension.startOnTop
 import org.positive.sms.extension.viewModelOf
 import org.positive.sms.presentation.base.BaseActivity
 
@@ -15,5 +17,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding.viewModel = viewModel
+    }
+
+    companion object {
+
+        fun startOnTop(context: Context) = context.startOnTop<MainActivity>()
     }
 }
