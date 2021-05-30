@@ -8,6 +8,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import okhttp3.logging.HttpLoggingInterceptor
+import org.positive.sms.BuildConfig
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -15,7 +16,9 @@ object InterceptorModule {
 
     @Provides
     fun provideHttpLoggingInterceptor() = HttpLoggingInterceptor().apply {
-        level = HttpLoggingInterceptor.Level.BODY
+        if (BuildConfig.DEBUG) {
+            level = HttpLoggingInterceptor.Level.BODY
+        }
     }
 
     @Provides

@@ -11,8 +11,7 @@ class AuthInterceptor @Inject constructor(
 ) : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
-        // TODO(yh): refresh
-        val credentials = "Bearer " + appSharedPreference.authToken!!
+        val credentials = "Bearer " + appSharedPreference.authToken.orEmpty()
         val request: Request = chain.request()
         val authenticatedRequest: Request = request
             .newBuilder()

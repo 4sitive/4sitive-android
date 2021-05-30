@@ -16,12 +16,13 @@ import javax.inject.Named
 object OkHttpClientModule {
 
     @Provides
+    @Named("oauth")
     fun provideOkHttpClient(
         oauthInterceptor: OauthInterceptor,
         httpLoggingInterceptor: HttpLoggingInterceptor,
         chuckerInterceptor: ChuckerInterceptor
     ) = OkHttpClient.Builder()
-        .addInterceptor(OauthInterceptor())
+        .addInterceptor(oauthInterceptor)
         .addInterceptor(chuckerInterceptor)
         .addInterceptor(httpLoggingInterceptor)
         .build()
