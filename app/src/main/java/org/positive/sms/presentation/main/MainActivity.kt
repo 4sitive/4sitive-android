@@ -40,10 +40,11 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         if (requestCode == 200) {
             if (resultCode == RESULT_OK && data != null) {
                 // TODO(yh): Needs to be modified with Kotlin Apis
-                val inputStream = contentResolver.openInputStream(data.data!!)
-                val img = BitmapFactory.decodeStream(inputStream)
-                inputStream?.close()
-                binding.image.setImageBitmap(img)
+//                val inputStream = contentResolver.openInputStream(data.data!!)
+//                val img = BitmapFactory.decodeStream(inputStream)
+//                inputStream?.close()
+//                binding.image.setImageBitmap(img)
+                viewModel.upload(data.data!!.toString())
             } else {
                 Toast.makeText(this, "Image not selected", Toast.LENGTH_SHORT).show()
             }
