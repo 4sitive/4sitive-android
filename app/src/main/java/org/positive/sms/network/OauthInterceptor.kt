@@ -1,12 +1,13 @@
-package org.positive.sms.di
+package org.positive.sms.network
 
 import okhttp3.Credentials
 import okhttp3.Interceptor
 import okhttp3.Request
 import okhttp3.Response
 import org.positive.sms.BuildConfig
+import javax.inject.Inject
 
-class AuthInterceptor : Interceptor {
+class OauthInterceptor @Inject constructor() : Interceptor {
 
     private val credentials: String =
         Credentials.basic(BuildConfig.OAUTH_CLIENT_ID, BuildConfig.OAUTH_CLIENT_SECRET)

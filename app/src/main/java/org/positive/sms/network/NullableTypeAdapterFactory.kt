@@ -1,4 +1,4 @@
-package org.positive.sms.di
+package org.positive.sms.network
 
 import com.google.gson.Gson
 import com.google.gson.JsonParseException

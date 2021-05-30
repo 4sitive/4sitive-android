@@ -1,4 +1,4 @@
-package org.positive.sms.di
+package org.positive.sms.network
 
 import okhttp3.Interceptor
 import okhttp3.Request
@@ -6,7 +6,7 @@ import okhttp3.Response
 import org.positive.sms.data.pref.AppSharedPreference
 import javax.inject.Inject
 
-class AuthInterceptor2 @Inject constructor(
+class AuthInterceptor @Inject constructor(
     private val appSharedPreference: AppSharedPreference
 ) : Interceptor {
 

@@ -2,11 +2,12 @@ package org.positive.sms.presentation.main
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.widget.Toast
+import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 import org.positive.sms.R
+import org.positive.sms.common.PsConstants
 import org.positive.sms.databinding.ActivityMainBinding
 import org.positive.sms.extension.startOnTop
 import org.positive.sms.extension.viewModelOf
@@ -25,6 +26,14 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         binding.button.setOnClickListener {
             startGallery()
         }
+
+        viewModel.image.observe {
+            if (it != null) {
+                Glide.with(this)
+                    .load(PsConstants.CDN_SERVER_BASE_URL.removeSuffix("/") + it)
+                    .into(binding.image)
+            }
+        }
     }
 
     private fun startGallery() {
@@ -39,11 +48,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == 200) {
             if (resultCode == RESULT_OK && data != null) {
-                // TODO(yh): Needs to be modified with Kotlin Apis
-//                val inputStream = contentResolver.openInputStream(data.data!!)
-//                val img = BitmapFactory.decodeStream(inputStream)
-//                inputStream?.close()
-//                binding.image.setImageBitmap(img)
                 viewModel.upload(data.data!!.toString())
             } else {
                 Toast.makeText(this, "Image not selected", Toast.LENGTH_SHORT).show()
