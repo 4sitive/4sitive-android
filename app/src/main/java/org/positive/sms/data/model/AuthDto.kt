@@ -3,7 +3,7 @@ package org.positive.sms.data.model
 import com.google.gson.annotations.SerializedName
 import org.positive.sms.domain.AuthToken
 
-data class PostOauthAuthorizationCodeResponse(
+data class OauthAuthorizationResponse(
     val accessToken: String,
     val refreshToken: String,
     val expiresIn: Int,
@@ -12,7 +12,7 @@ data class PostOauthAuthorizationCodeResponse(
 ) {
 
     companion object {
-        fun PostOauthAuthorizationCodeResponse.toAuthToken(): AuthToken = AuthToken(
+        fun OauthAuthorizationResponse.toAuthToken(): AuthToken = AuthToken(
             accessToken = accessToken,
             refreshToken = refreshToken,
             expiresIn = expiresIn,

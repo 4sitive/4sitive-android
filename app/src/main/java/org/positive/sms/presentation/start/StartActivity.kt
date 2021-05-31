@@ -8,6 +8,7 @@ import org.positive.sms.extension.viewModelOf
 import org.positive.sms.presentation.base.BaseActivity
 import org.positive.sms.presentation.home.HomeActivity
 import org.positive.sms.presentation.login.LoginActivity
+import org.positive.sms.presentation.main.MainActivity
 
 @AndroidEntryPoint
 class StartActivity : BaseActivity<ActivityStartBinding>(R.layout.activity_start) {
@@ -19,7 +20,7 @@ class StartActivity : BaseActivity<ActivityStartBinding>(R.layout.activity_start
         viewModel.checkIssuedToken()
         viewModel.alreadyTokenIssued.observeNonNull {
             if (it) {
-                HomeActivity.startOnTop(this)
+                MainActivity.startOnTop(this)
             } else {
                 LoginActivity.startOnTop(this)
             }
