@@ -17,7 +17,8 @@ class TokenAuthenticator @Inject constructor(
 
     override fun authenticate(route: Route?, response: Response): Request? {
         val retryCnt = (response.request.header(RETRY_COUNT_HEADER) ?: "0").toInt()
-        if (retryCnt > 2) {
+        if (retryCnt > MAX_RETRY_COUNT) {
+            appSharedPreference.clearAuthToken().blockingAwait()
             return null
         }
 
@@ -38,5 +39,6 @@ class TokenAuthenticator @Inject constructor(
 
     companion object {
         private const val RETRY_COUNT_HEADER = "RetryCount"
+        private const val MAX_RETRY_COUNT = 2
     }
 }

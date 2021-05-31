@@ -24,7 +24,13 @@ class AppSharedPreferenceImpl @Inject constructor(
     ).build()
 
     override fun loadAuthToken(): Maybe<AuthToken> =
-        dataStore.data().firstElement().map { it.toAuthToken() }
+        dataStore.data().firstElement()
+            .filter {
+                it != AuthTokenEntity.getDefaultInstance()
+            }
+            .map {
+                it.toAuthToken()
+            }
 
     override fun saveAuthToken(authToken: AuthToken): Completable =
         dataStore.updateDataAsync {
@@ -35,6 +41,11 @@ class AppSharedPreferenceImpl @Inject constructor(
                 .addAllScope(authToken.scope.orEmpty())
                 .build()
             Single.just(authTokenEntity)
+        }.ignoreElement()
+
+    override fun clearAuthToken(): Completable =
+        dataStore.updateDataAsync {
+            Single.just(AuthTokenEntity.getDefaultInstance())
         }.ignoreElement()
 
     private fun AuthTokenEntity.toAuthToken(): AuthToken = AuthToken(

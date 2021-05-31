@@ -9,4 +9,6 @@ interface AppSharedPreference {
     fun loadAuthToken(): Maybe<AuthToken>
 
     fun saveAuthToken(authToken: AuthToken): Completable
+
+    fun clearAuthToken(): Completable
 }
