@@ -10,7 +10,9 @@ import org.positive.sms.BuildConfig
 import org.positive.sms.datastore.AuthTokenEntity
 import org.positive.sms.domain.AuthToken
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class AppSharedPreferenceImpl @Inject constructor(
     context: Context
 ) : AppSharedPreference {
@@ -24,9 +26,16 @@ class AppSharedPreferenceImpl @Inject constructor(
     override fun loadAuthToken(): Maybe<AuthToken> =
         dataStore.data().firstElement().map { it.toAuthToken() }
 
-
     override fun saveAuthToken(authToken: AuthToken): Completable =
-        dataStore.updateDataAsync { Single.just(it) }.ignoreElement()
+        dataStore.updateDataAsync {
+            val authTokenEntity = AuthTokenEntity.newBuilder()
+                .setAccessToken(authToken.accessToken)
+                .setRefreshToken(authToken.refreshToken)
+                .setExpiresIn(authToken.expiresIn)
+                .addAllScope(authToken.scope.orEmpty())
+                .build()
+            Single.just(authTokenEntity)
+        }.ignoreElement()
 
     private fun AuthTokenEntity.toAuthToken(): AuthToken = AuthToken(
         accessToken = accessToken,

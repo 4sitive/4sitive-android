@@ -7,7 +7,9 @@ import org.positive.sms.data.model.PostOauthAuthorizationCodeResponse.Companion.
 import org.positive.sms.domain.AuthToken
 import org.positive.sms.extension.declaredSerializedName
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class AuthRepositoryImpl @Inject constructor(
     private val authApi: AuthApi
 ) : AuthRepository {

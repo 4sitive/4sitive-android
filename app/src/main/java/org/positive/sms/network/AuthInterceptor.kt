@@ -6,7 +6,9 @@ import okhttp3.Response
 import org.positive.sms.data.pref.AppSharedPreference
 import org.positive.sms.domain.AuthToken
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class AuthInterceptor @Inject constructor(
     private val appSharedPreference: AppSharedPreference
 ) : Interceptor {

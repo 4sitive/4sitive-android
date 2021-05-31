@@ -5,8 +5,8 @@ import org.positive.sms.domain.AuthToken
 
 data class PostOauthAuthorizationCodeResponse(
     val accessToken: String,
-    val refreshToken: String? = null,
-    val expiresIn: Int? = null,
+    val refreshToken: String,
+    val expiresIn: Int,
     val tokenType: String,
     val scope: List<String>? = null
 ) {

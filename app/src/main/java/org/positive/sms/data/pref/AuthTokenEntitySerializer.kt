@@ -8,6 +8,7 @@ import java.io.InputStream
 import java.io.OutputStream
 
 class AuthTokenEntitySerializer : Serializer<AuthTokenEntity> {
+
     override val defaultValue: AuthTokenEntity = AuthTokenEntity.getDefaultInstance()
 
     override fun readFrom(
