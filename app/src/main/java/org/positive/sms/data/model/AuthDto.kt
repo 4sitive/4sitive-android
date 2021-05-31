@@ -12,7 +12,6 @@ data class PostOauthAuthorizationCodeResponse(
 ) {
 
     companion object {
-
         fun PostOauthAuthorizationCodeResponse.toAuthToken(): AuthToken = AuthToken(
             accessToken = accessToken,
             refreshToken = refreshToken,

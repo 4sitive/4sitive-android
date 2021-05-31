@@ -10,7 +10,7 @@ class SingleLiveEvent<T> : MutableLiveData<T>() {
 
     private val pendingValue = AtomicBoolean(false)
 
-    override fun setValue(value: T) {
+    override fun setValue(value: T?) {
         pendingValue.set(true)
         super.setValue(value)
     }

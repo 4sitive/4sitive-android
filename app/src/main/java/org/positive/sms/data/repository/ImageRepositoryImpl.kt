@@ -43,9 +43,7 @@ class ImageRepositoryImpl @Inject constructor(
     }
 
     companion object {
-
         private val imagePngMediaType: MediaType = "image/png".toMediaType()
-
         private val dateFormat = SimpleDateFormat("yyyyMMddHHmm'.png'", Locale.KOREA)
     }
 }

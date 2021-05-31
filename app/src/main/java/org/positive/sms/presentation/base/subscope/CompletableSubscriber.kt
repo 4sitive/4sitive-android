@@ -10,6 +10,8 @@ interface CompletableSubscriber {
 
     fun Completable.autoDispose(block: CompletableSubscribeScope.() -> Unit)
 
+    fun Completable.backgroundCompose(): Completable
+
     fun Completable.apiLoadingCompose(): Completable
 }
 
@@ -24,7 +26,12 @@ class CompletableSubscriberImpl(
         scope.subscribe()
     }
 
-    override fun Completable.apiLoadingCompose() : Completable = compose {
+    override fun Completable.backgroundCompose(): Completable = compose {
+        it.subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+    }
+
+    override fun Completable.apiLoadingCompose(): Completable = compose {
         it.subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { _isLoading.value = true }

@@ -10,6 +10,8 @@ interface MaybeSubscriber {
 
     fun <T> Maybe<T>.autoDispose(block: MaybeSubscribeScope<T>.() -> Unit)
 
+    fun <T> Maybe<T>.backgroundCompose(): Maybe<T>
+
     fun <T> Maybe<T>.apiLoadingCompose(): Maybe<T>
 }
 
@@ -22,6 +24,11 @@ class MaybeSubscriberImpl(
         val scope = MaybeSubscribeScope(this, disposables)
         scope.block()
         scope.subscribe()
+    }
+
+    override fun <T> Maybe<T>.backgroundCompose(): Maybe<T> = compose {
+        it.subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
     }
 
     override fun <T> Maybe<T>.apiLoadingCompose(): Maybe<T> = compose {

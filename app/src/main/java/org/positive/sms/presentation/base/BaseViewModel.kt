@@ -20,6 +20,6 @@ abstract class BaseViewModel constructor(
     val showErrorMessageEvent: LiveData<String> = _showErrorMessageEvent
 
     protected fun showErrorMessage(message: String) {
-        _showErrorMessageEvent.setValue(message)
+        _showErrorMessageEvent.value = message
     }
 }

@@ -46,7 +46,6 @@ class AppSharedPreferenceImpl @Inject constructor(
     )
 
     companion object {
-
         private const val AUTH_TOKEN_DATA_STORE_NAME = BuildConfig.APPLICATION_ID + "_data_store"
     }
 }

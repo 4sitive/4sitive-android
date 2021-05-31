@@ -10,6 +10,8 @@ interface SingleSubscriber {
 
     fun <T> Single<T>.autoDispose(block: SingleSubscribeScope<T>.() -> Unit)
 
+    fun <T> Single<T>.backgroundCompose(): Single<T>
+
     fun <T> Single<T>.apiLoadingCompose(): Single<T>
 }
 
@@ -22,6 +24,11 @@ class SingleSubscriberImpl(
         val scope = SingleSubscribeScope(this, disposables)
         scope.block()
         scope.subscribe()
+    }
+
+    override fun <T> Single<T>.backgroundCompose(): Single<T> = compose {
+        it.subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
     }
 
     override fun <T> Single<T>.apiLoadingCompose(): Single<T> = compose {
