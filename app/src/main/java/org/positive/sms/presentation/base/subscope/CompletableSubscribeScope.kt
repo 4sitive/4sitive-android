@@ -1,4 +1,4 @@
-package org.positive.sms.common
+package org.positive.sms.presentation.base.subscope
 
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
