@@ -10,8 +10,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val imageRepository: ImageRepository,
-    private val appSharedPreference: AppSharedPreference
+    private val imageRepository: ImageRepository
 ) : BaseViewModel() {
 
     private val _image = MutableLiveData<String>()
@@ -19,7 +18,7 @@ class MainViewModel @Inject constructor(
 
     fun upload(path: String) {
         imageRepository.imageUpload(path)
-            .compose(apiLoading())
+            .apiLoading()
             .autoDispose {
                 success {
                     _image.value = it.contentsLocation

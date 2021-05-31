@@ -24,10 +24,10 @@ class DispatchViewModel @Inject constructor(
             code = code,
             grantType = GrantType.AUTHORIZATION_CODE,
             redirectUri = PsConstants.APP_SCHEME + "://login"
-        ).compose(apiLoading())
+        ).apiLoading()
+            .flatMapCompletable { sharedPreferences.saveAuthToken(it) }
             .autoDispose {
-                success {
-                    sharedPreferences.authToken = it.accessToken
+                complete {
                     _tokenIssueCompleteEvent.call()
                 }
                 error {
