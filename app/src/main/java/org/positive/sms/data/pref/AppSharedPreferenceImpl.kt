@@ -1,30 +1,62 @@
 package org.positive.sms.data.pref
 
 import android.content.Context
+import androidx.datastore.rxjava3.RxDataStore
+import androidx.datastore.rxjava3.RxDataStoreBuilder
+import io.reactivex.rxjava3.core.Completable
+import io.reactivex.rxjava3.core.Maybe
+import io.reactivex.rxjava3.core.Single
 import org.positive.sms.BuildConfig
+import org.positive.sms.datastore.AuthTokenEntity
+import org.positive.sms.domain.AuthToken
 import javax.inject.Inject
+import javax.inject.Singleton
 
-class AppSharedPreferenceImpl @Inject constructor(context: Context) : AppSharedPreference {
+@Singleton
+class AppSharedPreferenceImpl @Inject constructor(
+    context: Context
+) : AppSharedPreference {
 
-    private val sharedPreferences = context.applicationContext.getSharedPreferences(
-        BuildConfig.APPLICATION_ID,
-        Context.MODE_PRIVATE
+    private val dataStore: RxDataStore<AuthTokenEntity> = RxDataStoreBuilder(
+        context,
+        AUTH_TOKEN_DATA_STORE_NAME,
+        AuthTokenEntitySerializer()
+    ).build()
+
+    override fun loadAuthToken(): Maybe<AuthToken> =
+        dataStore.data().firstElement()
+            .filter {
+                it != AuthTokenEntity.getDefaultInstance()
+            }
+            .map {
+                it.toAuthToken()
+            }
+
+    override fun saveAuthToken(authToken: AuthToken): Completable =
+        dataStore.updateDataAsync {
+            val authTokenEntity = AuthTokenEntity.newBuilder()
+                .setAccessToken(authToken.accessToken)
+                .setRefreshToken(authToken.refreshToken)
+                .setExpiresIn(authToken.expiresIn)
+                .addAllScope(authToken.scope.orEmpty())
+                .build()
+            Single.just(authTokenEntity)
+        }.ignoreElement()
+
+    override fun clearAuthToken(): Completable =
+        dataStore.updateDataAsync {
+            Single.just(AuthTokenEntity.getDefaultInstance())
+        }.ignoreElement()
+
+    private fun AuthTokenEntity.toAuthToken(): AuthToken = AuthToken(
+        accessToken = accessToken,
+        refreshToken = refreshToken,
+        expiresIn = expiresIn,
+        tokenType = tokenType,
+        scope = scopeList
     )
 
-    override var unixTime: Long
-        get() = sharedPreferences.getLong(UNIX_TIME_KEY, 0L)
-        set(value) {
-            sharedPreferences.edit().putLong(UNIX_TIME_KEY, value).apply()
-        }
-
-    override var authToken: String?
-        get() = sharedPreferences.getString(AUTH_TOKEN_KEY, null)
-        set(value) {
-            sharedPreferences.edit().putString(AUTH_TOKEN_KEY, value).apply()
-        }
-
     companion object {
-        private const val UNIX_TIME_KEY = "UNIX_TIME_KEY"
-        private const val AUTH_TOKEN_KEY = "AUTH_TOKEN_KEY"
+        private const val AUTH_TOKEN_DATA_STORE_NAME = BuildConfig.APPLICATION_ID + "_data_store"
     }
 }

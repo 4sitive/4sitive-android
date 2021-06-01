@@ -1,14 +1,15 @@
-package org.positive.sms.common
+package org.positive.sms.presentation.base.subscope
 
-import io.reactivex.rxjava3.core.Single
+import io.reactivex.rxjava3.core.Maybe
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 
-class SingleSubscribeScope<T>(
-    private val source: Single<T>,
+class MaybeSubscribeScope<T>(
+    private val source: Maybe<T>,
     private val disposables: CompositeDisposable
 ) {
     private var onSuccess: (T) -> Unit = {}
     private var onError: (Throwable) -> Unit = {}
+    private var onComplete: () -> Unit = {}
 
     fun success(onSuccess: (T) -> Unit) {
         this.onSuccess = onSuccess
@@ -18,7 +19,11 @@ class SingleSubscribeScope<T>(
         this.onError = onError
     }
 
+    fun complete(onComplete: () -> Unit) {
+        this.onComplete = onComplete
+    }
+
     fun subscribe() {
-        disposables.add(source.subscribe(onSuccess, onError))
+        disposables.add(source.subscribe(onSuccess, onError, onComplete))
     }
 }

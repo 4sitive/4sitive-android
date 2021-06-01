@@ -9,6 +9,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.positive.sms.network.AuthInterceptor
 import org.positive.sms.network.OauthInterceptor
+import org.positive.sms.network.TokenAuthenticator
 import javax.inject.Named
 
 @Module
@@ -16,12 +17,13 @@ import javax.inject.Named
 object OkHttpClientModule {
 
     @Provides
+    @Named("oauth")
     fun provideOkHttpClient(
         oauthInterceptor: OauthInterceptor,
         httpLoggingInterceptor: HttpLoggingInterceptor,
         chuckerInterceptor: ChuckerInterceptor
     ) = OkHttpClient.Builder()
-        .addInterceptor(OauthInterceptor())
+        .addInterceptor(oauthInterceptor)
         .addInterceptor(chuckerInterceptor)
         .addInterceptor(httpLoggingInterceptor)
         .build()
@@ -31,10 +33,12 @@ object OkHttpClientModule {
     fun provideCertifiedOkHttpClient(
         authInterceptor: AuthInterceptor,
         httpLoggingInterceptor: HttpLoggingInterceptor,
-        chuckerInterceptor: ChuckerInterceptor
+        chuckerInterceptor: ChuckerInterceptor,
+        tokenAuthenticator: TokenAuthenticator
     ) = OkHttpClient.Builder()
         .addInterceptor(authInterceptor)
         .addInterceptor(chuckerInterceptor)
         .addInterceptor(httpLoggingInterceptor)
+        .authenticator(tokenAuthenticator)
         .build()
 }

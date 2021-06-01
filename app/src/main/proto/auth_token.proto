@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "org.positive.sms.datastore";
+option java_multiple_files = true;
+
+message AuthTokenEntity {
+  string access_token = 1;
+  string refresh_token = 2;
+  int32 expiresIn = 3;
+  string token_type = 4;
+  repeated string scope = 5;
+}

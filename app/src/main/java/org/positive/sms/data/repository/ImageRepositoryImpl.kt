@@ -11,8 +11,10 @@ import org.positive.sms.data.model.ImageUploadResponse
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
+import javax.inject.Singleton
 
 
+@Singleton
 class ImageRepositoryImpl @Inject constructor(
     private val context: Context,
     private val imageApi: ImageApi
@@ -41,9 +43,7 @@ class ImageRepositoryImpl @Inject constructor(
     }
 
     companion object {
-
         private val imagePngMediaType: MediaType = "image/png".toMediaType()
-
         private val dateFormat = SimpleDateFormat("yyyyMMddHHmm'.png'", Locale.KOREA)
     }
 }

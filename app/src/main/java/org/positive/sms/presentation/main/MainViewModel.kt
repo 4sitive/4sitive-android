@@ -3,15 +3,13 @@ package org.positive.sms.presentation.main
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import dagger.hilt.android.lifecycle.HiltViewModel
-import org.positive.sms.data.pref.AppSharedPreference
 import org.positive.sms.data.repository.ImageRepository
 import org.positive.sms.presentation.base.BaseViewModel
 import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val imageRepository: ImageRepository,
-    private val appSharedPreference: AppSharedPreference
+    private val imageRepository: ImageRepository
 ) : BaseViewModel() {
 
     private val _image = MutableLiveData<String>()
@@ -19,7 +17,7 @@ class MainViewModel @Inject constructor(
 
     fun upload(path: String) {
         imageRepository.imageUpload(path)
-            .compose(apiLoading())
+            .apiLoadingCompose()
             .autoDispose {
                 success {
                     _image.value = it.contentsLocation

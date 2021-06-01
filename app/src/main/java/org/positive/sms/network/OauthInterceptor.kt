@@ -6,7 +6,9 @@ import okhttp3.Request
 import okhttp3.Response
 import org.positive.sms.BuildConfig
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class OauthInterceptor @Inject constructor() : Interceptor {
 
     private val credentials: String =

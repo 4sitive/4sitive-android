@@ -1,5 +1,6 @@
 package org.positive.sms.presentation.login
 
+import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import dagger.hilt.android.AndroidEntryPoint
@@ -7,6 +8,7 @@ import org.positive.sms.BuildConfig
 import org.positive.sms.R
 import org.positive.sms.common.PsConstants
 import org.positive.sms.databinding.ActivityLoginBinding
+import org.positive.sms.extension.startOnTop
 import org.positive.sms.presentation.base.BaseActivity
 
 @AndroidEntryPoint
@@ -25,5 +27,9 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
             .appendQueryParameter("response_type", "code")
             .build()
         binding.loginWebView.loadUrl(url.toString())
+    }
+
+    companion object {
+        fun startOnTop(context: Context) = context.startOnTop<LoginActivity>()
     }
 }
