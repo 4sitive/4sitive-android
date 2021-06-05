@@ -30,6 +30,9 @@ ext {
     // Dagger Hilt
     hiltCoreVersion = '2.35.1'
 
+    // Chrome Custom Tabs
+    chromeCustomTabsVersion = '1.3.0'
+
     // Test
     junitVersion = '4.13.2'
     androidJunitVersion = '1.1.2'
