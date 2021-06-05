@@ -5,6 +5,8 @@ plugins {
     id "kotlin-kapt"
     id "dagger.hilt.android.plugin"
     id "com.google.protobuf" version "0.8.12"
+    id "com.google.firebase.crashlytics"
+    id "com.google.gms.google-services"
 }
 
 apply {
@@ -79,7 +81,7 @@ dependencies {
     implementation "androidx.datastore:datastore-preferences-rxjava3:$dataStoreVersion"
     implementation "com.google.protobuf:protobuf-javalite:3.10.0"
 
-    // Networking lib
+    // Networking
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.squareup.retrofit2:adapter-rxjava3:$retrofitVersion"
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
@@ -102,6 +104,11 @@ dependencies {
 
     // Chrome Custom Tabs
     implementation "androidx.browser:browser:$chromeCustomTabsVersion"
+
+    // Firebase
+    implementation platform("com.google.firebase:firebase-bom:$firebaseVersion")
+    implementation 'com.google.firebase:firebase-crashlytics'
+    implementation 'com.google.firebase:firebase-analytics'
 
     // Test
     testImplementation "junit:junit:$junitVersion"
