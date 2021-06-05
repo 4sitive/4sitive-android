@@ -4,7 +4,9 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
+import androidx.fragment.app.FragmentTransaction
 import com.bumptech.glide.Glide
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import org.positive.sms.R
 import org.positive.sms.common.PsConstants
@@ -18,6 +20,7 @@ import org.positive.sms.presentation.base.BaseActivity
 class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     private val viewModel by viewModelOf<MainViewModel>()
+    private var backWait: Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,10 +37,25 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
                     .into(binding.image)
             }
         }
+
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_nav)
+        bottomNavigationView.setOnNavigationItemSelectedListener { item ->
+            // TODO(je): create fragment and setting listener
+            true
+        }
+    }
+
+    override fun onBackPressed() {
+        if(System.currentTimeMillis() - backWait >=2000 ) {
+            backWait = System.currentTimeMillis()
+            Toast.makeText(applicationContext, "press BACK again to exit.", Toast.LENGTH_LONG).show()
+        } else {
+            finish()
+        }
     }
 
     private fun startGallery() {
-        // TODO(yh): Needs to be modified with Result Api
+        // TODO(yh): Neceds to be modified with Result Api
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
         val mimeTypes = arrayOf("image/jpeg", "image/png")
