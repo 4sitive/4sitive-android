@@ -5,7 +5,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
-import org.positive.daymotion.common.PsConstants
+import org.positive.daymotion.common.DmConstants
 import retrofit2.CallAdapter
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -23,7 +23,7 @@ object RetrofitModule {
         callAdapterFactory: CallAdapter.Factory,
         gsonConverterFactory: GsonConverterFactory
     ): Retrofit = Retrofit.Builder()
-        .baseUrl(PsConstants.ACCOUNT_SERVER_BASE_URL)
+        .baseUrl(DmConstants.ACCOUNT_SERVER_BASE_URL)
         .client(okHttpClient)
         .addCallAdapterFactory(callAdapterFactory)
         .addConverterFactory(gsonConverterFactory)
@@ -36,7 +36,7 @@ object RetrofitModule {
         callAdapterFactory: CallAdapter.Factory,
         gsonConverterFactory: GsonConverterFactory
     ): Retrofit = Retrofit.Builder()
-        .baseUrl(PsConstants.CDN_SERVER_BASE_URL)
+        .baseUrl(DmConstants.CDN_SERVER_BASE_URL)
         .client(okHttpClient)
         .addCallAdapterFactory(callAdapterFactory)
         .addConverterFactory(gsonConverterFactory)

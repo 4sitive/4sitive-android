@@ -9,7 +9,7 @@ import com.bumptech.glide.Glide
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import org.positive.daymotion.R
-import org.positive.daymotion.common.PsConstants
+import org.positive.daymotion.common.DmConstants
 import org.positive.daymotion.databinding.ActivityMainBinding
 import org.positive.daymotion.extension.startOnTop
 import org.positive.daymotion.extension.viewModelOf
@@ -33,7 +33,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         viewModel.image.observe {
             if (it != null) {
                 Glide.with(this)
-                    .load(PsConstants.CDN_SERVER_BASE_URL.removeSuffix("/") + it)
+                    .load(DmConstants.CDN_SERVER_BASE_URL.removeSuffix("/") + it)
                     .into(binding.image)
             }
         }
