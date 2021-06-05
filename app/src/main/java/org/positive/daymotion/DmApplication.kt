@@ -5,7 +5,7 @@ import com.google.firebase.crashlytics.FirebaseCrashlytics
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
-class PsApplication : Application() {
+class DmApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 

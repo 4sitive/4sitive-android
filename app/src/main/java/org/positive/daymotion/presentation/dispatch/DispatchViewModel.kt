@@ -2,7 +2,7 @@ package org.positive.daymotion.presentation.dispatch
 
 import androidx.lifecycle.LiveData
 import dagger.hilt.android.lifecycle.HiltViewModel
-import org.positive.daymotion.common.PsConstants
+import org.positive.daymotion.common.DmConstants
 import org.positive.daymotion.common.SingleLiveEvent
 import org.positive.daymotion.data.pref.AppSharedPreference
 import org.positive.daymotion.data.repository.AuthRepository
@@ -21,7 +21,7 @@ class DispatchViewModel @Inject constructor(
     fun postAuthorizationCode(code: String) {
         authRepository.postOauthAuthorizationCode(
             code = code,
-            redirectUri = PsConstants.APP_SCHEME + "://login"
+            redirectUri = DmConstants.APP_SCHEME + "://login"
         ).flatMapCompletable { sharedPreferences.saveAuthToken(it) }
             .apiLoadingCompose()
             .autoDispose {

@@ -9,9 +9,9 @@ import android.view.KeyEvent
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import org.positive.daymotion.common.PsConstants
+import org.positive.daymotion.common.DmConstants
 
-class PsWebView : WebView {
+class DmWebView : WebView {
 
     constructor(
         context: Context
@@ -63,7 +63,7 @@ class PsWebView : WebView {
         }
 
         private fun isPositiveScheme(url: Uri): Boolean {
-            if (url.scheme == PsConstants.APP_SCHEME) {
+            if (url.scheme == DmConstants.APP_SCHEME) {
                 context.startActivity(Intent(Intent.ACTION_VIEW, url))
                 return true
             }

@@ -1,6 +1,6 @@
 package org.positive.daymotion.common
 
-object PsConstants {
+object DmConstants {
     // TODO: depend on variant
     const val ACCOUNT_SERVER_BASE_URL = "https://account.4sitive.com/"
 
