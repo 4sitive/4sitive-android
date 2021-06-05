@@ -1,13 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto">
 	
-	<FrameLayout
+	<data>
+		
+		<import type="org.positive.sms.presentation.login.LoginActivity.LoginWay" />
+		
+		<variable
+			name="handler"
+			type="org.positive.sms.presentation.login.LoginActivity.Handler" />
+	</data>
+	
+	<androidx.constraintlayout.widget.ConstraintLayout
 		android:layout_width="match_parent"
 		android:layout_height="match_parent">
 		
-		<org.positive.sms.presentation.views.PsWebView
-			android:id="@+id/loginWebView"
+		<Button
+			android:id="@+id/googleLoginButton"
 			android:layout_width="match_parent"
-			android:layout_height="match_parent" />
-	</FrameLayout>
+			android:layout_height="wrap_content"
+			android:layout_marginStart="16dp"
+			android:layout_marginEnd="16dp"
+			android:onClick="@{() -> handler.requestLogin(LoginWay.GOOGLE)}"
+			android:text="Google Login"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent" />
+		
+		<Button
+			android:id="@+id/kakaoLoginButton"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="16dp"
+			android:layout_marginEnd="16dp"
+			android:onClick="@{() -> handler.requestLogin(LoginWay.KAKAO)}"
+			android:text="Kakao Login"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/googleLoginButton" />
+	
+	</androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
