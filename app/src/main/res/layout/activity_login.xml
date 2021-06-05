@@ -4,11 +4,11 @@
 	
 	<data>
 		
-		<import type="org.positive.sms.presentation.login.LoginActivity.LoginWay" />
+		<import type="org.positive.daymotion.presentation.login.LoginActivity.LoginWay" />
 		
 		<variable
 			name="handler"
-			type="org.positive.sms.presentation.login.LoginActivity.Handler" />
+			type="org.positive.daymotion.presentation.login.LoginActivity.Handler" />
 	</data>
 	
 	<androidx.constraintlayout.widget.ConstraintLayout
