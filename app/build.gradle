@@ -36,9 +36,22 @@ android {
     }
 
     buildTypes {
+        debug {
+            debuggable true
+            applicationIdSuffix ".debug"
+            resValue("string", "app_name", "Daymotion-Debug")
+        }
+
+        qa {
+            initWith debug
+            applicationIdSuffix ".qa"
+            resValue("string", "app_name", "Daymotion-Qa")
+        }
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            resValue("string", "app_name", "Daymotion")
         }
     }
 
@@ -88,6 +101,7 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttpVersion"
     implementation "com.squareup.okhttp3:okhttp:$okhttpVersion"
     debugImplementation "com.github.chuckerteam.chucker:library:$chuckerVersion"
+    qaImplementation "com.github.chuckerteam.chucker:library:$chuckerVersion"
     releaseImplementation "com.github.chuckerteam.chucker:library-no-op:$chuckerVersion"
 
     // RxJava
