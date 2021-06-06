@@ -2,30 +2,64 @@ package org.positive.daymotion.presentation.start
 
 import androidx.lifecycle.LiveData
 import dagger.hilt.android.lifecycle.HiltViewModel
-import io.reactivex.rxjava3.core.Maybe
+import io.reactivex.rxjava3.core.Single
 import org.positive.daymotion.common.SingleLiveEvent
 import org.positive.daymotion.data.pref.AppSharedPreference
+import org.positive.daymotion.data.repository.RemoteConfigRepository
 import org.positive.daymotion.presentation.base.BaseViewModel
-import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 @HiltViewModel
 class StartViewModel @Inject constructor(
-    private val appSharedPreference: AppSharedPreference
+    private val appSharedPreference: AppSharedPreference,
+    private val remoteConfigRepository: RemoteConfigRepository
 ) : BaseViewModel() {
 
-    private val _alreadyTokenIssued = SingleLiveEvent<Boolean>()
-    val alreadyTokenIssued: LiveData<Boolean> get() = _alreadyTokenIssued
+    private val _needUpdate = SingleLiveEvent<Nothing>()
+    val needUpdate: LiveData<Nothing> get() = _needUpdate
 
-    fun checkIssuedToken() {
-        Maybe.zip(
-            appSharedPreference.loadAuthToken(),
-            Maybe.timer(1500, TimeUnit.MILLISECONDS),
-            { authToken, _ -> authToken }
-        ).backgroundCompose()
+    private val _goToLogin = SingleLiveEvent<Nothing>()
+    val goToLogin: LiveData<Nothing> get() = _goToLogin
+
+    private val _goToHome = SingleLiveEvent<Nothing>()
+    val goToHome: LiveData<Nothing> get() = _goToHome
+
+    fun checkVersionAndToken(currentVersion: String) {
+        remoteConfigRepository.fetchRemoteData()
+            .andThen(Single.just(remoteConfigRepository.getForceUpdateVersion()))
+            .map { version ->
+                val versionValues = version.split(".").map { it.toInt() }
+                require(versionValues.size == 3) { "Invalid version format" }
+                return@map versionValues
+            }
+            .backgroundCompose()
             .autoDispose {
-                success { _alreadyTokenIssued.value = true }
-                complete { _alreadyTokenIssued.value = false }
+                success { versionValues ->
+                    val currentVersionValues = currentVersion.split(".").map { it.toInt() }
+                    val needForceUpdate = versionValues
+                        .zip(currentVersionValues)
+                        .let { it.any { (f, c) -> f > c } || it.all { (f, c) -> f == c } }
+
+                    if (needForceUpdate) {
+                        _needUpdate.call()
+                    } else {
+                        checkIssuedToken()
+                    }
+                }
+                error { showErrorMessage(it.message.orEmpty()) }
+            }
+    }
+
+    private fun checkIssuedToken() {
+        appSharedPreference.loadAuthToken()
+            .backgroundCompose()
+            .autoDispose {
+                success {
+                    _goToLogin.call()
+                }
+                complete {
+                    _goToHome.call()
+                }
                 error { showErrorMessage(it.message.orEmpty()) }
             }
     }
