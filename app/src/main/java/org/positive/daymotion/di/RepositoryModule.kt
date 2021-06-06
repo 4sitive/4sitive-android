@@ -4,10 +4,7 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import org.positive.daymotion.data.repository.AuthRepository
-import org.positive.daymotion.data.repository.AuthRepositoryImpl
-import org.positive.daymotion.data.repository.ImageRepository
-import org.positive.daymotion.data.repository.ImageRepositoryImpl
+import org.positive.daymotion.data.repository.*
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -22,4 +19,9 @@ abstract class RepositoryModule {
     abstract fun provideImageRepository(
         imageRepositoryImpl: ImageRepositoryImpl
     ): ImageRepository
+
+    @Binds
+    abstract fun provideRemoteConfigRepository(
+        remoteConfigRepositoryImpl: RemoteConfigRepositoryImpl
+    ): RemoteConfigRepository
 }
