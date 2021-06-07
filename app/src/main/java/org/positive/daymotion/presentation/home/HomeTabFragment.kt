@@ -8,6 +8,7 @@ import org.positive.daymotion.databinding.FragmentHomeTabBinding
 import org.positive.daymotion.presentation.base.BaseFragment
 import org.positive.daymotion.presentation.base.util.viewModelOf
 import org.positive.daymotion.presentation.feed.FeedActivity
+import org.positive.daymotion.presentation.upload.MissionUploadActivity
 
 @AndroidEntryPoint
 class HomeTabFragment : BaseFragment<FragmentHomeTabBinding>(R.layout.fragment_home_tab) {
@@ -19,6 +20,9 @@ class HomeTabFragment : BaseFragment<FragmentHomeTabBinding>(R.layout.fragment_h
         binding.viewModel = viewModel
         binding.button1.setOnClickListener {
             FeedActivity.start(requireContext())
+        }
+        binding.button2.setOnClickListener {
+            MissionUploadActivity.start(requireContext())
         }
     }
 }
