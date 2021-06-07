@@ -1,24 +1,21 @@
-package org.positive.daymotion.presentation.root.tabs.home
+package org.positive.daymotion.presentation.category
 
 import android.os.Bundle
 import android.view.View
 import dagger.hilt.android.AndroidEntryPoint
 import org.positive.daymotion.R
-import org.positive.daymotion.databinding.FragmentHomeTabBinding
+import org.positive.daymotion.databinding.FragmentCategoryTabBinding
 import org.positive.daymotion.presentation.base.BaseFragment
 import org.positive.daymotion.presentation.base.util.viewModelOf
-import org.positive.daymotion.presentation.feed.FeedActivity
 
 @AndroidEntryPoint
-class HomeTabFragment : BaseFragment<FragmentHomeTabBinding>(R.layout.fragment_home_tab) {
+class CategoryTabFragment :
+    BaseFragment<FragmentCategoryTabBinding>(R.layout.fragment_category_tab) {
 
-    private val viewModel by viewModelOf<HomeTabViewModel>()
+    private val viewModel by viewModelOf<CategoryTabViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.viewModel = viewModel
-        binding.button1.setOnClickListener {
-            FeedActivity.start(requireContext())
-        }
     }
 }

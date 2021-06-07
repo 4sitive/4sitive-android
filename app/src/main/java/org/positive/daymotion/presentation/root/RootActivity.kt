@@ -11,10 +11,10 @@ import org.positive.daymotion.databinding.ActivityRootBinding
 import org.positive.daymotion.extension.startOnTop
 import org.positive.daymotion.presentation.base.BaseActivity
 import org.positive.daymotion.presentation.base.util.viewModelOf
-import org.positive.daymotion.presentation.root.tabs.category.CategoryTabFragment
-import org.positive.daymotion.presentation.root.tabs.home.HomeTabFragment
-import org.positive.daymotion.presentation.root.tabs.my.MyTabFragment
-import org.positive.daymotion.presentation.root.tabs.setting.SettingTabFragment
+import org.positive.daymotion.presentation.category.CategoryTabFragment
+import org.positive.daymotion.presentation.home.HomeTabFragment
+import org.positive.daymotion.presentation.my.MyTabFragment
+import org.positive.daymotion.presentation.setting.SettingTabFragment
 
 @AndroidEntryPoint
 class RootActivity : BaseActivity<ActivityRootBinding>(R.layout.activity_root) {

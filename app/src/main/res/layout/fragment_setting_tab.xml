@@ -6,7 +6,7 @@
 		
 		<variable
 			name="viewModel"
-			type="org.positive.daymotion.presentation.root.tabs.setting.SettingTabViewModel" />
+			type="org.positive.daymotion.presentation.setting.SettingTabViewModel" />
 	</data>
 	
 	<androidx.constraintlayout.widget.ConstraintLayout
