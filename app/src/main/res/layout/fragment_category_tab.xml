@@ -6,7 +6,7 @@
 		
 		<variable
 			name="viewModel"
-			type="org.positive.daymotion.presentation.home.HomeTabViewModel" />
+			type="org.positive.daymotion.presentation.category.CategoryTabViewModel" />
 	</data>
 	
 	<androidx.constraintlayout.widget.ConstraintLayout
@@ -17,7 +17,7 @@
 			android:id="@+id/title"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:text="HOME"
+			android:text="CATEGORY"
 			android:textSize="40sp"
 			app:layout_constraintBottom_toBottomOf="parent"
 			app:layout_constraintEnd_toEndOf="parent"
