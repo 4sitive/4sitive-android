@@ -1,18 +1,17 @@
-package org.positive.daymotion.presentation.root.tabs.category
+package org.positive.daymotion.presentation.setting
 
 import android.os.Bundle
 import android.view.View
 import dagger.hilt.android.AndroidEntryPoint
 import org.positive.daymotion.R
-import org.positive.daymotion.databinding.FragmentCategoryTabBinding
+import org.positive.daymotion.databinding.FragmentSettingTabBinding
 import org.positive.daymotion.presentation.base.BaseFragment
 import org.positive.daymotion.presentation.base.util.viewModelOf
 
 @AndroidEntryPoint
-class CategoryTabFragment :
-    BaseFragment<FragmentCategoryTabBinding>(R.layout.fragment_category_tab) {
+class SettingTabFragment : BaseFragment<FragmentSettingTabBinding>(R.layout.fragment_setting_tab) {
 
-    private val viewModel by viewModelOf<CategoryTabViewModel>()
+    private val viewModel by viewModelOf<SettingTabViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
