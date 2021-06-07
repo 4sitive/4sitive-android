@@ -16,5 +16,12 @@ class SettingTabFragment : BaseFragment<FragmentSettingTabBinding>(R.layout.frag
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.viewModel = viewModel
+
+        binding.button1.setOnClickListener {
+            ServiceTermsActivity.start(requireContext())
+        }
+        binding.button2.setOnClickListener {
+            PrivacyPolicyActivity.start(requireContext())
+        }
     }
 }
