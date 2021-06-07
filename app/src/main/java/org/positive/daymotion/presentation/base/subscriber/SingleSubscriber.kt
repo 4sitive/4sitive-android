@@ -1,37 +1,37 @@
-package org.positive.daymotion.presentation.base.subscope
+package org.positive.daymotion.presentation.base.subscriber
 
 import androidx.lifecycle.MutableLiveData
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.core.Maybe
+import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 
-interface MaybeSubscriber {
+interface SingleSubscriber {
 
-    fun <T> Maybe<T>.autoDispose(block: MaybeSubscribeScope<T>.() -> Unit)
+    fun <T> Single<T>.autoDispose(block: SingleSubscribeScope<T>.() -> Unit)
 
-    fun <T> Maybe<T>.backgroundCompose(): Maybe<T>
+    fun <T> Single<T>.backgroundCompose(): Single<T>
 
-    fun <T> Maybe<T>.apiLoadingCompose(): Maybe<T>
+    fun <T> Single<T>.apiLoadingCompose(): Single<T>
 }
 
-class MaybeSubscriberImpl(
+class SingleSubscriberImpl(
     private val disposables: CompositeDisposable,
     private val _isLoading: MutableLiveData<Boolean>
-) : MaybeSubscriber {
+) : SingleSubscriber {
 
-    override fun <T> Maybe<T>.autoDispose(block: MaybeSubscribeScope<T>.() -> Unit) {
-        val scope = MaybeSubscribeScope(this, disposables)
+    override fun <T> Single<T>.autoDispose(block: SingleSubscribeScope<T>.() -> Unit) {
+        val scope = SingleSubscribeScope(this, disposables)
         scope.block()
         scope.subscribe()
     }
 
-    override fun <T> Maybe<T>.backgroundCompose(): Maybe<T> = compose {
+    override fun <T> Single<T>.backgroundCompose(): Single<T> = compose {
         it.subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
     }
 
-    override fun <T> Maybe<T>.apiLoadingCompose(): Maybe<T> = compose {
+    override fun <T> Single<T>.apiLoadingCompose(): Single<T> = compose {
         it.subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { _isLoading.value = true }
