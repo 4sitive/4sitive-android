@@ -37,7 +37,7 @@
 		</activity>
 		
 		<activity android:name="org.positive.daymotion.presentation.login.LoginActivity" />
-		<activity android:name="org.positive.daymotion.presentation.home.HomeActivity" />
+		<activity android:name="org.positive.daymotion.presentation.root.RootActivity" />
 		<activity android:name="org.positive.daymotion.presentation.main.MainActivity" />
 	
 	</application>

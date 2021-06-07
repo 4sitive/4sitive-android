@@ -10,7 +10,7 @@ import org.positive.daymotion.common.showPopupDialog
 import org.positive.daymotion.databinding.ActivityStartBinding
 import org.positive.daymotion.extension.viewModelOf
 import org.positive.daymotion.presentation.base.BaseActivity
-import org.positive.daymotion.presentation.home.HomeActivity
+import org.positive.daymotion.presentation.root.RootActivity
 import org.positive.daymotion.presentation.login.LoginActivity
 
 @AndroidEntryPoint
@@ -43,7 +43,7 @@ class StartActivity : BaseActivity<ActivityStartBinding>(R.layout.activity_start
         }
 
         viewModel.goToLogin.observe {
-            HomeActivity.startOnTop(this)
+            RootActivity.startOnTop(this)
         }
     }
 
