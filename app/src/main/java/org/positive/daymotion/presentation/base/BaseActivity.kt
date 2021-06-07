@@ -7,9 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.LifecycleOwner
+import org.positive.daymotion.presentation.base.util.LiveDataObservable
 import org.positive.daymotion.presentation.base.util.LoadingHandler
-import org.positive.daymotion.presentation.base.util.ViewModelHolder
-import kotlin.reflect.KClass
 
 abstract class BaseActivity<B : ViewDataBinding>(
     @LayoutRes private val layoutId: Int
@@ -27,16 +26,7 @@ abstract class BaseActivity<B : ViewDataBinding>(
         binding.lifecycleOwner = this
     }
 
-    fun <VM : BaseViewModel> getViewModelLazy(
-        viewModelClass: KClass<VM>
-    ): Lazy<VM> = ViewModelHolder(
-        viewModelClass,
-        { viewModelStore },
-        { defaultViewModelProviderFactory },
-        { observingBaseViewModel(it) }
-    )
-
-    private fun observingBaseViewModel(viewModel: BaseViewModel) {
+    fun observeBaseLiveData(viewModel: BaseViewModel) {
         with(viewModel) {
             isLoading.observe {
                 showLoadingDialog(it)

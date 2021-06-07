@@ -1,4 +1,4 @@
-package org.positive.daymotion.presentation.base
+package org.positive.daymotion.presentation.base.util
 
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
