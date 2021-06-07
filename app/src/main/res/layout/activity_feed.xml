@@ -6,33 +6,24 @@
 		
 		<variable
 			name="viewModel"
-			type="org.positive.daymotion.presentation.root.tabs.home.HomeTabViewModel" />
+			type="org.positive.daymotion.presentation.feed.FeedViewModel" />
 	</data>
 	
 	<androidx.constraintlayout.widget.ConstraintLayout
 		android:layout_width="match_parent"
-		android:layout_height="match_parent">
+		android:layout_height="match_parent"
+		android:background="@color/light_gray">
 		
 		<TextView
 			android:id="@+id/title"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:text="HOME"
+			android:text="FEED"
 			android:textSize="40sp"
 			app:layout_constraintBottom_toBottomOf="parent"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintStart_toStartOf="parent"
 			app:layout_constraintTop_toTopOf="parent" />
-		
-		<Button
-			android:id="@+id/button1"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_marginBottom="24dp"
-			android:text="GO TO FEED"
-			app:layout_constraintBottom_toBottomOf="parent"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintStart_toStartOf="parent" />
 	
 	</androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
