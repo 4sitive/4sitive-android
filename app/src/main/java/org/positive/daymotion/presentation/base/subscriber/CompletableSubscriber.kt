@@ -1,37 +1,37 @@
-package org.positive.daymotion.presentation.base.subscope
+package org.positive.daymotion.presentation.base.subscriber
 
 import androidx.lifecycle.MutableLiveData
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.core.Single
+import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 
-interface SingleSubscriber {
+interface CompletableSubscriber {
 
-    fun <T> Single<T>.autoDispose(block: SingleSubscribeScope<T>.() -> Unit)
+    fun Completable.autoDispose(block: CompletableSubscribeScope.() -> Unit)
 
-    fun <T> Single<T>.backgroundCompose(): Single<T>
+    fun Completable.backgroundCompose(): Completable
 
-    fun <T> Single<T>.apiLoadingCompose(): Single<T>
+    fun Completable.apiLoadingCompose(): Completable
 }
 
-class SingleSubscriberImpl(
+class CompletableSubscriberImpl(
     private val disposables: CompositeDisposable,
     private val _isLoading: MutableLiveData<Boolean>
-) : SingleSubscriber {
+) : CompletableSubscriber {
 
-    override fun <T> Single<T>.autoDispose(block: SingleSubscribeScope<T>.() -> Unit) {
-        val scope = SingleSubscribeScope(this, disposables)
+    override fun Completable.autoDispose(block: CompletableSubscribeScope.() -> Unit) {
+        val scope = CompletableSubscribeScope(this, disposables)
         scope.block()
         scope.subscribe()
     }
 
-    override fun <T> Single<T>.backgroundCompose(): Single<T> = compose {
+    override fun Completable.backgroundCompose(): Completable = compose {
         it.subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
     }
 
-    override fun <T> Single<T>.apiLoadingCompose(): Single<T> = compose {
+    override fun Completable.apiLoadingCompose(): Completable = compose {
         it.subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { _isLoading.value = true }
