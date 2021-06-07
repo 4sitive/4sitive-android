@@ -1,4 +1,4 @@
-package org.positive.daymotion.presentation.setting
+package org.positive.daymotion.presentation.root.tabs.setting
 
 import android.os.Bundle
 import android.view.View

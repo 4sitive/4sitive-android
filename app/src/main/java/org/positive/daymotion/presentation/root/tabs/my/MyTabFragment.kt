@@ -1,17 +1,17 @@
-package org.positive.daymotion.presentation.home
+package org.positive.daymotion.presentation.root.tabs.my
 
 import android.os.Bundle
 import android.view.View
 import dagger.hilt.android.AndroidEntryPoint
 import org.positive.daymotion.R
-import org.positive.daymotion.databinding.FragmentHomeTabBinding
+import org.positive.daymotion.databinding.FragmentMyTabBinding
 import org.positive.daymotion.presentation.base.BaseFragment
 import org.positive.daymotion.presentation.base.util.viewModelOf
 
 @AndroidEntryPoint
-class HomeTabFragment : BaseFragment<FragmentHomeTabBinding>(R.layout.fragment_home_tab) {
+class MyTabFragment : BaseFragment<FragmentMyTabBinding>(R.layout.fragment_my_tab) {
 
-    private val viewModel by viewModelOf<HomeTabViewModel>()
+    private val viewModel by viewModelOf<MyTabViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
