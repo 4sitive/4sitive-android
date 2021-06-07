@@ -4,7 +4,7 @@ plugins {
     id "kotlin-parcelize"
     id "kotlin-kapt"
     id "dagger.hilt.android.plugin"
-    id "com.google.protobuf" version "0.8.12"
+    id "com.google.protobuf" version "$protobufPluginVersion"
     id "com.google.firebase.crashlytics"
     id "com.google.gms.google-services"
 }
@@ -74,8 +74,6 @@ tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
 }
 
 dependencies {
-
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
     implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
 
     // Android Basic
@@ -86,13 +84,14 @@ dependencies {
 
     // KTX
     implementation "androidx.core:core-ktx:$coreKtxVersion"
+    implementation "androidx.fragment:fragment-ktx:$fragmentKtxVersion"
 
     // DataStore
     implementation "androidx.datastore:datastore:$dataStoreVersion"
     implementation "androidx.datastore:datastore-rxjava3:$dataStoreVersion"
     implementation "androidx.datastore:datastore-preferences:$dataStoreVersion"
     implementation "androidx.datastore:datastore-preferences-rxjava3:$dataStoreVersion"
-    implementation "com.google.protobuf:protobuf-javalite:3.10.0"
+    implementation "com.google.protobuf:protobuf-javalite:$protobufJavaliteVersion"
 
     // Networking
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"

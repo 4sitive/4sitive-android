@@ -1,29 +1,35 @@
 package org.positive.daymotion.presentation.base
 
 import android.os.Bundle
-import android.widget.Toast
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.annotation.LayoutRes
-import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
 import org.positive.daymotion.presentation.base.util.LiveDataObservable
-import org.positive.daymotion.presentation.base.util.LoadingHandler
+import org.positive.daymotion.presentation.base.util.baseActivity
 
-abstract class BaseActivity<B : ViewDataBinding>(
+abstract class BaseFragment<B : ViewDataBinding>(
     @LayoutRes private val layoutId: Int
-) : AppCompatActivity(), LiveDataObservable {
+) : Fragment(), LiveDataObservable {
 
-    protected val binding: B by lazy { DataBindingUtil.setContentView(this, layoutId) }
-
-    private val loadingHandler by lazy { LoadingHandler(this) }
+    protected lateinit var binding: B
+        private set
 
     override val lifecycleOwner: LifecycleOwner
         get() = this
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = DataBindingUtil.inflate(inflater, layoutId, container, false)
         binding.lifecycleOwner = this
+        return binding.root
     }
 
     fun observeBaseLiveData(viewModel: BaseViewModel) {
@@ -38,14 +44,10 @@ abstract class BaseActivity<B : ViewDataBinding>(
     }
 
     fun showLoadingDialog(isLoading: Boolean?) {
-        if (isLoading == true) {
-            loadingHandler.show()
-        } else {
-            loadingHandler.hide()
-        }
+        baseActivity?.showLoadingDialog(isLoading)
     }
 
     fun showErrorMessage(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+        baseActivity?.showErrorMessage(message)
     }
 }
