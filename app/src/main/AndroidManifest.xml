@@ -37,13 +37,22 @@
 		</activity>
 		
 		<activity android:name="org.positive.daymotion.presentation.login.LoginActivity" />
+		
 		<activity android:name="org.positive.daymotion.presentation.root.RootActivity" />
+		
 		<activity android:name="org.positive.daymotion.presentation.main.MainActivity" />
+		
 		<activity android:name="org.positive.daymotion.presentation.feed.FeedActivity" />
+		
 		<activity android:name="org.positive.daymotion.presentation.category.CategoryDetailActivity" />
+		
 		<activity android:name="org.positive.daymotion.presentation.my.MyProfileEditActivity" />
+		
 		<activity android:name="org.positive.daymotion.presentation.setting.PrivacyPolicyActivity" />
+		
 		<activity android:name="org.positive.daymotion.presentation.setting.ServiceTermsActivity" />
+		
+		<activity android:name="org.positive.daymotion.presentation.upload.MissionUploadActivity" />
 	
 	</application>
 
