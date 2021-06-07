@@ -8,17 +8,20 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.LiveData
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelStore
 import org.positive.daymotion.presentation.base.util.ViewModelHolder
 import kotlin.reflect.KClass
 
 abstract class BaseFragment<B : ViewDataBinding>(
     @LayoutRes private val layoutId: Int
-) : Fragment() {
+) : Fragment(), LiveDataObservable {
 
     protected lateinit var binding: B
         private set
+
+    override val lifecycleOwner: LifecycleOwner
+        get() = this
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,16 +42,6 @@ abstract class BaseFragment<B : ViewDataBinding>(
         { defaultViewModelProviderFactory },
         { observingBaseViewModel(it) }
     )
-
-    protected fun <T> LiveData<T>.observe(onChange: (T?) -> Unit) {
-        this.observe(viewLifecycleOwner, onChange)
-    }
-
-    protected fun <T> LiveData<T>.observeNonNull(onChange: (T) -> Unit) {
-        this.observe(viewLifecycleOwner) {
-            it?.let { onChange(it) }
-        }
-    }
 
     private fun observingBaseViewModel(viewModel: BaseViewModel) {
         with(viewModel) {

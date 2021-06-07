@@ -6,18 +6,21 @@ import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import androidx.lifecycle.LiveData
+import androidx.lifecycle.LifecycleOwner
 import org.positive.daymotion.presentation.base.util.LoadingHandler
 import org.positive.daymotion.presentation.base.util.ViewModelHolder
 import kotlin.reflect.KClass
 
 abstract class BaseActivity<B : ViewDataBinding>(
     @LayoutRes private val layoutId: Int
-) : AppCompatActivity() {
+) : AppCompatActivity(), LiveDataObservable {
 
     protected val binding: B by lazy { DataBindingUtil.setContentView(this, layoutId) }
 
     private val loadingHandler by lazy { LoadingHandler(this) }
+
+    override val lifecycleOwner: LifecycleOwner
+        get() = this
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,16 +44,6 @@ abstract class BaseActivity<B : ViewDataBinding>(
             showErrorMessageEvent.observeNonNull {
                 showErrorMessage(it)
             }
-        }
-    }
-
-    protected fun <T> LiveData<T>.observe(onChange: (T?) -> Unit) {
-        this.observe(this@BaseActivity, onChange)
-    }
-
-    protected fun <T> LiveData<T>.observeNonNull(onChange: (T) -> Unit) {
-        this.observe(this@BaseActivity) {
-            it?.let { onChange(it) }
         }
     }
 
