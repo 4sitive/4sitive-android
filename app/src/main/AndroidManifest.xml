@@ -39,6 +39,7 @@
 		<activity android:name="org.positive.daymotion.presentation.login.LoginActivity" />
 		<activity android:name="org.positive.daymotion.presentation.root.RootActivity" />
 		<activity android:name="org.positive.daymotion.presentation.main.MainActivity" />
+		<activity android:name="org.positive.daymotion.presentation.feed.FeedActivity" />
 	
 	</application>
 

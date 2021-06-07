@@ -2,6 +2,7 @@ package org.positive.daymotion.presentation.root
 
 import android.content.Context
 import android.os.Bundle
+import android.widget.Toast
 import androidx.fragment.app.commit
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
@@ -19,6 +20,7 @@ import org.positive.daymotion.presentation.root.tabs.setting.SettingTabFragment
 class RootActivity : BaseActivity<ActivityRootBinding>(R.layout.activity_root) {
 
     private val viewModel by viewModelOf<RootViewModel>()
+    private var backWait: Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +42,16 @@ class RootActivity : BaseActivity<ActivityRootBinding>(R.layout.activity_root) {
         }
         supportFragmentManager.commit {
             replace(R.id.container, HomeTabFragment())
+        }
+    }
+
+    override fun onBackPressed() {
+        if (System.currentTimeMillis() - backWait >= 2000) {
+            backWait = System.currentTimeMillis()
+            Toast.makeText(applicationContext, "press BACK again to exit.", Toast.LENGTH_LONG)
+                .show()
+        } else {
+            finish()
         }
     }
 
