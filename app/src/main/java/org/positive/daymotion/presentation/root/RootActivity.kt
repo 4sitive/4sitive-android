@@ -7,8 +7,8 @@ import dagger.hilt.android.AndroidEntryPoint
 import org.positive.daymotion.R
 import org.positive.daymotion.databinding.ActivityRootBinding
 import org.positive.daymotion.extension.startOnTop
-import org.positive.daymotion.extension.viewModelOf
 import org.positive.daymotion.presentation.base.BaseActivity
+import org.positive.daymotion.presentation.base.util.viewModelOf
 
 @AndroidEntryPoint
 class RootActivity : BaseActivity<ActivityRootBinding>(R.layout.activity_root) {

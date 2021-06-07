@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
-import androidx.fragment.app.FragmentTransaction
 import com.bumptech.glide.Glide
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
@@ -12,8 +11,8 @@ import org.positive.daymotion.R
 import org.positive.daymotion.common.DmConstants
 import org.positive.daymotion.databinding.ActivityMainBinding
 import org.positive.daymotion.extension.startOnTop
-import org.positive.daymotion.extension.viewModelOf
 import org.positive.daymotion.presentation.base.BaseActivity
+import org.positive.daymotion.presentation.base.util.viewModelOf
 
 
 @AndroidEntryPoint
@@ -46,9 +45,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     }
 
     override fun onBackPressed() {
-        if(System.currentTimeMillis() - backWait >=2000 ) {
+        if (System.currentTimeMillis() - backWait >= 2000) {
             backWait = System.currentTimeMillis()
-            Toast.makeText(applicationContext, "press BACK again to exit.", Toast.LENGTH_LONG).show()
+            Toast.makeText(applicationContext, "press BACK again to exit.", Toast.LENGTH_LONG)
+                .show()
         } else {
             finish()
         }

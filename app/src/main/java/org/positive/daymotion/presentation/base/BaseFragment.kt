@@ -9,9 +9,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.ViewModelStore
-import org.positive.daymotion.presentation.base.util.ViewModelHolder
-import kotlin.reflect.KClass
+import org.positive.daymotion.presentation.base.util.LiveDataObservable
+import org.positive.daymotion.presentation.base.util.baseActivity
 
 abstract class BaseFragment<B : ViewDataBinding>(
     @LayoutRes private val layoutId: Int
@@ -33,17 +32,7 @@ abstract class BaseFragment<B : ViewDataBinding>(
         return binding.root
     }
 
-    fun <VM : BaseViewModel> getViewModelLazy(
-        viewModelClass: KClass<VM>,
-        viewModelStore: ViewModelStore = this.viewModelStore
-    ): Lazy<VM> = ViewModelHolder(
-        viewModelClass,
-        { viewModelStore },
-        { defaultViewModelProviderFactory },
-        { observingBaseViewModel(it) }
-    )
-
-    private fun observingBaseViewModel(viewModel: BaseViewModel) {
+    fun observeBaseLiveData(viewModel: BaseViewModel) {
         with(viewModel) {
             isLoading.observe {
                 showLoadingDialog(it)
@@ -55,16 +44,10 @@ abstract class BaseFragment<B : ViewDataBinding>(
     }
 
     fun showLoadingDialog(isLoading: Boolean?) {
-        val parentActivity = activity
-        if (parentActivity is BaseActivity<*>) {
-            parentActivity.showLoadingDialog(isLoading)
-        }
+        baseActivity?.showLoadingDialog(isLoading)
     }
 
     fun showErrorMessage(message: String) {
-        val parentActivity = activity
-        if (parentActivity is BaseActivity<*>) {
-            parentActivity.showErrorMessage(message)
-        }
+        baseActivity?.showErrorMessage(message)
     }
 }
