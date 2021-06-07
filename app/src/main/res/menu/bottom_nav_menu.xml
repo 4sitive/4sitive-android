@@ -7,14 +7,14 @@
         android:icon="@drawable/bottom_nav_icon_ex" />
 
     <item
-        android:id="@+id/menu_search"
-        android:title="@string/bottom_menu_search"
+        android:id="@+id/menu_category"
+        android:title="@string/bottom_menu_category"
         android:enabled="true"
         android:icon="@drawable/bottom_nav_icon_ex" />
 
     <item
-        android:id="@+id/menu_feed"
-        android:title="@string/bottom_menu_feed"
+        android:id="@+id/menu_my"
+        android:title="@string/bottom_menu_my"
         android:enabled="true"
         android:icon="@drawable/bottom_nav_icon_ex" />
 

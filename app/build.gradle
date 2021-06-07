@@ -86,6 +86,7 @@ dependencies {
 
     // KTX
     implementation "androidx.core:core-ktx:$coreKtxVersion"
+    implementation "androidx.fragment:fragment-ktx:$fragmentKtxVersion"
 
     // DataStore
     implementation "androidx.datastore:datastore:$dataStoreVersion"
