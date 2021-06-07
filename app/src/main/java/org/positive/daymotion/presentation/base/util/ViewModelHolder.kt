@@ -1,4 +1,4 @@
-package org.positive.daymotion.common
+package org.positive.daymotion.presentation.base.util
 
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStore
@@ -19,9 +19,7 @@ class ViewModelHolder<VM : BaseViewModel>(
             val viewModel = if (cached == null) {
                 val store = storeProducer()
                 val factory = factoryProducer()
-                ViewModelProvider(store, factory).get(viewModelClass.java).also {
-                    _cached = it
-                }
+                ViewModelProvider(store, factory).get(viewModelClass.java).also { _cached = it }
             } else {
                 cached
             }

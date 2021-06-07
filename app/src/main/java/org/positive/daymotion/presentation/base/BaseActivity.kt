@@ -7,8 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.LiveData
-import org.positive.daymotion.common.LoadingHandler
-import org.positive.daymotion.common.ViewModelHolder
+import org.positive.daymotion.presentation.base.util.LoadingHandler
+import org.positive.daymotion.presentation.base.util.ViewModelHolder
 import kotlin.reflect.KClass
 
 abstract class BaseActivity<B : ViewDataBinding>(
@@ -54,7 +54,7 @@ abstract class BaseActivity<B : ViewDataBinding>(
         }
     }
 
-    private fun showLoadingDialog(isLoading: Boolean?) {
+    fun showLoadingDialog(isLoading: Boolean?) {
         if (isLoading == true) {
             loadingHandler.show()
         } else {
@@ -62,7 +62,7 @@ abstract class BaseActivity<B : ViewDataBinding>(
         }
     }
 
-    private fun showErrorMessage(message: String) {
+    fun showErrorMessage(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 }

@@ -1,4 +1,4 @@
-package org.positive.daymotion.common
+package org.positive.daymotion.presentation.base.util
 
 import android.content.Context
 import androidx.appcompat.app.AlertDialog
