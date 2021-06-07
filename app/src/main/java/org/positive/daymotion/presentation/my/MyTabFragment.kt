@@ -16,5 +16,9 @@ class MyTabFragment : BaseFragment<FragmentMyTabBinding>(R.layout.fragment_my_ta
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.viewModel = viewModel
+
+        binding.button1.setOnClickListener {
+            MyProfileEditActivity.start(requireContext())
+        }
     }
 }
