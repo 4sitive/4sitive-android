@@ -1,5 +1,4 @@
 <resources>
-	<string name="app_name">SmsService</string>
 	<string name="bottom_menu_home">홈</string>
 	<string name="bottom_menu_search">검색</string>
 	<string name="bottom_menu_feed">마이피드</string>

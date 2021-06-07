@@ -1,2 +1,2 @@
 include ':app'
-rootProject.name = "SmsService"
+rootProject.name = "Daymotion"

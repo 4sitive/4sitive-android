@@ -28,8 +28,14 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: '1.8'
-          
-      - name: Check Build Validation
+
+      - name: Prepare private file
+        env:
+          GOOGLE_SERVICES_CONTENTS: ${{secrets.GOOGLE_SERVICES_CONTENTS}}
+          GOOGLE_SERVICES_FILE: ${{secrets.GOOGLE_SERVICES_FILE}}
+        run: echo $GOOGLE_SERVICES_CONTENTS | base64 -d > $GOOGLE_SERVICES_FILE
+
+      - name: Check build validation
         env:
           OAUTH_CLIENT_ID: ${{secrets.OAUTH_CLIENT_ID}}
           OAUTH_CLIENT_SECRET: ${{secrets.OAUTH_CLIENT_SECRET}}
