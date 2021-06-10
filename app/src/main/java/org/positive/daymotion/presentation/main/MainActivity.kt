@@ -37,11 +37,11 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
             }
         }
 
-        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_nav)
-        bottomNavigationView.setOnNavigationItemSelectedListener { item ->
-            // TODO(je): create fragment and setting listener
-            true
-        }
+//        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_nav)
+//        bottomNavigationView.setOnNavigationItemSelectedListener { item ->
+//            // TODO(je): create fragment and setting listener
+//            true
+//        }
     }
 
     override fun onBackPressed() {

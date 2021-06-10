@@ -26,23 +26,23 @@ class RootActivity : BaseActivity<ActivityRootBinding>(R.layout.activity_root) {
         super.onCreate(savedInstanceState)
         binding.viewModel = viewModel
 
-        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_nav)
-        bottomNavigationView.setOnNavigationItemSelectedListener { item ->
-            val tab = when (item.itemId) {
-                R.id.menu_home -> HomeTabFragment()
-                R.id.menu_category -> CategoryTabFragment()
-                R.id.menu_my -> MyTabFragment()
-                R.id.menu_setting -> SettingTabFragment()
-                else -> throw IllegalStateException("invalid bottom nav menu id")
-            }
-            supportFragmentManager.commit {
-                replace(R.id.container, tab)
-            }
-            true
-        }
-        supportFragmentManager.commit {
-            replace(R.id.container, HomeTabFragment())
-        }
+//        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_nav)
+//        bottomNavigationView.setOnNavigationItemSelectedListener { item ->
+//            val tab = when (item.itemId) {
+//                R.id.menu_home -> HomeTabFragment()
+//                R.id.menu_category -> CategoryTabFragment()
+//                R.id.menu_my -> MyTabFragment()
+//                R.id.menu_setting -> SettingTabFragment()
+//                else -> throw IllegalStateException("invalid bottom nav menu id")
+//            }
+//            supportFragmentManager.commit {
+//                replace(R.id.container, tab)
+//            }
+//            true
+//        }
+//        supportFragmentManager.commit {
+//            replace(R.id.container, HomeTabFragment())
+//        }
     }
 
     override fun onBackPressed() {
