@@ -13,7 +13,9 @@ import javax.inject.Inject
 class RootViewModel @Inject constructor() : BaseViewModel() {
 
     private val _currentTab = MutableLiveData(Tab.HOME)
-    val currentTab: LiveData<Tab> get() = _currentTab
+
+    private val _changeTab = SingleLiveEvent<Pair<Tab, Tab>>()
+    val changeTab: LiveData<Pair<Tab, Tab>> get() = _changeTab
 
     private val _alreadySelectedTab = SingleLiveEvent<Tab>()
     val alreadySelectedTab: LiveData<Tab> get() = _alreadySelectedTab
@@ -41,19 +43,26 @@ class RootViewModel @Inject constructor() : BaseViewModel() {
         if (currentTab == selectedTab) {
             _alreadySelectedTab.value = selectedTab
         } else {
-            _currentTab.value = selectedTab
+            changeTab(currentTab, selectedTab)
             backStack.push(currentTab)
         }
     }
 
     fun backToPreviousTab() {
+        val currentTab = _currentTab.value ?: return
         val previousTab = backStack.pop()
 
         if (previousTab == null) {
             _emptyBackStack.call()
         } else {
+            changeTab(currentTab, previousTab)
             _currentTab.value = previousTab
         }
+    }
+
+    private fun changeTab(old: Tab, new: Tab) {
+        _currentTab.value = new
+        _changeTab.value = old to new
     }
 
     private class BackStack {
@@ -62,6 +71,9 @@ class RootViewModel @Inject constructor() : BaseViewModel() {
         fun push(tab: Tab) {
             backStack.remove(tab)
             backStack.add(tab)
+            if (backStack.size == Tab.values().size) {
+                backStack.removeFirst()
+            }
         }
 
         fun pop(): Tab? {
