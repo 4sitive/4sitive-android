@@ -14,7 +14,6 @@ import org.positive.daymotion.databinding.WidgetCategoryTabIndicatorBinding
 import org.positive.daymotion.presentation.base.BaseFragment
 import org.positive.daymotion.presentation.base.util.viewModelOf
 import org.positive.daymotion.presentation.category.adapter.CategoryTabPagerAdapter
-import org.positive.daymotion.presentation.category.model.Page
 import org.positive.daymotion.presentation.root.model.RootTabFragment
 
 @AndroidEntryPoint
@@ -47,10 +46,10 @@ class CategoryTabFragment :
     private fun setupViews() {
         val viewPager = binding.viewPager
         val tabLayout = binding.tabLayout
+
         viewPager.adapter = pagerAdapter
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             initTab(tab, position)
-            tabLayout.requestLayout()
         }.attach()
         tabLayout.addOnTabSelectedListener(onTabSelectedListener)
     }
@@ -58,7 +57,8 @@ class CategoryTabFragment :
     private fun initTab(tab: TabLayout.Tab, position: Int) {
         val layoutInflater = LayoutInflater.from(requireContext())
         val viewBinding = WidgetCategoryTabIndicatorBinding.inflate(layoutInflater)
-        viewBinding.title = Page.values()[position].title
+        
+        viewBinding.title = if (position == 0) "미션 히스토리" else "카테고리"
         viewBinding.isSelected = position == 0
         tab.customView = viewBinding.root
     }
