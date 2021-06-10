@@ -3,20 +3,17 @@
 	xmlns:app="http://schemas.android.com/apk/res-auto">
 	
 	<data>
-		
-		<variable
-			name="viewModel"
-			type="org.positive.daymotion.presentation.category.CategoryTabViewModel" />
+	
 	</data>
 	
 	<androidx.constraintlayout.widget.ConstraintLayout
 		android:layout_width="match_parent"
 		android:layout_height="match_parent">
 		
-		<androidx.viewpager2.widget.ViewPager2
-			android:id="@+id/viewPager"
-			android:layout_width="0dp"
-			android:layout_height="0dp"
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="1"
 			app:layout_constraintBottom_toBottomOf="parent"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintStart_toStartOf="parent"

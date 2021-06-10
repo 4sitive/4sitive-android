@@ -8,6 +8,7 @@ import org.positive.daymotion.R
 import org.positive.daymotion.databinding.FragmentCategoryTabBinding
 import org.positive.daymotion.presentation.base.BaseFragment
 import org.positive.daymotion.presentation.base.util.viewModelOf
+import org.positive.daymotion.presentation.category.adapter.CategoryTabPagerAdapter
 import org.positive.daymotion.presentation.root.model.RootTabFragment
 
 @AndroidEntryPoint
@@ -15,14 +16,16 @@ class CategoryTabFragment :
     BaseFragment<FragmentCategoryTabBinding>(R.layout.fragment_category_tab), RootTabFragment {
 
     private val viewModel by viewModelOf<CategoryTabViewModel>()
+    private val pagerAdapter by lazy { CategoryTabPagerAdapter(this) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.viewModel = viewModel
+        setupViews()
+    }
 
-        binding.button1.setOnClickListener {
-            CategoryDetailActivity.start(requireContext())
-        }
+    private fun setupViews() {
+        binding.viewPager.adapter = pagerAdapter
     }
 
     override fun scrollToTop() {
