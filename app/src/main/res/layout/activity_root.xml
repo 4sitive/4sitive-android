@@ -29,7 +29,7 @@
 			android:id="@+id/bottomNavBar"
 			android:layout_width="0dp"
 			android:layout_height="76dp"
-			android:background="@drawable/bottom_nav_bg"
+			android:background="@drawable/background_bottom_nav_bar"
 			android:elevation="16dp"
 			android:paddingStart="8dp"
 			android:paddingTop="12dp"
