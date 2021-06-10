@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools">
+	
+	<data>
+		
+		<variable
+			name="isSelected"
+			type="Boolean" />
+		
+		<variable
+			name="title"
+			type="String" />
+	</data>
+	
+	<androidx.constraintlayout.widget.ConstraintLayout
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content">
+		
+		<ImageView
+			android:id="@+id/iconImageView"
+			android:layout_width="16dp"
+			android:layout_height="16dp"
+			android:src="@drawable/ic_temp_check_24"
+			app:isInvisible="@{!isSelected}"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent"
+			tools:ignore="ContentDescription" />
+		
+		<TextView
+			android:id="@+id/titleTextView"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="4dp"
+			android:text="@{title}"
+			android:textColor="@{isSelected ? @color/colorBlack : @color/colorGray600}"
+			android:textSize="18dp"
+			android:textStyle="bold"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/iconImageView"
+			tools:ignore="SpUsage"
+			tools:text="미션 히스토리" />
+	
+	</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

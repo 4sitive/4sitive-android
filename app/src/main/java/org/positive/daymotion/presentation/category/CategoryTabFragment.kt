@@ -1,14 +1,20 @@
 package org.positive.daymotion.presentation.category
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 import org.positive.daymotion.R
 import org.positive.daymotion.databinding.FragmentCategoryTabBinding
+import org.positive.daymotion.databinding.WidgetCategoryTabIndicatorBinding
 import org.positive.daymotion.presentation.base.BaseFragment
 import org.positive.daymotion.presentation.base.util.viewModelOf
 import org.positive.daymotion.presentation.category.adapter.CategoryTabPagerAdapter
+import org.positive.daymotion.presentation.category.model.Page
 import org.positive.daymotion.presentation.root.model.RootTabFragment
 
 @AndroidEntryPoint
@@ -18,6 +24,20 @@ class CategoryTabFragment :
     private val viewModel by viewModelOf<CategoryTabViewModel>()
     private val pagerAdapter by lazy { CategoryTabPagerAdapter(this) }
 
+    private val onTabSelectedListener = object : TabLayout.OnTabSelectedListener {
+        override fun onTabSelected(tab: TabLayout.Tab) {
+            findTabBinding(tab)?.apply { isSelected = true }
+        }
+
+        override fun onTabUnselected(tab: TabLayout.Tab) {
+            findTabBinding(tab)?.apply { isSelected = false }
+        }
+
+        override fun onTabReselected(tab: TabLayout.Tab) {
+            // TODO(yh): replace to scroll logic
+        }
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.viewModel = viewModel
@@ -25,7 +45,26 @@ class CategoryTabFragment :
     }
 
     private fun setupViews() {
-        binding.viewPager.adapter = pagerAdapter
+        val viewPager = binding.viewPager
+        val tabLayout = binding.tabLayout
+        viewPager.adapter = pagerAdapter
+        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+            initTab(tab, position)
+            tabLayout.requestLayout()
+        }.attach()
+        tabLayout.addOnTabSelectedListener(onTabSelectedListener)
+    }
+
+    private fun initTab(tab: TabLayout.Tab, position: Int) {
+        val layoutInflater = LayoutInflater.from(requireContext())
+        val viewBinding = WidgetCategoryTabIndicatorBinding.inflate(layoutInflater)
+        viewBinding.title = Page.values()[position].title
+        viewBinding.isSelected = position == 0
+        tab.customView = viewBinding.root
+    }
+
+    private fun findTabBinding(tab: TabLayout.Tab): WidgetCategoryTabIndicatorBinding? {
+        return tab.customView?.let { DataBindingUtil.findBinding(it) }
     }
 
     override fun scrollToTop() {
