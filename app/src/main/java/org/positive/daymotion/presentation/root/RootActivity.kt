@@ -11,6 +11,7 @@ import org.positive.daymotion.extension.startOnTop
 import org.positive.daymotion.presentation.base.BaseActivity
 import org.positive.daymotion.presentation.base.util.viewModelOf
 import org.positive.daymotion.presentation.home.HomeTabFragment
+import org.positive.daymotion.presentation.root.model.RootTabFragment
 import org.positive.daymotion.presentation.root.model.Tab
 
 @AndroidEntryPoint
@@ -42,8 +43,11 @@ class RootActivity : BaseActivity<ActivityRootBinding>(R.layout.activity_root) {
             changeTab.observeNonNull { (old, new) ->
                 replaceTab(old, new)
             }
-            alreadySelectedTab.observeNonNull {
-                // TODO(yh): refresh tab
+            alreadySelectedTab.observeNonNull { tab ->
+                supportFragmentManager.fragments
+                    .filterIsInstance(RootTabFragment::class.java)
+                    .find { tab.clazz.isInstance(it) }
+                    ?.scrollToTop()
             }
             emptyBackStack.observe {
                 appFinish()
