@@ -3,18 +3,12 @@ package org.positive.daymotion.presentation.root
 import android.content.Context
 import android.os.Bundle
 import android.widget.Toast
-import androidx.fragment.app.commit
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import org.positive.daymotion.R
 import org.positive.daymotion.databinding.ActivityRootBinding
 import org.positive.daymotion.extension.startOnTop
 import org.positive.daymotion.presentation.base.BaseActivity
 import org.positive.daymotion.presentation.base.util.viewModelOf
-import org.positive.daymotion.presentation.category.CategoryTabFragment
-import org.positive.daymotion.presentation.home.HomeTabFragment
-import org.positive.daymotion.presentation.my.MyTabFragment
-import org.positive.daymotion.presentation.setting.SettingTabFragment
 
 @AndroidEntryPoint
 class RootActivity : BaseActivity<ActivityRootBinding>(R.layout.activity_root) {
@@ -43,13 +37,31 @@ class RootActivity : BaseActivity<ActivityRootBinding>(R.layout.activity_root) {
 //        supportFragmentManager.commit {
 //            replace(R.id.container, HomeTabFragment())
 //        }
+        setupObserver()
+    }
+    
+    override fun onBackPressed() {
+        viewModel.backToPreviousTab()
     }
 
-    override fun onBackPressed() {
+    private fun setupObserver() {
+        with(viewModel) {
+            currentTab.observeNonNull {
+                // TODO(yh): change tab
+            }
+            alreadySelectedTab.observeNonNull {
+                // TODO(yh): refresh tab
+            }
+            emptyBackStack.observe {
+                appFinish()
+            }
+        }
+    }
+
+    private fun appFinish() {
         if (System.currentTimeMillis() - backWait >= 2000) {
             backWait = System.currentTimeMillis()
-            Toast.makeText(applicationContext, "press BACK again to exit.", Toast.LENGTH_LONG)
-                .show()
+            Toast.makeText(this, "뒤로 버튼을 한번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show()
         } else {
             finish()
         }
