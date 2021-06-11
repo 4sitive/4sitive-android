@@ -10,6 +10,7 @@ import org.positive.daymotion.presentation.category.model.MissionHistoryItem
 class MissionHistoryAdapter : RecyclerView.Adapter<MissionHistoryViewHolder>() {
 
     private val items = mutableListOf<MissionHistoryItem>()
+    private val sharePoolForInner = RecyclerView.RecycledViewPool()
 
     fun replaceAll(items: List<MissionHistoryItem>) {
         with(this.items) {
@@ -25,7 +26,7 @@ class MissionHistoryAdapter : RecyclerView.Adapter<MissionHistoryViewHolder>() {
     ): MissionHistoryViewHolder {
         val layoutInflater = parent.context.layoutInflater
         val binding = ItemMissionHistoryBinding.inflate(layoutInflater, parent, false)
-        return MissionHistoryViewHolder(binding)
+        return MissionHistoryViewHolder(binding, sharePoolForInner)
     }
 
     override fun onBindViewHolder(

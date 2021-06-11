@@ -1,6 +1,5 @@
 package org.positive.daymotion.presentation.category.adapter.holder
 
-import android.util.Log
 import androidx.core.view.children
 import androidx.core.view.marginEnd
 import androidx.core.view.marginStart
@@ -11,7 +10,8 @@ import org.positive.daymotion.presentation.category.adapter.MissionHistoryInnerA
 import org.positive.daymotion.presentation.category.model.MissionHistoryItem
 
 class MissionHistoryViewHolder(
-    private val binding: ItemMissionHistoryBinding
+    private val binding: ItemMissionHistoryBinding,
+    recycledViewPool: RecyclerView.RecycledViewPool
 ) : RecyclerView.ViewHolder(binding.root) {
 
     val innerScrollPosition
@@ -27,8 +27,9 @@ class MissionHistoryViewHolder(
 
     init {
         binding.missionsRecyclerView.apply {
-            this.layoutManager = linearLayoutManager
-            this.adapter = missionHistoryInnerAdapter
+            layoutManager = linearLayoutManager
+            adapter = missionHistoryInnerAdapter
+            setRecycledViewPool(recycledViewPool)
         }
     }
 
@@ -39,7 +40,7 @@ class MissionHistoryViewHolder(
     }
 
     private fun restoreScroll(item: MissionHistoryItem) {
-        if(item.savedPosition == 0 && item.savedPositionOffset == 0) {
+        if (item.savedPosition == 0 && item.savedPositionOffset == 0) {
             return
         }
 

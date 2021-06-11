@@ -1,5 +1,6 @@
 package org.positive.daymotion.presentation.category.adapter
 
+import android.util.Log
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import org.positive.daymotion.databinding.ItemMissionHistoryInnerBinding
@@ -25,6 +26,7 @@ class MissionHistoryInnerAdapter : RecyclerView.Adapter<MissionHistoryInnerViewH
     ): MissionHistoryInnerViewHolder {
         val layoutInflater = parent.context.layoutInflater
         val binding = ItemMissionHistoryInnerBinding.inflate(layoutInflater, parent, false)
+        Log.i("pooltest", "create")
         return MissionHistoryInnerViewHolder(binding)
     }
 
