@@ -1,4 +1,10 @@
 package org.positive.daymotion.presentation.category.model
 
-class MissionHistoryItem {
+data class MissionHistoryItem(
+    val missions: List<Mission>
+) {
+
+    class Mission {
+
+    }
 }
