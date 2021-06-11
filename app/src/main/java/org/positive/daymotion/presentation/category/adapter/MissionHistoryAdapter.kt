@@ -12,7 +12,7 @@ class MissionHistoryAdapter : RecyclerView.Adapter<MissionHistoryViewHolder>() {
     private val items = mutableListOf<MissionHistoryItem>()
 
     fun replaceAll(items: List<MissionHistoryItem>) {
-        this.items.apply {
+        with(this.items) {
             clear()
             addAll(items)
         }
@@ -36,4 +36,15 @@ class MissionHistoryAdapter : RecyclerView.Adapter<MissionHistoryViewHolder>() {
     }
 
     override fun getItemCount() = items.size
+
+    override fun onViewRecycled(holder: MissionHistoryViewHolder) {
+        val position = holder.bindingAdapterPosition
+        if (position != RecyclerView.NO_POSITION) {
+            val current = items[position]
+            items[position] = current.copy(
+                savedPosition = holder.innerScrollPosition,
+                savedPositionOffset = holder.innerScrollPositionOffset
+            )
+        }
+    }
 }

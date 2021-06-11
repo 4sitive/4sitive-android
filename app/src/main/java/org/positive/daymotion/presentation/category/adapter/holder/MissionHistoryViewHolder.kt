@@ -1,5 +1,10 @@
 package org.positive.daymotion.presentation.category.adapter.holder
 
+import android.util.Log
+import androidx.core.view.children
+import androidx.core.view.marginEnd
+import androidx.core.view.marginStart
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import org.positive.daymotion.databinding.ItemMissionHistoryBinding
 import org.positive.daymotion.presentation.category.adapter.MissionHistoryInnerAdapter
@@ -9,14 +14,39 @@ class MissionHistoryViewHolder(
     private val binding: ItemMissionHistoryBinding
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    private val adapter = MissionHistoryInnerAdapter()
+    val innerScrollPosition
+        get() = linearLayoutManager.findFirstVisibleItemPosition()
+
+    val innerScrollPositionOffset
+        get() = binding.missionsRecyclerView.computeHorizontalScrollOffset()
+
+    private val missionHistoryInnerAdapter = MissionHistoryInnerAdapter()
+
+    private val linearLayoutManager =
+        LinearLayoutManager(itemView.context, RecyclerView.HORIZONTAL, false)
 
     init {
-        binding.missionsRecyclerView.adapter = adapter
+        binding.missionsRecyclerView.apply {
+            this.layoutManager = linearLayoutManager
+            this.adapter = missionHistoryInnerAdapter
+        }
     }
 
-    fun bind(missionHistoryItem: MissionHistoryItem) {
-        binding.item = missionHistoryItem
-        adapter.replaceAll(missionHistoryItem.missions)
+    fun bind(item: MissionHistoryItem) {
+        binding.item = item
+        missionHistoryInnerAdapter.replaceAll(item.missions)
+        restoreScroll(item)
+    }
+
+    private fun restoreScroll(item: MissionHistoryItem) {
+        if(item.savedPosition == 0 && item.savedPositionOffset == 0) {
+            return
+        }
+
+        val childView = binding.missionsRecyclerView.children.first()
+        val width = childView.width + childView.marginStart + childView.marginEnd
+        val offset = item.savedPositionOffset - item.savedPosition * width
+
+        linearLayoutManager.scrollToPositionWithOffset(item.savedPosition, -offset)
     }
 }
