@@ -5,13 +5,14 @@ import androidx.recyclerview.widget.RecyclerView
 import org.positive.daymotion.databinding.ItemMissionHistoryInnerBinding
 import org.positive.daymotion.extension.layoutInflater
 import org.positive.daymotion.presentation.category.adapter.holder.MissionHistoryInnerViewHolder
+import org.positive.daymotion.presentation.category.model.MissionHistoryInnerItem
 import org.positive.daymotion.presentation.category.model.MissionHistoryItem
 
 class MissionHistoryInnerAdapter : RecyclerView.Adapter<MissionHistoryInnerViewHolder>() {
 
-    private val items = mutableListOf<MissionHistoryItem.Mission>()
+    private val items = mutableListOf<MissionHistoryInnerItem>()
 
-    fun replaceAll(items: List<MissionHistoryItem.Mission>) {
+    fun replaceAll(items: List<MissionHistoryInnerItem>) {
         this.items.apply {
             clear()
             addAll(items)
