@@ -57,7 +57,7 @@ class CategoryTabFragment :
     private fun initTab(tab: TabLayout.Tab, position: Int) {
         val layoutInflater = LayoutInflater.from(requireContext())
         val viewBinding = WidgetCategoryTabIndicatorBinding.inflate(layoutInflater)
-        
+
         viewBinding.title = if (position == 0) "미션 히스토리" else "카테고리"
         viewBinding.isSelected = position == 0
         tab.customView = viewBinding.root

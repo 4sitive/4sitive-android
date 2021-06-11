@@ -4,7 +4,7 @@
 	<color name="transparent">@android:color/transparent</color>
 	
 	<!--background-->
-	<color name="background">@color/colorGray200</color>
+	<color name="background">@color/colorWhite</color>
 	
 	<!--palette-->
 	<color name="colorWhite">#FFFFFF</color>

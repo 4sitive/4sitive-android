@@ -3,6 +3,7 @@ package org.positive.daymotion.extension
 import android.app.TaskStackBuilder
 import android.content.Context
 import android.content.Intent
+import android.view.LayoutInflater
 import androidx.core.os.bundleOf
 import org.positive.daymotion.presentation.base.BaseActivity
 
@@ -29,3 +30,6 @@ inline fun <reified T : BaseActivity<*>> Context.startOnHome(vararg pairs: Pair<
         .addNextIntentWithParentStack(intentFor(T::class.java, *pairs))
         .startActivities()
 }
+
+val Context.layoutInflater
+    get() = LayoutInflater.from(this)
