@@ -17,4 +17,14 @@
 		<item name="android:textColorHint">@color/colorGray400</item>
 	</style>
 
+	<style name="LoginTheme" parent="Theme.AppCompat.Light.NoActionBar">
+		<item name="android:statusBarColor">@color/transparent</item>
+		<item name="android:windowLightStatusBar">true</item>
+		<item name="android:windowBackground">@color/background</item>
+		<item name="android:navigationBarColor">@color/transparent</item>
+		<item name="colorPrimary">@color/colorBlack_17</item>
+		<item name="colorPrimaryDark">@color/colorBlack_17</item>
+		<item name="colorAccent">@color/colorBlack_17</item>
+	</style>
+
 </resources>

@@ -14,7 +14,7 @@ abstract class BaseActivity<B : ViewDataBinding>(
     @LayoutRes private val layoutId: Int
 ) : AppCompatActivity(), LiveDataObservable {
 
-    protected val binding: B by lazy { DataBindingUtil.setContentView(this, layoutId) }
+    protected val binding: B by lazy { DataBindingUtil.setContentView<B>(this, layoutId) }
 
     private val loadingHandler by lazy { LoadingHandler(this) }
 
