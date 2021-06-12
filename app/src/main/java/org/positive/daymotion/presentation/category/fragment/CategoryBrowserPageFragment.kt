@@ -6,18 +6,18 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import org.positive.daymotion.R
-import org.positive.daymotion.databinding.FragmentCategoryFilterPageBinding
+import org.positive.daymotion.databinding.FragmentCategoryBrowserPageBinding
 import org.positive.daymotion.presentation.base.BaseFragment
 import org.positive.daymotion.presentation.base.util.viewModelOf
-import org.positive.daymotion.presentation.category.adapter.CategoryFilterAdapter
-import org.positive.daymotion.presentation.category.viewmodel.CategoryFilterPageViewModel
+import org.positive.daymotion.presentation.category.adapter.CategoryBrowserAdapter
+import org.positive.daymotion.presentation.category.viewmodel.CategoryBrowserPageViewModel
 
 @AndroidEntryPoint
-class CategoryFilterPageFragment :
-    BaseFragment<FragmentCategoryFilterPageBinding>(R.layout.fragment_category_filter_page) {
+class CategoryBrowserPageFragment :
+    BaseFragment<FragmentCategoryBrowserPageBinding>(R.layout.fragment_category_browser_page) {
 
-    private val viewModel by viewModelOf<CategoryFilterPageViewModel>()
-    private val categoryFilterAdapter by lazy { CategoryFilterAdapter() }
+    private val viewModel by viewModelOf<CategoryBrowserPageViewModel>()
+    private val categoryBrowserAdapter by lazy { CategoryBrowserAdapter() }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -29,15 +29,15 @@ class CategoryFilterPageFragment :
     }
 
     private fun setupViews() {
-        binding.categoryFilterRecyclerView.apply {
-            adapter = categoryFilterAdapter
+        binding.categoryBrowserRecyclerView.apply {
+            adapter = categoryBrowserAdapter
             layoutManager = StaggeredGridLayoutManager(2, RecyclerView.VERTICAL)
         }
     }
 
     private fun setupObservers() {
-        viewModel.categoryFilters.observeNonNull {
-            categoryFilterAdapter.replaceAll(it)
+        viewModel.categoryBrowserItems.observeNonNull {
+            categoryBrowserAdapter.replaceAll(it)
         }
     }
 }

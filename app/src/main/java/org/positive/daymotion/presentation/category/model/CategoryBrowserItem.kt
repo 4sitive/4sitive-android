@@ -1,6 +1,6 @@
 package org.positive.daymotion.presentation.category.model
 
-data class CategoryFilterItem(
+data class CategoryBrowserItem(
     val categoryName: String,
     val participants: Int
 ) {
