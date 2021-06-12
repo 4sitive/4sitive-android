@@ -1,4 +1,4 @@
-package org.positive.daymotion.presentation.category.page
+package org.positive.daymotion.presentation.category.fragment
 
 import android.os.Bundle
 import android.view.View

@@ -1,4 +1,4 @@
-package org.positive.daymotion.presentation.category
+package org.positive.daymotion.presentation.category.activity
 
 import android.content.Context
 import android.os.Bundle
@@ -8,6 +8,7 @@ import org.positive.daymotion.databinding.ActivityCategoryDetailBinding
 import org.positive.daymotion.extension.startWith
 import org.positive.daymotion.presentation.base.BaseActivity
 import org.positive.daymotion.presentation.base.util.viewModelOf
+import org.positive.daymotion.presentation.category.viewmodel.CategoryDetailViewModel
 
 @AndroidEntryPoint
 class CategoryDetailActivity : BaseActivity<ActivityCategoryDetailBinding>(R.layout.activity_category_detail) {

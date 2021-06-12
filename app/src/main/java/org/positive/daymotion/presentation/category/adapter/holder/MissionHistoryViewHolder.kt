@@ -10,7 +10,7 @@ import org.positive.daymotion.presentation.category.adapter.MissionHistoryInnerA
 import org.positive.daymotion.presentation.category.model.MissionHistoryItem
 
 class MissionHistoryViewHolder(
-    private val binding: ItemMissionHistoryBinding,
+    val binding: ItemMissionHistoryBinding,
     recycledViewPool: RecyclerView.RecycledViewPool
 ) : RecyclerView.ViewHolder(binding.root) {
 
@@ -33,13 +33,11 @@ class MissionHistoryViewHolder(
         }
     }
 
-    fun bind(item: MissionHistoryItem) {
-        binding.item = item
+    fun updateInnerRecyclerView(item: MissionHistoryItem) {
         missionHistoryInnerAdapter.replaceAll(item.missions)
-        restoreScroll(item)
     }
 
-    private fun restoreScroll(item: MissionHistoryItem) {
+    fun restoreScroll(item: MissionHistoryItem) {
         if (item.savedPosition == 0 && item.savedPositionOffset == 0) {
             return
         }

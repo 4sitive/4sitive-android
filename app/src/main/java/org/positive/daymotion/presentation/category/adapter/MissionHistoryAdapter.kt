@@ -33,7 +33,10 @@ class MissionHistoryAdapter : RecyclerView.Adapter<MissionHistoryViewHolder>() {
         holder: MissionHistoryViewHolder,
         position: Int
     ) {
-        holder.bind(items[position])
+        val item = items[position]
+        holder.binding.item = item
+        holder.updateInnerRecyclerView(item)
+        holder.restoreScroll(item)
     }
 
     override fun getItemCount() = items.size

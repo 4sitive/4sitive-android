@@ -2,8 +2,8 @@ package org.positive.daymotion.presentation.category.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import org.positive.daymotion.presentation.category.page.CategoryPageFragment
-import org.positive.daymotion.presentation.category.page.MissionHistoryPageFragment
+import org.positive.daymotion.presentation.category.fragment.CategoryFilterPageFragment
+import org.positive.daymotion.presentation.category.fragment.MissionHistoryPageFragment
 
 class CategoryTabPagerAdapter(parentFragment: Fragment) : FragmentStateAdapter(parentFragment) {
 
@@ -11,7 +11,7 @@ class CategoryTabPagerAdapter(parentFragment: Fragment) : FragmentStateAdapter(p
 
     override fun createFragment(position: Int) = when (position) {
         0 -> MissionHistoryPageFragment()
-        1 -> CategoryPageFragment()
+        1 -> CategoryFilterPageFragment()
         else -> throw IllegalStateException("Exceed max page number")
     }
 }

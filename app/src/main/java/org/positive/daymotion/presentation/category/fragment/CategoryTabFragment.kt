@@ -1,4 +1,4 @@
-package org.positive.daymotion.presentation.category
+package org.positive.daymotion.presentation.category.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,6 +13,7 @@ import org.positive.daymotion.databinding.FragmentCategoryTabBinding
 import org.positive.daymotion.databinding.WidgetCategoryTabIndicatorBinding
 import org.positive.daymotion.presentation.base.BaseFragment
 import org.positive.daymotion.presentation.base.util.viewModelOf
+import org.positive.daymotion.presentation.category.viewmodel.CategoryTabViewModel
 import org.positive.daymotion.presentation.category.adapter.CategoryTabPagerAdapter
 import org.positive.daymotion.presentation.root.model.RootTabFragment
 
