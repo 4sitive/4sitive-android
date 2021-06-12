@@ -34,6 +34,7 @@
 			android:layout_marginTop="4dp"
 			android:clipToPadding="false"
 			android:orientation="horizontal"
+			android:overScrollMode="never"
 			android:paddingStart="8dp"
 			android:paddingEnd="8dp"
 			app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"

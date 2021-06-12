@@ -13,8 +13,8 @@ import org.positive.daymotion.databinding.FragmentCategoryTabBinding
 import org.positive.daymotion.databinding.WidgetCategoryTabIndicatorBinding
 import org.positive.daymotion.presentation.base.BaseFragment
 import org.positive.daymotion.presentation.base.util.viewModelOf
-import org.positive.daymotion.presentation.category.viewmodel.CategoryTabViewModel
 import org.positive.daymotion.presentation.category.adapter.CategoryTabPagerAdapter
+import org.positive.daymotion.presentation.category.viewmodel.CategoryTabViewModel
 import org.positive.daymotion.presentation.root.model.RootTabFragment
 
 @AndroidEntryPoint
@@ -48,10 +48,15 @@ class CategoryTabFragment :
         val viewPager = binding.viewPager
         val tabLayout = binding.tabLayout
 
-        viewPager.adapter = pagerAdapter
+        viewPager.apply {
+            adapter = pagerAdapter
+            getChildAt(0).overScrollMode = View.OVER_SCROLL_NEVER
+        }
+
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             initTab(tab, position)
         }.attach()
+        
         tabLayout.addOnTabSelectedListener(onTabSelectedListener)
     }
 
