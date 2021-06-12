@@ -4,10 +4,7 @@
 	xmlns:tools="http://schemas.android.com/tools">
 	
 	<data>
-		
-		<variable
-			name="viewModel"
-			type="org.positive.daymotion.presentation.category.viewmodel.MissionHistoryPageViewModel" />
+	
 	</data>
 	
 	<androidx.constraintlayout.widget.ConstraintLayout
