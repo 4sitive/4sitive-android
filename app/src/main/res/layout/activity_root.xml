@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto">
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools">
 	
 	<data>
+		
+		<import type="org.positive.daymotion.presentation.root.model.Tab" />
 		
 		<variable
 			name="viewModel"
@@ -13,29 +16,85 @@
 		android:layout_width="match_parent"
 		android:layout_height="match_parent">
 		
-		<!-- TODO(yh): full page -->
 		<FrameLayout
 			android:id="@+id/container"
 			android:layout_width="0dp"
 			android:layout_height="0dp"
-			app:layout_constraintBottom_toTopOf="@id/bottom_nav"
+			app:layout_constraintBottom_toBottomOf="parent"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintStart_toStartOf="parent"
 			app:layout_constraintTop_toTopOf="parent" />
 		
-		<com.google.android.material.bottomnavigation.BottomNavigationView
-			android:id="@+id/bottom_nav"
+		<androidx.constraintlayout.widget.ConstraintLayout
+			android:id="@+id/bottomNavBar"
 			android:layout_width="0dp"
-			android:layout_height="75dp"
-			android:background="@drawable/bottom_nav_bg"
-			app:itemIconSize="24sp"
-			app:itemIconTint="@drawable/bottom_nav_select_color"
-			app:itemTextColor="@drawable/bottom_nav_select_color"
-			app:labelVisibilityMode="labeled"
+			android:layout_height="76dp"
+			android:background="@drawable/background_bottom_nav_bar"
+			android:elevation="16dp"
+			android:paddingStart="8dp"
+			android:paddingTop="12dp"
+			android:paddingEnd="8dp"
+			android:paddingBottom="6dp"
 			app:layout_constraintBottom_toBottomOf="parent"
 			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintStart_toStartOf="parent"
-			app:menu="@menu/bottom_nav_menu" />
+			app:layout_constraintStart_toStartOf="parent">
+			
+			<ImageButton
+				android:id="@+id/homeButton"
+				android:layout_width="86dp"
+				android:layout_height="58dp"
+				android:background="?android:attr/selectableItemBackgroundBorderless"
+				android:onClick="@{() -> viewModel.selectTab(Tab.HOME)}"
+				android:scaleType="fitXY"
+				android:src="@{viewModel.isSelectedHomeTab ? @drawable/ic_gnb_home_foc : @drawable/ic_gnb_home_nor}"
+				app:layout_constraintBottom_toBottomOf="parent"
+				app:layout_constraintEnd_toStartOf="@id/categoryButton"
+				app:layout_constraintStart_toStartOf="parent"
+				tools:ignore="ContentDescription"
+				tools:src="@drawable/ic_gnb_home_foc" />
+			
+			<ImageButton
+				android:id="@+id/categoryButton"
+				android:layout_width="86dp"
+				android:layout_height="58dp"
+				android:background="?android:attr/selectableItemBackgroundBorderless"
+				android:onClick="@{() -> viewModel.selectTab(Tab.CATEGORY)}"
+				android:scaleType="fitXY"
+				android:src="@{viewModel.isSelectedCategoryTab ? @drawable/ic_gnb_category_foc : @drawable/ic_gnb_category_nor}"
+				app:layout_constraintBottom_toBottomOf="parent"
+				app:layout_constraintEnd_toStartOf="@id/myButton"
+				app:layout_constraintStart_toEndOf="@id/homeButton"
+				tools:ignore="ContentDescription"
+				tools:src="@drawable/ic_gnb_category_nor" />
+			
+			<ImageButton
+				android:id="@+id/myButton"
+				android:layout_width="86dp"
+				android:layout_height="58dp"
+				android:background="?android:attr/selectableItemBackgroundBorderless"
+				android:onClick="@{() -> viewModel.selectTab(Tab.MY)}"
+				android:scaleType="fitXY"
+				android:src="@{viewModel.isSelectedMyTab ? @drawable/ic_gnb_my_foc : @drawable/ic_gnb_my_nor}"
+				app:layout_constraintBottom_toBottomOf="parent"
+				app:layout_constraintEnd_toStartOf="@id/settingButton"
+				app:layout_constraintStart_toEndOf="@id/categoryButton"
+				tools:ignore="ContentDescription"
+				tools:src="@drawable/ic_gnb_my_nor" />
+			
+			<ImageButton
+				android:id="@+id/settingButton"
+				android:layout_width="86dp"
+				android:layout_height="58dp"
+				android:background="?android:attr/selectableItemBackgroundBorderless"
+				android:onClick="@{() -> viewModel.selectTab(Tab.SETTING)}"
+				android:scaleType="fitXY"
+				android:src="@{viewModel.isSelectedSettingTab ? @drawable/ic_gnb_setting_foc : @drawable/ic_gnb_setting_nor}"
+				app:layout_constraintBottom_toBottomOf="parent"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toEndOf="@id/myButton"
+				tools:ignore="ContentDescription"
+				tools:src="@drawable/ic_gnb_setting_nor" />
+		</androidx.constraintlayout.widget.ConstraintLayout>
 	
 	</androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
