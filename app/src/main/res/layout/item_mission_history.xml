@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools">
+	
+	<data>
+		
+		<variable
+			name="item"
+			type="org.positive.daymotion.presentation.category.model.MissionHistoryItem" />
+	</data>
+	
+	<androidx.constraintlayout.widget.ConstraintLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="12dp">
+		
+		<TextView
+			android:id="@+id/dateTextView"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="18dp"
+			android:text="@{item.date}"
+			android:textSize="18sp"
+			android:textStyle="bold"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent"
+			tools:text="Yesterday" />
+		
+		<androidx.recyclerview.widget.RecyclerView
+			android:id="@+id/missionsRecyclerView"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="4dp"
+			android:clipToPadding="false"
+			android:orientation="horizontal"
+			android:overScrollMode="never"
+			android:paddingStart="8dp"
+			android:paddingEnd="8dp"
+			app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/dateTextView"
+			tools:listitem="@layout/item_mission_history_inner" />
+	
+	</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -6,7 +6,7 @@
 		
 		<variable
 			name="viewModel"
-			type="org.positive.daymotion.presentation.category.CategoryDetailViewModel" />
+			type="org.positive.daymotion.presentation.category.viewmodel.CategoryDetailViewModel" />
 	</data>
 	
 	<androidx.constraintlayout.widget.ConstraintLayout
