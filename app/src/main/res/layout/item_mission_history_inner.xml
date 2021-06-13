@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools">
+	
+	<data>
+		
+		<variable
+			name="item"
+			type="org.positive.daymotion.presentation.category.model.MissionHistoryInnerItem" />
+	</data>
+	
+	<LinearLayout
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginStart="8dp"
+		android:layout_marginEnd="8dp"
+		android:orientation="vertical">
+		
+		<androidx.cardview.widget.CardView
+			android:layout_width="240dp"
+			android:layout_height="160dp"
+			app:cardCornerRadius="20dp">
+			
+			<ImageView
+				android:id="@+id/missionImageView"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:background="@color/colorGray300" />
+		</androidx.cardview.widget.CardView>
+		
+		<TextView
+			android:id="@+id/missionTitleTextView"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="8dp"
+			android:layout_marginTop="6dp"
+			android:text="@{item.missionTitle}"
+			android:textSize="16sp"
+			tools:text="미션 제목" />
+	</LinearLayout>
+</layout>

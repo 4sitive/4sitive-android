@@ -4,8 +4,8 @@
 	<color name="transparent">@android:color/transparent</color>
 	
 	<!-- background -->
-	<color name="background">@color/colorGray200</color>
-	
+	<color name="background">@color/colorWhite</color>
+
 	<!-- palette -->
 	<color name="colorWhite">#FFFFFF</color>
 	<color name="colorBlack">#000000</color>
@@ -13,7 +13,7 @@
 	<!-- custom -->
 	<color name="colorBlack_17">#171717</color>
 	<color name="colorGray_cd">#CDCDCD</color>
-	
+
 	<color name="colorGray50">#FAFAFA</color>
 	<color name="colorGray100">#F5F5F5</color>
 	<color name="colorGray200">#EEEEEE</color>
