@@ -9,10 +9,8 @@
 	<!-- palette -->
 	<color name="colorWhite">#FFFFFF</color>
 	<color name="colorBlack">#000000</color>
-
-	<!-- custom -->
-	<color name="colorBlack_17">#171717</color>
-	<color name="colorGray_cd">#CDCDCD</color>
+	<color name="_171717">#171717</color>
+	<color name="_CDCDCD">#CDCDCD</color>
 
 	<color name="colorGray50">#FAFAFA</color>
 	<color name="colorGray100">#F5F5F5</color>

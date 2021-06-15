@@ -2,7 +2,6 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:drawable="@drawable/ic_login_naver"
-        android:width="@dimen/login_button_icon_size"
-        android:height="@dimen/login_button_icon_size"
-        />
+        android:width="37dp"
+        android:height="37dp" />
 </layer-list>

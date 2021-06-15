@@ -1,7 +1,8 @@
 <resources>
 
-	<!-- login -->
 	<string name="daymotion">Daymotion</string>
+
+	<!-- login -->
 	<string name="sub_title">오늘은 어떤 미션이 기다리고 있을까?\n가입하고 바로 참여해 보세요!</string>
 	<string name="login_button">%1$s로 참여하기</string>
 	<string name="info_title">잠깐 여기를 봐주세요!</string>
