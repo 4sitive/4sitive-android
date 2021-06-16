@@ -22,15 +22,6 @@ class MissionHistoryPageViewModel @Inject constructor() : BaseViewModel() {
                     add(MissionHistoryInnerItem("mission title1"))
                     add(MissionHistoryInnerItem("mission title2"))
                     add(MissionHistoryInnerItem("mission title3"))
-                    add(MissionHistoryInnerItem("mission title1"))
-                    add(MissionHistoryInnerItem("mission title2"))
-                    add(MissionHistoryInnerItem("mission title3"))
-                    add(MissionHistoryInnerItem("mission title1"))
-                    add(MissionHistoryInnerItem("mission title2"))
-                    add(MissionHistoryInnerItem("mission title3"))
-                    add(MissionHistoryInnerItem("mission title1"))
-                    add(MissionHistoryInnerItem("mission title2"))
-                    add(MissionHistoryInnerItem("mission title3"))
                 }
             ))
 
