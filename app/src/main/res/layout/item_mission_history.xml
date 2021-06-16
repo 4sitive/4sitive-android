@@ -20,9 +20,10 @@
 			android:id="@+id/dateTextView"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
+			android:fontFamily="@font/montserrat_semi_bold"
 			android:text="@{item.date}"
-			android:textSize="18sp"
-			android:textStyle="bold"
+			android:textColor="@color/_171717"
+			android:textSize="16sp"
 			app:layout_constraintStart_toStartOf="parent"
 			app:layout_constraintTop_toTopOf="parent"
 			tools:text="Yesterday" />
@@ -33,7 +34,8 @@
 			android:layout_height="0dp"
 			android:layout_marginTop="8dp"
 			app:cardCornerRadius="8dp"
-			app:isVisible="@{item.firstMission != null}"
+			app:cardElevation="0dp"
+			app:isInvisible="@{item.firstMission == null}"
 			app:layout_constraintDimensionRatio="1:1.5"
 			app:layout_constraintEnd_toStartOf="@id/secondMissionContainer"
 			app:layout_constraintStart_toStartOf="parent"
@@ -53,7 +55,8 @@
 			android:layout_marginStart="10dp"
 			android:layout_marginTop="8dp"
 			app:cardCornerRadius="8dp"
-			app:isVisible="@{item.secondMission != null}"
+			app:cardElevation="0dp"
+			app:isInvisible="@{item.secondMission == null}"
 			app:layout_constraintDimensionRatio="1:1.5"
 			app:layout_constraintEnd_toStartOf="@id/thirdMissionContainer"
 			app:layout_constraintStart_toEndOf="@id/firstMissionContainer"
@@ -73,7 +76,8 @@
 			android:layout_marginStart="10dp"
 			android:layout_marginTop="8dp"
 			app:cardCornerRadius="8dp"
-			app:isVisible="@{item.thirdMission != null}"
+			app:cardElevation="0dp"
+			app:isInvisible="@{item.thirdMission == null}"
 			app:layout_constraintDimensionRatio="1:1.5"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintStart_toEndOf="@id/secondMissionContainer"
@@ -85,6 +89,29 @@
 				android:layout_height="match_parent"
 				android:background="@color/colorGray300" />
 		</androidx.cardview.widget.CardView>
-	
+		
+		<FrameLayout
+			android:layout_width="0dp"
+			android:layout_height="0dp"
+			android:background="@drawable/empty_mission_history_item_background"
+			app:isVisible="@{item.missionEmpty}"
+			app:layout_constraintBottom_toBottomOf="@id/firstMissionContainer"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="@id/firstMissionContainer">
+			
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center"
+				android:alpha="0.4"
+				android:fontFamily="@font/kopub_dotum_medium"
+				android:gravity="center_horizontal"
+				android:lineSpacingExtra="6sp"
+				android:text="오늘은 잠시 쉬어가는 날\n돌아올 미션을 기대해주세요-!"
+				android:textColor="@color/_171717"
+				android:textSize="15sp" />
+		
+		</FrameLayout>
 	</androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
