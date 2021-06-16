@@ -13,13 +13,12 @@
 	<androidx.constraintlayout.widget.ConstraintLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:layout_marginTop="12dp">
+		android:layout_marginTop="28dp">
 		
 		<TextView
 			android:id="@+id/dateTextView"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_marginStart="18dp"
 			android:text="@{item.date}"
 			android:textSize="18sp"
 			android:textStyle="bold"
@@ -27,21 +26,64 @@
 			app:layout_constraintTop_toTopOf="parent"
 			tools:text="Yesterday" />
 		
-		<androidx.recyclerview.widget.RecyclerView
-			android:id="@+id/missionsRecyclerView"
+		<androidx.cardview.widget.CardView
+			android:id="@+id/firstMissionContainer"
 			android:layout_width="0dp"
-			android:layout_height="wrap_content"
-			android:layout_marginTop="4dp"
-			android:clipToPadding="false"
-			android:orientation="horizontal"
-			android:overScrollMode="never"
-			android:paddingStart="8dp"
-			android:paddingEnd="8dp"
-			app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-			app:layout_constraintEnd_toEndOf="parent"
+			android:layout_height="0dp"
+			android:layout_marginTop="8dp"
+			app:cardCornerRadius="8dp"
+			app:isVisible="@{item.firstMission != null}"
+			app:layout_constraintDimensionRatio="1:1.5"
+			app:layout_constraintEnd_toStartOf="@id/secondMissionContainer"
 			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toBottomOf="@id/dateTextView"
-			tools:listitem="@layout/item_mission_history_inner" />
+			app:layout_constraintTop_toBottomOf="@id/dateTextView">
+			
+			<ImageView
+				android:id="@+id/firstMissionImageView"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:background="@color/colorGray300" />
+		</androidx.cardview.widget.CardView>
+		
+		<androidx.cardview.widget.CardView
+			android:id="@+id/secondMissionContainer"
+			android:layout_width="0dp"
+			android:layout_height="0dp"
+			android:layout_marginStart="10dp"
+			android:layout_marginTop="8dp"
+			app:cardCornerRadius="8dp"
+			app:isVisible="@{item.secondMission != null}"
+			app:layout_constraintDimensionRatio="1:1.5"
+			app:layout_constraintEnd_toStartOf="@id/thirdMissionContainer"
+			app:layout_constraintStart_toEndOf="@id/firstMissionContainer"
+			app:layout_constraintTop_toBottomOf="@id/dateTextView">
+			
+			<ImageView
+				android:id="@+id/secondMissionImageView"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:background="@color/colorGray300" />
+		</androidx.cardview.widget.CardView>
+		
+		<androidx.cardview.widget.CardView
+			android:id="@+id/thirdMissionContainer"
+			android:layout_width="0dp"
+			android:layout_height="0dp"
+			android:layout_marginStart="10dp"
+			android:layout_marginTop="8dp"
+			app:cardCornerRadius="8dp"
+			app:isVisible="@{item.thirdMission != null}"
+			app:layout_constraintDimensionRatio="1:1.5"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toEndOf="@id/secondMissionContainer"
+			app:layout_constraintTop_toBottomOf="@id/dateTextView">
+			
+			<ImageView
+				android:id="@+id/thirdMissionImageView"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:background="@color/colorGray300" />
+		</androidx.cardview.widget.CardView>
 	
 	</androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
