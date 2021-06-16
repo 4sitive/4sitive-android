@@ -1,43 +1,177 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto">
-	
-	<data>
-		
-		<import type="org.positive.daymotion.presentation.login.LoginActivity.LoginWay" />
-		
-		<variable
-			name="handler"
-			type="org.positive.daymotion.presentation.login.LoginActivity.Handler" />
-	</data>
-	
-	<androidx.constraintlayout.widget.ConstraintLayout
-		android:layout_width="match_parent"
-		android:layout_height="match_parent">
-		
-		<Button
-			android:id="@+id/googleLoginButton"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_marginStart="16dp"
-			android:layout_marginEnd="16dp"
-			android:onClick="@{() -> handler.requestLogin(LoginWay.GOOGLE)}"
-			android:text="Google Login"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toTopOf="parent" />
-		
-		<Button
-			android:id="@+id/kakaoLoginButton"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_marginStart="16dp"
-			android:layout_marginEnd="16dp"
-			android:onClick="@{() -> handler.requestLogin(LoginWay.KAKAO)}"
-			android:text="Kakao Login"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toBottomOf="@id/googleLoginButton" />
-	
-	</androidx.constraintlayout.widget.ConstraintLayout>
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="org.positive.daymotion.presentation.login.LoginActivity.LoginWay" />
+
+        <variable
+            name="handler"
+            type="org.positive.daymotion.presentation.login.LoginActivity.Handler" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@id/personalInformation"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="@string/daymotion"
+                android:textColor="@color/_171717"
+                android:textSize="27sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:alpha="0.6"
+                android:fontFamily="@font/kopub_dotum_medium"
+                android:gravity="center"
+                android:lineSpacingExtra="6sp"
+                android:text="@string/sub_title"
+                android:textColor="@color/_171717"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/googleLoginButton"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/background_login_button"
+                android:drawableEnd="@drawable/google_icon"
+                android:fontFamily="@font/kopub_dotum_light"
+                android:onClick="@{() -> handler.requestLogin(LoginWay.GOOGLE)}"
+                android:paddingStart="20dp"
+                android:paddingEnd="16dp"
+                android:text="@string/login_button"
+                android:textAlignment="textStart"
+                android:textAllCaps="false"
+                android:textColor="@color/_171717"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/naverLoginButton"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/background_login_button"
+                android:drawableEnd="@drawable/naver_icon"
+                android:fontFamily="@font/kopub_dotum_light"
+                android:paddingStart="20dp"
+                android:paddingEnd="16dp"
+                android:text="@string/login_button"
+                android:textAlignment="textStart"
+                android:textAllCaps="false"
+                android:textColor="@color/_171717"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/facebookLoginButton"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/background_login_button"
+                android:drawableEnd="@drawable/facebook_icon"
+                android:fontFamily="@font/kopub_dotum_light"
+                android:paddingStart="20dp"
+                android:paddingEnd="16dp"
+                android:text="@string/login_button"
+                android:textAlignment="textStart"
+                android:textAllCaps="false"
+                android:textColor="@color/_171717"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/kakaoLoginButton"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/background_login_button"
+                android:drawableEnd="@drawable/kakao_icon"
+                android:fontFamily="@font/kopub_dotum_light"
+                android:onClick="@{() -> handler.requestLogin(LoginWay.KAKAO)}"
+                android:paddingStart="20dp"
+                android:paddingEnd="16dp"
+                android:text="@string/login_button"
+                android:textAlignment="textStart"
+                android:textAllCaps="false"
+                android:textColor="@color/_171717"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/personalInformation"
+            android:layout_width="match_parent"
+            android:layout_height="124dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:gravity="center"
+            android:background="@color/colorGray200"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/ivInfoIcon"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:src="@drawable/ic_info"
+                    tools:ignore="MissingConstraints" />
+
+                <TextView
+                    android:id="@+id/tvInfoTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    app:layout_constraintBottom_toTopOf="@id/ivInfoIcon"
+                    app:layout_constraintTop_toBottomOf="@id/ivInfoIcon"
+                    app:layout_constraintStart_toEndOf="@id/ivInfoIcon"
+                    android:fontFamily="@font/kopub_dotum_bold"
+                    android:text="@string/info_title"
+                    android:textColor="@color/_171717"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tvInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/ivInfoIcon"
+                    android:layout_marginTop="8dp"
+                    android:alpha="0.5"
+                    android:fontFamily="@font/kopub_dotum_light"
+                    android:lineSpacingExtra="5sp"
+                    android:text="@string/info_content"
+                    android:textColor="@color/_171717"
+                    android:textSize="12sp"
+                    tools:ignore="MissingConstraints" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
