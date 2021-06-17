@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import org.positive.daymotion.R
+import org.positive.daymotion.common.bundle
 import org.positive.daymotion.databinding.ActivityCategoryDetailBinding
 import org.positive.daymotion.extension.startWith
 import org.positive.daymotion.presentation.base.BaseActivity
@@ -21,8 +22,11 @@ class CategoryDetailActivity :
     private val categoryDetailAdapter by lazy { CategoryDetailAdapter() }
     private val handler by lazy { Handler() }
 
+    private val title by bundle<String>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding.title = title
         binding.handler = handler
         binding.viewModel = viewModel
 
@@ -50,6 +54,9 @@ class CategoryDetailActivity :
     }
 
     companion object {
-        fun start(context: Context) = context.startWith<CategoryDetailActivity>()
+        fun start(
+            context: Context,
+            title: String
+        ) = context.startWith<CategoryDetailActivity>("title" to title)
     }
 }

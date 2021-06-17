@@ -16,50 +16,52 @@ class MissionHistoryPageViewModel @Inject constructor() : BaseViewModel() {
 
     fun loadMissionHistories() {
         val items = buildList {
-            add(MissionHistoryItem(
-                date = "Yesterday",
-                missions = emptyList()
-            ))
+            add(
+                MissionHistoryItem(
+                    date = "Yesterday",
+                    missions = emptyList()
+                )
+            )
 
             add(MissionHistoryItem(
                 date = "06.05",
                 missions = buildList {
-                    add(MissionHistoryInnerItem("mission title4"))
+                    add(MissionHistoryInnerItem("mission title4", "imageUrl"))
                 }
             ))
 
             add(MissionHistoryItem(
                 date = "06.04",
                 missions = buildList {
-                    add(MissionHistoryInnerItem("mission title7"))
-                    add(MissionHistoryInnerItem("mission title8"))
+                    add(MissionHistoryInnerItem("mission title7", "imageUrl"))
+                    add(MissionHistoryInnerItem("mission title8", "imageUrl"))
                 }
             ))
 
             add(MissionHistoryItem(
                 date = "06.03",
                 missions = buildList {
-                    add(MissionHistoryInnerItem("mission title10"))
-                    add(MissionHistoryInnerItem("mission title11"))
-                    add(MissionHistoryInnerItem("mission title12"))
+                    add(MissionHistoryInnerItem("mission title10", "imageUrl"))
+                    add(MissionHistoryInnerItem("mission title11", "imageUrl"))
+                    add(MissionHistoryInnerItem("mission title12", "imageUrl"))
                 }
             ))
 
             add(MissionHistoryItem(
                 date = "06.02",
                 missions = buildList {
-                    add(MissionHistoryInnerItem("mission title13"))
-                    add(MissionHistoryInnerItem("mission title14"))
-                    add(MissionHistoryInnerItem("mission title15"))
+                    add(MissionHistoryInnerItem("mission title13", "imageUrl"))
+                    add(MissionHistoryInnerItem("mission title14", "imageUrl"))
+                    add(MissionHistoryInnerItem("mission title15", "imageUrl"))
                 }
             ))
 
             add(MissionHistoryItem(
                 date = "06.01",
                 missions = buildList {
-                    add(MissionHistoryInnerItem("mission title16"))
-                    add(MissionHistoryInnerItem("mission title17"))
-                    add(MissionHistoryInnerItem("mission title18"))
+                    add(MissionHistoryInnerItem("mission title16", "imageUrl"))
+                    add(MissionHistoryInnerItem("mission title17", "imageUrl"))
+                    add(MissionHistoryInnerItem("mission title18", "imageUrl"))
                 }
             ))
         }

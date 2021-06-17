@@ -6,6 +6,10 @@
 	<data>
 		
 		<variable
+			name="title"
+			type="String" />
+		
+		<variable
 			name="handler"
 			type="org.positive.daymotion.presentation.category.activity.CategoryDetailActivity.Handler" />
 		
@@ -27,7 +31,7 @@
 			app:layout_constraintStart_toStartOf="parent"
 			app:layout_constraintTop_toTopOf="parent"
 			app:onBackButtonClick="@{() -> handler.finish()}"
-			app:title='@{"취미"}' />
+			app:title='@{title}' />
 		
 		<androidx.recyclerview.widget.RecyclerView
 			android:id="@+id/category_detail_recycler_view"

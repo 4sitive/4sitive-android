@@ -44,6 +44,6 @@ class CategoryBrowserPageFragment :
     }
 
     inner class Handler {
-        fun goToCategoryDetail() = CategoryDetailActivity.start(requireContext())
+        fun goToCategoryDetail(title: String) = CategoryDetailActivity.start(requireContext(), title)
     }
 }
