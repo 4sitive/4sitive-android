@@ -43,11 +43,47 @@
 			android:clipToPadding="false"
 			android:overScrollMode="never"
 			android:paddingBottom="104dp"
+			app:isVisible="@{!viewModel.isEmptyDetailItem()}"
 			app:layout_constraintBottom_toBottomOf="parent"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintStart_toStartOf="parent"
 			app:layout_constraintTop_toBottomOf="@id/appBarLayout"
 			tools:listitem="@layout/item_category_detail" />
+		
+		<ImageView
+			android:id="@+id/emptyStateImageView"
+			android:layout_width="114dp"
+			android:layout_height="114dp"
+			android:background="@drawable/ic_category_empty"
+			app:layout_constraintBottom_toTopOf="@id/emptyStateTextView"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent"
+			app:layout_constraintVertical_chainStyle="packed" />
+		
+		<TextView
+			android:id="@+id/emptyStateTextView"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="30dp"
+			android:alpha="0.4"
+			android:fontFamily="@font/kopub_dotum_medium"
+			android:gravity="center_horizontal"
+			android:lineSpacingExtra="6sp"
+			android:text="앞으로 참여할 미션 피드를\n조금만 기다려 주세요!"
+			android:textColor="@color/_171717"
+			android:textSize="15sp"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/emptyStateImageView" />
+		
+		<androidx.constraintlayout.widget.Group
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			app:constraint_referenced_ids="emptyStateImageView,emptyStateTextView"
+			app:isVisible="@{viewModel.isEmptyDetailItem()}"
+			tools:visibility="gone" />
 	
 	</androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
