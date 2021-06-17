@@ -19,9 +19,11 @@ class CategoryDetailActivity :
 
     private val viewModel by viewModelOf<CategoryDetailViewModel>()
     private val categoryDetailAdapter by lazy { CategoryDetailAdapter() }
+    private val handler by lazy { Handler() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding.handler = handler
         binding.viewModel = viewModel
 
         setupViews()
@@ -41,6 +43,10 @@ class CategoryDetailActivity :
         viewModel.categoryDetails.observeNonNull {
             categoryDetailAdapter.replaceAll(it)
         }
+    }
+
+    inner class Handler {
+        fun finish() = this@CategoryDetailActivity.finish()
     }
 
     companion object {
