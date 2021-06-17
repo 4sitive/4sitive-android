@@ -2,12 +2,12 @@ package org.positive.daymotion.presentation.category.adapter
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import org.positive.daymotion.common.BindingViewHolder
+import org.positive.daymotion.common.createBindingViewHolder
 import org.positive.daymotion.databinding.ItemCategoryDetailBinding
-import org.positive.daymotion.extension.layoutInflater
-import org.positive.daymotion.presentation.category.adapter.holder.CategoryDetailViewHolder
 import org.positive.daymotion.presentation.category.model.CategoryDetailItem
 
-class CategoryDetailAdapter : RecyclerView.Adapter<CategoryDetailViewHolder>() {
+class CategoryDetailAdapter : RecyclerView.Adapter<BindingViewHolder<ItemCategoryDetailBinding>>() {
 
     private val items = mutableListOf<CategoryDetailItem>()
 
@@ -22,18 +22,13 @@ class CategoryDetailAdapter : RecyclerView.Adapter<CategoryDetailViewHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): CategoryDetailViewHolder {
-        val layoutInflater = parent.context.layoutInflater
-        val binding = ItemCategoryDetailBinding.inflate(layoutInflater, parent, false)
-        return CategoryDetailViewHolder(binding)
-    }
+    ): BindingViewHolder<ItemCategoryDetailBinding> = createBindingViewHolder(parent)
 
     override fun onBindViewHolder(
-        holder: CategoryDetailViewHolder,
+        holder: BindingViewHolder<ItemCategoryDetailBinding>,
         position: Int
     ) {
-        val item = items[position]
-        holder.binding.item = item
+        holder.binding.item = items[position]
     }
 
     override fun getItemCount() = items.size

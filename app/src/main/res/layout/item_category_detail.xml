@@ -31,7 +31,8 @@
 				android:id="@+id/categoryImageView"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
-				android:background="@color/colorGray300" />
+				android:background="@color/colorGray300"
+				android:foreground="?android:attr/selectableItemBackground" />
 		</androidx.cardview.widget.CardView>
 	</androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

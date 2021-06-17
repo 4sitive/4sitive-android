@@ -6,6 +6,10 @@
 	<data>
 		
 		<variable
+			name="handler"
+			type="org.positive.daymotion.presentation.category.fragment.MissionHistoryPageFragment.Handler" />
+		
+		<variable
 			name="item"
 			type="org.positive.daymotion.presentation.category.model.MissionHistoryItem" />
 	</data>
@@ -46,7 +50,9 @@
 				android:id="@+id/firstMissionImageView"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
-				android:background="@color/colorGray300" />
+				android:background="@color/colorGray300"
+				android:foreground="?android:attr/selectableItemBackground"
+				android:onClick="@{() -> handler.goToCategoryDetail()}" />
 		</androidx.cardview.widget.CardView>
 		
 		<androidx.cardview.widget.CardView
@@ -67,7 +73,9 @@
 				android:id="@+id/secondMissionImageView"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
-				android:background="@color/colorGray300" />
+				android:background="@color/colorGray300"
+				android:foreground="?android:attr/selectableItemBackground"
+				android:onClick="@{() -> handler.goToCategoryDetail()}" />
 		</androidx.cardview.widget.CardView>
 		
 		<androidx.cardview.widget.CardView
@@ -88,7 +96,9 @@
 				android:id="@+id/thirdMissionImageView"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
-				android:background="@color/colorGray300" />
+				android:background="@color/colorGray300"
+				android:foreground="?android:attr/selectableItemBackground"
+				android:onClick="@{() -> handler.goToCategoryDetail()}" />
 		</androidx.cardview.widget.CardView>
 		
 		<FrameLayout
