@@ -5,9 +5,12 @@ import androidx.recyclerview.widget.RecyclerView
 import org.positive.daymotion.databinding.ItemCategoryBrowserBinding
 import org.positive.daymotion.extension.layoutInflater
 import org.positive.daymotion.presentation.category.adapter.holder.CategoryBrowserViewHolder
+import org.positive.daymotion.presentation.category.fragment.CategoryBrowserPageFragment
 import org.positive.daymotion.presentation.category.model.CategoryBrowserItem
 
-class CategoryBrowserAdapter : RecyclerView.Adapter<CategoryBrowserViewHolder>() {
+class CategoryBrowserAdapter(
+    private val handler: CategoryBrowserPageFragment.Handler
+) : RecyclerView.Adapter<CategoryBrowserViewHolder>() {
 
     private val items = mutableListOf<CategoryBrowserItem>()
 
@@ -25,6 +28,7 @@ class CategoryBrowserAdapter : RecyclerView.Adapter<CategoryBrowserViewHolder>()
     ): CategoryBrowserViewHolder {
         val layoutInflater = parent.context.layoutInflater
         val binding = ItemCategoryBrowserBinding.inflate(layoutInflater, parent, false)
+        binding.itemContainer.setOnClickListener { handler.goToCategoryDetail() }
         return CategoryBrowserViewHolder(binding)
     }
 

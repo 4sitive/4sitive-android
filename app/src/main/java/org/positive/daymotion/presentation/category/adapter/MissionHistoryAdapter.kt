@@ -5,9 +5,12 @@ import androidx.recyclerview.widget.RecyclerView
 import org.positive.daymotion.databinding.ItemMissionHistoryBinding
 import org.positive.daymotion.extension.layoutInflater
 import org.positive.daymotion.presentation.category.adapter.holder.MissionHistoryViewHolder
+import org.positive.daymotion.presentation.category.fragment.MissionHistoryPageFragment
 import org.positive.daymotion.presentation.category.model.MissionHistoryItem
 
-class MissionHistoryAdapter : RecyclerView.Adapter<MissionHistoryViewHolder>() {
+class MissionHistoryAdapter(
+    private val handler: MissionHistoryPageFragment.Handler
+) : RecyclerView.Adapter<MissionHistoryViewHolder>() {
 
     private val items = mutableListOf<MissionHistoryItem>()
 
@@ -25,6 +28,7 @@ class MissionHistoryAdapter : RecyclerView.Adapter<MissionHistoryViewHolder>() {
     ): MissionHistoryViewHolder {
         val layoutInflater = parent.context.layoutInflater
         val binding = ItemMissionHistoryBinding.inflate(layoutInflater, parent, false)
+        binding.itemContainer.setOnClickListener { handler.goToCategoryDetail() }
         return MissionHistoryViewHolder(binding)
     }
 
