@@ -18,42 +18,26 @@ class MissionHistoryPageViewModel @Inject constructor() : BaseViewModel() {
         val items = buildList {
             add(MissionHistoryItem(
                 date = "Yesterday",
-                missions = buildList {
-                    add(MissionHistoryInnerItem("mission title1"))
-                    add(MissionHistoryInnerItem("mission title2"))
-                    add(MissionHistoryInnerItem("mission title3"))
-                    add(MissionHistoryInnerItem("mission title1"))
-                    add(MissionHistoryInnerItem("mission title2"))
-                    add(MissionHistoryInnerItem("mission title3"))
-                    add(MissionHistoryInnerItem("mission title1"))
-                    add(MissionHistoryInnerItem("mission title2"))
-                    add(MissionHistoryInnerItem("mission title3"))
-                    add(MissionHistoryInnerItem("mission title1"))
-                    add(MissionHistoryInnerItem("mission title2"))
-                    add(MissionHistoryInnerItem("mission title3"))
-                }
+                missions = emptyList()
             ))
 
             add(MissionHistoryItem(
-                date = "06.10",
+                date = "06.05",
                 missions = buildList {
                     add(MissionHistoryInnerItem("mission title4"))
-                    add(MissionHistoryInnerItem("mission title5"))
-                    add(MissionHistoryInnerItem("mission title6"))
                 }
             ))
 
             add(MissionHistoryItem(
-                date = "06.09",
+                date = "06.04",
                 missions = buildList {
                     add(MissionHistoryInnerItem("mission title7"))
                     add(MissionHistoryInnerItem("mission title8"))
-                    add(MissionHistoryInnerItem("mission title9"))
                 }
             ))
 
             add(MissionHistoryItem(
-                date = "06.08",
+                date = "06.03",
                 missions = buildList {
                     add(MissionHistoryInnerItem("mission title10"))
                     add(MissionHistoryInnerItem("mission title11"))
@@ -62,7 +46,7 @@ class MissionHistoryPageViewModel @Inject constructor() : BaseViewModel() {
             ))
 
             add(MissionHistoryItem(
-                date = "06.07",
+                date = "06.02",
                 missions = buildList {
                     add(MissionHistoryInnerItem("mission title13"))
                     add(MissionHistoryInnerItem("mission title14"))
@@ -71,20 +55,11 @@ class MissionHistoryPageViewModel @Inject constructor() : BaseViewModel() {
             ))
 
             add(MissionHistoryItem(
-                date = "06.06",
+                date = "06.01",
                 missions = buildList {
                     add(MissionHistoryInnerItem("mission title16"))
                     add(MissionHistoryInnerItem("mission title17"))
                     add(MissionHistoryInnerItem("mission title18"))
-                }
-            ))
-
-            add(MissionHistoryItem(
-                date = "06.05",
-                missions = buildList {
-                    add(MissionHistoryInnerItem("mission title19"))
-                    add(MissionHistoryInnerItem("mission title20"))
-                    add(MissionHistoryInnerItem("mission title21"))
                 }
             ))
         }

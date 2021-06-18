@@ -5,13 +5,17 @@
 	
 	<!-- background -->
 	<color name="background">@color/colorWhite</color>
-
+	
 	<!-- palette -->
 	<color name="colorWhite">#FFFFFF</color>
 	<color name="colorBlack">#000000</color>
+	<color name="_000000">#000000</color>
 	<color name="_171717">#171717</color>
 	<color name="_CDCDCD">#CDCDCD</color>
-
+	<color name="_EDEDED">#EDEDED</color>
+	<color name="_F1F1F1">#F1F1F1</color>
+	<color name="_FFFFFF">#FFFFFF</color>
+	
 	<color name="colorGray50">#FAFAFA</color>
 	<color name="colorGray100">#F5F5F5</color>
 	<color name="colorGray200">#EEEEEE</color>

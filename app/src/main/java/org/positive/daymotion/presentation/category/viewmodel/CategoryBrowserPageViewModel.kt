@@ -15,12 +15,14 @@ class CategoryBrowserPageViewModel @Inject constructor() : BaseViewModel() {
 
     fun loadMissionHistories() {
         val items = buildList {
-            add(CategoryBrowserItem(categoryName = "취미", participants = 200))
-            add(CategoryBrowserItem(categoryName = "개인", participants = 10))
-            add(CategoryBrowserItem(categoryName = "유머", participants = 12))
-            add(CategoryBrowserItem(categoryName = "날씨", participants = 13))
-            add(CategoryBrowserItem(categoryName = "친구", participants = 500))
-            add(CategoryBrowserItem(categoryName = "음악", participants = 600))
+            add(CategoryBrowserItem(categoryName = "취미", participants = 123))
+            add(CategoryBrowserItem(categoryName = "개인", participants = 5))
+            add(CategoryBrowserItem(categoryName = "날씨", participants = 3))
+            add(CategoryBrowserItem(categoryName = "유머", participants = 40))
+            add(CategoryBrowserItem(categoryName = "일상", participants = 80))
+            add(CategoryBrowserItem(categoryName = "친구", participants = 334))
+            add(CategoryBrowserItem(categoryName = "음악", participants = 1200))
+            add(CategoryBrowserItem(categoryName = "고민", participants = 3))
         }
 
         _categoryBrowserItems.value = items

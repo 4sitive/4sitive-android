@@ -10,38 +10,108 @@
 			type="org.positive.daymotion.presentation.category.model.MissionHistoryItem" />
 	</data>
 	
+	<!--TODO(yh): link image url-->
 	<androidx.constraintlayout.widget.ConstraintLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:layout_marginTop="12dp">
+		android:layout_marginTop="28dp">
 		
 		<TextView
 			android:id="@+id/dateTextView"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_marginStart="18dp"
+			android:fontFamily="@font/montserrat_semi_bold"
 			android:text="@{item.date}"
-			android:textSize="18sp"
-			android:textStyle="bold"
+			android:textColor="@color/_171717"
+			android:textSize="16sp"
 			app:layout_constraintStart_toStartOf="parent"
 			app:layout_constraintTop_toTopOf="parent"
 			tools:text="Yesterday" />
 		
-		<androidx.recyclerview.widget.RecyclerView
-			android:id="@+id/missionsRecyclerView"
+		<androidx.cardview.widget.CardView
+			android:id="@+id/firstMissionContainer"
 			android:layout_width="0dp"
-			android:layout_height="wrap_content"
-			android:layout_marginTop="4dp"
-			android:clipToPadding="false"
-			android:orientation="horizontal"
-			android:overScrollMode="never"
-			android:paddingStart="8dp"
-			android:paddingEnd="8dp"
-			app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+			android:layout_height="0dp"
+			android:layout_marginTop="8dp"
+			app:cardCornerRadius="8dp"
+			app:cardElevation="0dp"
+			app:isInvisible="@{item.firstMission == null}"
+			app:layout_constraintDimensionRatio="1:1.5"
+			app:layout_constraintEnd_toStartOf="@id/secondMissionContainer"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/dateTextView">
+			
+			<ImageView
+				android:id="@+id/firstMissionImageView"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:background="@color/colorGray300" />
+		</androidx.cardview.widget.CardView>
+		
+		<androidx.cardview.widget.CardView
+			android:id="@+id/secondMissionContainer"
+			android:layout_width="0dp"
+			android:layout_height="0dp"
+			android:layout_marginStart="10dp"
+			android:layout_marginTop="8dp"
+			app:cardCornerRadius="8dp"
+			app:cardElevation="0dp"
+			app:isInvisible="@{item.secondMission == null}"
+			app:layout_constraintDimensionRatio="1:1.5"
+			app:layout_constraintEnd_toStartOf="@id/thirdMissionContainer"
+			app:layout_constraintStart_toEndOf="@id/firstMissionContainer"
+			app:layout_constraintTop_toBottomOf="@id/dateTextView">
+			
+			<ImageView
+				android:id="@+id/secondMissionImageView"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:background="@color/colorGray300" />
+		</androidx.cardview.widget.CardView>
+		
+		<androidx.cardview.widget.CardView
+			android:id="@+id/thirdMissionContainer"
+			android:layout_width="0dp"
+			android:layout_height="0dp"
+			android:layout_marginStart="10dp"
+			android:layout_marginTop="8dp"
+			app:cardCornerRadius="8dp"
+			app:cardElevation="0dp"
+			app:isInvisible="@{item.thirdMission == null}"
+			app:layout_constraintDimensionRatio="1:1.5"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toEndOf="@id/secondMissionContainer"
+			app:layout_constraintTop_toBottomOf="@id/dateTextView">
+			
+			<ImageView
+				android:id="@+id/thirdMissionImageView"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:background="@color/colorGray300" />
+		</androidx.cardview.widget.CardView>
+		
+		<FrameLayout
+			android:layout_width="0dp"
+			android:layout_height="0dp"
+			android:background="@drawable/empty_mission_history_item_background"
+			app:isVisible="@{item.missionEmpty}"
+			app:layout_constraintBottom_toBottomOf="@id/firstMissionContainer"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toBottomOf="@id/dateTextView"
-			tools:listitem="@layout/item_mission_history_inner" />
-	
+			app:layout_constraintTop_toTopOf="@id/firstMissionContainer">
+			
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center"
+				android:alpha="0.4"
+				android:fontFamily="@font/kopub_dotum_medium"
+				android:gravity="center_horizontal"
+				android:lineSpacingExtra="6sp"
+				android:text="오늘은 잠시 쉬어가는 날\n돌아올 미션을 기대해주세요-!"
+				android:textColor="@color/_171717"
+				android:textSize="15sp" />
+		
+		</FrameLayout>
 	</androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
