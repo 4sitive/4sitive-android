@@ -13,4 +13,10 @@
 	<string name="bottom_menu_category">카테고리</string>
 	<string name="bottom_menu_my">마이</string>
 	<string name="bottom_menu_setting">설정</string>
+
+	<!-- setting -->
+	<string name="logout">로그아웃</string>
+	<string name="logoutMsg">로그아웃 되었습니다.\n곧 다시 만나요~!!</string>
+	<string name="fa_angle_right">&#xf105;</string>
+
 </resources>
