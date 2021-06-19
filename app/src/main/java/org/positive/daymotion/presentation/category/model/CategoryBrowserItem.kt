@@ -20,7 +20,7 @@ data class CategoryBrowserItem(
                 else -> R.drawable.img_category_03
             }
         }
-        participants in 11..100 -> R.drawable.category_browser_item_background
+        participants in 11..100 -> R.drawable.background_category_browser_item
         else -> R.color._F1F1F1
     }
 

@@ -1,14 +1,17 @@
 package org.positive.daymotion.presentation.login
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Typeface
 import android.net.Uri
 import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.TextPaint
+import android.text.method.LinkMovementMethod
+import android.text.style.ClickableSpan
 import android.text.style.TypefaceSpan
-import android.text.util.Linkify
+import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import androidx.browser.customtabs.CustomTabsIntent
@@ -20,7 +23,8 @@ import org.positive.daymotion.common.DmConstants
 import org.positive.daymotion.databinding.ActivityLoginBinding
 import org.positive.daymotion.extension.startOnTop
 import org.positive.daymotion.presentation.base.BaseActivity
-import java.util.regex.Pattern
+import org.positive.daymotion.presentation.setting.PrivacyPolicyActivity
+import org.positive.daymotion.presentation.setting.ServiceTermsActivity
 
 
 @AndroidEntryPoint
@@ -69,9 +73,9 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
         }, start, end, Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
         btn.text = spannable
 
-//        btn.setOnClickListener(){
-//            btn.alpha = 0.5f
-//        }
+        btn.setOnClickListener(){
+            btn.alpha = 0.5f
+        }
     }
 
     private fun tvSet(tv: TextView, str: String, words: ArrayList<String>) {
@@ -80,24 +84,29 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
             val start: Int = str.indexOf(item)
             val end: Int = start + item.length
 
-            spannable.setSpan(object : TypefaceSpan(null) {
-                override fun updateDrawState(ds: TextPaint) {
-                    ds.typeface = Typeface.create(ResourcesCompat.getFont(applicationContext, R.font.kopub_dotum_bold), Typeface.NORMAL)
+            tv.movementMethod = LinkMovementMethod.getInstance();
+            spannable.setSpan(object : ClickableSpan() {
+                override fun onClick(widget: View) {
+                    when(item){
+                        words[0] -> {
+                            intent = Intent(applicationContext, ServiceTermsActivity::class.java)
+                            startActivity(intent)
+                        }
+                        words[1] -> {
+                            intent = Intent(applicationContext, PrivacyPolicyActivity::class.java)
+                            startActivity(intent)
+                        }
+                    }
                 }
-            }, start, end, Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
+
+                override fun updateDrawState(ds: TextPaint) {
+                    ds.linkColor = -0x1000000
+                    ds.typeface = Typeface.create(ResourcesCompat.getFont(applicationContext, R.font.kopub_dotum_bold), Typeface.NORMAL)
+                    super.updateDrawState(ds)
+                }
+            }, start, end, Spannable.SPAN_INCLUSIVE_INCLUSIVE)
         }
         tv.text = spannable
-
-//        val mTransform = Linkify.TransformFilter { match, url -> "" }
-//
-//        val serviceUrl = "https://www.naver.com/"
-//        val privacyUrl = "https://www.daum.net/"
-//        val urlArr = arrayListOf(serviceUrl, privacyUrl)
-//
-//        for ((i, item) in words.withIndex()) {
-//            val pattern = Pattern.compile(item)
-//            Linkify.addLinks(tv, pattern, urlArr[i], null, mTransform)
-//        }
     }
 
     inner class Handler {

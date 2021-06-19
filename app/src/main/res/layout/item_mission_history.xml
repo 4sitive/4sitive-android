@@ -104,7 +104,7 @@
 		<FrameLayout
 			android:layout_width="0dp"
 			android:layout_height="0dp"
-			android:background="@drawable/empty_mission_history_item_background"
+			android:background="@drawable/background_empty_mission_history_item"
 			app:isVisible="@{item.missionEmpty}"
 			app:layout_constraintBottom_toBottomOf="@id/firstMissionContainer"
 			app:layout_constraintEnd_toEndOf="parent"
