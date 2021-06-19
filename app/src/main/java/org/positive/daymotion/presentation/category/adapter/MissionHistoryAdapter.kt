@@ -2,12 +2,15 @@ package org.positive.daymotion.presentation.category.adapter
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import org.positive.daymotion.common.BindingViewHolder
+import org.positive.daymotion.common.createBindingViewHolder
 import org.positive.daymotion.databinding.ItemMissionHistoryBinding
-import org.positive.daymotion.extension.layoutInflater
-import org.positive.daymotion.presentation.category.adapter.holder.MissionHistoryViewHolder
+import org.positive.daymotion.presentation.category.fragment.MissionHistoryPageFragment
 import org.positive.daymotion.presentation.category.model.MissionHistoryItem
 
-class MissionHistoryAdapter : RecyclerView.Adapter<MissionHistoryViewHolder>() {
+class MissionHistoryAdapter(
+    private val handler: MissionHistoryPageFragment.Handler
+) : RecyclerView.Adapter<BindingViewHolder<ItemMissionHistoryBinding>>() {
 
     private val items = mutableListOf<MissionHistoryItem>()
 
@@ -22,18 +25,16 @@ class MissionHistoryAdapter : RecyclerView.Adapter<MissionHistoryViewHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): MissionHistoryViewHolder {
-        val layoutInflater = parent.context.layoutInflater
-        val binding = ItemMissionHistoryBinding.inflate(layoutInflater, parent, false)
-        return MissionHistoryViewHolder(binding)
-    }
+    ): BindingViewHolder<ItemMissionHistoryBinding> = createBindingViewHolder(parent)
 
     override fun onBindViewHolder(
-        holder: MissionHistoryViewHolder,
+        holder: BindingViewHolder<ItemMissionHistoryBinding>,
         position: Int
     ) {
-        val item = items[position]
-        holder.binding.item = item
+        with(holder.binding) {
+            item = items[position]
+            handler = this@MissionHistoryAdapter.handler
+        }
     }
 
     override fun getItemCount() = items.size

@@ -9,6 +9,7 @@ import org.positive.daymotion.R
 import org.positive.daymotion.databinding.FragmentCategoryBrowserPageBinding
 import org.positive.daymotion.presentation.base.BaseFragment
 import org.positive.daymotion.presentation.base.util.viewModelOf
+import org.positive.daymotion.presentation.category.activity.CategoryDetailActivity
 import org.positive.daymotion.presentation.category.adapter.CategoryBrowserAdapter
 import org.positive.daymotion.presentation.category.viewmodel.CategoryBrowserPageViewModel
 
@@ -17,7 +18,8 @@ class CategoryBrowserPageFragment :
     BaseFragment<FragmentCategoryBrowserPageBinding>(R.layout.fragment_category_browser_page) {
 
     private val viewModel by viewModelOf<CategoryBrowserPageViewModel>()
-    private val categoryBrowserAdapter by lazy { CategoryBrowserAdapter() }
+    private val handler by lazy { Handler() }
+    private val categoryBrowserAdapter by lazy { CategoryBrowserAdapter(handler) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -39,5 +41,9 @@ class CategoryBrowserPageFragment :
         viewModel.categoryBrowserItems.observeNonNull {
             categoryBrowserAdapter.replaceAll(it)
         }
+    }
+
+    inner class Handler {
+        fun goToCategoryDetail(title: String) = CategoryDetailActivity.start(requireContext(), title)
     }
 }

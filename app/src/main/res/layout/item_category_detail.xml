@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools">
+	
+	<data>
+		
+		<variable
+			name="item"
+			type="org.positive.daymotion.presentation.category.model.CategoryDetailItem" />
+	</data>
+	
+	<androidx.constraintlayout.widget.ConstraintLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_margin="5dp">
+		
+		<androidx.cardview.widget.CardView
+			android:layout_width="match_parent"
+			android:layout_height="0dp"
+			app:cardCornerRadius="8dp"
+			app:cardElevation="0dp"
+			app:constraintDimensionRatio="@{item.imageRatio}"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent"
+			tools:layout_constraintDimensionRatio="155:117">
+			
+			<ImageView
+				android:id="@+id/categoryImageView"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:background="@color/colorGray300"
+				android:foreground="?android:attr/selectableItemBackground" />
+		</androidx.cardview.widget.CardView>
+	</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

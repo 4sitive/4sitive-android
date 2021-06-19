@@ -5,7 +5,9 @@
 	
 	<data>
 		
-		<import type="org.positive.daymotion.R" />
+		<variable
+			name="handler"
+			type="org.positive.daymotion.presentation.category.fragment.CategoryBrowserPageFragment.Handler" />
 		
 		<variable
 			name="item"
@@ -13,9 +15,11 @@
 	</data>
 	
 	<androidx.constraintlayout.widget.ConstraintLayout
+		android:id="@+id/itemContainer"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:layout_margin="5dp">
+		android:layout_margin="5dp"
+		android:onClick="@{() -> handler.goToCategoryDetail(item.categoryName)}">
 		
 		<androidx.cardview.widget.CardView
 			android:layout_width="match_parent"
@@ -32,6 +36,7 @@
 				android:id="@+id/categoryImageView"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
+				android:foreground="?android:attr/selectableItemBackground"
 				android:scaleType="centerInside"
 				app:imageResource="@{item.background}"
 				tools:src="@drawable/img_category_01" />
@@ -44,9 +49,9 @@
 				android:layout_marginTop="10dp"
 				android:alpha="0.7"
 				android:fontFamily="@font/montserrat_medium"
+				android:text="@{item.formattedParticipants}"
 				android:textColor="@color/_FFFFFF"
 				android:textSize="14sp"
-				android:text="@{item.formattedParticipants}"
 				app:isVisible="@{item.visibleParticipants}"
 				tools:text="# 1,234" />
 			
