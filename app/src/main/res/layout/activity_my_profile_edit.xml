@@ -5,6 +5,10 @@
 	<data>
 		
 		<variable
+			name="handler"
+			type="org.positive.daymotion.presentation.my.activity.MyProfileEditActivity.Handler" />
+		
+		<variable
 			name="viewModel"
 			type="org.positive.daymotion.presentation.my.viewmodel.MyProfileEditViewModel" />
 	</data>
@@ -13,16 +17,101 @@
 		android:layout_width="match_parent"
 		android:layout_height="match_parent">
 		
-		<TextView
-			android:id="@+id/title"
-			android:layout_width="wrap_content"
+		<org.positive.daymotion.presentation.views.DmAppBarLayout
+			android:id="@+id/appBarLayout"
+			android:layout_width="0dp"
 			android:layout_height="wrap_content"
-			android:text="MY PROFILE EDIT"
-			android:textSize="40sp"
-			app:layout_constraintBottom_toBottomOf="parent"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toTopOf="parent" />
-	
+			app:layout_constraintTop_toTopOf="parent"
+			app:title='@{"프로필 수정"}' />
+		
+		<ImageView
+			android:id="@+id/profileImageView"
+			android:layout_width="120dp"
+			android:layout_height="120dp"
+			android:layout_gravity="center_horizontal"
+			android:layout_marginTop="24dp"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/appBarLayout"
+			app:srcWithCircle="@{@drawable/ic_tmp_profile}" />
+		
+		<TextView
+			android:id="@+id/nameTextView"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="20dp"
+			android:layout_marginTop="12dp"
+			android:fontFamily="@font/kopub_dotum_bold"
+			android:text="닉네임"
+			android:textColor="@color/_171717"
+			android:textSize="16sp"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/profileImageView" />
+		
+		<EditText
+			android:id="@+id/nameEditText"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="20dp"
+			android:layout_marginEnd="20dp"
+			android:text="@={viewModel.name}"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/nameTextView" />
+		
+		<TextView
+			android:id="@+id/introduceTextView"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="20dp"
+			android:layout_marginTop="24dp"
+			android:fontFamily="@font/kopub_dotum_bold"
+			android:text="자기소개"
+			android:textColor="@color/_171717"
+			android:textSize="16sp"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/nameEditText" />
+		
+		<EditText
+			android:id="@+id/selfIntroduceEditText"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="20dp"
+			android:layout_marginEnd="20dp"
+			android:text="@={viewModel.introduce}"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/introduceTextView" />
+		
+		<TextView
+			android:id="@+id/cancel"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:background="@color/_CDCDCD"
+			android:foreground="?android:attr/selectableItemBackground"
+			android:gravity="center"
+			android:onClick="@{() -> handler.finish()}"
+			android:padding="12dp"
+			android:text="취소"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toStartOf="@id/confirm"
+			app:layout_constraintStart_toStartOf="parent" />
+		
+		<TextView
+			android:id="@+id/confirm"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:background="@color/_171717"
+			android:foreground="?android:attr/selectableItemBackground"
+			android:gravity="center"
+			android:onClick="@{() -> viewModel.updateProfile()}"
+			android:padding="12dp"
+			android:text="수정"
+			android:textColor="@color/_FFFFFF"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toEndOf="@id/cancel" />
 	</androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

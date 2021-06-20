@@ -6,6 +6,10 @@
 	<data>
 		
 		<variable
+			name="handler"
+			type="org.positive.daymotion.presentation.my.fragment.MyTabFragment.Handler" />
+		
+		<variable
 			name="viewModel"
 			type="org.positive.daymotion.presentation.my.viewmodel.MyTabViewModel" />
 	</data>
@@ -88,6 +92,8 @@
 							android:layout_height="wrap_content"
 							android:layout_gravity="center_vertical|end"
 							android:layout_marginEnd="8dp"
+							android:background="?android:attr/selectableItemBackgroundBorderless"
+							android:onClick="@{() -> handler.goToProfileEdit()}"
 							android:src="@drawable/ic_tmp_more" />
 					</LinearLayout>
 				</androidx.appcompat.widget.Toolbar>

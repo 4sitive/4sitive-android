@@ -11,6 +11,7 @@ import org.positive.daymotion.databinding.FragmentMyTabBinding
 import org.positive.daymotion.presentation.base.BaseFragment
 import org.positive.daymotion.presentation.base.util.viewModelOf
 import org.positive.daymotion.presentation.common.adapter.FeedThumbnailAdapter
+import org.positive.daymotion.presentation.my.activity.MyProfileEditActivity
 import org.positive.daymotion.presentation.my.viewmodel.MyTabViewModel
 import org.positive.daymotion.presentation.root.model.RootTabFragment
 
@@ -20,10 +21,12 @@ class MyTabFragment : BaseFragment<FragmentMyTabBinding>(R.layout.fragment_my_ta
 
     private val viewModel by viewModelOf<MyTabViewModel>()
     private val feedThumbnailAdapter by lazy { FeedThumbnailAdapter() }
+    private val handler by lazy { Handler() }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.viewModel = viewModel
+        binding.handler = handler
 
         setupViews()
         setupObservers()
@@ -47,5 +50,9 @@ class MyTabFragment : BaseFragment<FragmentMyTabBinding>(R.layout.fragment_my_ta
     override fun scrollToTop() {
         // TODO(yh): replace to scroll logic
         Toast.makeText(requireContext(), "My", Toast.LENGTH_SHORT).show()
+    }
+
+    inner class Handler {
+        fun goToProfileEdit() = MyProfileEditActivity.start(requireContext())
     }
 }
