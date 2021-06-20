@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto">
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools">
 	
 	<data>
 		
@@ -15,12 +16,81 @@
 		
 		<com.google.android.material.appbar.AppBarLayout
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content">
+			android:layout_height="wrap_content"
+			android:background="@color/_FFFFFF"
+			android:elevation="8dp">
 			
 			<com.google.android.material.appbar.CollapsingToolbarLayout
 				android:layout_width="match_parent"
-				android:layout_height="wrap_content">
-			
+				android:layout_height="wrap_content"
+				app:contentScrim="@color/_FFFFFF"
+				app:layout_scrollFlags="scroll|exitUntilCollapsed">
+				
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="?android:attr/actionBarSize"
+					android:orientation="vertical"
+					app:layout_collapseMode="parallax">
+					
+					<ImageView
+						android:layout_width="60dp"
+						android:layout_height="60dp"
+						android:layout_gravity="center_horizontal"
+						android:src="@color/_000000" />
+					
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_gravity="center_horizontal"
+						android:layout_marginTop="8dp"
+						android:fontFamily="@font/kopub_dotum_bold"
+						android:text="멋쟁이 시루"
+						android:textColor="@color/_171717"
+						android:textSize="16sp" />
+					
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_gravity="center_horizontal"
+						android:layout_marginTop="12dp"
+						android:fontFamily="@font/kopub_dotum_light"
+						android:gravity="center_horizontal"
+						android:maxWidth="120dp"
+						android:text="안녕하세요 시루랑 함께하는 일상을 보내고 있어요."
+						android:textColor="@color/_171717"
+						android:textSize="12sp" />
+				</LinearLayout>
+				
+				<androidx.appcompat.widget.Toolbar
+					android:layout_width="match_parent"
+					android:layout_height="?android:attr/actionBarSize"
+					app:layout_collapseMode="pin">
+					
+					<LinearLayout
+						android:layout_width="match_parent"
+						android:layout_height="match_parent"
+						android:orientation="horizontal"
+						tools:ignore="UseCompoundDrawables">
+						
+						<TextView
+							android:layout_width="0dp"
+							android:layout_height="wrap_content"
+							android:layout_gravity="center_vertical"
+							android:layout_weight="1"
+							android:fontFamily="@font/montserrat_bold"
+							android:text="MY feed"
+							android:textSize="18sp" />
+						
+						<ImageView
+							android:id="@+id/ivMore"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_gravity="center_vertical|end"
+							android:layout_marginEnd="8dp"
+							android:src="@drawable/ic_tmp_more" />
+					</LinearLayout>
+				</androidx.appcompat.widget.Toolbar>
 			</com.google.android.material.appbar.CollapsingToolbarLayout>
 		</com.google.android.material.appbar.AppBarLayout>
 		
@@ -29,11 +99,12 @@
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			android:layout_marginStart="15dp"
-			android:layout_marginTop="5dp"
 			android:layout_marginEnd="15dp"
 			android:clipToPadding="false"
 			android:overScrollMode="never"
-			android:paddingBottom="104dp"/>
+			android:paddingTop="5dp"
+			android:paddingBottom="104dp"
+			app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
 	
 	</androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>
