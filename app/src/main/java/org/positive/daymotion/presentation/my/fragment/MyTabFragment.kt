@@ -1,4 +1,4 @@
-package org.positive.daymotion.presentation.my
+package org.positive.daymotion.presentation.my.fragment
 
 import android.os.Bundle
 import android.view.View
@@ -11,6 +11,7 @@ import org.positive.daymotion.databinding.FragmentMyTabBinding
 import org.positive.daymotion.presentation.base.BaseFragment
 import org.positive.daymotion.presentation.base.util.viewModelOf
 import org.positive.daymotion.presentation.common.adapter.FeedThumbnailAdapter
+import org.positive.daymotion.presentation.my.viewmodel.MyTabViewModel
 import org.positive.daymotion.presentation.root.model.RootTabFragment
 
 @AndroidEntryPoint

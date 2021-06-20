@@ -1,4 +1,4 @@
-package org.positive.daymotion.presentation.my
+package org.positive.daymotion.presentation.my.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

@@ -7,7 +7,7 @@
 		
 		<variable
 			name="viewModel"
-			type="org.positive.daymotion.presentation.my.MyTabViewModel" />
+			type="org.positive.daymotion.presentation.my.viewmodel.MyTabViewModel" />
 	</data>
 	
 	<androidx.coordinatorlayout.widget.CoordinatorLayout

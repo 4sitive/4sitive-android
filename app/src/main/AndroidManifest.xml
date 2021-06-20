@@ -46,7 +46,7 @@
 
         <activity android:name="org.positive.daymotion.presentation.category.activity.CategoryDetailActivity" />
 
-        <activity android:name="org.positive.daymotion.presentation.my.MyProfileEditActivity" />
+        <activity android:name="org.positive.daymotion.presentation.my.activity.MyProfileEditActivity" />
 
         <activity android:name="org.positive.daymotion.presentation.setting.PrivacyPolicyActivity" />
 

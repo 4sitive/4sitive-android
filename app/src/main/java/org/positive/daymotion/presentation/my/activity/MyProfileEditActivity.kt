@@ -1,4 +1,4 @@
-package org.positive.daymotion.presentation.my
+package org.positive.daymotion.presentation.my.activity
 
 import android.content.Context
 import android.os.Bundle
@@ -8,6 +8,7 @@ import org.positive.daymotion.databinding.ActivityMyProfileEditBinding
 import org.positive.daymotion.extension.startWith
 import org.positive.daymotion.presentation.base.BaseActivity
 import org.positive.daymotion.presentation.base.util.viewModelOf
+import org.positive.daymotion.presentation.my.viewmodel.MyProfileEditViewModel
 
 @AndroidEntryPoint
 class MyProfileEditActivity :
