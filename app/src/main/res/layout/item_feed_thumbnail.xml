@@ -7,7 +7,7 @@
 		
 		<variable
 			name="item"
-			type="org.positive.daymotion.presentation.category.model.CategoryDetailItem" />
+			type="org.positive.daymotion.presentation.common.model.FeedThumbnailItem" />
 	</data>
 	
 	<androidx.constraintlayout.widget.ConstraintLayout

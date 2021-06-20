@@ -1,17 +1,17 @@
-package org.positive.daymotion.presentation.category.adapter
+package org.positive.daymotion.presentation.common.adapter
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import org.positive.daymotion.common.BindingViewHolder
 import org.positive.daymotion.common.createBindingViewHolder
-import org.positive.daymotion.databinding.ItemCategoryDetailBinding
-import org.positive.daymotion.presentation.category.model.CategoryDetailItem
+import org.positive.daymotion.databinding.ItemFeedThumbnailBinding
+import org.positive.daymotion.presentation.common.model.FeedThumbnailItem
 
-class CategoryDetailAdapter : RecyclerView.Adapter<BindingViewHolder<ItemCategoryDetailBinding>>() {
+class FeedThumbnailAdapter : RecyclerView.Adapter<BindingViewHolder<ItemFeedThumbnailBinding>>() {
 
-    private val items = mutableListOf<CategoryDetailItem>()
+    private val items = mutableListOf<FeedThumbnailItem>()
 
-    fun replaceAll(items: List<CategoryDetailItem>) {
+    fun replaceAll(items: List<FeedThumbnailItem>) {
         with(this.items) {
             clear()
             addAll(items)
@@ -22,10 +22,10 @@ class CategoryDetailAdapter : RecyclerView.Adapter<BindingViewHolder<ItemCategor
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): BindingViewHolder<ItemCategoryDetailBinding> = createBindingViewHolder(parent)
+    ): BindingViewHolder<ItemFeedThumbnailBinding> = createBindingViewHolder(parent)
 
     override fun onBindViewHolder(
-        holder: BindingViewHolder<ItemCategoryDetailBinding>,
+        holder: BindingViewHolder<ItemFeedThumbnailBinding>,
         position: Int
     ) {
         holder.binding.item = items[position]
