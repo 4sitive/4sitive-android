@@ -12,17 +12,17 @@ import kotlin.random.Random
 @HiltViewModel
 class CategoryDetailViewModel @Inject constructor() : BaseViewModel() {
 
-    private val _categoryDetails = MutableLiveData<List<FeedThumbnailItem>>()
-    val categoryDetails: LiveData<List<FeedThumbnailItem>> get() = _categoryDetails
+    private val _categorizedFeedThumbnails = MutableLiveData<List<FeedThumbnailItem>>()
+    val categorizedFeedThumbnails: LiveData<List<FeedThumbnailItem>> get() = _categorizedFeedThumbnails
 
-    val isEmptyDetailItem: LiveData<Boolean> =
-        Transformations.map(_categoryDetails) { items -> items.isEmpty() }
+    val isEmptyList: LiveData<Boolean> =
+        Transformations.map(_categorizedFeedThumbnails) { items -> items.isEmpty() }
 
-    fun loadCategoryDetails() {
+    fun loadCategorizedFeed() {
         if (Random.nextInt().rem(5) == 0) {
-            _categoryDetails.value = emptyList()
+            _categorizedFeedThumbnails.value = emptyList()
         } else {
-            _categoryDetails.value = buildList {
+            _categorizedFeedThumbnails.value = buildList {
                 add(FeedThumbnailItem("", FeedThumbnailItem.ImageType.PORTRAIT))
                 add(FeedThumbnailItem("", FeedThumbnailItem.ImageType.LANDSCAPE))
                 add(FeedThumbnailItem("", FeedThumbnailItem.ImageType.PORTRAIT))

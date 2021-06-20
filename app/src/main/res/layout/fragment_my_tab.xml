@@ -9,30 +9,31 @@
 			type="org.positive.daymotion.presentation.my.MyTabViewModel" />
 	</data>
 	
-	<androidx.constraintlayout.widget.ConstraintLayout
+	<androidx.coordinatorlayout.widget.CoordinatorLayout
 		android:layout_width="match_parent"
 		android:layout_height="match_parent">
 		
-		<TextView
-			android:id="@+id/title"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="MY"
-			android:textSize="40sp"
-			app:layout_constraintBottom_toBottomOf="parent"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toTopOf="parent" />
+		<com.google.android.material.appbar.AppBarLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content">
+			
+			<com.google.android.material.appbar.CollapsingToolbarLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content">
+			
+			</com.google.android.material.appbar.CollapsingToolbarLayout>
+		</com.google.android.material.appbar.AppBarLayout>
 		
-		<Button
-			android:id="@+id/button1"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_marginBottom="24dp"
-			android:text="GO TO PROFILE EDIT"
-			app:layout_constraintBottom_toBottomOf="parent"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintStart_toStartOf="parent" />
+		<androidx.recyclerview.widget.RecyclerView
+			android:id="@+id/rv_my_tab"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_marginStart="15dp"
+			android:layout_marginTop="5dp"
+			android:layout_marginEnd="15dp"
+			android:clipToPadding="false"
+			android:overScrollMode="never"
+			android:paddingBottom="104dp"/>
 	
-	</androidx.constraintlayout.widget.ConstraintLayout>
+	</androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

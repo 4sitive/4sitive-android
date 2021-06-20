@@ -43,7 +43,7 @@
 			android:clipToPadding="false"
 			android:overScrollMode="never"
 			android:paddingBottom="104dp"
-			app:isVisible="@{!viewModel.isEmptyDetailItem()}"
+			app:isVisible="@{!viewModel.isEmptyList()}"
 			app:layout_constraintBottom_toBottomOf="parent"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintStart_toStartOf="parent"
@@ -82,7 +82,7 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			app:constraint_referenced_ids="emptyStateImageView,emptyStateTextView"
-			app:isVisible="@{viewModel.isEmptyDetailItem()}"
+			app:isVisible="@{viewModel.isEmptyList()}"
 			tools:visibility="gone" />
 	
 	</androidx.constraintlayout.widget.ConstraintLayout>
