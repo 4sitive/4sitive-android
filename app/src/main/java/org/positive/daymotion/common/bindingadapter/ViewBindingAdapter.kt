@@ -1,4 +1,4 @@
-package org.positive.daymotion.common.bindproxy
+package org.positive.daymotion.common.bindingadapter
 
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -7,22 +7,18 @@ import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 
 
-@set:BindingAdapter("isVisible")
-var View.isVisibleProxy: Boolean
-    get() = isVisible
-    set(value) {
-        isVisible = value
-    }
+@BindingAdapter("isVisible")
+fun View.isVisibleBindingAdapter(isVisible: Boolean) {
+    this.isVisible = isVisible
+}
 
-@set:BindingAdapter("isInvisible")
-var View.isInvisibleProxy: Boolean
-    get() = isInvisible
-    set(value) {
-        isInvisible = value
-    }
+@BindingAdapter("isInvisible")
+fun View.isInvisibleBindingAdapter(isInvisible: Boolean) {
+    this.isInvisible = isInvisible
+}
 
 @BindingAdapter("constraintDimensionRatio")
-fun View.setConstraintDimensionRatio(ratio: String) {
+fun View.setConstraintDimensionRatioBindingAdapter(ratio: String) {
     if (parent is ConstraintLayout) {
         val layoutParams = layoutParams as ConstraintLayout.LayoutParams
         layoutParams.dimensionRatio = ratio
