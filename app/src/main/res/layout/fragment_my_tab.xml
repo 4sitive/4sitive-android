@@ -104,7 +104,20 @@
 			android:overScrollMode="never"
 			android:paddingTop="5dp"
 			android:paddingBottom="104dp"
-			app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
+			app:isVisible="@{!viewModel.isEmptyList()}"
+			app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+			tools:listitem="@layout/item_feed_thumbnail" />
+		
+		<TextView
+			android:id="@+id/tvEmptyState"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:gravity="center"
+			android:text="지금 바로\n미션에 참여해보세요!"
+			android:textColor="@color/_171717"
+			android:textSize="15sp"
+			app:isVisible="@{viewModel.isEmptyList()}" />
 	
 	</androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>
