@@ -5,9 +5,9 @@
 		<item name="android:windowLightStatusBar">true</item>
 		<item name="android:windowBackground">@color/background</item>
 		<item name="android:navigationBarColor">@color/transparent</item>
-		<item name="colorPrimary">@color/colorBlueGray300</item>
-		<item name="colorPrimaryDark">@color/colorBlueGray600</item>
-		<item name="colorAccent">@color/colorAmber200</item>
+		<item name="colorPrimary">@color/_171717</item>
+		<item name="colorPrimaryDark">@color/_171717</item>
+		<item name="colorAccent">@color/_171717</item>
 		<item name="android:textViewStyle">@style/TextStyle</item>
 	</style>
 	

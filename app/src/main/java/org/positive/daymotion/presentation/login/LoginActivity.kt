@@ -1,7 +1,6 @@
 package org.positive.daymotion.presentation.login
 
 import android.content.Context
-import android.content.Intent
 import android.graphics.Typeface
 import android.net.Uri
 import android.os.Bundle
@@ -68,7 +67,12 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
         val spannable = SpannableString(str)
         spannable.setSpan(object : TypefaceSpan(null) {
             override fun updateDrawState(ds: TextPaint) {
-                ds.typeface = Typeface.create(ResourcesCompat.getFont(applicationContext, R.font.kopub_dotum_bold), Typeface.NORMAL)
+                ds.typeface = Typeface.create(
+                    ResourcesCompat.getFont(
+                        applicationContext,
+                        R.font.kopub_dotum_bold
+                    ), Typeface.NORMAL
+                )
             }
         }, start, end, Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
         btn.text = spannable
@@ -87,16 +91,25 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
             tv.movementMethod = LinkMovementMethod.getInstance();
             spannable.setSpan(object : ClickableSpan() {
                 override fun onClick(widget: View) {
-                    when(item){
+                    when (item) {
                         words[0] -> ServiceTermsActivity.start(this@LoginActivity)
                         words[1] -> PrivacyPolicyActivity.start(this@LoginActivity)
                     }
                 }
 
                 override fun updateDrawState(ds: TextPaint) {
-                    ds.linkColor = -0x1000000
-                    ds.typeface = Typeface.create(ResourcesCompat.getFont(applicationContext, R.font.kopub_dotum_bold), Typeface.NORMAL)
-                    super.updateDrawState(ds)
+
+                }
+            }, start, end, Spannable.SPAN_INCLUSIVE_INCLUSIVE)
+
+            spannable.setSpan(object : TypefaceSpan(null) {
+                override fun updateDrawState(ds: TextPaint) {
+                    ds.typeface = Typeface.create(
+                        ResourcesCompat.getFont(
+                            applicationContext,
+                            R.font.kopub_dotum_bold
+                        ), Typeface.NORMAL
+                    )
                 }
             }, start, end, Spannable.SPAN_INCLUSIVE_INCLUSIVE)
         }
@@ -107,12 +120,12 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
         // TODO(yh): need loading bar
         fun requestLogin(loginWay: LoginWay) {
             val url = Uri.parse(DmConstants.ACCOUNT_SERVER_BASE_URL + "/oauth/authorize")
-                    .buildUpon()
-                    .appendQueryParameter("client_id", BuildConfig.OAUTH_CLIENT_ID)
-                    .appendQueryParameter("redirect_uri", DmConstants.APP_SCHEME + "://login")
-                    .appendQueryParameter("response_type", "code")
-                    .appendQueryParameter("registration_hint", loginWay.registrationHint)
-                    .build()
+                .buildUpon()
+                .appendQueryParameter("client_id", BuildConfig.OAUTH_CLIENT_ID)
+                .appendQueryParameter("redirect_uri", DmConstants.APP_SCHEME + "://login")
+                .appendQueryParameter("response_type", "code")
+                .appendQueryParameter("registration_hint", loginWay.registrationHint)
+                .build()
 
             val builder = CustomTabsIntent.Builder()
             val customTabsIntent = builder.build()
