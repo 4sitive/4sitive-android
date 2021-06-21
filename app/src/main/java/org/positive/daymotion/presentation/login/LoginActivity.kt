@@ -73,7 +73,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
         }, start, end, Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
         btn.text = spannable
 
-        btn.setOnClickListener(){
+        btn.setOnClickListener {
             btn.alpha = 0.5f
         }
     }
@@ -88,14 +88,8 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
             spannable.setSpan(object : ClickableSpan() {
                 override fun onClick(widget: View) {
                     when(item){
-                        words[0] -> {
-                            intent = Intent(applicationContext, ServiceTermsActivity::class.java)
-                            startActivity(intent)
-                        }
-                        words[1] -> {
-                            intent = Intent(applicationContext, PrivacyPolicyActivity::class.java)
-                            startActivity(intent)
-                        }
+                        words[0] -> ServiceTermsActivity.start(this@LoginActivity)
+                        words[1] -> PrivacyPolicyActivity.start(this@LoginActivity)
                     }
                 }
 
