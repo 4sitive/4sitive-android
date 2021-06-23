@@ -1,65 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:tools="http://schemas.android.com/tools">
-	
-	<LinearLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_marginStart="30dp"
-		android:layout_marginEnd="30dp"
-		android:paddingStart="18dp"
-		android:paddingEnd="18dp"
-		android:paddingBottom="10dp"
-		android:paddingTop="35dp"
-		android:background="@drawable/background_dialog"
-		android:orientation="vertical">
-		
-		<TextView
-			android:id="@+id/titleTextView"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:gravity="center"
-			android:textColor="@color/_171717"
-			android:textSize="18sp"
-			android:fontFamily="@font/kopub_dotum_bold"
-			tools:text="제목" />
-		
-		<TextView
-			android:id="@+id/contentTextView"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_marginTop="12dp"
-			android:gravity="center"
-			android:textColor="@color/_171717"
-			android:textSize="14sp"
-			android:fontFamily="@font/kopub_dotum_medium"
-			android:lineSpacingExtra="20sp"
-			android:alpha="0.8"
-			tools:text="내용" />
-			
-		<TextView
-			android:id="@+id/cancelButton"
-			android:layout_width="match_parent"
-			android:layout_height="50dp"
-			android:layout_marginTop="32dp"
-			android:gravity="center"
-			android:textColor="@color/colorWhite"
-			android:textSize="15sp"
-			android:fontFamily="@font/kopub_dotum_bold"
-			android:background="@drawable/backgroud_dialog_cancel_btn"
-			tools:text="취소" />
+    xmlns:tools="http://schemas.android.com/tools">
 
-		<TextView
-			android:id="@+id/confirmButton"
-			android:layout_width="match_parent"
-			android:layout_height="50dp"
-			android:layout_marginTop="2dp"
-			android:gravity="center"
-			android:textColor="@color/_171717"
-			android:textSize="15sp"
-			android:fontFamily="@font/kopub_dotum_medium"
-			android:alpha="0.5"
-			tools:text="확인" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/background_dialog"
+        android:orientation="vertical"
+        android:paddingStart="18dp"
+        android:paddingTop="35dp"
+        android:paddingEnd="18dp"
+        android:paddingBottom="18dp">
 
-	</LinearLayout>
+        <TextView
+            android:id="@+id/titleTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:fontFamily="@font/kopub_dotum_bold"
+            android:gravity="center"
+            android:textColor="@color/_171717"
+            android:textSize="18sp"
+            tools:text="제목" />
+
+        <TextView
+            android:id="@+id/contentTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:alpha="0.8"
+            android:fontFamily="@font/kopub_dotum_medium"
+            android:gravity="center"
+            android:lineSpacingExtra="6sp"
+            android:textColor="@color/_171717"
+            android:textSize="14sp"
+            tools:text="내용" />
+
+        <TextView
+            android:id="@+id/cancelButton"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/backgroud_dialog_cancel_btn"
+            android:fontFamily="@font/kopub_dotum_bold"
+            android:gravity="center"
+            android:textColor="@color/colorWhite"
+            android:textSize="15sp"
+            tools:text="취소" />
+
+        <TextView
+            android:id="@+id/confirmButton"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="2dp"
+            android:alpha="0.5"
+            android:fontFamily="@font/kopub_dotum_medium"
+            android:gravity="center"
+            android:textColor="@color/_171717"
+            android:textSize="15sp"
+            tools:text="확인" />
+
+    </LinearLayout>
 </layout>
