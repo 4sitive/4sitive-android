@@ -14,7 +14,7 @@ import org.positive.daymotion.presentation.root.model.RootTabFragment
 
 @AndroidEntryPoint
 class SettingTabFragment : BaseFragment<FragmentSettingTabBinding>(R.layout.fragment_setting_tab),
-    RootTabFragment {
+        RootTabFragment {
 
     private val viewModel by viewModelOf<SettingTabViewModel>()
 
@@ -22,20 +22,23 @@ class SettingTabFragment : BaseFragment<FragmentSettingTabBinding>(R.layout.frag
         super.onViewCreated(view, savedInstanceState)
         binding.viewModel = viewModel
 
-        binding.tvLogout.setOnClickListener(){
-            // TODO(je): logout api??
+        binding.logoutTextView.setOnClickListener() {
+            // TODO(je): logout api
             val logoutMsg = requireContext().resources.getString(R.string.logoutMsg)
             Toast.makeText(requireContext(), logoutMsg, Toast.LENGTH_SHORT).show()
             val intent = Intent(requireContext(), LoginActivity::class.java)
             startActivity(intent)
         }
 
-//        binding.button1.setOnClickListener {
-//            ServiceTermsActivity.start(requireContext())
-//        }
-//        binding.button2.setOnClickListener {
-//            PrivacyPolicyActivity.start(requireContext())
-//        }
+        binding.serviceButton.setOnClickListener {
+            ServiceTermsActivity.start(requireContext())
+        }
+        binding.privacyButton.setOnClickListener {
+            PrivacyPolicyActivity.start(requireContext())
+        }
+        binding.secessionButton.setOnClickListener {
+            // TODO(je): Dialog & secession api
+        }
     }
 
     override fun scrollToTop() {

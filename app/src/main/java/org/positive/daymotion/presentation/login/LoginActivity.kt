@@ -33,62 +33,61 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
         super.onCreate(savedInstanceState)
         binding.handler = Handler()
 
-        val googleBtn = binding.googleLoginButton
+        setupViews()
+    }
+
+    private fun setupViews() {
+        val googleButton = binding.googleLoginButton
         val googleStr = "Google"
-        googleBtn.text = String.format(resources.getString(R.string.login_button), googleStr)
-        btnSet(googleBtn, googleBtn.text.toString(), googleStr)
+        googleButton.text = String.format(resources.getString(R.string.login_button), googleStr)
+        setButton(googleButton, googleButton.text.toString(), googleStr)
 
-        val naverBtn = binding.naverLoginButton
+        val naverButton = binding.naverLoginButton
         val naverStr = "Naver"
-        naverBtn.text = String.format(resources.getString(R.string.login_button), naverStr)
-        btnSet(naverBtn, naverBtn.text.toString(), naverStr)
+        naverButton.text = String.format(resources.getString(R.string.login_button), naverStr)
+        setButton(naverButton, naverButton.text.toString(), naverStr)
 
-        val facebookBtn = binding.facebookLoginButton
+        val facebookButton = binding.facebookLoginButton
         val facebookStr = "Facebook"
-        facebookBtn.text = String.format(resources.getString(R.string.login_button), facebookStr)
-        btnSet(facebookBtn, facebookBtn.text.toString(), facebookStr)
+        facebookButton.text = String.format(resources.getString(R.string.login_button), facebookStr)
+        setButton(facebookButton, facebookButton.text.toString(), facebookStr)
 
-        val kakaoBtn = binding.kakaoLoginButton
+        val kakaoButton = binding.kakaoLoginButton
         val kakaoStr = "kakaoTalk"
-        kakaoBtn.text = String.format(resources.getString(R.string.login_button), kakaoStr)
-        btnSet(kakaoBtn, kakaoBtn.text.toString(), kakaoStr)
+        kakaoButton.text = String.format(resources.getString(R.string.login_button), kakaoStr)
+        setButton(kakaoButton, kakaoButton.text.toString(), kakaoStr)
 
-        val tvInfo = binding.tvInfo
+        val infoTextView = binding.infoTextView
         val serviceStr = "서비스 약관"
         val privacyStr = "개인정보 보호정책"
         val strArr = arrayListOf(serviceStr, privacyStr)
-        tvSet(tvInfo, tvInfo.text.toString(), strArr)
+        setTextView(infoTextView, infoTextView.text.toString(), strArr)
     }
 
-    private fun btnSet(btn: Button, str: String, word: String) {
+    private fun setButton(button: Button, str: String, word: String) {
         val start: Int = str.indexOf(word)
         val end: Int = start + word.length
 
         val spannable = SpannableString(str)
         spannable.setSpan(object : TypefaceSpan(null) {
             override fun updateDrawState(ds: TextPaint) {
-                ds.typeface = Typeface.create(
-                    ResourcesCompat.getFont(
-                        applicationContext,
-                        R.font.kopub_dotum_bold
-                    ), Typeface.NORMAL
-                )
+                ds.typeface = Typeface.create(ResourcesCompat.getFont(this@LoginActivity, R.font.kopub_dotum_bold), Typeface.NORMAL)
             }
         }, start, end, Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
-        btn.text = spannable
+        button.text = spannable
 
-        btn.setOnClickListener {
-            btn.alpha = 0.5f
+        button.setOnClickListener {
+            button.alpha = 0.5f
         }
     }
 
-    private fun tvSet(tv: TextView, str: String, words: ArrayList<String>) {
+    private fun setTextView(textView: TextView, str: String, words: ArrayList<String>) {
         val spannable = SpannableString(str)
         for (item in words) {
             val start: Int = str.indexOf(item)
             val end: Int = start + item.length
 
-            tv.movementMethod = LinkMovementMethod.getInstance();
+            textView.movementMethod = LinkMovementMethod.getInstance();
             spannable.setSpan(object : ClickableSpan() {
                 override fun onClick(widget: View) {
                     when (item) {
@@ -96,36 +95,27 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
                         words[1] -> PrivacyPolicyActivity.start(this@LoginActivity)
                     }
                 }
-
-                override fun updateDrawState(ds: TextPaint) {
-
-                }
             }, start, end, Spannable.SPAN_INCLUSIVE_INCLUSIVE)
 
             spannable.setSpan(object : TypefaceSpan(null) {
                 override fun updateDrawState(ds: TextPaint) {
-                    ds.typeface = Typeface.create(
-                        ResourcesCompat.getFont(
-                            applicationContext,
-                            R.font.kopub_dotum_bold
-                        ), Typeface.NORMAL
-                    )
+                    ds.typeface = Typeface.create(ResourcesCompat.getFont(applicationContext, R.font.kopub_dotum_bold), Typeface.NORMAL)
                 }
             }, start, end, Spannable.SPAN_INCLUSIVE_INCLUSIVE)
         }
-        tv.text = spannable
+        textView.text = spannable
     }
 
     inner class Handler {
         // TODO(yh): need loading bar
         fun requestLogin(loginWay: LoginWay) {
             val url = Uri.parse(DmConstants.ACCOUNT_SERVER_BASE_URL + "/oauth/authorize")
-                .buildUpon()
-                .appendQueryParameter("client_id", BuildConfig.OAUTH_CLIENT_ID)
-                .appendQueryParameter("redirect_uri", DmConstants.APP_SCHEME + "://login")
-                .appendQueryParameter("response_type", "code")
-                .appendQueryParameter("registration_hint", loginWay.registrationHint)
-                .build()
+                    .buildUpon()
+                    .appendQueryParameter("client_id", BuildConfig.OAUTH_CLIENT_ID)
+                    .appendQueryParameter("redirect_uri", DmConstants.APP_SCHEME + "://login")
+                    .appendQueryParameter("response_type", "code")
+                    .appendQueryParameter("registration_hint", loginWay.registrationHint)
+                    .build()
 
             val builder = CustomTabsIntent.Builder()
             val customTabsIntent = builder.build()
