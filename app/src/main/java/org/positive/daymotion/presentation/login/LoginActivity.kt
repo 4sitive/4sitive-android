@@ -83,11 +83,11 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
 
     private fun setTextView(textView: TextView, str: String, words: ArrayList<String>) {
         val spannable = SpannableString(str)
+        textView.movementMethod = LinkMovementMethod.getInstance()
         for (item in words) {
             val start: Int = str.indexOf(item)
             val end: Int = start + item.length
 
-            textView.movementMethod = LinkMovementMethod.getInstance();
             spannable.setSpan(object : ClickableSpan() {
                 override fun onClick(widget: View) {
                     when (item) {
