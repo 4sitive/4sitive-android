@@ -38,7 +38,7 @@
             tools:text="내용" />
 
         <TextView
-            android:id="@+id/cancelButton"
+            android:id="@+id/confirmButton"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="32dp"
@@ -50,7 +50,7 @@
             tools:text="취소" />
 
         <TextView
-            android:id="@+id/confirmButton"
+            android:id="@+id/cancelButton"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="2dp"

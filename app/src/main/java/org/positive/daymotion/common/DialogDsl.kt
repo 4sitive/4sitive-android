@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.core.os.bundleOf
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import org.positive.daymotion.databinding.WidgetCommonDialogBinding
@@ -101,3 +102,6 @@ class CommonDialogFragment : DialogFragment() {
 
 fun FragmentActivity.showPopupDialog(block: DialogScope.() -> Unit) =
     CommonDialogFragment.show(DialogScope().apply(block), supportFragmentManager)
+
+fun Fragment.showPopupDialog(block: DialogScope.() -> Unit) =
+        CommonDialogFragment.show(DialogScope().apply(block), parentFragmentManager)
