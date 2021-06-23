@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.Toast
 import dagger.hilt.android.AndroidEntryPoint
 import org.positive.daymotion.R
+import org.positive.daymotion.common.showPopupDialog
 import org.positive.daymotion.databinding.FragmentSettingTabBinding
 import org.positive.daymotion.presentation.base.BaseFragment
 import org.positive.daymotion.presentation.base.util.viewModelOf
@@ -37,7 +38,18 @@ class SettingTabFragment : BaseFragment<FragmentSettingTabBinding>(R.layout.frag
             PrivacyPolicyActivity.start(requireContext())
         }
         binding.secessionButton.setOnClickListener {
-            // TODO(je): Dialog & secession api
+            showPopupDialog {
+                title = "탈퇴하시려구요?"
+                content ="서비스를 탈퇴하면 모든 데이터는 다 사라져요.\n" +
+                        "공개되지 않은 미션이 아직 많~이 남았어요.\n" +
+                        "다시 한번 생각해 주세요!"
+                confirmButtonText = "안할게요!"
+                cancelButtonText = "탈퇴할래요"
+                isVisibleCancelButton = true
+                onCancel {
+                    // TODO(je): secession api
+                }
+            }
         }
     }
 
