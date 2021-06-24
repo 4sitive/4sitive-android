@@ -1,7 +1,9 @@
 package org.positive.daymotion.presentation.my.activity
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.provider.MediaStore
 import dagger.hilt.android.AndroidEntryPoint
 import org.positive.daymotion.R
 import org.positive.daymotion.databinding.ActivityMyProfileEditBinding
@@ -9,6 +11,7 @@ import org.positive.daymotion.extension.startWith
 import org.positive.daymotion.presentation.base.BaseActivity
 import org.positive.daymotion.presentation.base.util.viewModelOf
 import org.positive.daymotion.presentation.my.viewmodel.MyProfileEditViewModel
+
 
 @AndroidEntryPoint
 class MyProfileEditActivity :
@@ -23,7 +26,7 @@ class MyProfileEditActivity :
         binding.handler = handler
 
         setupObservers()
-        
+
         viewModel.initProfile("멋쟁이 시루", "안녕하세요 시루랑 함께하는 일상을 보내고 있어요.")
     }
 
@@ -33,11 +36,28 @@ class MyProfileEditActivity :
         }
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_CODE_GALLERY && resultCode == RESULT_OK) {
+            data?.data?.toString()?.let {
+                viewModel.profileImage.value = it
+            }
+        }
+    }
+
     inner class Handler {
         fun finish() = this@MyProfileEditActivity.finish()
+
+        fun startGallery() {
+            val intent = Intent(Intent.ACTION_PICK)
+            intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*")
+            startActivityForResult(intent, REQUEST_CODE_GALLERY)
+        }
     }
 
     companion object {
+        private const val REQUEST_CODE_GALLERY = 1000
+
         fun start(context: Context) = context.startWith<MyProfileEditActivity>()
     }
 }

@@ -39,10 +39,11 @@
 			android:layout_height="105dp"
 			android:layout_gravity="center_horizontal"
 			android:layout_marginTop="59dp"
+			app:defaultImage="@{@color/_171717}"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintStart_toStartOf="parent"
 			app:layout_constraintTop_toBottomOf="@id/title"
-			app:srcWithCircle="@{@drawable/ic_tmp_profile}" />
+			app:srcWithCircle="@{viewModel.profileImage}" />
 		
 		<ImageView
 			android:id="@+id/profileEditButton"
@@ -50,6 +51,7 @@
 			android:layout_height="37dp"
 			android:layout_marginStart="71dp"
 			android:layout_marginTop="73dp"
+			android:onClick="@{() -> handler.startGallery()}"
 			android:src="@drawable/img_profile_photo"
 			app:layout_constraintStart_toStartOf="@id/profileImageView"
 			app:layout_constraintTop_toTopOf="@id/profileImageView" />

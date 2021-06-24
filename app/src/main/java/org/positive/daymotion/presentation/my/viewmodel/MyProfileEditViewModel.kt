@@ -13,15 +13,18 @@ import javax.inject.Inject
 @HiltViewModel
 class MyProfileEditViewModel @Inject constructor() : BaseViewModel() {
 
+    val profileImage = MutableLiveData<String>()
+
     val name = MutableLiveData<String>()
 
     val introduce = MutableLiveData<String>()
 
     val nickNameValidation = Transformations.map(name) { checkNickNameValidation(it) }
 
-    val isProfileUpdatePossible = merge(introduce, nickNameValidation) { x, y ->
-        checkProfileUpdatePossible(x, y)
-    }
+    val isProfileUpdatePossible = merge(
+        introduce,
+        nickNameValidation
+    ) { introduce, nickNameValidation -> checkProfileUpdatePossible(introduce, nickNameValidation) }
 
     private val _doneProfileUpdate = SingleLiveEvent<Nothing>()
     val doneProfileUpdate: LiveData<Nothing> get() = _doneProfileUpdate
