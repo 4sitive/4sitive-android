@@ -40,17 +40,21 @@ class SettingTabFragment : BaseFragment<FragmentSettingTabBinding>(R.layout.frag
         binding.secessionButton.setOnClickListener {
             showPopupDialog {
                 title = "탈퇴하시려구요?"
-                content ="서비스를 탈퇴하면 모든 데이터는 다 사라져요.\n" +
+                content = "서비스를 탈퇴하면 모든 데이터는 다 사라져요.\n" +
                         "공개되지 않은 미션이 아직 많~이 남았어요.\n" +
                         "다시 한번 생각해 주세요!"
-                confirmButtonText = "안할게요!"
-                cancelButtonText = "탈퇴할래요"
-                isVisibleCancelButton = true
-                onCancel {
-                    // TODO(je): secession api
+                blueButtonText = "안할게요!"
+                grayButtonText = "탈퇴할래요"
+                isVisibleGrayButton = true
+                onClickGrayButton {
+                    setSecessionApi()
                 }
             }
         }
+    }
+
+    fun setSecessionApi() {
+        // TODO(je): secession api
     }
 
     override fun scrollToTop() {

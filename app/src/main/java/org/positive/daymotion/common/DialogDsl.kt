@@ -22,24 +22,24 @@ class DialogScope : Serializable {
 
     var content: String = ""
 
-    var confirmButtonText: String = "확인"
+    var blueButtonText: String = "확인"
 
-    var cancelButtonText: String = "취소"
+    var grayButtonText: String = "취소"
 
-    var isVisibleCancelButton: Boolean = false
+    var isVisibleGrayButton: Boolean = false
 
     var isCancelable: Boolean = false
 
-    private var onConfirm: () -> Unit = {}
+    private var onBlueButton: () -> Unit = {}
 
-    private var onCancel: () -> Unit = {}
+    private var onGrayButton: () -> Unit = {}
 
-    fun onConfirm(block: () -> Unit) {
-        onConfirm = block
+    fun onClickBlueButton(block: () -> Unit) {
+        onBlueButton = block
     }
 
-    fun onCancel(block: () -> Unit) {
-        onCancel = block
+    fun onClickGrayButton(block: () -> Unit) {
+        onGrayButton = block
     }
 
     fun build(context: Activity): Dialog {
@@ -52,17 +52,19 @@ class DialogScope : Serializable {
         with(binding) {
             titleTextView.text = title
             contentTextView.text = content
-            confirmButton.text = confirmButtonText
-            cancelButton.text = cancelButtonText
-            if (!isVisibleCancelButton) {
-                cancelButton.visibility = View.GONE
+            blueButton.text = blueButtonText
+            grayButton.text = grayButtonText
+            if (!isVisibleGrayButton) {
+                grayButton.visibility = View.GONE
             }
-            confirmButton.setOnClickListener {
-                onConfirm()
+            blueButton.setOnClickListener {
+                blueButton.alpha = 0.5f
+                onBlueButton()
                 dialog.dismiss()
             }
-            cancelButton.setOnClickListener {
-                onCancel()
+            grayButton.setOnClickListener {
+                grayButton.alpha = 0.5f
+                onGrayButton()
                 dialog.dismiss()
             }
         }
@@ -104,4 +106,4 @@ fun FragmentActivity.showPopupDialog(block: DialogScope.() -> Unit) =
     CommonDialogFragment.show(DialogScope().apply(block), supportFragmentManager)
 
 fun Fragment.showPopupDialog(block: DialogScope.() -> Unit) =
-        CommonDialogFragment.show(DialogScope().apply(block), parentFragmentManager)
+    CommonDialogFragment.show(DialogScope().apply(block), parentFragmentManager)

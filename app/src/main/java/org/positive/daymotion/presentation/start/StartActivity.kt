@@ -27,8 +27,8 @@ class StartActivity : BaseActivity<ActivityStartBinding>(R.layout.activity_start
                 title = "새로운 버전 업데이트가 필요 합니다."
                 content = "..."
                 isCancelable = false
-                isVisibleCancelButton = false
-                onConfirm {
+                isVisibleGrayButton = false
+                onClickBlueButton {
                     val intent = Intent(Intent.ACTION_VIEW, Uri.parse(PLAY_STORE_URL)).apply {
                         setPackage("com.android.vending")
                     }
