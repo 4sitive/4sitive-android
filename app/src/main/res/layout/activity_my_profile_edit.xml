@@ -5,6 +5,8 @@
 	
 	<data>
 		
+		<import type="org.positive.daymotion.presentation.my.model.NickNameValidation" />
+		
 		<variable
 			name="handler"
 			type="org.positive.daymotion.presentation.my.activity.MyProfileEditActivity.Handler" />
@@ -85,12 +87,26 @@
 			app:layout_constraintTop_toBottomOf="@id/nameTextView"
 			tools:text="nickname" />
 		
+		<ImageView
+			android:layout_width="19dp"
+			android:layout_height="19dp"
+			android:layout_marginEnd="15dp"
+			android:src="@{viewModel.nickNameValidation == NickNameValidation.OK ? @drawable/img_round_check : @drawable/img_round_x}"
+			app:layout_constraintBottom_toBottomOf="@id/nameEditText"
+			app:layout_constraintEnd_toEndOf="@id/nameEditText"
+			app:layout_constraintTop_toTopOf="@id/nameEditText" />
+		
 		<TextView
 			android:id="@+id/nicknameAlertTextView"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_marginStart="10dp"
 			android:layout_marginTop="4dp"
+			android:fontFamily="@font/kopub_dotum_light"
+			android:text="@{viewModel.nickNameValidation.reason}"
+			android:textColor="@color/_C90A0A"
+			android:textSize="10sp"
+			app:isVisible="@{viewModel.nickNameValidation != NickNameValidation.OK}"
 			app:layout_constraintStart_toStartOf="@id/nameEditText"
 			app:layout_constraintTop_toBottomOf="@id/nameEditText" />
 		
@@ -99,14 +115,14 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_marginStart="30dp"
-			android:layout_marginTop="8dp"
+			android:layout_marginTop="30dp"
 			android:alpha="0.7"
 			android:fontFamily="@font/kopub_dotum_bold"
 			android:text="자기소개"
 			android:textColor="@color/_171717"
 			android:textSize="16sp"
 			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toBottomOf="@id/nicknameAlertTextView"
+			app:layout_constraintTop_toBottomOf="@id/nameEditText"
 			app:layout_goneMarginTop="30dp" />
 		
 		<EditText
