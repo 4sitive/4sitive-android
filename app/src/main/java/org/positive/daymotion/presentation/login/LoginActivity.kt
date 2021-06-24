@@ -95,6 +95,9 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
                         words[1] -> PrivacyPolicyActivity.start(this@LoginActivity)
                     }
                 }
+
+                override fun updateDrawState(ds: TextPaint) {} // 밑줄 제거
+
             }, start, end, Spannable.SPAN_INCLUSIVE_INCLUSIVE)
 
             spannable.setSpan(object : TypefaceSpan(null) {

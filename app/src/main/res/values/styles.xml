@@ -6,5 +6,11 @@
 		<item name="android:windowNoTitle">true</item>
 		<item name="android:backgroundDimEnabled">true</item>
 	</style>
+
+	<style name="Switch" parent="Theme.AppCompat.Light">
+		<item name="colorControlActivated">@color/_B9B9B9</item>
+		<item name="colorSwitchThumbNormal">@color/_80043EFF</item>
+		<item name="android:colorForeground">@color/_B9B9B9</item>
+	</style>
 	
 </resources>

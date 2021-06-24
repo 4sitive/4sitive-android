@@ -39,6 +39,7 @@
             android:fontFamily="@font/kopub_dotum_medium"
             android:gravity="center_vertical"
             android:letterSpacing="-0.02"
+            android:lineSpacingExtra="12sp"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
             android:text="알림"
@@ -81,7 +82,7 @@
                     android:layout_marginTop="6dp"
                     android:alpha="0.4"
                     android:fontFamily="@font/kopub_dotum_medium"
-                    android:letterSpacing="0.02"
+                    android:letterSpacing="-0.02"
                     android:lineSpacingExtra="11sp"
                     android:text="누구보다 빠르게 미션에 참여할래요!"
                     android:textColor="@color/_171717"
@@ -89,15 +90,16 @@
 
             </LinearLayout>
 
-            <com.google.android.material.switchmaterial.SwitchMaterial
+            <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/pushSwitch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:thumbTint="@color/_80043EFF"
-                app:trackTint="@color/colorGray200" />
+                android:textOff=""
+                android:textOn=""
+                android:theme="@style/Switch"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -115,6 +117,7 @@
             android:fontFamily="@font/kopub_dotum_medium"
             android:gravity="center_vertical"
             android:letterSpacing="-0.02"
+            android:lineSpacingExtra="12sp"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
             android:text="정보"
@@ -153,7 +156,7 @@
                 android:layout_marginTop="6dp"
                 android:alpha="0.4"
                 android:fontFamily="@font/kopub_dotum_medium"
-                android:letterSpacing="0.02"
+                android:letterSpacing="-0.02"
                 android:lineSpacingExtra="11sp"
                 android:text="우리 서비스는요~"
                 android:textColor="@color/_171717"
@@ -193,7 +196,7 @@
                 android:layout_marginTop="6dp"
                 android:alpha="0.4"
                 android:fontFamily="@font/kopub_dotum_medium"
-                android:letterSpacing="0.02"
+                android:letterSpacing="-0.02"
                 android:lineSpacingExtra="11sp"
                 android:text="내 정보는 내가 지킨다!"
                 android:textColor="@color/_171717"
@@ -233,7 +236,7 @@
                 android:layout_marginTop="6dp"
                 android:alpha="0.4"
                 android:fontFamily="@font/kopub_dotum_medium"
-                android:letterSpacing="0.02"
+                android:letterSpacing="-0.02"
                 android:lineSpacingExtra="11sp"
                 android:text="이 버튼은 눌리지 않을거에요! 가지마세요~"
                 android:textColor="@color/_171717"
@@ -261,7 +264,7 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:fontFamily="@font/kopub_dotum_bold"
-                android:letterSpacing="0.02"
+                android:letterSpacing="-0.02"
                 android:text="@string/logout"
                 android:textColor="@color/colorBlack"
                 android:textSize="13sp"
