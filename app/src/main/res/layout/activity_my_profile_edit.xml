@@ -86,18 +86,28 @@
 			tools:text="nickname" />
 		
 		<TextView
+			android:id="@+id/nicknameAlertTextView"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="10dp"
+			android:layout_marginTop="4dp"
+			app:layout_constraintStart_toStartOf="@id/nameEditText"
+			app:layout_constraintTop_toBottomOf="@id/nameEditText" />
+		
+		<TextView
 			android:id="@+id/introduceTextView"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_marginStart="30dp"
-			android:layout_marginTop="30dp"
+			android:layout_marginTop="8dp"
 			android:alpha="0.7"
 			android:fontFamily="@font/kopub_dotum_bold"
 			android:text="자기소개"
 			android:textColor="@color/_171717"
 			android:textSize="16sp"
 			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toBottomOf="@id/nameEditText" />
+			app:layout_constraintTop_toBottomOf="@id/nicknameAlertTextView"
+			app:layout_goneMarginTop="30dp" />
 		
 		<EditText
 			android:id="@+id/selfIntroduceEditText"
@@ -165,7 +175,7 @@
 			android:paddingTop="13dp"
 			android:paddingEnd="55dp"
 			android:paddingBottom="13dp"
-			android:text="수정"
+			android:text="확인"
 			android:textColor="@color/_FFFFFF"
 			android:textSize="18sp"
 			app:layout_constraintBottom_toBottomOf="parent"
