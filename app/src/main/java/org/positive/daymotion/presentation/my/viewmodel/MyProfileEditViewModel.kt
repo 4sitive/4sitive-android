@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import dagger.hilt.android.lifecycle.HiltViewModel
 import org.positive.daymotion.common.SingleLiveEvent
+import org.positive.daymotion.common.bindingadapter.merge
 import org.positive.daymotion.presentation.base.BaseViewModel
 import org.positive.daymotion.presentation.my.model.NickNameValidation
 import javax.inject.Inject
@@ -17,6 +18,10 @@ class MyProfileEditViewModel @Inject constructor() : BaseViewModel() {
     val introduce = MutableLiveData<String>()
 
     val nickNameValidation = Transformations.map(name) { checkNickNameValidation(it) }
+
+    val isProfileUpdatePossible = merge(introduce, nickNameValidation) { x, y ->
+        checkProfileUpdatePossible(x, y)
+    }
 
     private val _doneProfileUpdate = SingleLiveEvent<Nothing>()
     val doneProfileUpdate: LiveData<Nothing> get() = _doneProfileUpdate
@@ -34,6 +39,17 @@ class MyProfileEditViewModel @Inject constructor() : BaseViewModel() {
         nickNameValidateRegex.matchEntire(input) == null -> NickNameValidation.DENIED_SPECIAL_CHAR
         input.length > 8 -> NickNameValidation.DENIED_TOO_LONG
         else -> NickNameValidation.OK
+    }
+
+    private fun checkProfileUpdatePossible(
+        introduce: String?,
+        nickNameValidation: NickNameValidation?
+    ): Boolean {
+        if (introduce == null || nickNameValidation == null) {
+            return false
+        }
+
+        return nickNameValidation == NickNameValidation.OK && introduce.length < 20
     }
 
     companion object {
