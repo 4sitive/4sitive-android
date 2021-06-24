@@ -12,6 +12,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
+import org.positive.daymotion.R
 import org.positive.daymotion.databinding.WidgetCommonDialogBinding
 import java.io.Serializable
 
@@ -45,7 +46,7 @@ class DialogScope : Serializable {
     fun build(context: Activity): Dialog {
         val binding = WidgetCommonDialogBinding.inflate(context.layoutInflater, null, false)
 
-        val dialog = AlertDialog.Builder(context)
+        val dialog = AlertDialog.Builder(context, R.style.CommonDialogTheme)
             .setView(binding.root)
             .create()
 
