@@ -94,6 +94,7 @@
 				android:id="@+id/pushSwitch"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
+				android:background="@null"
 				android:textOff=""
 				android:textOn=""
 				android:theme="@style/Switch"
