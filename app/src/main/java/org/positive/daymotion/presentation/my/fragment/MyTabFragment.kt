@@ -2,7 +2,6 @@ package org.positive.daymotion.presentation.my.fragment
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
@@ -13,11 +12,11 @@ import org.positive.daymotion.presentation.base.util.viewModelOf
 import org.positive.daymotion.presentation.common.adapter.FeedThumbnailAdapter
 import org.positive.daymotion.presentation.my.activity.MyProfileEditActivity
 import org.positive.daymotion.presentation.my.viewmodel.MyTabViewModel
-import org.positive.daymotion.presentation.root.model.RootTabFragment
+import org.positive.daymotion.presentation.common.ScrollableFragment
 
 @AndroidEntryPoint
 class MyTabFragment : BaseFragment<FragmentMyTabBinding>(R.layout.fragment_my_tab),
-    RootTabFragment {
+    ScrollableFragment {
 
     private val viewModel by viewModelOf<MyTabViewModel>()
     private val feedThumbnailAdapter by lazy { FeedThumbnailAdapter() }
@@ -35,7 +34,7 @@ class MyTabFragment : BaseFragment<FragmentMyTabBinding>(R.layout.fragment_my_ta
     }
 
     private fun setupViews() {
-        binding.rvMyTab.apply {
+        binding.myFeedRecyclerView.apply {
             adapter = feedThumbnailAdapter
             layoutManager = StaggeredGridLayoutManager(2, RecyclerView.VERTICAL)
         }
@@ -48,8 +47,7 @@ class MyTabFragment : BaseFragment<FragmentMyTabBinding>(R.layout.fragment_my_ta
     }
 
     override fun scrollToTop() {
-        // TODO(yh): replace to scroll logic
-        Toast.makeText(requireContext(), "My", Toast.LENGTH_SHORT).show()
+        binding.myFeedRecyclerView.smoothScrollToPosition(0)
     }
 
     inner class Handler {

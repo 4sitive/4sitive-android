@@ -12,10 +12,11 @@ import org.positive.daymotion.presentation.base.util.viewModelOf
 import org.positive.daymotion.presentation.category.activity.CategoryDetailActivity
 import org.positive.daymotion.presentation.category.adapter.CategoryBrowserAdapter
 import org.positive.daymotion.presentation.category.viewmodel.CategoryBrowserPageViewModel
+import org.positive.daymotion.presentation.common.ScrollableFragment
 
 @AndroidEntryPoint
 class CategoryBrowserPageFragment :
-    BaseFragment<FragmentCategoryBrowserPageBinding>(R.layout.fragment_category_browser_page) {
+    BaseFragment<FragmentCategoryBrowserPageBinding>(R.layout.fragment_category_browser_page), ScrollableFragment {
 
     private val viewModel by viewModelOf<CategoryBrowserPageViewModel>()
     private val handler by lazy { Handler() }
@@ -28,6 +29,10 @@ class CategoryBrowserPageFragment :
         setupObservers()
 
         viewModel.loadMissionHistories()
+    }
+
+    override fun scrollToTop() {
+        binding.categoryBrowserRecyclerView.smoothScrollToPosition(0)
     }
 
     private fun setupViews() {

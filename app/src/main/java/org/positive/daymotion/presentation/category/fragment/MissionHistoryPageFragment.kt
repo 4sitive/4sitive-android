@@ -10,10 +10,11 @@ import org.positive.daymotion.presentation.base.util.viewModelOf
 import org.positive.daymotion.presentation.category.activity.CategoryDetailActivity
 import org.positive.daymotion.presentation.category.adapter.MissionHistoryAdapter
 import org.positive.daymotion.presentation.category.viewmodel.MissionHistoryPageViewModel
+import org.positive.daymotion.presentation.common.ScrollableFragment
 
 @AndroidEntryPoint
 class MissionHistoryPageFragment :
-    BaseFragment<FragmentMissionHistoryPageBinding>(R.layout.fragment_mission_history_page) {
+    BaseFragment<FragmentMissionHistoryPageBinding>(R.layout.fragment_mission_history_page), ScrollableFragment {
 
     private val viewModel by viewModelOf<MissionHistoryPageViewModel>()
     private val handler by lazy { Handler() }
@@ -26,6 +27,10 @@ class MissionHistoryPageFragment :
         setupObservers()
 
         viewModel.loadMissionHistories()
+    }
+
+    override fun scrollToTop() {
+        binding.missionsHistoryRecyclerView.smoothScrollToPosition(0)
     }
 
     private fun setupViews() {
