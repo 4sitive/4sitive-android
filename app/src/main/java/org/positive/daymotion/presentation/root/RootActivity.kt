@@ -10,8 +10,8 @@ import org.positive.daymotion.databinding.ActivityRootBinding
 import org.positive.daymotion.extension.startOnTop
 import org.positive.daymotion.presentation.base.BaseActivity
 import org.positive.daymotion.presentation.base.util.viewModelOf
+import org.positive.daymotion.presentation.common.ScrollableFragment
 import org.positive.daymotion.presentation.home.HomeTabFragment
-import org.positive.daymotion.presentation.root.model.RootTabFragment
 import org.positive.daymotion.presentation.root.model.Tab
 
 @AndroidEntryPoint
@@ -45,7 +45,7 @@ class RootActivity : BaseActivity<ActivityRootBinding>(R.layout.activity_root) {
             }
             alreadySelectedTab.observeNonNull { tab ->
                 supportFragmentManager.fragments
-                    .filterIsInstance(RootTabFragment::class.java)
+                    .filterIsInstance(ScrollableFragment::class.java)
                     .find { tab.clazz.isInstance(it) }
                     ?.scrollToTop()
             }

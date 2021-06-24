@@ -2,7 +2,6 @@ package org.positive.daymotion.presentation.setting
 
 import android.os.Bundle
 import android.view.View
-import android.widget.CompoundButton
 import android.widget.Toast
 import dagger.hilt.android.AndroidEntryPoint
 import org.positive.daymotion.R
@@ -11,11 +10,9 @@ import org.positive.daymotion.databinding.FragmentSettingTabBinding
 import org.positive.daymotion.presentation.base.BaseFragment
 import org.positive.daymotion.presentation.base.util.viewModelOf
 import org.positive.daymotion.presentation.login.LoginActivity
-import org.positive.daymotion.presentation.root.model.RootTabFragment
 
 @AndroidEntryPoint
-class SettingTabFragment : BaseFragment<FragmentSettingTabBinding>(R.layout.fragment_setting_tab),
-    RootTabFragment {
+class SettingTabFragment : BaseFragment<FragmentSettingTabBinding>(R.layout.fragment_setting_tab) {
 
     private val viewModel by viewModelOf<SettingTabViewModel>()
 
@@ -30,7 +27,7 @@ class SettingTabFragment : BaseFragment<FragmentSettingTabBinding>(R.layout.frag
             LoginActivity.startOnTop(requireContext())
         }
 
-        binding.pushSwitch.setOnCheckedChangeListener { compoundButton: CompoundButton, isChecked: Boolean ->
+        binding.pushSwitch.setOnCheckedChangeListener { _, isChecked ->
             onPushAlarm(isChecked)
         }
 
@@ -69,10 +66,5 @@ class SettingTabFragment : BaseFragment<FragmentSettingTabBinding>(R.layout.frag
         // TODO(je): secession api
         Toast.makeText(requireContext(), "탈퇴가 완료되었습니다.", Toast.LENGTH_SHORT).show()
         LoginActivity.startOnTop(requireContext())
-    }
-
-    override fun scrollToTop() {
-        // TODO(yh): replace to scroll logic
-        Toast.makeText(requireContext(), "Setting", Toast.LENGTH_SHORT).show()
     }
 }

@@ -9,7 +9,7 @@ class CategoryTabPagerAdapter(parentFragment: Fragment) : FragmentStateAdapter(p
 
     override fun getItemCount() = 2
 
-    override fun createFragment(position: Int) = when (position) {
+    override fun createFragment(position: Int): Fragment = when (position) {
         0 -> MissionHistoryPageFragment()
         1 -> CategoryBrowserPageFragment()
         else -> throw IllegalStateException("Exceed max page number")

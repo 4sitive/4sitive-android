@@ -3,8 +3,8 @@ package org.positive.daymotion.presentation.category.fragment
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
@@ -15,11 +15,11 @@ import org.positive.daymotion.presentation.base.BaseFragment
 import org.positive.daymotion.presentation.base.util.viewModelOf
 import org.positive.daymotion.presentation.category.adapter.CategoryTabPagerAdapter
 import org.positive.daymotion.presentation.category.viewmodel.CategoryTabViewModel
-import org.positive.daymotion.presentation.root.model.RootTabFragment
+import org.positive.daymotion.presentation.common.ScrollableFragment
 
 @AndroidEntryPoint
 class CategoryTabFragment :
-    BaseFragment<FragmentCategoryTabBinding>(R.layout.fragment_category_tab), RootTabFragment {
+    BaseFragment<FragmentCategoryTabBinding>(R.layout.fragment_category_tab), ScrollableFragment {
 
     private val viewModel by viewModelOf<CategoryTabViewModel>()
     private val pagerAdapter by lazy { CategoryTabPagerAdapter(this) }
@@ -34,7 +34,7 @@ class CategoryTabFragment :
         }
 
         override fun onTabReselected(tab: TabLayout.Tab) {
-            // TODO(yh): replace to scroll logic
+
         }
     }
 
@@ -42,6 +42,14 @@ class CategoryTabFragment :
         super.onViewCreated(view, savedInstanceState)
         binding.viewModel = viewModel
         setupViews()
+    }
+
+    override fun scrollToTop() {
+        findCurrentFragment().let {
+            if (it is ScrollableFragment) {
+                it.scrollToTop()
+            }
+        }
     }
 
     private fun setupViews() {
@@ -56,7 +64,7 @@ class CategoryTabFragment :
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             initTab(tab, position)
         }.attach()
-        
+
         tabLayout.addOnTabSelectedListener(onTabSelectedListener)
     }
 
@@ -73,8 +81,8 @@ class CategoryTabFragment :
         return tab.customView?.let { DataBindingUtil.findBinding(it) }
     }
 
-    override fun scrollToTop() {
-        // TODO(yh): replace to scroll logic
-        Toast.makeText(requireContext(), "Category", Toast.LENGTH_SHORT).show()
+    private fun findCurrentFragment(): Fragment? {
+        val currentPosition = binding.viewPager.currentItem
+        return childFragmentManager.findFragmentByTag("f$currentPosition")
     }
 }
