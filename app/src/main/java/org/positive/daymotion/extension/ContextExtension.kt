@@ -31,5 +31,5 @@ inline fun <reified T : BaseActivity<*>> Context.startOnHome(vararg pairs: Pair<
         .startActivities()
 }
 
-val Context.layoutInflater
+val Context.layoutInflater: LayoutInflater
     get() = LayoutInflater.from(this)

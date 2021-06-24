@@ -29,7 +29,8 @@ class MyProfileEditViewModel @Inject constructor() : BaseViewModel() {
     private val _doneProfileUpdate = SingleLiveEvent<Nothing>()
     val doneProfileUpdate: LiveData<Nothing> get() = _doneProfileUpdate
 
-    fun initProfile(originName: String, originIntroduce: String) {
+    fun initProfile(originProfile: String, originName: String, originIntroduce: String) {
+        profileImage.value = originProfile
         name.value = originName
         introduce.value = originIntroduce
     }

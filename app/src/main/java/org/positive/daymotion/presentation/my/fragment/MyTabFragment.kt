@@ -53,6 +53,11 @@ class MyTabFragment : BaseFragment<FragmentMyTabBinding>(R.layout.fragment_my_ta
     }
 
     inner class Handler {
-        fun goToProfileEdit() = MyProfileEditActivity.start(requireContext())
+        fun goToProfileEdit() = MyProfileEditActivity.start(
+            requireContext(),
+            "",
+            "시루",
+            "시루랑 함께하는 일상"
+        )
     }
 }

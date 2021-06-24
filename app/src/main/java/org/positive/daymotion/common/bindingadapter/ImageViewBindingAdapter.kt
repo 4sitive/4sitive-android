@@ -24,7 +24,7 @@ fun ImageView.setImageWithCircleCropBindingAdapter(uri: String?) {
 @BindingAdapter("srcWithCircle", "defaultImage", requireAll = true)
 fun ImageView.setImageWithCircleCropBindingAdapter(uri: String?, defaultImage: Drawable?) {
     Glide.with(this)
-        .load(uri ?: defaultImage)
+        .load(uri.let { if (!it.isNullOrBlank()) it else defaultImage })
         .circleCrop()
         .into(this)
 }
