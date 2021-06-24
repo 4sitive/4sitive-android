@@ -50,7 +50,7 @@
 				android:id="@+id/firstMissionImageView"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
-				android:background="@color/colorGray300"
+				android:background="@color/_CDCDCD"
 				android:foreground="?android:attr/selectableItemBackground"
 				android:onClick="@{() -> handler.goToCategoryDetail(item.firstMission.missionName)}" />
 		</androidx.cardview.widget.CardView>
@@ -73,7 +73,7 @@
 				android:id="@+id/secondMissionImageView"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
-				android:background="@color/colorGray300"
+				android:background="@color/_CDCDCD"
 				android:foreground="?android:attr/selectableItemBackground"
 				android:onClick="@{() -> handler.goToCategoryDetail(item.secondMission.missionName)}" />
 		</androidx.cardview.widget.CardView>
@@ -96,7 +96,7 @@
 				android:id="@+id/thirdMissionImageView"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
-				android:background="@color/colorGray300"
+				android:background="@color/_CDCDCD"
 				android:foreground="?android:attr/selectableItemBackground"
 				android:onClick="@{() -> handler.goToCategoryDetail(item.thirdMission.missionName)}" />
 		</androidx.cardview.widget.CardView>

@@ -13,10 +13,10 @@
 	
 	<style name="TextStyle">
 		<item name="android:textSize">14sp</item>
-		<item name="android:textColor">@color/colorGray900</item>
-		<item name="android:textColorHint">@color/colorGray400</item>
+		<item name="android:textColor">@color/_171717</item>
+		<item name="android:textColorHint">@color/_CDCDCD</item>
 	</style>
-
+	
 	<style name="CommonDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
 		<item name="android:windowBackground">@drawable/background_dialog</item>
 		<item name="android:windowMinWidthMinor">83%</item>
