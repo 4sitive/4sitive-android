@@ -16,182 +16,195 @@
 			type="org.positive.daymotion.presentation.my.viewmodel.MyProfileEditViewModel" />
 	</data>
 	
-	<androidx.constraintlayout.widget.ConstraintLayout
+	<ScrollView
 		android:layout_width="match_parent"
-		android:layout_height="match_parent">
+		android:layout_height="match_parent"
+		android:fillViewport="true">
 		
-		<TextView
-			android:id="@+id/title"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_marginStart="20dp"
-			android:layout_marginTop="38dp"
-			android:fontFamily="@font/montserrat_bold"
-			android:text="Edit profile"
-			android:textColor="@color/_171717"
-			android:textSize="24sp"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toTopOf="parent" />
-		
-		<ImageView
-			android:id="@+id/profileImageView"
-			android:layout_width="105dp"
-			android:layout_height="105dp"
-			android:layout_gravity="center_horizontal"
-			android:layout_marginTop="59dp"
-			app:defaultImage="@{@color/_171717}"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toBottomOf="@id/title"
-			app:srcWithCircle="@{viewModel.profileImage}" />
-		
-		<ImageView
-			android:id="@+id/profileEditButton"
-			android:layout_width="37dp"
-			android:layout_height="37dp"
-			android:layout_marginStart="71dp"
-			android:layout_marginTop="73dp"
-			android:onClick="@{() -> handler.startGallery()}"
-			android:src="@drawable/img_profile_photo"
-			app:layout_constraintStart_toStartOf="@id/profileImageView"
-			app:layout_constraintTop_toTopOf="@id/profileImageView" />
-		
-		<TextView
-			android:id="@+id/nameTextView"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_marginStart="30dp"
-			android:layout_marginTop="58dp"
-			android:alpha="0.7"
-			android:fontFamily="@font/kopub_dotum_bold"
-			android:text="유저 아이디"
-			android:textColor="@color/_171717"
-			android:textSize="16sp"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toBottomOf="@id/profileImageView" />
-		
-		<EditText
-			android:id="@+id/nameEditText"
-			android:layout_width="0dp"
-			android:layout_height="54dp"
-			android:layout_marginStart="20dp"
-			android:layout_marginTop="8dp"
-			android:layout_marginEnd="20dp"
-			android:background="@drawable/background_my_profile_edit_input_text"
-			android:fontFamily="@font/kopub_dotum_bold"
-			android:paddingStart="10dp"
-			android:paddingEnd="10dp"
-			android:text="@={viewModel.name}"
-			android:textColor="@color/_171717"
-			android:textSize="13sp"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toBottomOf="@id/nameTextView"
-			tools:text="nickname" />
-		
-		<ImageView
-			android:layout_width="19dp"
-			android:layout_height="19dp"
-			android:layout_marginEnd="15dp"
-			android:src="@{viewModel.nickNameValidation == NickNameValidation.OK ? @drawable/img_round_check : @drawable/img_round_x}"
-			app:layout_constraintBottom_toBottomOf="@id/nameEditText"
-			app:layout_constraintEnd_toEndOf="@id/nameEditText"
-			app:layout_constraintTop_toTopOf="@id/nameEditText" />
-		
-		<TextView
-			android:id="@+id/nicknameAlertTextView"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_marginStart="10dp"
-			android:layout_marginTop="4dp"
-			android:fontFamily="@font/kopub_dotum_light"
-			android:text="@{viewModel.nickNameValidation.reason}"
-			android:textColor="@color/_C90A0A"
-			android:textSize="10sp"
-			app:isVisible="@{viewModel.nickNameValidation != NickNameValidation.OK}"
-			app:layout_constraintStart_toStartOf="@id/nameEditText"
-			app:layout_constraintTop_toBottomOf="@id/nameEditText" />
-		
-		<TextView
-			android:id="@+id/introduceTextView"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_marginStart="30dp"
-			android:layout_marginTop="30dp"
-			android:alpha="0.7"
-			android:fontFamily="@font/kopub_dotum_bold"
-			android:text="자기소개"
-			android:textColor="@color/_171717"
-			android:textSize="16sp"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toBottomOf="@id/nameEditText"
-			app:layout_goneMarginTop="30dp" />
-		
-		<EditText
-			android:id="@+id/selfIntroduceEditText"
-			android:layout_width="0dp"
-			android:layout_height="88dp"
-			android:layout_marginStart="20dp"
-			android:layout_marginTop="8dp"
-			android:layout_marginEnd="20dp"
-			android:alpha="0.4"
-			android:background="@drawable/background_my_profile_edit_input_text"
-			android:fontFamily="@font/kopub_dotum_bold"
-			android:gravity="top"
-			android:paddingStart="10dp"
-			android:paddingTop="10dp"
-			android:paddingEnd="10dp"
-			android:paddingBottom="10dp"
-			android:text="@={viewModel.introduce}"
-			android:textColor="@color/_171717"
-			android:textSize="13sp"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toBottomOf="@id/introduceTextView"
-			tools:text="안녕하세요 시루랑 함께하는 일상을 보내고있어요" />
-		
-		<TextView
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_marginStart="10dp"
-			android:layout_marginTop="4dp"
-			android:alpha="0.5"
-			android:text="자기소개는 20자 이하로 자유롭게 적어주세요!"
-			android:textColor="@color/_5C5C5C"
-			android:textSize="10sp"
-			app:layout_constraintStart_toStartOf="@id/selfIntroduceEditText"
-			app:layout_constraintTop_toBottomOf="@id/selfIntroduceEditText" />
-		
-		<TextView
-			android:id="@+id/cancelButton"
-			android:layout_width="0dp"
-			android:layout_height="50dp"
-			android:alpha="0.5"
-			android:background="@color/_19000000"
-			android:fontFamily="@font/kopub_dotum_bold"
-			android:gravity="center"
-			android:onClick="@{() -> handler.finish()}"
-			android:text="취소"
-			android:textColor="@color/_171717"
-			android:textSize="18sp"
-			app:layout_constraintBottom_toBottomOf="parent"
-			app:layout_constraintEnd_toStartOf="@id/confirmButton"
-			app:layout_constraintStart_toStartOf="parent" />
-		
-		<TextView
-			android:id="@+id/confirmButton"
-			android:layout_width="0dp"
-			android:layout_height="50dp"
-			android:background="@drawable/background_my_profile_edit_confirm_button"
-			android:enabled="@{viewModel.isProfileUpdatePossible}"
-			android:fontFamily="@font/kopub_dotum_bold"
-			android:gravity="center"
-			android:onClick="@{() -> viewModel.updateProfile()}"
-			android:text="확인"
-			android:textColor="@color/_FFFFFF"
-			android:textSize="18sp"
-			app:layout_constraintBottom_toBottomOf="parent"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintStart_toEndOf="@id/cancelButton" />
-	</androidx.constraintlayout.widget.ConstraintLayout>
+		<androidx.constraintlayout.widget.ConstraintLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content">
+			
+			<TextView
+				android:id="@+id/title"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="20dp"
+				android:layout_marginTop="38dp"
+				android:fontFamily="@font/montserrat_bold"
+				android:text="Edit profile"
+				android:textColor="@color/_171717"
+				android:textSize="24sp"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toTopOf="parent" />
+			
+			<ImageView
+				android:id="@+id/profileImageView"
+				android:layout_width="105dp"
+				android:layout_height="105dp"
+				android:layout_gravity="center_horizontal"
+				android:layout_marginTop="59dp"
+				app:defaultImage="@{@color/_171717}"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="@id/title"
+				app:srcWithCircle="@{viewModel.profileImage}" />
+			
+			<ImageView
+				android:id="@+id/profileEditButton"
+				android:layout_width="37dp"
+				android:layout_height="37dp"
+				android:layout_marginStart="71dp"
+				android:layout_marginTop="73dp"
+				android:onClick="@{() -> handler.startGallery()}"
+				android:src="@drawable/img_profile_photo"
+				app:layout_constraintStart_toStartOf="@id/profileImageView"
+				app:layout_constraintTop_toTopOf="@id/profileImageView" />
+			
+			<TextView
+				android:id="@+id/nameTextView"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="30dp"
+				android:layout_marginTop="58dp"
+				android:alpha="0.7"
+				android:fontFamily="@font/kopub_dotum_bold"
+				android:text="유저 아이디"
+				android:textColor="@color/_171717"
+				android:textSize="16sp"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="@id/profileImageView" />
+			
+			<EditText
+				android:id="@+id/nameEditText"
+				android:layout_width="0dp"
+				android:layout_height="54dp"
+				android:layout_marginStart="20dp"
+				android:layout_marginTop="8dp"
+				android:layout_marginEnd="20dp"
+				android:background="@drawable/background_my_profile_edit_input_text"
+				android:fontFamily="@font/kopub_dotum_bold"
+				android:paddingStart="10dp"
+				android:paddingEnd="10dp"
+				android:text="@={viewModel.name}"
+				android:textColor="@color/_171717"
+				android:textSize="13sp"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="@id/nameTextView"
+				tools:text="nickname" />
+			
+			<ImageView
+				android:layout_width="19dp"
+				android:layout_height="19dp"
+				android:layout_marginEnd="15dp"
+				android:src="@{viewModel.nickNameValidation == NickNameValidation.OK ? @drawable/img_round_check : @drawable/img_round_x}"
+				app:layout_constraintBottom_toBottomOf="@id/nameEditText"
+				app:layout_constraintEnd_toEndOf="@id/nameEditText"
+				app:layout_constraintTop_toTopOf="@id/nameEditText" />
+			
+			<TextView
+				android:id="@+id/nicknameAlertTextView"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="10dp"
+				android:layout_marginTop="4dp"
+				android:fontFamily="@font/kopub_dotum_light"
+				android:text="@{viewModel.nickNameValidation.reason}"
+				android:textColor="@color/_C90A0A"
+				android:textSize="10sp"
+				app:isVisible="@{viewModel.nickNameValidation != NickNameValidation.OK}"
+				app:layout_constraintStart_toStartOf="@id/nameEditText"
+				app:layout_constraintTop_toBottomOf="@id/nameEditText" />
+			
+			<TextView
+				android:id="@+id/introduceTextView"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="30dp"
+				android:layout_marginTop="30dp"
+				android:alpha="0.7"
+				android:fontFamily="@font/kopub_dotum_bold"
+				android:text="자기소개"
+				android:textColor="@color/_171717"
+				android:textSize="16sp"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="@id/nameEditText"
+				app:layout_goneMarginTop="30dp" />
+			
+			<EditText
+				android:id="@+id/selfIntroduceEditText"
+				android:layout_width="0dp"
+				android:layout_height="88dp"
+				android:layout_marginStart="20dp"
+				android:layout_marginTop="8dp"
+				android:layout_marginEnd="20dp"
+				android:alpha="0.4"
+				android:background="@drawable/background_my_profile_edit_input_text"
+				android:fontFamily="@font/kopub_dotum_bold"
+				android:gravity="top"
+				android:paddingStart="10dp"
+				android:paddingTop="10dp"
+				android:paddingEnd="10dp"
+				android:paddingBottom="10dp"
+				android:text="@={viewModel.introduce}"
+				android:textColor="@color/_171717"
+				android:textSize="13sp"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="@id/introduceTextView"
+				tools:text="안녕하세요 시루랑 함께하는 일상을 보내고있어요" />
+			
+			<TextView
+				android:id="@+id/introduceDescTextView"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="10dp"
+				android:layout_marginTop="4dp"
+				android:alpha="0.5"
+				android:text="자기소개는 20자 이하로 자유롭게 적어주세요!"
+				android:textColor="@color/_5C5C5C"
+				android:textSize="10sp"
+				app:layout_constraintStart_toStartOf="@id/selfIntroduceEditText"
+				app:layout_constraintTop_toBottomOf="@id/selfIntroduceEditText" />
+			
+			<TextView
+				android:id="@+id/cancelButton"
+				android:layout_width="0dp"
+				android:layout_height="50dp"
+				android:layout_marginTop="40dp"
+				android:alpha="0.5"
+				android:background="@color/_19000000"
+				android:fontFamily="@font/kopub_dotum_bold"
+				android:gravity="center"
+				android:onClick="@{() -> handler.finish()}"
+				android:text="취소"
+				android:textColor="@color/_171717"
+				android:textSize="18sp"
+				app:layout_constraintBottom_toBottomOf="parent"
+				app:layout_constraintEnd_toStartOf="@id/confirmButton"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="@id/introduceDescTextView"
+				app:layout_constraintVertical_bias="1" />
+			
+			<TextView
+				android:id="@+id/confirmButton"
+				android:layout_width="0dp"
+				android:layout_height="50dp"
+				android:layout_marginTop="40dp"
+				android:background="@drawable/background_my_profile_edit_confirm_button"
+				android:enabled="@{viewModel.isProfileUpdatePossible}"
+				android:fontFamily="@font/kopub_dotum_bold"
+				android:gravity="center"
+				android:onClick="@{() -> viewModel.updateProfile()}"
+				android:text="확인"
+				android:textColor="@color/_FFFFFF"
+				android:textSize="18sp"
+				app:layout_constraintBottom_toBottomOf="parent"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toEndOf="@id/cancelButton"
+				app:layout_constraintTop_toBottomOf="@id/introduceDescTextView"
+				app:layout_constraintVertical_bias="1" />
+		</androidx.constraintlayout.widget.ConstraintLayout>
+	</ScrollView>
 </layout>
