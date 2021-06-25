@@ -43,7 +43,7 @@ android {
         }
 
         qa {
-            initWith debug
+            debuggable true
             applicationIdSuffix ".qa"
             resValue("string", "app_name", "Daymotion-Qa")
         }
