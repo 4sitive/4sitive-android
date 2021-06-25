@@ -31,7 +31,7 @@
 			android:gravity="center"
 			android:text="@{commonDialogBundle.title}"
 			android:textColor="@color/_171717"
-			android:textSize="18sp"
+			android:textSize="18dp"
 			tools:text="제목" />
 		
 		<TextView
@@ -41,10 +41,10 @@
 			android:alpha="0.8"
 			android:fontFamily="@font/kopub_dotum_medium"
 			android:gravity="center"
-			android:lineSpacingExtra="6sp"
+			android:lineSpacingExtra="6dp"
 			android:text="@{commonDialogBundle.content}"
 			android:textColor="@color/_171717"
-			android:textSize="14sp"
+			android:textSize="14dp"
 			tools:text="내용" />
 		
 		<TextView
@@ -58,7 +58,7 @@
 			android:onClick="@{() -> handler.onClickBlueButton()}"
 			android:text="@{commonDialogBundle.blueButtonText}"
 			android:textColor="@color/_FFFFFF"
-			android:textSize="15sp"
+			android:textSize="15dp"
 			tools:text="파란색 버튼" />
 		
 		<TextView
@@ -73,7 +73,7 @@
 			android:onClick="@{() -> handler.onClickGrayButton()}"
 			android:text="@{commonDialogBundle.grayButtonText}"
 			android:textColor="@color/_171717"
-			android:textSize="15sp"
+			android:textSize="15dp"
 			tools:text="회색 버튼" />
 	
 	</LinearLayout>

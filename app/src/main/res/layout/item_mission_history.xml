@@ -28,7 +28,7 @@
 			android:fontFamily="@font/montserrat_semi_bold"
 			android:text="@{item.date}"
 			android:textColor="@color/_171717"
-			android:textSize="16sp"
+			android:textSize="16dp"
 			app:layout_constraintStart_toStartOf="parent"
 			app:layout_constraintTop_toTopOf="parent"
 			tools:text="Yesterday" />
@@ -118,10 +118,10 @@
 				android:alpha="0.4"
 				android:fontFamily="@font/kopub_dotum_medium"
 				android:gravity="center_horizontal"
-				android:lineSpacingExtra="6sp"
+				android:lineSpacingExtra="6dp"
 				android:text="오늘은 잠시 쉬어가는 날\n돌아올 미션을 기대해주세요-!"
 				android:textColor="@color/_171717"
-				android:textSize="15sp" />
+				android:textSize="15dp" />
 		
 		</FrameLayout>
 	</androidx.constraintlayout.widget.ConstraintLayout>

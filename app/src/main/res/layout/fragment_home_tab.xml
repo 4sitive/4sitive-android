@@ -41,10 +41,10 @@
 					android:layout_marginTop="7dp"
 					android:fontFamily="@font/kopub_dotum_medium"
 					android:letterSpacing="-0.02"
-					android:lineSpacingExtra="7sp"
+					android:lineSpacingExtra="7dp"
 					android:text="민정님, Hello!"
 					android:textColor="@color/_000000"
-					android:textSize="17sp"
+					android:textSize="17dp"
 					app:layout_constraintStart_toStartOf="parent"
 					app:layout_constraintTop_toTopOf="parent" />
 				
@@ -57,7 +57,7 @@
 					android:letterSpacing="-0.01"
 					android:text="오늘 하루를 나눠봐요"
 					android:textColor="@color/_000000"
-					android:textSize="14sp"
+					android:textSize="14dp"
 					app:layout_constraintBottom_toBottomOf="parent"
 					app:layout_constraintStart_toStartOf="parent" />
 				
@@ -84,10 +84,10 @@
 					android:layout_marginTop="44dp"
 					android:fontFamily="@font/kopub_dotum_medium"
 					android:letterSpacing="-0.01"
-					android:lineSpacingExtra="8sp"
+					android:lineSpacingExtra="8dp"
 					android:text="아아? 라떼? 커피를 추천해줘!"
 					android:textColor="@color/_000000"
-					android:textSize="32sp"
+					android:textSize="32dp"
 					app:layout_constraintStart_toStartOf="parent"
 					app:layout_constraintTop_toTopOf="parent" />
 				
@@ -124,10 +124,10 @@
 					android:layout_marginTop="44dp"
 					android:fontFamily="@font/kopub_dotum_medium"
 					android:letterSpacing="-0.01"
-					android:lineSpacingExtra="8sp"
+					android:lineSpacingExtra="8dp"
 					android:text="털복숭이 친구들을 소개해줘요!"
 					android:textColor="@color/_000000"
-					android:textSize="32sp"
+					android:textSize="32dp"
 					app:layout_constraintStart_toStartOf="parent"
 					app:layout_constraintTop_toTopOf="parent" />
 				
@@ -164,10 +164,10 @@
 					android:layout_marginTop="44dp"
 					android:fontFamily="@font/kopub_dotum_medium"
 					android:letterSpacing="-0.01"
-					android:lineSpacingExtra="8sp"
+					android:lineSpacingExtra="8dp"
 					android:text="도시의 밤 향기를 닮은 너!"
 					android:textColor="@color/_000000"
-					android:textSize="32sp"
+					android:textSize="32dp"
 					app:layout_constraintStart_toStartOf="parent"
 					app:layout_constraintTop_toTopOf="parent" />
 				

@@ -51,7 +51,7 @@
 				android:fontFamily="@font/montserrat_medium"
 				android:text="@{item.formattedParticipants}"
 				android:textColor="@color/_FFFFFF"
-				android:textSize="14sp"
+				android:textSize="14dp"
 				app:isVisible="@{item.visibleParticipants}"
 				tools:text="# 1,234" />
 			
@@ -64,7 +64,7 @@
 				android:fontFamily="@font/kopub_dotum_bold"
 				android:text="@{item.categoryName}"
 				android:textColor="@{context.getColor(item.nameTextColorRes)}"
-				android:textSize="20sp"
+				android:textSize="20dp"
 				tools:text="취미" />
 		
 		</androidx.cardview.widget.CardView>
