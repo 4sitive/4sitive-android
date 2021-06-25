@@ -1,16 +1,15 @@
 package org.positive.daymotion.presentation.my.activity
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
-import android.provider.MediaStore
+import androidx.activity.result.contract.ActivityResultContracts
 import dagger.hilt.android.AndroidEntryPoint
 import org.positive.daymotion.R
-import org.positive.daymotion.presentation.common.bundle
 import org.positive.daymotion.databinding.ActivityMyProfileEditBinding
-import org.positive.daymotion.presentation.common.extension.startWith
 import org.positive.daymotion.presentation.common.base.BaseActivity
 import org.positive.daymotion.presentation.common.base.viewModelOf
+import org.positive.daymotion.presentation.common.bundle
+import org.positive.daymotion.presentation.common.extension.startWith
 import org.positive.daymotion.presentation.my.viewmodel.MyProfileEditViewModel
 
 
@@ -22,10 +21,16 @@ class MyProfileEditActivity :
     private val handler by lazy { Handler() }
 
     private val originProfile by bundle<String>()
-
     private val originName by bundle<String>()
-
     private val originIntroduce by bundle<String>()
+
+    private val galleryLauncher = registerForActivityResult(
+        ActivityResultContracts.GetContent()
+    ) {
+        it?.let {
+            viewModel.profileImage.value = it.toString()
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,22 +48,11 @@ class MyProfileEditActivity :
         }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == REQUEST_CODE_GALLERY && resultCode == RESULT_OK) {
-            data?.data?.toString()?.let {
-                viewModel.profileImage.value = it
-            }
-        }
-    }
-
     inner class Handler {
         fun finish() = this@MyProfileEditActivity.finish()
 
         fun startGallery() {
-            val intent = Intent(Intent.ACTION_PICK)
-            intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*")
-            startActivityForResult(intent, REQUEST_CODE_GALLERY)
+            galleryLauncher.launch("image/*")
         }
     }
 

@@ -1,17 +1,17 @@
 package org.positive.daymotion.presentation.main
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
-import org.positive.daymotion.R
 import org.positive.daymotion.DmConstants
+import org.positive.daymotion.R
 import org.positive.daymotion.databinding.ActivityMainBinding
-import org.positive.daymotion.presentation.common.extension.startOnTop
 import org.positive.daymotion.presentation.common.base.BaseActivity
 import org.positive.daymotion.presentation.common.base.viewModelOf
+import org.positive.daymotion.presentation.common.extension.startOnTop
 
 
 @AndroidEntryPoint
@@ -19,6 +19,15 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     private val viewModel by viewModelOf<MainViewModel>()
     private var backWait: Long = 0
+
+    private val getContent =
+        registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
+            if (uri != null) {
+                viewModel.upload(uri.toString())
+            } else {
+                Toast.makeText(this, "Image not selected", Toast.LENGTH_SHORT).show()
+            }
+        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,12 +44,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
                     .into(binding.image)
             }
         }
-
-//        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_nav)
-//        bottomNavigationView.setOnNavigationItemSelectedListener { item ->
-//            // TODO(je): create fragment and setting listener
-//            true
-//        }
     }
 
     override fun onBackPressed() {
@@ -54,23 +57,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     }
 
     private fun startGallery() {
-        // TODO(yh): Neceds to be modified with Result Api
-        val intent = Intent(Intent.ACTION_PICK)
-        intent.type = "image/*"
-        val mimeTypes = arrayOf("image/jpeg", "image/png")
-        intent.putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes)
-        startActivityForResult(intent, 200)
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == 200) {
-            if (resultCode == RESULT_OK && data != null) {
-                viewModel.upload(data.data!!.toString())
-            } else {
-                Toast.makeText(this, "Image not selected", Toast.LENGTH_SHORT).show()
-            }
-        }
-        super.onActivityResult(requestCode, resultCode, data)
+        getContent.launch("image/*")
     }
 
     companion object {
