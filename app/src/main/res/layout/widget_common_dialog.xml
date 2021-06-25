@@ -2,6 +2,17 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools">
 	
+	<data>
+		
+		<variable
+			name="commonDialogBundle"
+			type="org.positive.daymotion.presentation.common.CommonDialogBundle" />
+		
+		<variable
+			name="handler"
+			type="org.positive.daymotion.presentation.common.CommonDialogFragment.Handler" />
+	</data>
+	
 	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
@@ -18,6 +29,7 @@
 			android:layout_marginBottom="12dp"
 			android:fontFamily="@font/kopub_dotum_bold"
 			android:gravity="center"
+			android:text="@{commonDialogBundle.title}"
 			android:textColor="@color/_171717"
 			android:textSize="18sp"
 			tools:text="제목" />
@@ -30,6 +42,7 @@
 			android:fontFamily="@font/kopub_dotum_medium"
 			android:gravity="center"
 			android:lineSpacingExtra="6sp"
+			android:text="@{commonDialogBundle.content}"
 			android:textColor="@color/_171717"
 			android:textSize="14sp"
 			tools:text="내용" />
@@ -42,7 +55,9 @@
 			android:background="@drawable/backgroud_dialog_blue_btn"
 			android:fontFamily="@font/kopub_dotum_bold"
 			android:gravity="center"
-			android:textColor="@color/_000000"
+			android:onClick="@{() -> handler.onClickBlueButton()}"
+			android:text="@{commonDialogBundle.blueButtonText}"
+			android:textColor="@color/_FFFFFF"
 			android:textSize="15sp"
 			tools:text="파란색 버튼" />
 		
@@ -55,6 +70,8 @@
 			android:background="@drawable/backgroud_dialog_gray_btn"
 			android:fontFamily="@font/kopub_dotum_medium"
 			android:gravity="center"
+			android:onClick="@{() -> handler.onClickGrayButton()}"
+			android:text="@{commonDialogBundle.grayButtonText}"
 			android:textColor="@color/_171717"
 			android:textSize="15sp"
 			tools:text="회색 버튼" />

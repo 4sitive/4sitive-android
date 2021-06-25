@@ -9,6 +9,7 @@
 		android:name="org.positive.daymotion.DmApplication"
 		android:allowBackup="true"
 		android:fullBackupContent="false"
+		android:label="@string/app_name"
 		android:icon="@mipmap/app_icon"
 		android:roundIcon="@mipmap/app_icon_round"
 		android:supportsRtl="false"
