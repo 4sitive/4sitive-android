@@ -94,12 +94,13 @@
                 android:id="@+id/pushSwitch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textOff=""
+                android:textOn=""
+                android:theme="@style/Switch"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:textOff=""
-                android:textOn=""
-                android:theme="@style/Switch"/>
+                app:switchMinWidth="54dp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
