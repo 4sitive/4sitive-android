@@ -1,8 +1,8 @@
 package org.positive.daymotion.presentation.setting
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.CompoundButton
 import android.widget.Toast
 import dagger.hilt.android.AndroidEntryPoint
 import org.positive.daymotion.R
@@ -15,7 +15,7 @@ import org.positive.daymotion.presentation.root.model.RootTabFragment
 
 @AndroidEntryPoint
 class SettingTabFragment : BaseFragment<FragmentSettingTabBinding>(R.layout.fragment_setting_tab),
-        RootTabFragment {
+    RootTabFragment {
 
     private val viewModel by viewModelOf<SettingTabViewModel>()
 
@@ -27,8 +27,11 @@ class SettingTabFragment : BaseFragment<FragmentSettingTabBinding>(R.layout.frag
             // TODO(je): logout api
             val logoutMsg = requireContext().resources.getString(R.string.logoutMsg)
             Toast.makeText(requireContext(), logoutMsg, Toast.LENGTH_SHORT).show()
-            val intent = Intent(requireContext(), LoginActivity::class.java)
-            startActivity(intent)
+            LoginActivity.startOnTop(requireContext())
+        }
+
+        binding.pushSwitch.setOnCheckedChangeListener { compoundButton: CompoundButton, isChecked: Boolean ->
+            onPushAlarm(isChecked)
         }
 
         binding.serviceButton.setOnClickListener {
@@ -37,6 +40,7 @@ class SettingTabFragment : BaseFragment<FragmentSettingTabBinding>(R.layout.frag
         binding.privacyButton.setOnClickListener {
             PrivacyPolicyActivity.start(requireContext())
         }
+
         binding.secessionButton.setOnClickListener {
             showPopupDialog {
                 title = "탈퇴하시려구요?"
@@ -46,15 +50,25 @@ class SettingTabFragment : BaseFragment<FragmentSettingTabBinding>(R.layout.frag
                 blueButtonText = "안할게요!"
                 grayButtonText = "탈퇴할래요"
                 isVisibleGrayButton = true
-                onClickGrayButton {
-                    setSecessionApi()
-                }
+                onClickGrayButton { setSecessionApi() }
             }
         }
     }
 
-    fun setSecessionApi() {
+    private fun onPushAlarm(isChecked: Boolean) {
+        if (isChecked) {
+            Toast.makeText(requireContext(), "푸시 알림 ON", Toast.LENGTH_SHORT).show()
+            // TODO(je): push alarm on
+        } else {
+            Toast.makeText(requireContext(), "푸시 알림 OFF", Toast.LENGTH_SHORT).show()
+            // TODO(je): push alarm off
+        }
+    }
+
+    private fun setSecessionApi() {
         // TODO(je): secession api
+        Toast.makeText(requireContext(), "탈퇴가 완료되었습니다.", Toast.LENGTH_SHORT).show()
+        LoginActivity.startOnTop(requireContext())
     }
 
     override fun scrollToTop() {
