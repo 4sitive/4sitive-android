@@ -47,6 +47,7 @@ class SettingTabFragment : BaseFragment<FragmentSettingTabBinding>(R.layout.frag
                 blueButtonText = "안할게요!"
                 grayButtonText = "탈퇴할래요"
                 isVisibleGrayButton = true
+                isCancelable = true
                 onClickGrayButton { setSecessionApi() }
             }
         }

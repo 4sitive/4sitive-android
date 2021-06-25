@@ -1,8 +1,8 @@
 package org.positive.daymotion.presentation.common
 
-import android.app.Activity
 import android.app.Dialog
 import android.os.Bundle
+import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,8 +12,10 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
+import kotlinx.parcelize.Parcelize
 import org.positive.daymotion.R
 import org.positive.daymotion.databinding.WidgetCommonDialogBinding
+import org.positive.daymotion.presentation.common.extension.layoutInflater
 import java.io.Serializable
 
 
@@ -27,61 +29,66 @@ class DialogScope : Serializable {
 
     var grayButtonText: String = "취소"
 
+    var isVisibleBlueButton: Boolean = true
+
     var isVisibleGrayButton: Boolean = false
 
     var isCancelable: Boolean = false
 
-    private var onBlueButton: () -> Unit = {}
+    private var onClickBlueButton: () -> Unit = {}
 
-    private var onGrayButton: () -> Unit = {}
+    private var onClickGrayButton: () -> Unit = {}
 
     fun onClickBlueButton(block: () -> Unit) {
-        onBlueButton = block
+        onClickBlueButton = block
     }
 
     fun onClickGrayButton(block: () -> Unit) {
-        onGrayButton = block
+        onClickGrayButton = block
     }
 
-    fun build(context: Activity): Dialog {
+    fun buildCommonDialogBundle() = CommonDialogBundle(
+        title = title,
+        content = content,
+        blueButtonText = blueButtonText,
+        grayButtonText = grayButtonText,
+        isVisibleBlueButton = isVisibleBlueButton,
+        isVisibleGrayButton = isVisibleGrayButton,
+        isCancelable = isCancelable,
+        onClickBlueButton = onClickBlueButton,
+        onClickGrayButton = onClickGrayButton
+    )
+}
+
+@Parcelize
+data class CommonDialogBundle(
+    val title: String,
+    val content: String,
+    val blueButtonText: String,
+    val grayButtonText: String,
+    val isVisibleBlueButton: Boolean,
+    val isVisibleGrayButton: Boolean,
+    val isCancelable: Boolean,
+    val onClickBlueButton: () -> Unit,
+    val onClickGrayButton: () -> Unit
+) : Parcelable
+
+class CommonDialogFragment : DialogFragment() {
+
+    private val commonDialogBundle by bundle<CommonDialogBundle>()
+    private val handler by lazy { Handler() }
+
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        val context = requireContext()
         val binding = WidgetCommonDialogBinding.inflate(context.layoutInflater, null, false)
 
         val dialog = AlertDialog.Builder(context, R.style.CommonDialogTheme)
             .setView(binding.root)
             .create()
 
-        with(binding) {
-            titleTextView.text = title
-            contentTextView.text = content
-            blueButton.text = blueButtonText
-            grayButton.text = grayButtonText
-            if (!isVisibleGrayButton) {
-                grayButton.visibility = View.GONE
-            }
-            blueButton.setOnClickListener {
-                blueButton.alpha = 0.5f
-                onBlueButton()
-                dialog.dismiss()
-            }
-            grayButton.setOnClickListener {
-                grayButton.alpha = 0.5f
-                onGrayButton()
-                dialog.dismiss()
-            }
-        }
-
+        binding.commonDialogBundle = commonDialogBundle
+        binding.handler = handler
         return dialog
-    }
-}
-
-class CommonDialogFragment : DialogFragment() {
-
-    private var _isCancelable: Boolean = false
-
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val dialogScope = requireNotNull(arguments?.get("dialogScope")) as DialogScope
-        _isCancelable = dialogScope.isCancelable
-        return dialogScope.build(requireActivity())
     }
 
     override fun onCreateView(
@@ -89,22 +96,39 @@ class CommonDialogFragment : DialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        isCancelable = _isCancelable
+        isCancelable = commonDialogBundle.isCancelable
         return super.onCreateView(inflater, container, savedInstanceState)
+    }
+
+    inner class Handler {
+        fun onClickBlueButton() {
+            commonDialogBundle.onClickBlueButton()
+            dialog?.dismiss()
+        }
+
+        fun onClickGrayButton() {
+            commonDialogBundle.onClickGrayButton()
+            dialog?.dismiss()
+        }
     }
 
     companion object {
 
-        fun show(dialogScope: DialogScope, fragmentManager: FragmentManager) {
+        fun show(block: DialogScope.() -> Unit, fragmentManager: FragmentManager) {
+            val dialogScope = DialogScope()
+            dialogScope.block()
+
             CommonDialogFragment().apply {
-                arguments = bundleOf("dialogScope" to dialogScope)
+                arguments = bundleOf(
+                    "commonDialogBundle" to dialogScope.buildCommonDialogBundle()
+                )
             }.show(fragmentManager, this::class.qualifiedName)
         }
     }
 }
 
 fun FragmentActivity.showPopupDialog(block: DialogScope.() -> Unit) =
-    CommonDialogFragment.show(DialogScope().apply(block), supportFragmentManager)
+    CommonDialogFragment.show(block, supportFragmentManager)
 
 fun Fragment.showPopupDialog(block: DialogScope.() -> Unit) =
-    CommonDialogFragment.show(DialogScope().apply(block), parentFragmentManager)
+    CommonDialogFragment.show(block, parentFragmentManager)
