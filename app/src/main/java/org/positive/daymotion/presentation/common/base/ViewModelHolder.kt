@@ -1,8 +1,8 @@
-package org.positive.daymotion.presentation.base.util
+package org.positive.daymotion.presentation.common.base
 
+import androidx.annotation.MainThread
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStore
-import org.positive.daymotion.presentation.base.BaseViewModel
 import kotlin.reflect.KClass
 
 class ViewModelHolder<VM : BaseViewModel>(
@@ -29,3 +29,27 @@ class ViewModelHolder<VM : BaseViewModel>(
 
     override fun isInitialized() = _cached != null
 }
+
+@MainThread
+inline fun <reified VM : BaseViewModel> BaseActivity<*>.viewModelOf() = ViewModelHolder(
+    VM::class,
+    { viewModelStore },
+    { defaultViewModelProviderFactory },
+    { observeBaseLiveData(it) }
+)
+
+@MainThread
+inline fun <reified VM : BaseViewModel> BaseFragment<*>.viewModelOf() = ViewModelHolder(
+    VM::class,
+    { viewModelStore },
+    { defaultViewModelProviderFactory },
+    { observeBaseLiveData(it) }
+)
+
+@MainThread
+inline fun <reified VM : BaseViewModel> BaseFragment<*>.sharedViewModelOf() = ViewModelHolder(
+    VM::class,
+    { requireBaseActivity.viewModelStore },
+    { defaultViewModelProviderFactory },
+    { observeBaseLiveData(it) }
+)

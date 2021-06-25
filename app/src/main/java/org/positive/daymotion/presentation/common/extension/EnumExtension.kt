@@ -1,4 +1,4 @@
-package org.positive.daymotion.extension
+package org.positive.daymotion.presentation.common.extension
 
 import com.google.gson.annotations.SerializedName
 import java.lang.reflect.Field

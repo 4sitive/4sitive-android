@@ -5,7 +5,7 @@ import org.positive.daymotion.data.api.AuthApi
 import org.positive.daymotion.data.model.GrantType
 import org.positive.daymotion.data.model.OauthAuthorizationResponse.Companion.toAuthToken
 import org.positive.daymotion.domain.AuthToken
-import org.positive.daymotion.extension.declaredSerializedName
+import org.positive.daymotion.presentation.common.extension.declaredSerializedName
 import javax.inject.Inject
 import javax.inject.Singleton
 

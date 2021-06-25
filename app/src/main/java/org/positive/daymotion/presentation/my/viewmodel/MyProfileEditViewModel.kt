@@ -4,9 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import dagger.hilt.android.lifecycle.HiltViewModel
-import org.positive.daymotion.common.SingleLiveEvent
-import org.positive.daymotion.common.bindingadapter.merge
-import org.positive.daymotion.presentation.base.BaseViewModel
+import org.positive.daymotion.presentation.common.SingleLiveEvent
+import org.positive.daymotion.presentation.common.util.liveDataMerge
+import org.positive.daymotion.presentation.common.base.BaseViewModel
 import org.positive.daymotion.presentation.my.model.NickNameValidation
 import javax.inject.Inject
 
@@ -21,7 +21,7 @@ class MyProfileEditViewModel @Inject constructor() : BaseViewModel() {
 
     val nickNameValidation = Transformations.map(name) { checkNickNameValidation(it) }
 
-    val isProfileUpdatePossible = merge(
+    val isProfileUpdatePossible = liveDataMerge(
         introduce,
         nickNameValidation
     ) { introduce, nickNameValidation -> checkProfileUpdatePossible(introduce, nickNameValidation) }

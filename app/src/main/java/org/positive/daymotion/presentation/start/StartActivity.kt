@@ -6,10 +6,10 @@ import android.os.Bundle
 import dagger.hilt.android.AndroidEntryPoint
 import org.positive.daymotion.BuildConfig
 import org.positive.daymotion.R
-import org.positive.daymotion.common.showPopupDialog
 import org.positive.daymotion.databinding.ActivityStartBinding
-import org.positive.daymotion.presentation.base.BaseActivity
-import org.positive.daymotion.presentation.base.util.viewModelOf
+import org.positive.daymotion.presentation.common.base.BaseActivity
+import org.positive.daymotion.presentation.common.base.viewModelOf
+import org.positive.daymotion.presentation.common.showPopupDialog
 import org.positive.daymotion.presentation.login.LoginActivity
 import org.positive.daymotion.presentation.root.RootActivity
 

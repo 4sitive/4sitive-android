@@ -1,4 +1,4 @@
-package org.positive.daymotion.common
+package org.positive.daymotion
 
 object DmConstants {
     // TODO: depend on variant

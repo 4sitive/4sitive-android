@@ -1,4 +1,4 @@
-package org.positive.daymotion.presentation.base
+package org.positive.daymotion.presentation.common.base
 
 import android.os.Bundle
 import android.widget.Toast
@@ -7,8 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.LifecycleOwner
-import org.positive.daymotion.presentation.base.util.LiveDataObservable
-import org.positive.daymotion.presentation.base.util.LoadingHandler
 
 abstract class BaseActivity<B : ViewDataBinding>(
     @LayoutRes private val layoutId: Int

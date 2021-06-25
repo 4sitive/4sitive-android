@@ -5,10 +5,10 @@ import android.view.View
 import android.widget.Toast
 import dagger.hilt.android.AndroidEntryPoint
 import org.positive.daymotion.R
-import org.positive.daymotion.common.showPopupDialog
 import org.positive.daymotion.databinding.FragmentSettingTabBinding
-import org.positive.daymotion.presentation.base.BaseFragment
-import org.positive.daymotion.presentation.base.util.viewModelOf
+import org.positive.daymotion.presentation.common.base.BaseFragment
+import org.positive.daymotion.presentation.common.base.viewModelOf
+import org.positive.daymotion.presentation.common.showPopupDialog
 import org.positive.daymotion.presentation.login.LoginActivity
 
 @AndroidEntryPoint

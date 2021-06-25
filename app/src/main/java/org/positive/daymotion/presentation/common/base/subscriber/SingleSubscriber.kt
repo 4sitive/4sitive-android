@@ -1,23 +1,23 @@
-package org.positive.daymotion.presentation.base.subscriber
+package org.positive.daymotion.presentation.common.base.subscriber
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.core.Maybe
+import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 
-interface MaybeSubscriber : BaseSubscriber {
+interface SingleSubscriber : BaseSubscriber {
 
-    fun <T> Maybe<T>.autoDispose(block: MaybeSubscribeScope<T>.() -> Unit) {
-        val scope = MaybeSubscribeScope(this, disposables)
+    fun <T> Single<T>.autoDispose(block: SingleSubscribeScope<T>.() -> Unit) {
+        val scope = SingleSubscribeScope(this, disposables)
         scope.block()
         scope.subscribe()
     }
 
-    fun <T> Maybe<T>.backgroundCompose(): Maybe<T> = compose {
+    fun <T> Single<T>.backgroundCompose(): Single<T> = compose {
         it.subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
     }
 
-    fun <T> Maybe<T>.apiLoadingCompose(): Maybe<T> = compose {
+    fun <T> Single<T>.apiLoadingCompose(): Single<T> = compose {
         it.subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { loadingMutableLiveData.value = true }

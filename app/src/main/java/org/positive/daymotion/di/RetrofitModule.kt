@@ -5,7 +5,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
-import org.positive.daymotion.common.DmConstants
+import org.positive.daymotion.DmConstants
 import retrofit2.CallAdapter
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

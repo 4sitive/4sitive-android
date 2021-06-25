@@ -7,11 +7,11 @@ import android.widget.Toast
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 import org.positive.daymotion.R
-import org.positive.daymotion.common.DmConstants
+import org.positive.daymotion.DmConstants
 import org.positive.daymotion.databinding.ActivityMainBinding
-import org.positive.daymotion.extension.startOnTop
-import org.positive.daymotion.presentation.base.BaseActivity
-import org.positive.daymotion.presentation.base.util.viewModelOf
+import org.positive.daymotion.presentation.common.extension.startOnTop
+import org.positive.daymotion.presentation.common.base.BaseActivity
+import org.positive.daymotion.presentation.common.base.viewModelOf
 
 
 @AndroidEntryPoint

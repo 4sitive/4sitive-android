@@ -1,11 +1,11 @@
-package org.positive.daymotion.extension
+package org.positive.daymotion.presentation.common.extension
 
 import android.app.TaskStackBuilder
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import androidx.core.os.bundleOf
-import org.positive.daymotion.presentation.base.BaseActivity
+import org.positive.daymotion.presentation.common.base.BaseActivity
 
 fun Context.intentFor(
     clazz: Class<*>,

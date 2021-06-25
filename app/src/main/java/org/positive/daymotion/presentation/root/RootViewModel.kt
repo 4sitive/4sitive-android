@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import dagger.hilt.android.lifecycle.HiltViewModel
-import org.positive.daymotion.common.SingleLiveEvent
-import org.positive.daymotion.presentation.base.BaseViewModel
+import org.positive.daymotion.presentation.common.SingleLiveEvent
+import org.positive.daymotion.presentation.common.base.BaseViewModel
 import org.positive.daymotion.presentation.root.model.Tab
 import javax.inject.Inject
 

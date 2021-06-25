@@ -1,4 +1,4 @@
-package org.positive.daymotion.presentation.base.subscriber
+package org.positive.daymotion.presentation.common.base.subscriber
 
 import androidx.lifecycle.MutableLiveData
 import io.reactivex.rxjava3.disposables.CompositeDisposable

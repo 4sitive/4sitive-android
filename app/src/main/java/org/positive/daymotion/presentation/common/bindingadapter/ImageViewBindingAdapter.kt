@@ -1,4 +1,4 @@
-package org.positive.daymotion.common.bindingadapter
+package org.positive.daymotion.presentation.common.bindingadapter
 
 import android.graphics.drawable.Drawable
 import android.widget.ImageView

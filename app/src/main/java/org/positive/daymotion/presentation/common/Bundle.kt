@@ -1,4 +1,4 @@
-package org.positive.daymotion.common
+package org.positive.daymotion.presentation.common
 
 import android.app.Activity
 import androidx.fragment.app.Fragment

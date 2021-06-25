@@ -4,7 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import com.google.android.material.appbar.AppBarLayout
 import org.positive.daymotion.databinding.WidgetDmAppBarLayoutBinding
-import org.positive.daymotion.extension.layoutInflater
+import org.positive.daymotion.presentation.common.extension.layoutInflater
 
 class DmAppBarLayout : AppBarLayout {
 
