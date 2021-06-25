@@ -8,8 +8,8 @@
 	<application
 		android:name="org.positive.daymotion.DmApplication"
 		android:allowBackup="true"
+		android:fullBackupContent="false"
 		android:icon="@mipmap/app_icon"
-		android:label="test"
 		android:roundIcon="@mipmap/app_icon_round"
 		android:supportsRtl="false"
 		android:theme="@style/AppTheme">
