@@ -1,7 +1,9 @@
 package org.positive.daymotion.presentation.my.activity
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import dagger.hilt.android.AndroidEntryPoint
 import org.positive.daymotion.R
@@ -9,7 +11,7 @@ import org.positive.daymotion.databinding.ActivityMyProfileEditBinding
 import org.positive.daymotion.presentation.common.base.BaseActivity
 import org.positive.daymotion.presentation.common.base.viewModelOf
 import org.positive.daymotion.presentation.common.bundle
-import org.positive.daymotion.presentation.common.extension.startWith
+import org.positive.daymotion.presentation.common.extension.startForResultWith
 import org.positive.daymotion.presentation.my.viewmodel.MyProfileEditViewModel
 
 
@@ -57,14 +59,14 @@ class MyProfileEditActivity :
     }
 
     companion object {
-        private const val REQUEST_CODE_GALLERY = 1000
-
-        fun start(
+        fun startForResult(
             context: Context,
+            launcher: ActivityResultLauncher<Intent>,
             originProfile: String,
             originName: String,
             originIntroduce: String
-        ) = context.startWith<MyProfileEditActivity>(
+        ) = context.startForResultWith<MyProfileEditActivity>(
+            launcher,
             "originProfile" to originProfile,
             "originName" to originName,
             "originIntroduce" to originIntroduce

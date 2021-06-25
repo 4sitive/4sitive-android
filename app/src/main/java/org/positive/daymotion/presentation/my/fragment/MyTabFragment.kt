@@ -11,6 +11,7 @@ import org.positive.daymotion.presentation.common.ScrollableFragment
 import org.positive.daymotion.presentation.common.adapter.FeedThumbnailAdapter
 import org.positive.daymotion.presentation.common.base.BaseFragment
 import org.positive.daymotion.presentation.common.base.viewModelOf
+import org.positive.daymotion.presentation.common.extension.registerActivityResult
 import org.positive.daymotion.presentation.my.activity.MyProfileEditActivity
 import org.positive.daymotion.presentation.my.viewmodel.MyTabViewModel
 
@@ -21,6 +22,10 @@ class MyTabFragment : BaseFragment<FragmentMyTabBinding>(R.layout.fragment_my_ta
     private val viewModel by viewModelOf<MyTabViewModel>()
     private val feedThumbnailAdapter by lazy { FeedThumbnailAdapter() }
     private val handler by lazy { Handler() }
+
+    private val myProfileEditActivityLauncher = registerActivityResult {
+        // TODO(yh): reload updated profile
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -51,8 +56,9 @@ class MyTabFragment : BaseFragment<FragmentMyTabBinding>(R.layout.fragment_my_ta
     }
 
     inner class Handler {
-        fun goToProfileEdit() = MyProfileEditActivity.start(
+        fun goToProfileEdit() = MyProfileEditActivity.startForResult(
             requireContext(),
+            myProfileEditActivityLauncher,
             "",
             "시루",
             "시루랑 함께하는 일상"
