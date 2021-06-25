@@ -3,7 +3,7 @@ package org.positive.daymotion.presentation.category.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import dagger.hilt.android.lifecycle.HiltViewModel
-import org.positive.daymotion.presentation.base.BaseViewModel
+import org.positive.daymotion.presentation.common.base.BaseViewModel
 import org.positive.daymotion.presentation.category.model.MissionHistoryInnerItem
 import org.positive.daymotion.presentation.category.model.MissionHistoryItem
 import javax.inject.Inject

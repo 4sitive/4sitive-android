@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import org.positive.daymotion.data.repository.ImageRepository
-import org.positive.daymotion.presentation.base.BaseViewModel
+import org.positive.daymotion.presentation.common.base.BaseViewModel
 import javax.inject.Inject
 
 @HiltViewModel

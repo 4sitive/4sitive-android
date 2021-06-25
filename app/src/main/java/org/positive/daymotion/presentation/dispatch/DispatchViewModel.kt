@@ -2,11 +2,11 @@ package org.positive.daymotion.presentation.dispatch
 
 import androidx.lifecycle.LiveData
 import dagger.hilt.android.lifecycle.HiltViewModel
-import org.positive.daymotion.common.DmConstants
-import org.positive.daymotion.common.SingleLiveEvent
+import org.positive.daymotion.DmConstants
+import org.positive.daymotion.presentation.common.SingleLiveEvent
 import org.positive.daymotion.data.pref.AppSharedPreference
 import org.positive.daymotion.data.repository.AuthRepository
-import org.positive.daymotion.presentation.base.BaseViewModel
+import org.positive.daymotion.presentation.common.base.BaseViewModel
 import javax.inject.Inject
 
 @HiltViewModel

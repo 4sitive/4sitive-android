@@ -1,4 +1,4 @@
-package org.positive.daymotion.common.bindingadapter
+package org.positive.daymotion.presentation.common.bindingadapter
 
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout

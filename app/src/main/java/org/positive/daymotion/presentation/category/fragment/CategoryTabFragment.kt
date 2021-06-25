@@ -11,11 +11,11 @@ import dagger.hilt.android.AndroidEntryPoint
 import org.positive.daymotion.R
 import org.positive.daymotion.databinding.FragmentCategoryTabBinding
 import org.positive.daymotion.databinding.WidgetCategoryTabIndicatorBinding
-import org.positive.daymotion.presentation.base.BaseFragment
-import org.positive.daymotion.presentation.base.util.viewModelOf
+import org.positive.daymotion.presentation.common.base.BaseFragment
 import org.positive.daymotion.presentation.category.adapter.CategoryTabPagerAdapter
 import org.positive.daymotion.presentation.category.viewmodel.CategoryTabViewModel
 import org.positive.daymotion.presentation.common.ScrollableFragment
+import org.positive.daymotion.presentation.common.base.viewModelOf
 
 @AndroidEntryPoint
 class CategoryTabFragment :

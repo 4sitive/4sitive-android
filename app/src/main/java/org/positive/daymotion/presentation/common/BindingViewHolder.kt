@@ -1,12 +1,12 @@
-package org.positive.daymotion.common
+package org.positive.daymotion.presentation.common
 
 import android.content.Context
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
-import org.positive.daymotion.common.LayoutIdMapper.toLayoutId
-import org.positive.daymotion.extension.layoutInflater
+import org.positive.daymotion.presentation.common.LayoutIdMapper.toLayoutId
+import org.positive.daymotion.presentation.common.extension.layoutInflater
 import java.util.*
 
 class BindingViewHolder<B : ViewDataBinding>(val binding: B) : RecyclerView.ViewHolder(binding.root)

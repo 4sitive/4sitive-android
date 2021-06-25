@@ -1,13 +1,13 @@
-package org.positive.daymotion.presentation.base
+package org.positive.daymotion.presentation.common.base
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import io.reactivex.rxjava3.disposables.CompositeDisposable
-import org.positive.daymotion.common.SingleLiveEvent
-import org.positive.daymotion.presentation.base.subscriber.CompletableSubscriber
-import org.positive.daymotion.presentation.base.subscriber.MaybeSubscriber
-import org.positive.daymotion.presentation.base.subscriber.SingleSubscriber
+import org.positive.daymotion.presentation.common.SingleLiveEvent
+import org.positive.daymotion.presentation.common.base.subscriber.CompletableSubscriber
+import org.positive.daymotion.presentation.common.base.subscriber.MaybeSubscriber
+import org.positive.daymotion.presentation.common.base.subscriber.SingleSubscriber
 
 abstract class BaseViewModel : ViewModel(),
     SingleSubscriber, MaybeSubscriber, CompletableSubscriber {
@@ -22,6 +22,7 @@ abstract class BaseViewModel : ViewModel(),
 
     override val disposables: CompositeDisposable
         get() = _disposables
+
     override val loadingMutableLiveData: MutableLiveData<Boolean>
         get() = _isLoading
 

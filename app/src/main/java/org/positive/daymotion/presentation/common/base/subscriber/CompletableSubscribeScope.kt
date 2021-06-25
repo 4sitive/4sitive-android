@@ -1,4 +1,4 @@
-package org.positive.daymotion.presentation.base.subscriber
+package org.positive.daymotion.presentation.common.base.subscriber
 
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.disposables.CompositeDisposable

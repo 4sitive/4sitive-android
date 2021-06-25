@@ -1,11 +1,11 @@
-package org.positive.daymotion.common.bindingadapter
+package org.positive.daymotion.presentation.common.util
 
 import androidx.annotation.MainThread
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 
 @MainThread
-fun <X, Y, Z> merge(
+fun <X, Y, Z> liveDataMerge(
     source1: LiveData<X>,
     source2: LiveData<Y>,
     mergeFunction: (X?, Y?) -> Z

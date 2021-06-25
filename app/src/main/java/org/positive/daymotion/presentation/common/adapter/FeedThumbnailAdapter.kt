@@ -2,8 +2,8 @@ package org.positive.daymotion.presentation.common.adapter
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import org.positive.daymotion.common.BindingViewHolder
-import org.positive.daymotion.common.createBindingViewHolder
+import org.positive.daymotion.presentation.common.BindingViewHolder
+import org.positive.daymotion.presentation.common.createBindingViewHolder
 import org.positive.daymotion.databinding.ItemFeedThumbnailBinding
 import org.positive.daymotion.presentation.common.model.FeedThumbnailItem
 

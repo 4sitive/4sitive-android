@@ -6,11 +6,11 @@ import android.os.Bundle
 import android.provider.MediaStore
 import dagger.hilt.android.AndroidEntryPoint
 import org.positive.daymotion.R
-import org.positive.daymotion.common.bundle
+import org.positive.daymotion.presentation.common.bundle
 import org.positive.daymotion.databinding.ActivityMyProfileEditBinding
-import org.positive.daymotion.extension.startWith
-import org.positive.daymotion.presentation.base.BaseActivity
-import org.positive.daymotion.presentation.base.util.viewModelOf
+import org.positive.daymotion.presentation.common.extension.startWith
+import org.positive.daymotion.presentation.common.base.BaseActivity
+import org.positive.daymotion.presentation.common.base.viewModelOf
 import org.positive.daymotion.presentation.my.viewmodel.MyProfileEditViewModel
 
 

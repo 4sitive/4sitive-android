@@ -2,8 +2,8 @@ package org.positive.daymotion.presentation.category.adapter
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import org.positive.daymotion.common.BindingViewHolder
-import org.positive.daymotion.common.createBindingViewHolder
+import org.positive.daymotion.presentation.common.BindingViewHolder
+import org.positive.daymotion.presentation.common.createBindingViewHolder
 import org.positive.daymotion.databinding.ItemMissionHistoryBinding
 import org.positive.daymotion.presentation.category.fragment.MissionHistoryPageFragment
 import org.positive.daymotion.presentation.category.model.MissionHistoryItem

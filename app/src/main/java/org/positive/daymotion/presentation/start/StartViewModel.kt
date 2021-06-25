@@ -3,10 +3,10 @@ package org.positive.daymotion.presentation.start
 import androidx.lifecycle.LiveData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.rxjava3.core.Single
-import org.positive.daymotion.common.SingleLiveEvent
+import org.positive.daymotion.presentation.common.SingleLiveEvent
 import org.positive.daymotion.data.pref.AppSharedPreference
 import org.positive.daymotion.data.repository.RemoteConfigRepository
-import org.positive.daymotion.presentation.base.BaseViewModel
+import org.positive.daymotion.presentation.common.base.BaseViewModel
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 

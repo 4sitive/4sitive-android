@@ -9,7 +9,7 @@ import android.view.KeyEvent
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import org.positive.daymotion.common.DmConstants
+import org.positive.daymotion.DmConstants
 
 class DmWebView : WebView {
 

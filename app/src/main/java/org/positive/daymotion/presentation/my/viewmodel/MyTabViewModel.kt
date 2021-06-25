@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import dagger.hilt.android.lifecycle.HiltViewModel
-import org.positive.daymotion.presentation.base.BaseViewModel
+import org.positive.daymotion.presentation.common.base.BaseViewModel
 import org.positive.daymotion.presentation.common.model.FeedThumbnailItem
 import javax.inject.Inject
 import kotlin.random.Random

@@ -18,10 +18,10 @@ import androidx.core.content.res.ResourcesCompat
 import dagger.hilt.android.AndroidEntryPoint
 import org.positive.daymotion.BuildConfig
 import org.positive.daymotion.R
-import org.positive.daymotion.common.DmConstants
+import org.positive.daymotion.DmConstants
 import org.positive.daymotion.databinding.ActivityLoginBinding
-import org.positive.daymotion.extension.startOnTop
-import org.positive.daymotion.presentation.base.BaseActivity
+import org.positive.daymotion.presentation.common.extension.startOnTop
+import org.positive.daymotion.presentation.common.base.BaseActivity
 import org.positive.daymotion.presentation.setting.PrivacyPolicyActivity
 import org.positive.daymotion.presentation.setting.ServiceTermsActivity
 

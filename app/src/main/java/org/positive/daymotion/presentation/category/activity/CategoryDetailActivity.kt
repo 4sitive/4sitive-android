@@ -6,13 +6,13 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import org.positive.daymotion.R
-import org.positive.daymotion.common.bundle
+import org.positive.daymotion.presentation.common.bundle
 import org.positive.daymotion.databinding.ActivityCategoryDetailBinding
-import org.positive.daymotion.extension.startWith
-import org.positive.daymotion.presentation.base.BaseActivity
-import org.positive.daymotion.presentation.base.util.viewModelOf
+import org.positive.daymotion.presentation.common.extension.startWith
+import org.positive.daymotion.presentation.common.base.BaseActivity
 import org.positive.daymotion.presentation.category.viewmodel.CategoryDetailViewModel
 import org.positive.daymotion.presentation.common.adapter.FeedThumbnailAdapter
+import org.positive.daymotion.presentation.common.base.viewModelOf
 
 @AndroidEntryPoint
 class CategoryDetailActivity :

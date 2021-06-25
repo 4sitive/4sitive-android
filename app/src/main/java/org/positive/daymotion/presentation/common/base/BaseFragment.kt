@@ -1,4 +1,4 @@
-package org.positive.daymotion.presentation.base
+package org.positive.daymotion.presentation.common.base
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,8 +9,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
-import org.positive.daymotion.presentation.base.util.LiveDataObservable
-import org.positive.daymotion.presentation.base.util.baseActivity
 
 abstract class BaseFragment<B : ViewDataBinding>(
     @LayoutRes private val layoutId: Int
@@ -51,3 +49,13 @@ abstract class BaseFragment<B : ViewDataBinding>(
         baseActivity?.showErrorMessage(message)
     }
 }
+
+val BaseFragment<*>.requireBaseActivity: BaseActivity<*>
+    get() = activity as BaseActivity<*>
+
+val BaseFragment<*>.baseActivity: BaseActivity<*>?
+    get() = when (val parentActivity = activity) {
+        null -> null
+        is BaseActivity<*> -> parentActivity
+        else -> null
+    }
