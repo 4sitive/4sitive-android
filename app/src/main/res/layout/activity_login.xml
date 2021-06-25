@@ -33,7 +33,7 @@
 				android:fontFamily="@font/montserrat_bold"
 				android:text="@string/daymotion"
 				android:textColor="@color/_171717"
-				android:textSize="27sp" />
+				android:textSize="27dp" />
 			
 			<TextView
 				android:layout_width="wrap_content"
@@ -43,10 +43,10 @@
 				android:alpha="0.6"
 				android:fontFamily="@font/kopub_dotum_medium"
 				android:gravity="center"
-				android:lineSpacingExtra="6sp"
+				android:lineSpacingExtra="6dp"
 				android:text="@string/sub_title"
 				android:textColor="@color/_171717"
-				android:textSize="16sp" />
+				android:textSize="16dp" />
 			
 			<Button
 				android:id="@+id/googleLoginButton"
@@ -64,7 +64,7 @@
 				android:textAlignment="textStart"
 				android:textAllCaps="false"
 				android:textColor="@color/_171717"
-				android:textSize="14sp" />
+				android:textSize="14dp" />
 			
 			<Button
 				android:id="@+id/naverLoginButton"
@@ -81,7 +81,7 @@
 				android:textAlignment="textStart"
 				android:textAllCaps="false"
 				android:textColor="@color/_171717"
-				android:textSize="14sp" />
+				android:textSize="14dp" />
 			
 			<Button
 				android:id="@+id/facebookLoginButton"
@@ -98,7 +98,7 @@
 				android:textAlignment="textStart"
 				android:textAllCaps="false"
 				android:textColor="@color/_171717"
-				android:textSize="14sp" />
+				android:textSize="14dp" />
 			
 			<Button
 				android:id="@+id/kakaoLoginButton"
@@ -116,7 +116,7 @@
 				android:textAlignment="textStart"
 				android:textAllCaps="false"
 				android:textColor="@color/_171717"
-				android:textSize="14sp" />
+				android:textSize="14dp" />
 		</LinearLayout>
 		
 		<androidx.constraintlayout.widget.ConstraintLayout
@@ -145,7 +145,7 @@
 				android:fontFamily="@font/kopub_dotum_bold"
 				android:text="@string/info_title"
 				android:textColor="@color/_171717"
-				android:textSize="14sp"
+				android:textSize="14dp"
 				app:layout_constraintBottom_toBottomOf="@id/infoIcon"
 				app:layout_constraintStart_toEndOf="@id/infoIcon"
 				app:layout_constraintTop_toTopOf="@id/infoIcon" />
@@ -160,10 +160,10 @@
 				android:layout_marginBottom="20dp"
 				android:alpha="0.5"
 				android:fontFamily="@font/kopub_dotum_light"
-				android:lineSpacingExtra="5sp"
+				android:lineSpacingExtra="5dp"
 				android:text="@string/info_content"
 				android:textColor="@color/_171717"
-				android:textSize="12sp"
+				android:textSize="12dp"
 				app:layout_constraintBottom_toBottomOf="parent"
 				app:layout_constraintEnd_toEndOf="parent"
 				app:layout_constraintStart_toStartOf="parent"

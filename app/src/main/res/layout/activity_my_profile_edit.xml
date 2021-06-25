@@ -34,7 +34,7 @@
 				android:fontFamily="@font/montserrat_bold"
 				android:text="Edit profile"
 				android:textColor="@color/_171717"
-				android:textSize="24sp"
+				android:textSize="24dp"
 				app:layout_constraintStart_toStartOf="parent"
 				app:layout_constraintTop_toTopOf="parent" />
 			
@@ -71,7 +71,7 @@
 				android:fontFamily="@font/kopub_dotum_bold"
 				android:text="유저 아이디"
 				android:textColor="@color/_171717"
-				android:textSize="16sp"
+				android:textSize="16dp"
 				app:layout_constraintStart_toStartOf="parent"
 				app:layout_constraintTop_toBottomOf="@id/profileImageView" />
 			
@@ -89,7 +89,7 @@
 				android:paddingEnd="10dp"
 				android:text="@={viewModel.name}"
 				android:textColor="@color/_171717"
-				android:textSize="13sp"
+				android:textSize="13dp"
 				app:layout_constraintEnd_toEndOf="parent"
 				app:layout_constraintStart_toStartOf="parent"
 				app:layout_constraintTop_toBottomOf="@id/nameTextView"
@@ -113,7 +113,7 @@
 				android:fontFamily="@font/kopub_dotum_light"
 				android:text="@{viewModel.nickNameValidation.reason}"
 				android:textColor="@color/_C90A0A"
-				android:textSize="10sp"
+				android:textSize="10dp"
 				app:isVisible="@{viewModel.nickNameValidation != NickNameValidation.OK}"
 				app:layout_constraintStart_toStartOf="@id/nameEditText"
 				app:layout_constraintTop_toBottomOf="@id/nameEditText" />
@@ -128,7 +128,7 @@
 				android:fontFamily="@font/kopub_dotum_bold"
 				android:text="자기소개"
 				android:textColor="@color/_171717"
-				android:textSize="16sp"
+				android:textSize="16dp"
 				app:layout_constraintStart_toStartOf="parent"
 				app:layout_constraintTop_toBottomOf="@id/nameEditText"
 				app:layout_goneMarginTop="30dp" />
@@ -151,7 +151,7 @@
 				android:paddingBottom="10dp"
 				android:text="@={viewModel.introduce}"
 				android:textColor="@color/_171717"
-				android:textSize="13sp"
+				android:textSize="13dp"
 				app:layout_constraintEnd_toEndOf="parent"
 				app:layout_constraintStart_toStartOf="parent"
 				app:layout_constraintTop_toBottomOf="@id/introduceTextView"
@@ -166,7 +166,7 @@
 				android:alpha="0.5"
 				android:text="자기소개는 20자 이하로 자유롭게 적어주세요!"
 				android:textColor="@color/_5C5C5C"
-				android:textSize="10sp"
+				android:textSize="10dp"
 				app:layout_constraintStart_toStartOf="@id/selfIntroduceEditText"
 				app:layout_constraintTop_toBottomOf="@id/selfIntroduceEditText" />
 			
@@ -182,7 +182,7 @@
 				android:onClick="@{() -> handler.finish()}"
 				android:text="취소"
 				android:textColor="@color/_171717"
-				android:textSize="18sp"
+				android:textSize="18dp"
 				app:layout_constraintBottom_toBottomOf="parent"
 				app:layout_constraintEnd_toStartOf="@id/confirmButton"
 				app:layout_constraintStart_toStartOf="parent"
@@ -201,7 +201,7 @@
 				android:onClick="@{() -> viewModel.updateProfile()}"
 				android:text="확인"
 				android:textColor="@color/_FFFFFF"
-				android:textSize="18sp"
+				android:textSize="18dp"
 				app:layout_constraintBottom_toBottomOf="parent"
 				app:layout_constraintEnd_toEndOf="parent"
 				app:layout_constraintStart_toEndOf="@id/cancelButton"
