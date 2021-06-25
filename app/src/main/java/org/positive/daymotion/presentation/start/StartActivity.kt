@@ -10,8 +10,8 @@ import org.positive.daymotion.common.showPopupDialog
 import org.positive.daymotion.databinding.ActivityStartBinding
 import org.positive.daymotion.presentation.base.BaseActivity
 import org.positive.daymotion.presentation.base.util.viewModelOf
-import org.positive.daymotion.presentation.root.RootActivity
 import org.positive.daymotion.presentation.login.LoginActivity
+import org.positive.daymotion.presentation.root.RootActivity
 
 @AndroidEntryPoint
 class StartActivity : BaseActivity<ActivityStartBinding>(R.layout.activity_start) {

@@ -16,7 +16,8 @@ import org.positive.daymotion.presentation.common.ScrollableFragment
 
 @AndroidEntryPoint
 class CategoryBrowserPageFragment :
-    BaseFragment<FragmentCategoryBrowserPageBinding>(R.layout.fragment_category_browser_page), ScrollableFragment {
+    BaseFragment<FragmentCategoryBrowserPageBinding>(R.layout.fragment_category_browser_page),
+    ScrollableFragment {
 
     private val viewModel by viewModelOf<CategoryBrowserPageViewModel>()
     private val handler by lazy { Handler() }
@@ -49,6 +50,7 @@ class CategoryBrowserPageFragment :
     }
 
     inner class Handler {
-        fun goToCategoryDetail(title: String) = CategoryDetailActivity.start(requireContext(), title)
+        fun goToCategoryDetail(title: String) =
+            CategoryDetailActivity.start(requireContext(), title)
     }
 }
