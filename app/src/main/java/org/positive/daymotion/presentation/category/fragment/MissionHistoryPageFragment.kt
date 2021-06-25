@@ -14,7 +14,8 @@ import org.positive.daymotion.presentation.common.ScrollableFragment
 
 @AndroidEntryPoint
 class MissionHistoryPageFragment :
-    BaseFragment<FragmentMissionHistoryPageBinding>(R.layout.fragment_mission_history_page), ScrollableFragment {
+    BaseFragment<FragmentMissionHistoryPageBinding>(R.layout.fragment_mission_history_page),
+    ScrollableFragment {
 
     private val viewModel by viewModelOf<MissionHistoryPageViewModel>()
     private val handler by lazy { Handler() }

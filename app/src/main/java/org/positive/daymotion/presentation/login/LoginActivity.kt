@@ -71,7 +71,12 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
         val spannable = SpannableString(str)
         spannable.setSpan(object : TypefaceSpan(null) {
             override fun updateDrawState(ds: TextPaint) {
-                ds.typeface = Typeface.create(ResourcesCompat.getFont(this@LoginActivity, R.font.kopub_dotum_bold), Typeface.NORMAL)
+                ds.typeface = Typeface.create(
+                    ResourcesCompat.getFont(
+                        this@LoginActivity,
+                        R.font.kopub_dotum_bold
+                    ), Typeface.NORMAL
+                )
             }
         }, start, end, Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
         button.text = spannable
@@ -102,7 +107,12 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
 
             spannable.setSpan(object : TypefaceSpan(null) {
                 override fun updateDrawState(ds: TextPaint) {
-                    ds.typeface = Typeface.create(ResourcesCompat.getFont(applicationContext, R.font.kopub_dotum_bold), Typeface.NORMAL)
+                    ds.typeface = Typeface.create(
+                        ResourcesCompat.getFont(
+                            applicationContext,
+                            R.font.kopub_dotum_bold
+                        ), Typeface.NORMAL
+                    )
                 }
             }, start, end, Spannable.SPAN_INCLUSIVE_INCLUSIVE)
         }
@@ -113,12 +123,12 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
         // TODO(yh): need loading bar
         fun requestLogin(loginWay: LoginWay) {
             val url = Uri.parse(DmConstants.ACCOUNT_SERVER_BASE_URL + "/oauth/authorize")
-                    .buildUpon()
-                    .appendQueryParameter("client_id", BuildConfig.OAUTH_CLIENT_ID)
-                    .appendQueryParameter("redirect_uri", DmConstants.APP_SCHEME + "://login")
-                    .appendQueryParameter("response_type", "code")
-                    .appendQueryParameter("registration_hint", loginWay.registrationHint)
-                    .build()
+                .buildUpon()
+                .appendQueryParameter("client_id", BuildConfig.OAUTH_CLIENT_ID)
+                .appendQueryParameter("redirect_uri", DmConstants.APP_SCHEME + "://login")
+                .appendQueryParameter("response_type", "code")
+                .appendQueryParameter("registration_hint", loginWay.registrationHint)
+                .build()
 
             val builder = CustomTabsIntent.Builder()
             val customTabsIntent = builder.build()

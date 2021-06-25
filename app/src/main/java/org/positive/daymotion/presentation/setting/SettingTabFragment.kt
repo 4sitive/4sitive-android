@@ -20,7 +20,7 @@ class SettingTabFragment : BaseFragment<FragmentSettingTabBinding>(R.layout.frag
         super.onViewCreated(view, savedInstanceState)
         binding.viewModel = viewModel
 
-        binding.logoutTextView.setOnClickListener() {
+        binding.logoutTextView.setOnClickListener {
             // TODO(je): logout api
             val logoutMsg = requireContext().resources.getString(R.string.logoutMsg)
             Toast.makeText(requireContext(), logoutMsg, Toast.LENGTH_SHORT).show()

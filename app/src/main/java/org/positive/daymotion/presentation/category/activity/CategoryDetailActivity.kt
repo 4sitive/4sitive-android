@@ -11,8 +11,8 @@ import org.positive.daymotion.databinding.ActivityCategoryDetailBinding
 import org.positive.daymotion.extension.startWith
 import org.positive.daymotion.presentation.base.BaseActivity
 import org.positive.daymotion.presentation.base.util.viewModelOf
-import org.positive.daymotion.presentation.common.adapter.FeedThumbnailAdapter
 import org.positive.daymotion.presentation.category.viewmodel.CategoryDetailViewModel
+import org.positive.daymotion.presentation.common.adapter.FeedThumbnailAdapter
 
 @AndroidEntryPoint
 class CategoryDetailActivity :
