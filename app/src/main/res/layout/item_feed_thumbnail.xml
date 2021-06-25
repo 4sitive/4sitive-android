@@ -7,7 +7,7 @@
 		
 		<variable
 			name="item"
-			type="org.positive.daymotion.presentation.category.model.CategoryDetailItem" />
+			type="org.positive.daymotion.presentation.common.model.FeedThumbnailItem" />
 	</data>
 	
 	<androidx.constraintlayout.widget.ConstraintLayout
@@ -31,8 +31,7 @@
 				android:id="@+id/categoryImageView"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
-				android:background="@color/colorGray300"
-				android:foreground="?android:attr/selectableItemBackground" />
+				android:background="@color/_CDCDCD" />
 		</androidx.cardview.widget.CardView>
 	</androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

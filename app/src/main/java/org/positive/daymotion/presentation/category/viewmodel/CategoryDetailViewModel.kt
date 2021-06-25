@@ -5,28 +5,28 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import dagger.hilt.android.lifecycle.HiltViewModel
 import org.positive.daymotion.presentation.base.BaseViewModel
-import org.positive.daymotion.presentation.category.model.CategoryDetailItem
+import org.positive.daymotion.presentation.common.model.FeedThumbnailItem
 import javax.inject.Inject
 import kotlin.random.Random
 
 @HiltViewModel
 class CategoryDetailViewModel @Inject constructor() : BaseViewModel() {
 
-    private val _categoryDetails = MutableLiveData<List<CategoryDetailItem>>()
-    val categoryDetails: LiveData<List<CategoryDetailItem>> get() = _categoryDetails
+    private val _categorizedFeedThumbnails = MutableLiveData<List<FeedThumbnailItem>>()
+    val categorizedFeedThumbnails: LiveData<List<FeedThumbnailItem>> get() = _categorizedFeedThumbnails
 
-    val isEmptyDetailItem: LiveData<Boolean> =
-        Transformations.map(_categoryDetails) { items -> items.isEmpty() }
+    val isEmptyList: LiveData<Boolean> =
+        Transformations.map(_categorizedFeedThumbnails) { items -> items.isEmpty() }
 
-    fun loadCategoryDetails() {
+    fun loadCategorizedFeed() {
         if (Random.nextInt().rem(5) == 0) {
-            _categoryDetails.value = emptyList()
+            _categorizedFeedThumbnails.value = emptyList()
         } else {
-            _categoryDetails.value = buildList {
-                add(CategoryDetailItem("", CategoryDetailItem.ImageType.PORTRAIT))
-                add(CategoryDetailItem("", CategoryDetailItem.ImageType.LANDSCAPE))
-                add(CategoryDetailItem("", CategoryDetailItem.ImageType.PORTRAIT))
-                add(CategoryDetailItem("", CategoryDetailItem.ImageType.LANDSCAPE))
+            _categorizedFeedThumbnails.value = buildList {
+                add(FeedThumbnailItem("", FeedThumbnailItem.ImageType.PORTRAIT))
+                add(FeedThumbnailItem("", FeedThumbnailItem.ImageType.LANDSCAPE))
+                add(FeedThumbnailItem("", FeedThumbnailItem.ImageType.PORTRAIT))
+                add(FeedThumbnailItem("", FeedThumbnailItem.ImageType.LANDSCAPE))
             }
         }
     }

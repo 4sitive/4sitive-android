@@ -1,7 +1,7 @@
-package org.positive.daymotion.presentation.category.model
+package org.positive.daymotion.presentation.common.model
 
 
-data class CategoryDetailItem(
+data class FeedThumbnailItem(
     val imageUrl: String,
     val imageType: ImageType
 ) {

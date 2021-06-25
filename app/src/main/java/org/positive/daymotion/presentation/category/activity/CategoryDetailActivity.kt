@@ -11,7 +11,7 @@ import org.positive.daymotion.databinding.ActivityCategoryDetailBinding
 import org.positive.daymotion.extension.startWith
 import org.positive.daymotion.presentation.base.BaseActivity
 import org.positive.daymotion.presentation.base.util.viewModelOf
-import org.positive.daymotion.presentation.category.adapter.CategoryDetailAdapter
+import org.positive.daymotion.presentation.common.adapter.FeedThumbnailAdapter
 import org.positive.daymotion.presentation.category.viewmodel.CategoryDetailViewModel
 
 @AndroidEntryPoint
@@ -19,7 +19,7 @@ class CategoryDetailActivity :
     BaseActivity<ActivityCategoryDetailBinding>(R.layout.activity_category_detail) {
 
     private val viewModel by viewModelOf<CategoryDetailViewModel>()
-    private val categoryDetailAdapter by lazy { CategoryDetailAdapter() }
+    private val feedThumbnailAdapter by lazy { FeedThumbnailAdapter() }
     private val handler by lazy { Handler() }
 
     private val title by bundle<String>()
@@ -33,19 +33,19 @@ class CategoryDetailActivity :
         setupViews()
         setupObservers()
 
-        viewModel.loadCategoryDetails()
+        viewModel.loadCategorizedFeed()
     }
 
     private fun setupViews() {
         binding.categoryDetailRecyclerView.apply {
-            adapter = categoryDetailAdapter
+            adapter = feedThumbnailAdapter
             layoutManager = StaggeredGridLayoutManager(2, RecyclerView.VERTICAL)
         }
     }
 
     private fun setupObservers() {
-        viewModel.categoryDetails.observeNonNull {
-            categoryDetailAdapter.replaceAll(it)
+        viewModel.categorizedFeedThumbnails.observeNonNull {
+            feedThumbnailAdapter.replaceAll(it)
         }
     }
 
