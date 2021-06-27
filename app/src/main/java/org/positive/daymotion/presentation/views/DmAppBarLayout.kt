@@ -30,6 +30,11 @@ class DmAppBarLayout : AppBarLayout {
         binding.title.text = title
     }
 
+    override fun setBackgroundColor(color: Int) {
+        binding.appBarLayout.setBackgroundColor(color)
+        super.setBackgroundColor(color)
+    }
+
     fun setOnBackButtonClick(onClickListener: OnClickListener) {
         binding.backButton.setOnClickListener(onClickListener)
     }

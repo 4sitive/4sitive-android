@@ -5,4 +5,6 @@ import org.positive.daymotion.presentation.common.base.BaseViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class FeedViewModel @Inject constructor() : BaseViewModel()
+class FeedViewModel @Inject constructor() : BaseViewModel() {
+
+}
