@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import org.positive.daymotion.presentation.common.base.BaseViewModel
-import org.positive.daymotion.presentation.feed.model.Emoji
+import org.positive.daymotion.presentation.feed.model.EmojiItem
 import org.positive.daymotion.presentation.feed.model.FeedInformation
 import javax.inject.Inject
 
@@ -20,11 +20,11 @@ class FeedViewModel @Inject constructor() : BaseViewModel() {
             true,
             "용훈",
             listOf(
-                Emoji("1", 5),
-                Emoji("2", 6),
-                Emoji("3", 7)
+                EmojiItem.Emoji("1", 5.toString()),
+                EmojiItem.Emoji("2", 6.toString()),
+                EmojiItem.Emoji("3", 7.toString())
             ),
-            "#170019"
+            "#1700192"
         )
     }
 }
