@@ -53,8 +53,8 @@
 			android:layout_width="40dp"
 			android:layout_height="40dp"
 			android:layout_marginBottom="16dp"
-			app:layout_constraintBottom_toTopOf="@id/likeLayout"
-			app:layout_constraintStart_toStartOf="@id/likeLayout"
+			app:layout_constraintBottom_toTopOf="@id/emojiRecyclerView"
+			app:layout_constraintStart_toStartOf="@id/emojiRecyclerView"
 			app:srcWithCircle="@{@drawable/ic_tmp_profile}" />
 		
 		<TextView
@@ -68,18 +68,21 @@
 			app:layout_constraintTop_toTopOf="@id/profileImageView"
 			tools:text="User Name" />
 		
-		<LinearLayout
-			android:id="@+id/likeLayout"
-			android:layout_width="wrap_content"
+		<androidx.recyclerview.widget.RecyclerView
+			android:id="@+id/emojiRecyclerView"
+			android:layout_width="0dp"
 			android:layout_height="wrap_content"
-			android:layout_marginStart="12dp"
+			android:layout_marginStart="24dp"
+			android:layout_marginEnd="24dp"
 			android:layout_marginBottom="24dp"
 			android:orientation="horizontal"
+			android:overScrollMode="never"
+			app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
 			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintStart_toStartOf="parent"
-			tools:background="@color/_CDCDCD"
-			tools:layout_height="60dp"
-			tools:layout_width="240dp" />
+			tools:itemCount="3"
+			tools:listitem="@layout/item_emoji" />
 	
 	</androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

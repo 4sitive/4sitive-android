@@ -9,12 +9,13 @@ import org.positive.daymotion.presentation.common.base.BaseActivity
 import org.positive.daymotion.presentation.common.base.viewModelOf
 import org.positive.daymotion.presentation.common.bundle
 import org.positive.daymotion.presentation.common.extension.startWith
+import org.positive.daymotion.presentation.feed.adapter.EmojiAdapter
 
 @AndroidEntryPoint
 class FeedActivity : BaseActivity<ActivityFeedBinding>(R.layout.activity_feed) {
 
     private val viewModel by viewModelOf<FeedViewModel>()
-
+    private val emojiAdapter by lazy { EmojiAdapter() }
     private val title by bundle<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,7 +23,20 @@ class FeedActivity : BaseActivity<ActivityFeedBinding>(R.layout.activity_feed) {
         binding.viewModel = viewModel
         binding.title = title
 
+        setupViews()
+        setupObservers()
+
         viewModel.loadFeedInformation()
+    }
+
+    private fun setupViews() {
+        binding.emojiRecyclerView.adapter = emojiAdapter
+    }
+
+    private fun setupObservers() {
+        viewModel.feedInformation.observeNonNull {
+            emojiAdapter.replaceAll(it.emojis)
+        }
     }
 
     inner class Handler {
