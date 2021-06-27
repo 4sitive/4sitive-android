@@ -21,6 +21,8 @@ class FeedActivity : BaseActivity<ActivityFeedBinding>(R.layout.activity_feed) {
         super.onCreate(savedInstanceState)
         binding.viewModel = viewModel
         binding.title = title
+
+        viewModel.loadFeedInformation()
     }
 
     inner class Handler {
