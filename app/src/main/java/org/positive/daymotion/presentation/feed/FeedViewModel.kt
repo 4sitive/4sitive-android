@@ -27,4 +27,8 @@ class FeedViewModel @Inject constructor() : BaseViewModel() {
             "#1700192"
         )
     }
+
+    fun updateLikes() {
+
+    }
 }
