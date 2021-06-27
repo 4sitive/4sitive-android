@@ -6,21 +6,23 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import org.positive.daymotion.R
-import org.positive.daymotion.presentation.common.bundle
 import org.positive.daymotion.databinding.ActivityCategoryDetailBinding
-import org.positive.daymotion.presentation.common.extension.startWith
-import org.positive.daymotion.presentation.common.base.BaseActivity
 import org.positive.daymotion.presentation.category.viewmodel.CategoryDetailViewModel
 import org.positive.daymotion.presentation.common.adapter.FeedThumbnailAdapter
+import org.positive.daymotion.presentation.common.base.BaseActivity
 import org.positive.daymotion.presentation.common.base.viewModelOf
+import org.positive.daymotion.presentation.common.bundle
+import org.positive.daymotion.presentation.common.extension.startWith
+import org.positive.daymotion.presentation.common.model.FeedThumbnailItem
+import org.positive.daymotion.presentation.feed.FeedActivity
 
 @AndroidEntryPoint
 class CategoryDetailActivity :
     BaseActivity<ActivityCategoryDetailBinding>(R.layout.activity_category_detail) {
 
     private val viewModel by viewModelOf<CategoryDetailViewModel>()
-    private val feedThumbnailAdapter by lazy { FeedThumbnailAdapter() }
     private val handler by lazy { Handler() }
+    private val feedThumbnailAdapter by lazy { FeedThumbnailAdapter(handler::startFeedActivity) }
 
     private val title by bundle<String>()
 
@@ -51,6 +53,9 @@ class CategoryDetailActivity :
 
     inner class Handler {
         fun finish() = this@CategoryDetailActivity.finish()
+
+        fun startFeedActivity(item: FeedThumbnailItem) =
+            FeedActivity.start(this@CategoryDetailActivity, item.missionName)
     }
 
     companion object {

@@ -52,7 +52,7 @@
 				android:layout_height="match_parent"
 				android:background="@color/_CDCDCD"
 				android:foreground="?android:attr/selectableItemBackground"
-				android:onClick="@{() -> handler.goToCategoryDetail(item.firstMission.missionName)}" />
+				android:onClick="@{() -> handler.startCategoryDetail(item.firstMission.missionName)}" />
 		</androidx.cardview.widget.CardView>
 		
 		<androidx.cardview.widget.CardView
@@ -75,7 +75,7 @@
 				android:layout_height="match_parent"
 				android:background="@color/_CDCDCD"
 				android:foreground="?android:attr/selectableItemBackground"
-				android:onClick="@{() -> handler.goToCategoryDetail(item.secondMission.missionName)}" />
+				android:onClick="@{() -> handler.startCategoryDetail(item.secondMission.missionName)}" />
 		</androidx.cardview.widget.CardView>
 		
 		<androidx.cardview.widget.CardView
@@ -98,7 +98,7 @@
 				android:layout_height="match_parent"
 				android:background="@color/_CDCDCD"
 				android:foreground="?android:attr/selectableItemBackground"
-				android:onClick="@{() -> handler.goToCategoryDetail(item.thirdMission.missionName)}" />
+				android:onClick="@{() -> handler.startCategoryDetail(item.thirdMission.missionName)}" />
 		</androidx.cardview.widget.CardView>
 		
 		<FrameLayout

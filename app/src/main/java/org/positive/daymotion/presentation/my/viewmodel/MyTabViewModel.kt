@@ -23,18 +23,18 @@ class MyTabViewModel @Inject constructor() : BaseViewModel() {
             _myFeedsThumbnails.value = emptyList()
         } else {
             _myFeedsThumbnails.value = buildList {
-                add(FeedThumbnailItem("", FeedThumbnailItem.ImageType.PORTRAIT))
-                add(FeedThumbnailItem("", FeedThumbnailItem.ImageType.LANDSCAPE))
-                add(FeedThumbnailItem("", FeedThumbnailItem.ImageType.PORTRAIT))
-                add(FeedThumbnailItem("", FeedThumbnailItem.ImageType.LANDSCAPE))
-                add(FeedThumbnailItem("", FeedThumbnailItem.ImageType.PORTRAIT))
-                add(FeedThumbnailItem("", FeedThumbnailItem.ImageType.LANDSCAPE))
-                add(FeedThumbnailItem("", FeedThumbnailItem.ImageType.PORTRAIT))
-                add(FeedThumbnailItem("", FeedThumbnailItem.ImageType.LANDSCAPE))
-                add(FeedThumbnailItem("", FeedThumbnailItem.ImageType.PORTRAIT))
-                add(FeedThumbnailItem("", FeedThumbnailItem.ImageType.LANDSCAPE))
-                add(FeedThumbnailItem("", FeedThumbnailItem.ImageType.PORTRAIT))
-                add(FeedThumbnailItem("", FeedThumbnailItem.ImageType.LANDSCAPE))
+                add(FeedThumbnailItem("mission1", "", FeedThumbnailItem.ImageType.PORTRAIT))
+                add(FeedThumbnailItem("mission1", "", FeedThumbnailItem.ImageType.LANDSCAPE))
+                add(FeedThumbnailItem("mission1", "", FeedThumbnailItem.ImageType.PORTRAIT))
+                add(FeedThumbnailItem("mission1", "", FeedThumbnailItem.ImageType.LANDSCAPE))
+                add(FeedThumbnailItem("mission1", "", FeedThumbnailItem.ImageType.PORTRAIT))
+                add(FeedThumbnailItem("mission1", "", FeedThumbnailItem.ImageType.LANDSCAPE))
+                add(FeedThumbnailItem("mission1", "", FeedThumbnailItem.ImageType.PORTRAIT))
+                add(FeedThumbnailItem("mission1", "", FeedThumbnailItem.ImageType.LANDSCAPE))
+                add(FeedThumbnailItem("mission1", "", FeedThumbnailItem.ImageType.PORTRAIT))
+                add(FeedThumbnailItem("mission1", "", FeedThumbnailItem.ImageType.LANDSCAPE))
+                add(FeedThumbnailItem("mission1", "", FeedThumbnailItem.ImageType.PORTRAIT))
+                add(FeedThumbnailItem("mission1", "", FeedThumbnailItem.ImageType.LANDSCAPE))
             }
         }
     }

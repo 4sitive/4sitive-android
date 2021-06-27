@@ -20,8 +20,8 @@ class MyTabFragment : BaseFragment<FragmentMyTabBinding>(R.layout.fragment_my_ta
     ScrollableFragment {
 
     private val viewModel by viewModelOf<MyTabViewModel>()
-    private val feedThumbnailAdapter by lazy { FeedThumbnailAdapter() }
     private val handler by lazy { Handler() }
+    private val feedThumbnailAdapter by lazy { FeedThumbnailAdapter() }
 
     private val myProfileEditActivityLauncher = registerActivityResult {
         // TODO(yh): reload updated profile

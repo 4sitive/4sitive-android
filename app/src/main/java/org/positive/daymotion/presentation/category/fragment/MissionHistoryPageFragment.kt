@@ -5,11 +5,11 @@ import android.view.View
 import dagger.hilt.android.AndroidEntryPoint
 import org.positive.daymotion.R
 import org.positive.daymotion.databinding.FragmentMissionHistoryPageBinding
-import org.positive.daymotion.presentation.common.base.BaseFragment
 import org.positive.daymotion.presentation.category.activity.CategoryDetailActivity
 import org.positive.daymotion.presentation.category.adapter.MissionHistoryAdapter
 import org.positive.daymotion.presentation.category.viewmodel.MissionHistoryPageViewModel
 import org.positive.daymotion.presentation.common.ScrollableFragment
+import org.positive.daymotion.presentation.common.base.BaseFragment
 import org.positive.daymotion.presentation.common.base.viewModelOf
 
 @AndroidEntryPoint
@@ -45,7 +45,7 @@ class MissionHistoryPageFragment :
     }
 
     inner class Handler {
-        fun goToCategoryDetail(title: String) =
+        fun startCategoryDetail(title: String) =
             CategoryDetailActivity.start(requireContext(), title)
     }
 }
