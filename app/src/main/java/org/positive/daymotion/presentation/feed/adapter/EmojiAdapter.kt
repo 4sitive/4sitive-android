@@ -8,9 +8,12 @@ import org.positive.daymotion.databinding.ItemAddEmojiBinding
 import org.positive.daymotion.databinding.ItemEmojiBinding
 import org.positive.daymotion.presentation.common.BindingViewHolder
 import org.positive.daymotion.presentation.common.createBindingViewHolder
+import org.positive.daymotion.presentation.feed.FeedActivity
 import org.positive.daymotion.presentation.feed.model.EmojiItem
 
-class EmojiAdapter : RecyclerView.Adapter<BindingViewHolder<out ViewDataBinding>>() {
+class EmojiAdapter(
+    private val handler: FeedActivity.Handler
+) : RecyclerView.Adapter<BindingViewHolder<out ViewDataBinding>>() {
 
     private val items = mutableListOf<EmojiItem>()
 
@@ -32,7 +35,10 @@ class EmojiAdapter : RecyclerView.Adapter<BindingViewHolder<out ViewDataBinding>
     }
 
     override fun onBindViewHolder(holder: BindingViewHolder<out ViewDataBinding>, position: Int) {
-        holder.binding.setVariable(BR.item, items[position])
+        with(holder.binding) {
+            setVariable(BR.item, items[position])
+            setVariable(BR.handler, handler)
+        }
     }
 
     override fun getItemCount() = items.size

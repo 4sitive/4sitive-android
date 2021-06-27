@@ -41,6 +41,12 @@ class FeedActivity : BaseActivity<ActivityFeedBinding>(R.layout.activity_feed) {
 
     inner class Handler {
         fun finish() = this@FeedActivity.finish()
+
+        fun updateLikes() = viewModel.updateLikes()
+
+        fun showMoreEmojis() {
+
+        }
     }
 
     companion object {
