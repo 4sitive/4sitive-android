@@ -5,6 +5,8 @@
 	
 	<data>
 		
+		<import type="android.widget.ImageView.ScaleType" />
+		
 		<variable
 			name="title"
 			type="String" />
@@ -26,12 +28,14 @@
 			android:id="@+id/feedImageView"
 			android:layout_width="0dp"
 			android:layout_height="0dp"
+			android:background="@{viewModel.feedInformation.keyColorResource}"
 			android:scaleType="fitCenter"
 			android:src="@drawable/img_tmp_landscape"
 			app:layout_constraintBottom_toBottomOf="parent"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toTopOf="parent" />
+			app:layout_constraintTop_toTopOf="parent"
+			app:scaleType="@{viewModel.feedInformation.landscapeImage ? ScaleType.CENTER_INSIDE : ScaleType.CENTER_CROP}" />
 		
 		<org.positive.daymotion.presentation.views.DmAppBarLayout
 			android:layout_width="0dp"
@@ -58,6 +62,7 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_marginStart="8dp"
+			android:text="@{viewModel.feedInformation.author}"
 			app:layout_constraintBottom_toBottomOf="@id/profileImageView"
 			app:layout_constraintStart_toEndOf="@id/profileImageView"
 			app:layout_constraintTop_toTopOf="@id/profileImageView"
