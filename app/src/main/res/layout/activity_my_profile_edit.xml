@@ -147,7 +147,7 @@
 				android:inputType="text"
 				android:padding="10dp"
 				android:text="@={viewModel.introduce}"
-				android:textColor="@color/_171717"
+				android:textColor="@{viewModel.introduceValidation ? @color/_171717 : @color/_989898}"
 				android:textSize="13dp"
 				app:layout_constraintEnd_toEndOf="parent"
 				app:layout_constraintStart_toStartOf="parent"
