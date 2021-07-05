@@ -15,7 +15,8 @@ import org.positive.daymotion.presentation.feed.adapter.EmojiAdapter
 class FeedActivity : BaseActivity<ActivityFeedBinding>(R.layout.activity_feed) {
 
     private val viewModel by viewModelOf<FeedViewModel>()
-    private val emojiAdapter by lazy { EmojiAdapter() }
+    private val handler by lazy { Handler() }
+    private val emojiAdapter by lazy { EmojiAdapter(handler) }
     private val title by bundle<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
