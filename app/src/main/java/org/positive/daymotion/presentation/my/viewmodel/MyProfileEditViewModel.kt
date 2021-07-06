@@ -49,18 +49,7 @@ class MyProfileEditViewModel @Inject constructor() : BaseViewModel() {
         else -> NickNameValidation.OK
     }
 
-    private fun checkProfileUpdatePossible(
-        introduce: String?,
-        nickNameValidation: NickNameValidation?
-    ): Boolean {
-        if (introduce == null || nickNameValidation == null) {
-            return false
-        }
-
-        return nickNameValidation == NickNameValidation.OK && introduce.length < 20
-    }
-
     companion object {
-        private val nickNameValidateRegex = Regex("^[a-zA-Z0-9가-힉 ]*$")
+        private val nickNameValidateRegex = Regex("^[a-zA-Z0-9가-힉ㄱ-ㅎㅏ-ㅣ]*$")
     }
 }
