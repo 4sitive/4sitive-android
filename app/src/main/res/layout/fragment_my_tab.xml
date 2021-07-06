@@ -20,17 +20,15 @@
 		android:background="@color/_F8F9FB">
 		
 		<com.google.android.material.appbar.AppBarLayout
+			android:id="@+id/appBarLayout"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:background="@color/_00000000"
-			app:elevation="0dp">
+			android:background="@drawable/background_my_tab_app_bar"
+			android:stateListAnimator="@animator/animator_my_tab_app_bar">
 			
 			<com.google.android.material.appbar.CollapsingToolbarLayout
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:layout_marginBottom="10dp"
-				android:background="@drawable/background_my_tab_app_bar"
-				android:elevation="8dp"
 				app:layout_scrollFlags="scroll|exitUntilCollapsed">
 				
 				<LinearLayout
@@ -114,31 +112,33 @@
 			</com.google.android.material.appbar.CollapsingToolbarLayout>
 		</com.google.android.material.appbar.AppBarLayout>
 		
-		<androidx.recyclerview.widget.RecyclerView
-			android:id="@+id/myFeedRecyclerView"
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:layout_marginStart="15dp"
-			android:layout_marginEnd="15dp"
-			android:clipToPadding="false"
-			android:overScrollMode="never"
-			android:paddingTop="5dp"
-			android:paddingBottom="104dp"
-			app:isVisible="@{!viewModel.isEmptyList()}"
-			app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-			tools:listitem="@layout/item_feed_thumbnail" />
-		
 		<androidx.constraintlayout.widget.ConstraintLayout
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
-			android:layout_marginTop="83dp"
-			app:isVisible="@{viewModel.isEmptyList()}"
 			app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+			
+			<androidx.recyclerview.widget.RecyclerView
+				android:id="@+id/myFeedRecyclerView"
+				android:layout_width="0dp"
+				android:layout_height="0dp"
+				android:layout_marginStart="15dp"
+				android:layout_marginEnd="15dp"
+				android:clipToPadding="false"
+				android:overScrollMode="never"
+				android:paddingTop="10dp"
+				android:paddingBottom="104dp"
+				app:isVisible="@{!viewModel.isEmptyList()}"
+				app:layout_constraintBottom_toBottomOf="parent"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toTopOf="parent"
+				tools:listitem="@layout/item_feed_thumbnail" />
 			
 			<ImageView
 				android:id="@+id/emptyStateImageView"
 				android:layout_width="59dp"
 				android:layout_height="89dp"
+				android:layout_marginTop="83dp"
 				android:src="@drawable/ic_home_empty"
 				app:layout_constraintBottom_toTopOf="@id/emptyStateTextView"
 				app:layout_constraintEnd_toEndOf="parent"
@@ -180,7 +180,14 @@
 				app:layout_constraintEnd_toEndOf="parent"
 				app:layout_constraintStart_toStartOf="parent"
 				app:layout_constraintTop_toBottomOf="@id/emptyStateTextView" />
+			
+			<androidx.constraintlayout.widget.Group
+				android:layout_width="0dp"
+				android:layout_height="0dp"
+				app:constraint_referenced_ids="emptyStateTextView,emptyStateImageView,goToUploadButton"
+				app:isVisible="@{viewModel.isEmptyList()}"
+				tools:visibility="gone" />
+		
 		</androidx.constraintlayout.widget.ConstraintLayout>
-	
 	</androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>
