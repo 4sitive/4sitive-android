@@ -1,6 +1,6 @@
 <resources>
 	
-	<string name="daymotion">Daymotion</string>
+	<!-- app name -->
 	
 	<!-- login -->
 	<string name="sub_title">오늘은 어떤 미션이 기다리고 있을까?\n가입하고 바로 참여해 보세요!</string>
@@ -9,14 +9,10 @@
 	<string name="info_content">가입하면 Daymotion의 서비스 약관에 동의하고,\n개인정보 보호정책을(를) 읽고 데이터 수집, 사용에 대하여\n확인했음을 인정하고 시작합니다.</string>
 	
 	<!-- bottom nav -->
-	<string name="bottom_menu_home">홈</string>
-	<string name="bottom_menu_category">카테고리</string>
-	<string name="bottom_menu_my">마이</string>
 	<string name="bottom_menu_setting">설정</string>
 	
-	<!-- setting -->
+	<!-- logout -->
 	<string name="logout">로그아웃</string>
 	<string name="logoutMsg">로그아웃 되었습니다.\n곧 다시 만나요~!!</string>
-	<string name="fa_angle_right">&#xf105;</string>
 
 </resources>

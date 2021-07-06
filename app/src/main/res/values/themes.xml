@@ -9,6 +9,7 @@
 		<item name="colorPrimaryDark">@color/_171717</item>
 		<item name="colorAccent">@color/_171717</item>
 		<item name="android:textViewStyle">@style/TextStyle</item>
+		<item name="android:windowActivityTransitions">true</item>
 	</style>
 	
 	<style name="TextStyle">

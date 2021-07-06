@@ -3,6 +3,7 @@ package org.positive.daymotion.presentation.login
 import android.content.Context
 import android.net.Uri
 import android.os.Bundle
+import android.widget.TextView
 import androidx.browser.customtabs.CustomTabsIntent
 import dagger.hilt.android.AndroidEntryPoint
 import org.positive.daymotion.BuildConfig
@@ -37,10 +38,25 @@ class AgreementActivity : BaseActivity<ActivityAgreementBinding>(R.layout.activi
             firstAgreementTextView.applyTypefaceSpan("[필수]", R.font.kopub_dotum_bold)
             secondAgreementTextView.applyTypefaceSpan("[필수]", R.font.kopub_dotum_bold)
             thirdAgreementTextView.applyTypefaceSpan("[선택]", R.font.kopub_dotum_bold)
+
+            // 글자 눌렀을 때도 체크되면 좋을거 같아서 추가했는데.. 이상하면 빼셔도 됩니다!
+            firstAgreementTextView.setOnClickListener {firstAgreementCheckBox.isChecked = !firstAgreementCheckBox.isChecked}
+            secondAgreementTextView.setOnClickListener {secondAgreementCheckBox.isChecked = !secondAgreementCheckBox.isChecked}
+            thirdAgreementTextView.setOnClickListener {thirdAgreementCheckBox.isChecked = !thirdAgreementCheckBox.isChecked}
+            allAgreeTextView.setOnClickListener{
+                allAgreeCheckBox.isChecked = !allAgreeCheckBox.isChecked
+                firstAgreementCheckBox.isChecked = allAgreeCheckBox.isChecked
+                secondAgreementCheckBox.isChecked = allAgreeCheckBox.isChecked
+                thirdAgreementCheckBox.isChecked = allAgreeCheckBox.isChecked
+            }
         }
     }
 
     inner class Handler {
+        fun startTermsActivity(title: TextView) {
+            TermsActivity.start(this@AgreementActivity, title.text.toString())
+        }
+
         fun requestOauthLogin() {
             CustomTabsIntent.Builder()
                 .build()
