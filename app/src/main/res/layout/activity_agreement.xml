@@ -42,6 +42,7 @@
 			android:alpha="0.6"
 			android:fontFamily="@font/kopub_dotum_medium"
 			android:gravity="center"
+			android:lineSpacingExtra="6sp"
 			android:text="약관에 동의하시고,\n오늘의 미션을 확인해 보세요!"
 			android:textColor="@color/_171717"
 			android:textSize="16dp"
@@ -78,7 +79,7 @@
 			android:layout_width="50dp"
 			android:layout_height="wrap_content"
 			android:layout_marginStart="10dp"
-			android:layout_marginEnd="10dp"
+			android:layout_marginEnd="20dp"
 			android:alpha="0.3"
 			android:fontFamily="@font/kopub_dotum_medium"
 			android:gravity="end"
@@ -88,7 +89,8 @@
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintStart_toEndOf="@id/firstAgreementTextView"
 			app:layout_constraintTop_toTopOf="@id/firstAgreementTextView"
-			app:useWhitePressEffect="@{true}" />
+			app:useWhitePressEffect="@{true}"
+			android:onClick="@{() -> handler.startTermsActivity(firstAgreementTextView)}"/>
 		
 		<CheckBox
 			android:id="@+id/secondAgreementCheckBox"
@@ -119,7 +121,7 @@
 			android:layout_width="50dp"
 			android:layout_height="wrap_content"
 			android:layout_marginStart="10dp"
-			android:layout_marginEnd="10dp"
+			android:layout_marginEnd="20dp"
 			android:alpha="0.3"
 			android:fontFamily="@font/kopub_dotum_medium"
 			android:gravity="end"
@@ -129,7 +131,8 @@
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintStart_toEndOf="@id/secondAgreementTextView"
 			app:layout_constraintTop_toTopOf="@id/secondAgreementTextView"
-			app:useWhitePressEffect="@{true}" />
+			app:useWhitePressEffect="@{true}"
+			android:onClick="@{() -> handler.startTermsActivity(secondAgreementTextView)}"/>
 		
 		<CheckBox
 			android:id="@+id/thirdAgreementCheckBox"
@@ -160,7 +163,7 @@
 			android:layout_width="50dp"
 			android:layout_height="wrap_content"
 			android:layout_marginStart="10dp"
-			android:layout_marginEnd="10dp"
+			android:layout_marginEnd="20dp"
 			android:alpha="0.3"
 			android:fontFamily="@font/kopub_dotum_medium"
 			android:gravity="end"
@@ -170,7 +173,8 @@
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintStart_toEndOf="@id/thirdAgreementTextView"
 			app:layout_constraintTop_toTopOf="@id/thirdAgreementTextView"
-			app:useWhitePressEffect="@{true}" />
+			app:useWhitePressEffect="@{true}"
+			android:onClick="@{() -> handler.startTermsActivity(thirdAgreementTextView)}"/>
 		
 		<View
 			android:id="@+id/divider"
@@ -205,7 +209,7 @@
 			android:text="전체동의"
 			app:layout_constraintBottom_toBottomOf="@id/allAgreeCheckBox"
 			app:layout_constraintStart_toEndOf="@id/allAgreeCheckBox"
-			app:layout_constraintTop_toTopOf="@id/allAgreeCheckBox" />
+			app:layout_constraintTop_toTopOf="@id/allAgreeCheckBox"/>
 		
 		<TextView
 			android:layout_width="0dp"

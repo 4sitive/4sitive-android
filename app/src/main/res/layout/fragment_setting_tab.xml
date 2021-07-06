@@ -12,7 +12,8 @@
 	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:orientation="vertical">
+		android:orientation="vertical"
+		android:background="@color/_FFFFFF">
 		
 		<TextView
 			android:layout_width="wrap_content"
@@ -136,7 +137,6 @@
 			android:id="@+id/serviceButton"
 			android:layout_width="match_parent"
 			android:layout_height="62dp"
-			android:background="@drawable/background_setting_item"
 			android:gravity="center_vertical"
 			android:orientation="vertical"
 			android:paddingStart="20dp"
@@ -177,7 +177,6 @@
 			android:id="@+id/privacyButton"
 			android:layout_width="match_parent"
 			android:layout_height="62dp"
-			android:background="@drawable/background_setting_item"
 			android:gravity="center_vertical"
 			android:orientation="vertical"
 			android:paddingStart="20dp"
@@ -218,7 +217,6 @@
 			android:id="@+id/secessionButton"
 			android:layout_width="match_parent"
 			android:layout_height="62dp"
-			android:background="@drawable/background_setting_item"
 			android:gravity="center_vertical"
 			android:orientation="vertical"
 			android:paddingStart="20dp"
@@ -265,7 +263,6 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_marginBottom="106dp"
-				android:background="@drawable/background_setting_item"
 				android:clickable="true"
 				android:focusable="true"
 				android:fontFamily="@font/kopub_dotum_bold"

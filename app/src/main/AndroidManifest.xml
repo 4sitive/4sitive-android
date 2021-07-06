@@ -6,7 +6,7 @@
 	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 	
 	<application
-		android:name="org.positive.daymotion.DmApplication"
+		android:name=".DmApplication"
 		android:allowBackup="true"
 		android:fullBackupContent="false"
 		android:icon="@mipmap/app_icon"
@@ -24,7 +24,6 @@
 				<category android:name="android.intent.category.LAUNCHER" />
 			</intent-filter>
 		</activity>
-		
 		<activity
 			android:name=".presentation.dispatch.DispatchActivity"
 			android:launchMode="singleTask"
@@ -38,48 +37,42 @@
 				<data android:scheme="positive" />
 			</intent-filter>
 		</activity>
-		
-		<activity
-			android:name=".presentation.login.LoginActivity"
+		<activity android:name=".presentation.login.TermsActivity"
 			android:screenOrientation="portrait" />
-		
+		<activity
+			android:name="org.positive.daymotion.presentation.home.HomeDetailActivity"
+			android:screenOrientation="portrait" />
+		<activity
+			android:name="org.positive.daymotion.presentation.login.LoginActivity"
+			android:screenOrientation="portrait" />
 		<activity
 			android:name=".presentation.root.RootActivity"
 			android:screenOrientation="portrait" />
-		
 		<activity
 			android:name=".presentation.main.MainActivity"
 			android:screenOrientation="portrait" />
-		
 		<activity
 			android:name=".presentation.feed.FeedActivity"
 			android:screenOrientation="portrait" />
-		
 		<activity
 			android:name=".presentation.category.activity.CategoryDetailActivity"
 			android:screenOrientation="portrait" />
-		
 		<activity
 			android:name=".presentation.my.activity.MyProfileEditActivity"
 			android:screenOrientation="portrait"
 			android:windowSoftInputMode="adjustResize" />
-		
 		<activity
 			android:name=".presentation.setting.PrivacyPolicyActivity"
 			android:screenOrientation="portrait" />
-		
 		<activity
 			android:name=".presentation.setting.ServiceTermsActivity"
 			android:screenOrientation="portrait" />
-		
 		<activity
 			android:name=".presentation.upload.MissionUploadActivity"
 			android:screenOrientation="portrait" />
-		
 		<activity
 			android:name=".presentation.login.AgreementActivity"
 			android:screenOrientation="portrait" />
-	
 	</application>
 
 </manifest>
