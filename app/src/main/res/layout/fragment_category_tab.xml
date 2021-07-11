@@ -24,7 +24,8 @@
 			app:tabIndicator="@null"
 			app:tabMode="auto"
 			app:tabPaddingEnd="10dp"
-			app:tabPaddingStart="10dp" />
+			app:tabPaddingStart="10dp"
+			app:tabRippleColor="@null" />
 		
 		<androidx.viewpager2.widget.ViewPager2
 			android:id="@+id/viewPager"

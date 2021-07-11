@@ -14,7 +14,9 @@
 		android:id="@+id/itemContainer"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:layout_margin="5dp">
+		android:layout_margin="5dp"
+		app:pressEffectRadius="@{@dimen/_8dp}"
+		app:useWhitePressEffect="@{true}">
 		
 		<androidx.cardview.widget.CardView
 			android:layout_width="match_parent"
