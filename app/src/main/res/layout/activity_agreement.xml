@@ -5,6 +5,10 @@
 	<data>
 		
 		<variable
+			name="handler"
+			type="org.positive.daymotion.presentation.login.AgreementActivity.Handler" />
+		
+		<variable
 			name="viewModel"
 			type="org.positive.daymotion.presentation.login.viewmodel.AgreementViewModel" />
 	</data>
@@ -188,9 +192,9 @@
 			android:layout_marginTop="26dp"
 			android:background="@drawable/selector_checkbox"
 			android:button="@null"
-			app:onCheckedChangeListener="@{(v, c) -> viewModel.changeAllAgreed(c)}"
 			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toBottomOf="@id/divider" />
+			app:layout_constraintTop_toBottomOf="@id/divider"
+			app:onCheckedChangeListener="@{(v, c) -> viewModel.changeAllAgreed(c)}" />
 		
 		<TextView
 			android:id="@+id/allAgreeTextView"
@@ -210,6 +214,7 @@
 			android:enabled="@{viewModel.isEnabledGoNext()}"
 			android:fontFamily="@font/kopub_dotum_bold"
 			android:gravity="center"
+			android:onClick="@{() -> handler.requestOauthLogin()}"
 			android:text="확인"
 			android:textColor="@color/_FFFFFF"
 			android:textSize="18dp"
