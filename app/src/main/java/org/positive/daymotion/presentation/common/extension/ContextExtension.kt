@@ -39,3 +39,9 @@ inline fun <reified T : BaseActivity<*>> Context.startOnHome(vararg pairs: Pair<
 
 val Context.layoutInflater: LayoutInflater
     get() = LayoutInflater.from(this)
+
+fun Context.dpToPx(dp: Float) = dp * resources.displayMetrics.density
+
+fun Context.dpToPx(dp: Int) = dp.toFloat() * resources.displayMetrics.density
+
+fun Context.pxToDp(px: Float) = px / resources.displayMetrics.density
