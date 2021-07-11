@@ -108,7 +108,8 @@
 							android:paddingTop="4dp"
 							android:paddingEnd="10dp"
 							android:paddingBottom="4dp"
-							android:src="@drawable/ic_setting_depth" />
+							android:src="@drawable/ic_setting_depth"
+							app:useWhitePressEffect="@{true}" />
 					</LinearLayout>
 				</androidx.appcompat.widget.Toolbar>
 			</com.google.android.material.appbar.CollapsingToolbarLayout>
@@ -181,7 +182,8 @@
 				android:textSize="18dp"
 				app:layout_constraintEnd_toEndOf="parent"
 				app:layout_constraintStart_toStartOf="parent"
-				app:layout_constraintTop_toBottomOf="@id/emptyStateTextView" />
+				app:layout_constraintTop_toBottomOf="@id/emptyStateTextView"
+				app:useWhitePressEffect="@{true}" />
 			
 			<androidx.constraintlayout.widget.Group
 				android:layout_width="0dp"

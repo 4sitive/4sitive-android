@@ -43,57 +43,57 @@
 				android:id="@+id/homeButton"
 				android:layout_width="86dp"
 				android:layout_height="58dp"
-				android:background="?android:attr/selectableItemBackgroundBorderless"
+				android:background="@{viewModel.isSelectedHomeTab ? @drawable/ic_gnb_home_foc : @drawable/ic_gnb_home_nor}"
 				android:onClick="@{() -> viewModel.selectTab(Tab.HOME)}"
 				android:scaleType="fitXY"
-				android:src="@{viewModel.isSelectedHomeTab ? @drawable/ic_gnb_home_foc : @drawable/ic_gnb_home_nor}"
 				app:layout_constraintBottom_toBottomOf="parent"
 				app:layout_constraintEnd_toStartOf="@id/categoryButton"
 				app:layout_constraintStart_toStartOf="parent"
-				tools:ignore="ContentDescription"
-				tools:src="@drawable/ic_gnb_home_foc" />
+				app:useWhitePressEffect="@{true}"
+				tools:background="@drawable/ic_gnb_home_foc"
+				tools:ignore="ContentDescription" />
 			
 			<ImageButton
 				android:id="@+id/categoryButton"
 				android:layout_width="86dp"
 				android:layout_height="58dp"
-				android:background="?android:attr/selectableItemBackgroundBorderless"
+				android:background="@{viewModel.isSelectedCategoryTab ? @drawable/ic_gnb_category_foc : @drawable/ic_gnb_category_nor}"
 				android:onClick="@{() -> viewModel.selectTab(Tab.CATEGORY)}"
 				android:scaleType="fitXY"
-				android:src="@{viewModel.isSelectedCategoryTab ? @drawable/ic_gnb_category_foc : @drawable/ic_gnb_category_nor}"
 				app:layout_constraintBottom_toBottomOf="parent"
 				app:layout_constraintEnd_toStartOf="@id/myButton"
 				app:layout_constraintStart_toEndOf="@id/homeButton"
-				tools:ignore="ContentDescription"
-				tools:src="@drawable/ic_gnb_category_nor" />
+				app:useWhitePressEffect="@{true}"
+				tools:background="@drawable/ic_gnb_category_nor"
+				tools:ignore="ContentDescription" />
 			
 			<ImageButton
 				android:id="@+id/myButton"
 				android:layout_width="86dp"
 				android:layout_height="58dp"
-				android:background="?android:attr/selectableItemBackgroundBorderless"
+				android:background="@{viewModel.isSelectedMyTab ? @drawable/ic_gnb_my_foc : @drawable/ic_gnb_my_nor}"
 				android:onClick="@{() -> viewModel.selectTab(Tab.MY)}"
 				android:scaleType="fitXY"
-				android:src="@{viewModel.isSelectedMyTab ? @drawable/ic_gnb_my_foc : @drawable/ic_gnb_my_nor}"
 				app:layout_constraintBottom_toBottomOf="parent"
 				app:layout_constraintEnd_toStartOf="@id/settingButton"
 				app:layout_constraintStart_toEndOf="@id/categoryButton"
-				tools:ignore="ContentDescription"
-				tools:src="@drawable/ic_gnb_my_nor" />
+				app:useWhitePressEffect="@{true}"
+				tools:background="@drawable/ic_gnb_my_nor"
+				tools:ignore="ContentDescription" />
 			
 			<ImageButton
 				android:id="@+id/settingButton"
 				android:layout_width="86dp"
 				android:layout_height="58dp"
-				android:background="?android:attr/selectableItemBackgroundBorderless"
+				android:background="@{viewModel.isSelectedSettingTab ? @drawable/ic_gnb_setting_foc : @drawable/ic_gnb_setting_nor}"
 				android:onClick="@{() -> viewModel.selectTab(Tab.SETTING)}"
 				android:scaleType="fitXY"
-				android:src="@{viewModel.isSelectedSettingTab ? @drawable/ic_gnb_setting_foc : @drawable/ic_gnb_setting_nor}"
 				app:layout_constraintBottom_toBottomOf="parent"
 				app:layout_constraintEnd_toEndOf="parent"
 				app:layout_constraintStart_toEndOf="@id/myButton"
-				tools:ignore="ContentDescription"
-				tools:src="@drawable/ic_gnb_setting_nor" />
+				app:useWhitePressEffect="@{true}"
+				tools:background="@drawable/ic_gnb_setting_nor"
+				tools:ignore="ContentDescription" />
 		</androidx.constraintlayout.widget.ConstraintLayout>
 	
 	</androidx.constraintlayout.widget.ConstraintLayout>

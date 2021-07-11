@@ -1,8 +1,11 @@
 package org.positive.daymotion.presentation.common.bindingadapter
 
 import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.Drawable
+import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.StateListDrawable
 import android.view.View
+import androidx.annotation.ColorInt
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.view.isInvisible
@@ -30,13 +33,53 @@ fun View.setConstraintDimensionRatioBindingAdapter(ratio: String) {
     }
 }
 
-@BindingAdapter("pressEffect")
-fun View.setPressEffect(withGaryBg: Boolean) {
-    val stateListDrawable = StateListDrawable().apply {
-        setExitFadeDuration(300)
-        val pressedColor = if (withGaryBg) R.color._80000000 else R.color._80FFFFFF
-        val colorDrawable = ColorDrawable(ContextCompat.getColor(context, pressedColor))
-        addState(intArrayOf(android.R.attr.state_pressed), colorDrawable)
+@BindingAdapter("useWhitePressEffect")
+fun View.setWhitePressEffect(usePressEffect: Boolean?) {
+    if (usePressEffect == true) {
+        foreground =
+            createPressEffectDrawable(ContextCompat.getColor(context, R.color._80FFFFFF), null)
     }
-    foreground = stateListDrawable
+}
+
+@BindingAdapter("useGrayPressEffect")
+fun View.setGrayPressEffect(usePressEffect: Boolean?) {
+    if (usePressEffect == true) {
+        foreground =
+            createPressEffectDrawable(ContextCompat.getColor(context, R.color._80000000), null)
+    }
+}
+
+@BindingAdapter("useWhitePressEffect", "pressEffectRadius")
+fun View.setWhitePressEffectWithRadius(usePressEffect: Boolean?, radius: Float?) {
+    if (usePressEffect == true) {
+        foreground =
+            createPressEffectDrawable(ContextCompat.getColor(context, R.color._80FFFFFF), radius)
+    }
+}
+
+@BindingAdapter("useGrayPressEffect", "pressEffectRadius")
+fun View.setGrayPressEffectWithRadius(usePressEffect: Boolean?, radius: Float?) {
+    if (usePressEffect == true) {
+        foreground =
+            createPressEffectDrawable(ContextCompat.getColor(context, R.color._80000000), radius)
+    }
+}
+
+private fun createPressEffectDrawable(
+    @ColorInt color: Int,
+    radius: Float?
+): Drawable = if (radius == null) {
+    StateListDrawable().apply {
+        setExitFadeDuration(300)
+        addState(intArrayOf(android.R.attr.state_pressed), ColorDrawable(color))
+    }
+} else {
+    StateListDrawable().apply {
+        setExitFadeDuration(300)
+        val gradientDrawable = GradientDrawable().apply {
+            setColor(color)
+            cornerRadii = FloatArray(8) { radius }
+        }
+        addState(intArrayOf(android.R.attr.state_pressed), gradientDrawable)
+    }
 }

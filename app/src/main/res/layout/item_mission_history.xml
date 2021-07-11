@@ -51,8 +51,9 @@
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:background="@color/_CDCDCD"
-				android:foreground="?android:attr/selectableItemBackground"
-				android:onClick="@{() -> handler.startCategoryDetail(item.firstMission.missionName)}" />
+				android:onClick="@{() -> handler.startCategoryDetail(item.firstMission.missionName)}"
+				app:pressEffectRadius="@{@dimen/_8dp}"
+				app:useWhitePressEffect="@{true}" />
 		</androidx.cardview.widget.CardView>
 		
 		<androidx.cardview.widget.CardView
@@ -74,8 +75,9 @@
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:background="@color/_CDCDCD"
-				android:foreground="?android:attr/selectableItemBackground"
-				android:onClick="@{() -> handler.startCategoryDetail(item.secondMission.missionName)}" />
+				android:onClick="@{() -> handler.startCategoryDetail(item.secondMission.missionName)}"
+				app:pressEffectRadius="@{@dimen/_8dp}"
+				app:useWhitePressEffect="@{true}" />
 		</androidx.cardview.widget.CardView>
 		
 		<androidx.cardview.widget.CardView
@@ -97,8 +99,9 @@
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:background="@color/_CDCDCD"
-				android:foreground="?android:attr/selectableItemBackground"
-				android:onClick="@{() -> handler.startCategoryDetail(item.thirdMission.missionName)}" />
+				android:onClick="@{() -> handler.startCategoryDetail(item.thirdMission.missionName)}"
+				app:pressEffectRadius="@{@dimen/_8dp}"
+				app:useWhitePressEffect="@{true}" />
 		</androidx.cardview.widget.CardView>
 		
 		<FrameLayout

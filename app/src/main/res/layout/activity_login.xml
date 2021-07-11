@@ -64,7 +64,9 @@
 				android:textAlignment="textStart"
 				android:textAllCaps="false"
 				android:textColor="@color/_171717"
-				android:textSize="14dp" />
+				android:textSize="14dp"
+				app:pressEffectRadius="@{@dimen/_8dp}"
+				app:useGrayPressEffect="@{true}" />
 			
 			<Button
 				android:id="@+id/naverLoginButton"
@@ -81,7 +83,9 @@
 				android:textAlignment="textStart"
 				android:textAllCaps="false"
 				android:textColor="@color/_171717"
-				android:textSize="14dp" />
+				android:textSize="14dp"
+				app:pressEffectRadius="@{@dimen/_8dp}"
+				app:useGrayPressEffect="@{true}" />
 			
 			<Button
 				android:id="@+id/facebookLoginButton"
@@ -98,7 +102,9 @@
 				android:textAlignment="textStart"
 				android:textAllCaps="false"
 				android:textColor="@color/_171717"
-				android:textSize="14dp" />
+				android:textSize="14dp"
+				app:pressEffectRadius="@{@dimen/_8dp}"
+				app:useGrayPressEffect="@{true}" />
 			
 			<Button
 				android:id="@+id/kakaoLoginButton"
@@ -116,7 +122,9 @@
 				android:textAlignment="textStart"
 				android:textAllCaps="false"
 				android:textColor="@color/_171717"
-				android:textSize="14dp" />
+				android:textSize="14dp"
+				app:pressEffectRadius="@{@dimen/_8dp}"
+				app:useGrayPressEffect="@{true}" />
 		</LinearLayout>
 		
 		<androidx.constraintlayout.widget.ConstraintLayout

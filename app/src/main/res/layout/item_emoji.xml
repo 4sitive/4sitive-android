@@ -20,10 +20,11 @@
 		android:layout_margin="8dp"
 		android:drawablePadding="4dp"
 		android:gravity="center"
+		android:onClick="@{() -> handler.updateLikes()}"
 		android:padding="6dp"
 		android:text="@{item.count}"
 		android:textSize="10dp"
-		android:onClick="@{() -> handler.updateLikes()}"
 		app:drawableStartCompat="@drawable/ic_tmp_thumb_up"
+		app:useWhitePressEffect="@{true}"
 		tools:text="0" />
 </layout>

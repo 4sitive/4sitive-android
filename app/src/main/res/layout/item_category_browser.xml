@@ -19,7 +19,9 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_margin="5dp"
-		android:onClick="@{() -> handler.goToCategoryDetail(item.categoryName)}">
+		android:onClick="@{() -> handler.goToCategoryDetail(item.categoryName)}"
+		app:pressEffectRadius="@{@dimen/_8dp}"
+		app:useWhitePressEffect="@{true}">
 		
 		<androidx.cardview.widget.CardView
 			android:layout_width="match_parent"
@@ -36,8 +38,8 @@
 				android:id="@+id/categoryImageView"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
-				android:foreground="?android:attr/selectableItemBackground"
 				android:scaleType="centerInside"
+				
 				app:imageResource="@{item.background}"
 				tools:src="@drawable/img_category_01" />
 			

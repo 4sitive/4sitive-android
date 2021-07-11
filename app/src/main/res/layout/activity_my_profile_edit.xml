@@ -60,7 +60,9 @@
 				android:onClick="@{() -> handler.startGallery()}"
 				android:src="@drawable/img_profile_photo"
 				app:layout_constraintStart_toStartOf="@id/profileImageView"
-				app:layout_constraintTop_toTopOf="@id/profileImageView" />
+				app:layout_constraintTop_toTopOf="@id/profileImageView"
+				app:pressEffectRadius="@{@dimen/_18_5dp}"
+				app:useWhitePressEffect="@{true}" />
 			
 			<TextView
 				android:id="@+id/nameTextView"
@@ -184,7 +186,8 @@
 				app:layout_constraintEnd_toStartOf="@id/confirmButton"
 				app:layout_constraintStart_toStartOf="parent"
 				app:layout_constraintTop_toBottomOf="@id/introduceDescTextView"
-				app:layout_constraintVertical_bias="1" />
+				app:layout_constraintVertical_bias="1"
+				app:useWhitePressEffect="@{true}" />
 			
 			<TextView
 				android:id="@+id/confirmButton"
@@ -203,7 +206,8 @@
 				app:layout_constraintEnd_toEndOf="parent"
 				app:layout_constraintStart_toEndOf="@id/cancelButton"
 				app:layout_constraintTop_toBottomOf="@id/introduceDescTextView"
-				app:layout_constraintVertical_bias="1" />
+				app:layout_constraintVertical_bias="1"
+				app:useWhitePressEffect="@{true}" />
 		</androidx.constraintlayout.widget.ConstraintLayout>
 	</ScrollView>
 </layout>
