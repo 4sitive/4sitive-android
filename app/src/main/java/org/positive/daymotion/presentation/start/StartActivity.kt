@@ -4,7 +4,6 @@ import android.content.Intent
 import android.graphics.drawable.GradientDrawable
 import android.net.Uri
 import android.os.Bundle
-import android.os.Handler
 import androidx.core.content.ContextCompat
 import androidx.core.view.doOnLayout
 import dagger.hilt.android.AndroidEntryPoint
@@ -27,11 +26,7 @@ class StartActivity : BaseActivity<ActivityStartBinding>(R.layout.activity_start
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Handler(this.mainLooper).postDelayed(
-            { viewModel.checkVersionAndToken(BuildConfig.VERSION_NAME) },
-            50000
-        )
-
+        viewModel.checkVersionAndToken(BuildConfig.VERSION_NAME)
 
         setupViews()
         setupObservers()

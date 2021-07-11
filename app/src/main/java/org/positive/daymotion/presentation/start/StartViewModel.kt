@@ -28,7 +28,7 @@ class StartViewModel @Inject constructor(
     fun checkVersionAndToken(currentVersion: String) {
         remoteConfigRepository.fetchRemoteData()
             .andThen(Single.just(remoteConfigRepository.getForceUpdateVersion()))
-            .delay(500, TimeUnit.MILLISECONDS)
+            .delay(2500, TimeUnit.MILLISECONDS)
             .map { forceUpdateVersion ->
                 val currentVersionValues = currentVersion.split(".").map { it.toInt() }
                 val forceUpdateVersionValues = forceUpdateVersion.split(".").map { it.toInt() }
