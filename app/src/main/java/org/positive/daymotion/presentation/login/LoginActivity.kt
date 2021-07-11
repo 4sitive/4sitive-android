@@ -2,7 +2,6 @@ package org.positive.daymotion.presentation.login
 
 import android.content.Context
 import android.graphics.Typeface
-import android.net.Uri
 import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableString
@@ -13,11 +12,8 @@ import android.text.style.TypefaceSpan
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
-import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.content.res.ResourcesCompat
 import dagger.hilt.android.AndroidEntryPoint
-import org.positive.daymotion.BuildConfig
-import org.positive.daymotion.DmConstants
 import org.positive.daymotion.R
 import org.positive.daymotion.databinding.ActivityLoginBinding
 import org.positive.daymotion.presentation.common.base.BaseActivity
@@ -121,21 +117,6 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
     }
 
     inner class Handler {
-        // TODO(yh): need loading bar
-        fun requestLogin(loginWay: LoginWay) {
-            val url = Uri.parse(DmConstants.ACCOUNT_SERVER_BASE_URL + "/oauth/authorize")
-                .buildUpon()
-                .appendQueryParameter("client_id", BuildConfig.OAUTH_CLIENT_ID)
-                .appendQueryParameter("redirect_uri", DmConstants.APP_SCHEME + "://login")
-                .appendQueryParameter("response_type", "code")
-                .appendQueryParameter("registration_hint", loginWay.registrationHint)
-                .build()
-
-            val builder = CustomTabsIntent.Builder()
-            val customTabsIntent = builder.build()
-            customTabsIntent.launchUrl(this@LoginActivity, url)
-        }
-
         fun startAgreementActivity(loginWay: LoginWay) {
             AgreementActivity.start(this@LoginActivity, loginWay)
         }
