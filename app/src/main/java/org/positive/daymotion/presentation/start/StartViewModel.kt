@@ -3,9 +3,9 @@ package org.positive.daymotion.presentation.start
 import androidx.lifecycle.LiveData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.rxjava3.core.Single
-import org.positive.daymotion.presentation.common.SingleLiveEvent
 import org.positive.daymotion.data.pref.AppSharedPreference
 import org.positive.daymotion.data.repository.RemoteConfigRepository
+import org.positive.daymotion.presentation.common.SingleLiveEvent
 import org.positive.daymotion.presentation.common.base.BaseViewModel
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
@@ -29,20 +29,18 @@ class StartViewModel @Inject constructor(
         remoteConfigRepository.fetchRemoteData()
             .andThen(Single.just(remoteConfigRepository.getForceUpdateVersion()))
             .delay(500, TimeUnit.MILLISECONDS)
-            .map { version ->
-                val versionValues = version.split(".").map { it.toInt() }
-                require(versionValues.size == 3) { "Invalid version format" }
-                return@map versionValues
+            .map { forceUpdateVersion ->
+                val currentVersionValues = currentVersion.split(".").map { it.toInt() }
+                val forceUpdateVersionValues = forceUpdateVersion.split(".").map { it.toInt() }
+                require(currentVersionValues.size == 3 && forceUpdateVersionValues.size == 3) {
+                    "Invalid version format"
+                }
+                currentVersionValues to forceUpdateVersionValues
             }
             .backgroundCompose()
             .autoDispose {
-                success { versionValues ->
-                    val currentVersionValues = currentVersion.split(".").map { it.toInt() }
-                    val needForceUpdate = versionValues
-                        .zip(currentVersionValues)
-                        .let { it.any { (f, c) -> f > c } || it.all { (f, c) -> f == c } }
-
-                    if (needForceUpdate) {
+                success { (current, force) ->
+                    if (checkForceUpdate(current, force)) {
                         _needUpdate.call()
                     } else {
                         checkIssuedToken()
@@ -51,6 +49,13 @@ class StartViewModel @Inject constructor(
                 error { showErrorMessage(it.message.orEmpty()) }
             }
     }
+
+    private fun checkForceUpdate(
+        currentVersionValues: List<Int>,
+        versionValues: List<Int>
+    ) = versionValues
+        .zip(currentVersionValues)
+        .let { it.any { (f, c) -> f > c } || it.all { (f, c) -> f == c } }
 
     private fun checkIssuedToken() {
         appSharedPreference.loadAuthToken()
