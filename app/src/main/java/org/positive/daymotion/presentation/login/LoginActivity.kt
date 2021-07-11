@@ -17,11 +17,12 @@ import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.content.res.ResourcesCompat
 import dagger.hilt.android.AndroidEntryPoint
 import org.positive.daymotion.BuildConfig
-import org.positive.daymotion.R
 import org.positive.daymotion.DmConstants
+import org.positive.daymotion.R
 import org.positive.daymotion.databinding.ActivityLoginBinding
-import org.positive.daymotion.presentation.common.extension.startOnTop
 import org.positive.daymotion.presentation.common.base.BaseActivity
+import org.positive.daymotion.presentation.common.extension.startOnTop
+import org.positive.daymotion.presentation.login.model.LoginWay
 import org.positive.daymotion.presentation.setting.PrivacyPolicyActivity
 import org.positive.daymotion.presentation.setting.ServiceTermsActivity
 
@@ -134,10 +135,10 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
             val customTabsIntent = builder.build()
             customTabsIntent.launchUrl(this@LoginActivity, url)
         }
-    }
 
-    enum class LoginWay(val registrationHint: String) {
-        KAKAO("KAKAO"), GOOGLE("GOOGLE")
+        fun startAgreementActivity(loginWay: LoginWay) {
+            AgreementActivity.start(this@LoginActivity, loginWay)
+        }
     }
 
     companion object {
