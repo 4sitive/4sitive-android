@@ -9,14 +9,14 @@
 		android:name="org.positive.daymotion.DmApplication"
 		android:allowBackup="true"
 		android:fullBackupContent="false"
-		android:label="@string/app_name"
 		android:icon="@mipmap/app_icon"
+		android:label="@string/app_name"
 		android:roundIcon="@mipmap/app_icon_round"
 		android:supportsRtl="false"
 		android:theme="@style/AppTheme">
 		
 		<activity
-			android:name="org.positive.daymotion.presentation.start.StartActivity"
+			android:name=".presentation.start.StartActivity"
 			android:screenOrientation="portrait">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
@@ -26,7 +26,7 @@
 		</activity>
 		
 		<activity
-			android:name="org.positive.daymotion.presentation.dispatch.DispatchActivity"
+			android:name=".presentation.dispatch.DispatchActivity"
 			android:launchMode="singleTask"
 			android:screenOrientation="portrait">
 			<intent-filter>
@@ -40,40 +40,44 @@
 		</activity>
 		
 		<activity
-			android:name="org.positive.daymotion.presentation.login.LoginActivity"
+			android:name=".presentation.login.LoginActivity"
 			android:screenOrientation="portrait" />
 		
 		<activity
-			android:name="org.positive.daymotion.presentation.root.RootActivity"
+			android:name=".presentation.root.RootActivity"
 			android:screenOrientation="portrait" />
 		
 		<activity
-			android:name="org.positive.daymotion.presentation.main.MainActivity"
+			android:name=".presentation.main.MainActivity"
 			android:screenOrientation="portrait" />
 		
 		<activity
-			android:name="org.positive.daymotion.presentation.feed.FeedActivity"
+			android:name=".presentation.feed.FeedActivity"
 			android:screenOrientation="portrait" />
 		
 		<activity
-			android:name="org.positive.daymotion.presentation.category.activity.CategoryDetailActivity"
+			android:name=".presentation.category.activity.CategoryDetailActivity"
 			android:screenOrientation="portrait" />
 		
 		<activity
-			android:name="org.positive.daymotion.presentation.my.activity.MyProfileEditActivity"
+			android:name=".presentation.my.activity.MyProfileEditActivity"
 			android:screenOrientation="portrait"
 			android:windowSoftInputMode="adjustResize" />
 		
 		<activity
-			android:name="org.positive.daymotion.presentation.setting.PrivacyPolicyActivity"
+			android:name=".presentation.setting.PrivacyPolicyActivity"
 			android:screenOrientation="portrait" />
 		
 		<activity
-			android:name="org.positive.daymotion.presentation.setting.ServiceTermsActivity"
+			android:name=".presentation.setting.ServiceTermsActivity"
 			android:screenOrientation="portrait" />
 		
 		<activity
-			android:name="org.positive.daymotion.presentation.upload.MissionUploadActivity"
+			android:name=".presentation.upload.MissionUploadActivity"
+			android:screenOrientation="portrait" />
+		
+		<activity
+			android:name=".presentation.login.AgreementActivity"
 			android:screenOrientation="portrait" />
 	
 	</application>
