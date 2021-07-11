@@ -31,7 +31,7 @@
 				android:layout_height="wrap_content"
 				android:layout_gravity="center"
 				android:fontFamily="@font/montserrat_bold"
-				android:text="@string/daymotion"
+				android:text="Daymotion"
 				android:textColor="@color/_171717"
 				android:textSize="27dp" />
 			
