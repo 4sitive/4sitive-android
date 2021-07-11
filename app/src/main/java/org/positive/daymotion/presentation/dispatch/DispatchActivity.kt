@@ -1,14 +1,12 @@
 package org.positive.daymotion.presentation.dispatch
 
 import android.os.Bundle
-import android.os.Handler
-import android.widget.Toast
 import dagger.hilt.android.AndroidEntryPoint
 import org.positive.daymotion.R
 import org.positive.daymotion.databinding.ActivityEmptyBinding
 import org.positive.daymotion.presentation.common.base.BaseActivity
 import org.positive.daymotion.presentation.common.base.viewModelOf
-import org.positive.daymotion.presentation.main.MainActivity
+import org.positive.daymotion.presentation.root.RootActivity
 
 @AndroidEntryPoint
 class DispatchActivity : BaseActivity<ActivityEmptyBinding>(R.layout.activity_empty) {
@@ -26,8 +24,7 @@ class DispatchActivity : BaseActivity<ActivityEmptyBinding>(R.layout.activity_em
         }
 
         viewModel.tokenIssueCompleteEvent.observe {
-            Toast.makeText(this, "token issue complete", Toast.LENGTH_SHORT).show()
-            Handler(mainLooper).postDelayed({ MainActivity.startOnTop(this) }, 3000)
+            RootActivity.startOnTop(this)
         }
     }
 }
