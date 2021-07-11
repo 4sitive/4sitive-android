@@ -75,6 +75,8 @@ tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
 }
 
 dependencies {
+    implementation project(":konfetti")
+
     implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
 
     // Android Basic
@@ -125,9 +127,6 @@ dependencies {
     implementation "com.google.firebase:firebase-analytics"
     implementation "com.google.firebase:firebase-analytics-ktx"
     implementation "com.google.firebase:firebase-config-ktx"
-
-    // Konfetti
-    implementation "nl.dionsegijn:konfetti:$konfettiVersion"
 
     // Test
     testImplementation "junit:junit:$junitVersion"

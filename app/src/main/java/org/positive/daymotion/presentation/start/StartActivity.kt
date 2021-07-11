@@ -1,16 +1,15 @@
 package org.positive.daymotion.presentation.start
 
 import android.content.Intent
-import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
 import androidx.core.content.ContextCompat
 import androidx.core.view.doOnLayout
 import dagger.hilt.android.AndroidEntryPoint
 import nl.dionsegijn.konfetti.KonfettiView
 import nl.dionsegijn.konfetti.models.Shape
-import nl.dionsegijn.konfetti.models.Size
 import org.positive.daymotion.BuildConfig
 import org.positive.daymotion.R
 import org.positive.daymotion.databinding.ActivityStartBinding
@@ -28,7 +27,11 @@ class StartActivity : BaseActivity<ActivityStartBinding>(R.layout.activity_start
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel.checkVersionAndToken(BuildConfig.VERSION_NAME)
+        Handler(this.mainLooper).postDelayed(
+            { viewModel.checkVersionAndToken(BuildConfig.VERSION_NAME) },
+            50000
+        )
+
 
         setupViews()
         setupObservers()
@@ -48,19 +51,14 @@ class StartActivity : BaseActivity<ActivityStartBinding>(R.layout.activity_start
 
             (view as KonfettiView).build()
                 .addColors(colors)
-                .setDirection(210.0, 330.0)
-                .setSpeed(1f, 1f)
-                .addShapes(createParticleDrawable())
+                .setDirection(75.0, 105.0)
+                .setSpeed(4f, 6f)
                 .setTimeToLive(60000L)
-                .addSizes(Size(12))
+                .setFadeOutEnabled(true)
+                .setRotationSpeedMultiplier(2.0f)
+                .addShapes(createParticleDrawable())
                 .setPosition(-50f, view.width + 50f, -50f, -50f)
-                .streamFor(60, 60000L)
-//                .setDirection(210.0, 330.0)
-//                .addColors(colors)
-//                .setSpeed(6f, 8f)
-//                .setTimeToLive(5000L)
-//                .setPosition(0f, binding.konfettiView.width.toFloat(), 0f, 0f)
-//                .streamFor(24, 10000L)
+                .streamFor(12, 60000L)
         }
     }
 
