@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto">
+	
+	<androidx.constraintlayout.widget.ConstraintLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
+		
+		<TextView
+			android:id="@+id/titleTextView"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:layout_marginTop="127dp"
+			android:fontFamily="@font/montserrat_bold"
+			android:text="Daymotion"
+			android:textColor="@color/_171717"
+			android:textSize="27dp"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent" />
+		
+		<TextView
+			android:id="@+id/descTextView"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:layout_marginStart="20dp"
+			android:layout_marginTop="15dp"
+			android:layout_marginEnd="20dp"
+			android:alpha="0.6"
+			android:fontFamily="@font/kopub_dotum_medium"
+			android:gravity="center"
+			android:text="약관에 동의하시고,\n오늘의 미션을 확인해 보세요!"
+			android:textColor="@color/_171717"
+			android:textSize="16dp"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/titleTextView" />
+		
+		<CheckBox
+			android:id="@+id/firstAgreementCheckBox"
+			android:layout_width="24dp"
+			android:layout_height="24dp"
+			android:layout_marginStart="20dp"
+			android:layout_marginTop="66dp"
+			android:background="@drawable/selector_checkbox"
+			android:button="null"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/descTextView" />
+		
+		<TextView
+			android:id="@+id/firstAgreementTextView"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="10dp"
+			android:fontFamily="@font/kopub_dotum_medium"
+			android:text="[필수] 개인정보 수집 및 이용 안내"
+			app:layout_constraintBottom_toBottomOf="@id/firstAgreementCheckBox"
+			app:layout_constraintEnd_toStartOf="@id/firstAgreementDetailTextView"
+			app:layout_constraintStart_toEndOf="@id/firstAgreementCheckBox"
+			app:layout_constraintTop_toTopOf="@id/firstAgreementCheckBox" />
+		
+		<TextView
+			android:id="@+id/firstAgreementDetailTextView"
+			android:layout_width="50dp"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="10dp"
+			android:layout_marginEnd="10dp"
+			android:alpha="0.3"
+			android:fontFamily="@font/kopub_dotum_medium"
+			android:gravity="end"
+			android:text="보기"
+			android:textColor="@color/_171717"
+			app:layout_constraintBottom_toBottomOf="@id/firstAgreementTextView"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toEndOf="@id/firstAgreementTextView"
+			app:layout_constraintTop_toTopOf="@id/firstAgreementTextView"
+			app:useWhitePressEffect="@{true}" />
+		
+		<CheckBox
+			android:id="@+id/secondAgreementCheckBox"
+			android:layout_width="24dp"
+			android:layout_height="24dp"
+			android:layout_marginStart="20dp"
+			android:layout_marginTop="33dp"
+			android:background="@drawable/selector_checkbox"
+			android:button="null"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/firstAgreementCheckBox" />
+		
+		<TextView
+			android:id="@+id/secondAgreementTextView"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="10dp"
+			android:fontFamily="@font/kopub_dotum_medium"
+			android:text="[필수] 제 3자 제공 동의"
+			app:layout_constraintBottom_toBottomOf="@id/secondAgreementCheckBox"
+			app:layout_constraintEnd_toStartOf="@id/secondAgreementDetailTextView"
+			app:layout_constraintStart_toEndOf="@id/secondAgreementCheckBox"
+			app:layout_constraintTop_toTopOf="@id/secondAgreementCheckBox" />
+		
+		<TextView
+			android:id="@+id/secondAgreementDetailTextView"
+			android:layout_width="50dp"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="10dp"
+			android:layout_marginEnd="10dp"
+			android:alpha="0.3"
+			android:fontFamily="@font/kopub_dotum_medium"
+			android:gravity="end"
+			android:text="보기"
+			android:textColor="@color/_171717"
+			app:layout_constraintBottom_toBottomOf="@id/secondAgreementTextView"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toEndOf="@id/secondAgreementTextView"
+			app:layout_constraintTop_toTopOf="@id/secondAgreementTextView"
+			app:useWhitePressEffect="@{true}" />
+		
+		<CheckBox
+			android:id="@+id/thirdAgreementCheckBox"
+			android:layout_width="24dp"
+			android:layout_height="24dp"
+			android:layout_marginStart="20dp"
+			android:layout_marginTop="33dp"
+			android:background="@drawable/selector_checkbox"
+			android:button="null"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/secondAgreementCheckBox" />
+		
+		<TextView
+			android:id="@+id/thirdAgreementTextView"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="10dp"
+			android:fontFamily="@font/kopub_dotum_medium"
+			android:text="[선택] 제 3자 제공 동의"
+			app:layout_constraintBottom_toBottomOf="@id/thirdAgreementCheckBox"
+			app:layout_constraintEnd_toStartOf="@id/thirdAgreementDetailTextView"
+			app:layout_constraintStart_toEndOf="@id/thirdAgreementCheckBox"
+			app:layout_constraintTop_toTopOf="@id/thirdAgreementCheckBox" />
+		
+		<TextView
+			android:id="@+id/thirdAgreementDetailTextView"
+			android:layout_width="50dp"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="10dp"
+			android:layout_marginEnd="10dp"
+			android:alpha="0.3"
+			android:fontFamily="@font/kopub_dotum_medium"
+			android:gravity="end"
+			android:text="보기"
+			android:textColor="@color/_171717"
+			app:layout_constraintBottom_toBottomOf="@id/thirdAgreementTextView"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toEndOf="@id/thirdAgreementTextView"
+			app:layout_constraintTop_toTopOf="@id/thirdAgreementTextView"
+			app:useWhitePressEffect="@{true}" />
+		
+		<View
+			android:id="@+id/divider"
+			android:layout_width="0dp"
+			android:layout_height="1dp"
+			android:layout_marginStart="20dp"
+			android:layout_marginTop="25dp"
+			android:layout_marginEnd="20dp"
+			android:background="@color/_EDEDED"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/thirdAgreementCheckBox" />
+		
+		<CheckBox
+			android:id="@+id/allAgreeCheckBox"
+			android:layout_width="24dp"
+			android:layout_height="24dp"
+			android:layout_marginStart="20dp"
+			android:layout_marginTop="26dp"
+			android:background="@drawable/selector_checkbox"
+			android:button="null"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/divider" />
+		
+		<TextView
+			android:id="@+id/allAgreeTextView"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="10dp"
+			android:fontFamily="@font/kopub_dotum_bold"
+			android:text="전체동의"
+			app:layout_constraintBottom_toBottomOf="@id/allAgreeCheckBox"
+			app:layout_constraintStart_toEndOf="@id/allAgreeCheckBox"
+			app:layout_constraintTop_toTopOf="@id/allAgreeCheckBox" />
+		
+		<TextView
+			android:layout_width="0dp"
+			android:layout_height="50dp"
+			android:background="@color/_043EFF"
+			android:fontFamily="@font/kopub_dotum_bold"
+			android:gravity="center"
+			android:text="확인"
+			android:textColor="@color/_FFFFFF"
+			android:textSize="18dp"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:useWhitePressEffect="@{true}" />
+		
+	</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
