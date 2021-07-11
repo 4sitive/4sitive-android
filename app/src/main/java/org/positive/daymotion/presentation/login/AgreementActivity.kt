@@ -12,6 +12,7 @@ import org.positive.daymotion.databinding.ActivityAgreementBinding
 import org.positive.daymotion.presentation.common.base.BaseActivity
 import org.positive.daymotion.presentation.common.base.viewModelOf
 import org.positive.daymotion.presentation.common.bundle
+import org.positive.daymotion.presentation.common.extension.applyTypefaceSpan
 import org.positive.daymotion.presentation.common.extension.startWith
 import org.positive.daymotion.presentation.login.model.LoginWay
 import org.positive.daymotion.presentation.login.viewmodel.AgreementViewModel
@@ -28,6 +29,15 @@ class AgreementActivity : BaseActivity<ActivityAgreementBinding>(R.layout.activi
         super.onCreate(savedInstanceState)
         binding.handler = handler
         binding.viewModel = viewModel
+        setupViews()
+    }
+
+    private fun setupViews() {
+        with(binding) {
+            firstAgreementTextView.applyTypefaceSpan("[필수]", R.font.kopub_dotum_bold)
+            secondAgreementTextView.applyTypefaceSpan("[필수]", R.font.kopub_dotum_bold)
+            thirdAgreementTextView.applyTypefaceSpan("[선택]", R.font.kopub_dotum_bold)
+        }
     }
 
     inner class Handler {
