@@ -7,25 +7,27 @@
 		android:layout_height="match_parent">
 		
 		<TextView
-			android:id="@+id/title"
+			android:id="@+id/subTitleTextView"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:text="SPLASH PAGE"
-			android:textSize="40dp"
-			app:layout_constraintBottom_toTopOf="@id/loadingView"
+			android:layout_marginBottom="9dp"
+			android:fontFamily="@font/kopub_dotum_light"
+			android:text="일상을 새롭게"
+			android:textSize="16dp"
+			app:layout_constraintBottom_toTopOf="@id/logoImageView"
 			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toTopOf="parent" />
+			app:layout_constraintStart_toStartOf="parent" />
 		
-		<ProgressBar
-			android:id="@+id/loadingView"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:indeterminateTint="@color/_171717"
+		<ImageView
+			android:id="@+id/logoImageView"
+			android:layout_width="197dp"
+			android:layout_height="37dp"
+			android:src="@drawable/splash_logo"
 			app:layout_constraintBottom_toBottomOf="parent"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toBottomOf="@id/title" />
+			app:layout_constraintTop_toTopOf="parent"
+			app:layout_constraintVertical_bias="0.43" />
 	
 	</androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
