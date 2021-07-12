@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools">
+	
+	<data>
+		
+		<variable
+			name="viewModel"
+			type="org.positive.daymotion.presentation.upload.FeedUploadViewModel" />
+	</data>
+	
+	<androidx.constraintlayout.widget.ConstraintLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
+		
+		<FrameLayout
+			android:id="@+id/appBarLayout"
+			android:layout_width="0dp"
+			android:layout_height="65dp"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent">
+			
+			<ImageView
+				android:id="@+id/closeImageView"
+				android:layout_width="34dp"
+				android:layout_height="34dp"
+				android:layout_gravity="center_vertical|start"
+				android:layout_marginStart="15dp"
+				android:background="@drawable/ic_top_close" />
+			
+			<ImageView
+				android:id="@+id/cameraSwitchImageView"
+				android:layout_width="34dp"
+				android:layout_height="34dp"
+				android:layout_gravity="center_vertical|center_horizontal"
+				android:background="@drawable/ic_top_switch_camera" />
+			
+			<ImageView
+				android:id="@+id/galleryImageView"
+				android:layout_width="34dp"
+				android:layout_height="34dp"
+				android:layout_gravity="center_vertical|end"
+				android:layout_marginEnd="20dp"
+				android:background="@color/_EDEDED" />
+		</FrameLayout>
+		
+		<FrameLayout
+			android:id="@+id/container"
+			android:layout_width="0dp"
+			android:layout_height="0dp"
+			app:layout_constraintBottom_toTopOf="@id/missionSelectLayout"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/appBarLayout" />
+		
+		<LinearLayout
+			android:id="@+id/missionSelectLayout"
+			android:layout_width="0dp"
+			android:layout_height="70dp"
+			android:orientation="horizontal"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/container">
+			
+			<TextView
+				android:id="@+id/missionSelectTextView"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center_vertical"
+				android:layout_marginStart="15dp"
+				android:layout_weight="1"
+				android:drawablePadding="5dp"
+				android:fontFamily="@font/kopub_dotum_bold"
+				android:textColor="@color/_171717"
+				android:textSize="16dp"
+				app:drawableStartCompat="@drawable/icon_feed_upload"
+				tools:text="아아? 라떼? 커피를 추천해줘!" />
+			
+			<TextView
+				android:id="@+id/uploadButton"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center_vertical"
+				android:layout_marginEnd="15dp"
+				android:background="@drawable/background_feed_upload_button"
+				android:fontFamily="@font/kopub_dotum_bold"
+				android:paddingStart="10dp"
+				android:paddingTop="6dp"
+				android:paddingEnd="10dp"
+				android:paddingBottom="6dp"
+				android:text="올리기"
+				android:textColor="@color/_FFFFFF"
+				android:textSize="14dp" />
+		</LinearLayout>
+	
+	</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
