@@ -47,8 +47,9 @@ ext {
     // Firebase
     firebaseVersion = '28.1.0'
 
-    // Konfetti
-    konfettiVersion = '1.3.2'
+    // Camera
+    cameraVersion = '1.1.0-alpha06'
+    cameraViewVersion = '1.0.0-alpha26'
 
     // Test
     junitVersion = '4.13.2'
