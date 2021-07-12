@@ -66,7 +66,7 @@
 			android:name=".presentation.setting.ServiceTermsActivity"
 			android:screenOrientation="portrait" />
 		<activity
-			android:name=".presentation.upload.MissionUploadActivity"
+			android:name=".presentation.upload.activity.FeedUploadActivity"
 			android:screenOrientation="portrait" />
 		<activity
 			android:name=".presentation.terms.TermsActivity"
