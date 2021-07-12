@@ -175,6 +175,7 @@
 				android:background="@drawable/background_my_tab_goto_upload_button"
 				android:fontFamily="@font/kopub_dotum_bold"
 				android:gravity="center"
+				android:onClick="@{() -> handler.startFeedUploadActivity()}"
 				android:paddingStart="34dp"
 				android:paddingEnd="34dp"
 				android:text="참여하기"

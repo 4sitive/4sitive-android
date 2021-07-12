@@ -15,6 +15,7 @@ import org.positive.daymotion.presentation.common.base.viewModelOf
 import org.positive.daymotion.presentation.common.extension.registerActivityResult
 import org.positive.daymotion.presentation.my.activity.MyProfileEditActivity
 import org.positive.daymotion.presentation.my.viewmodel.MyTabViewModel
+import org.positive.daymotion.presentation.upload.activity.FeedUploadActivity
 
 @AndroidEntryPoint
 class MyTabFragment : BaseFragment<FragmentMyTabBinding>(R.layout.fragment_my_tab),
@@ -68,5 +69,7 @@ class MyTabFragment : BaseFragment<FragmentMyTabBinding>(R.layout.fragment_my_ta
             "시루",
             "시루랑 함께하는 일상"
         )
+
+        fun startFeedUploadActivity() = FeedUploadActivity.start(requireContext())
     }
 }
