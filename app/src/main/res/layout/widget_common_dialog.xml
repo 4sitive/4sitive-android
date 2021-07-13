@@ -60,6 +60,7 @@
 			android:text="@{commonDialogBundle.blueButtonText}"
 			android:textColor="@color/_FFFFFF"
 			android:textSize="15dp"
+			app:isVisible="@{commonDialogBundle.visibleBlueButton}"
 			app:pressEffectRadius="@{@dimen/_8dp}"
 			app:useWhitePressEffect="@{true}"
 			tools:text="파란색 버튼" />
@@ -77,6 +78,7 @@
 			android:text="@{commonDialogBundle.grayButtonText}"
 			android:textColor="@color/_171717"
 			android:textSize="15dp"
+			app:isVisible="@{commonDialogBundle.visibleGrayButton}"
 			app:pressEffectRadius="@{@dimen/_8dp}"
 			app:useWhitePressEffect="@{true}"
 			tools:text="회색 버튼" />
