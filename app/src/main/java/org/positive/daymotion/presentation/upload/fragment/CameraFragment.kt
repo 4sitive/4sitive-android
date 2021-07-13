@@ -1,8 +1,11 @@
 package org.positive.daymotion.presentation.upload.fragment
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.View
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
@@ -11,6 +14,7 @@ import kotlinx.coroutines.launch
 import org.positive.daymotion.R
 import org.positive.daymotion.databinding.FragmentCameraBinding
 import org.positive.daymotion.presentation.common.base.BaseFragment
+import org.positive.daymotion.presentation.common.showPopupDialog
 import org.positive.daymotion.presentation.upload.CameraManager
 
 class CameraFragment : BaseFragment<FragmentCameraBinding>(R.layout.fragment_camera) {
@@ -18,13 +22,21 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>(R.layout.fragment_cam
     private lateinit var cameraProvider: ProcessCameraProvider
     private lateinit var currentCameraManager: CameraManager
 
+    private val requestPermissionLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) {
+            if (!it.all { (_, v) -> v }) {
+                showRequirePermissionPopup()
+            }
+        }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpCamera()
     }
 
-    override fun onResume() {
-        super.onResume()
+    override fun onStart() {
+        super.onStart()
+        checkPermission()
     }
 
     private fun setUpCamera() {
@@ -58,6 +70,37 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>(R.layout.fragment_cam
         startFlashAnimation()
     }
 
+    private fun checkPermission() {
+        val context = requireContext()
+        var needPermissionRequest = false
+
+        PERMISSIONS_REQUIRED.forEach {
+            val isGranted =
+                ContextCompat.checkSelfPermission(context, it) == PackageManager.PERMISSION_GRANTED
+            if (!isGranted && shouldShowRequestPermissionRationale(it)) {
+                showRequirePermissionPopup()
+                return
+            }
+            if (!isGranted) {
+                needPermissionRequest = true
+            }
+        }
+
+        if (needPermissionRequest) {
+            requestPermissionLauncher.launch(PERMISSIONS_REQUIRED)
+        }
+    }
+
+    private fun showRequirePermissionPopup() {
+        showPopupDialog {
+            title = "권한이 필요합니다."
+            content = "위치, 저장공간, 카메라에 대한 권한이 없으면\n글을 작성할 수 없습니다."
+            blueButtonText = "확인"
+            isVisibleGrayButton = false
+            onClickBlueButton { activity?.finish() }
+        }
+    }
+
     private fun startFlashAnimation() {
         lifecycleScope.launch {
             val color = ContextCompat.getColor(requireContext(), R.color._000000)
@@ -65,5 +108,13 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>(R.layout.fragment_cam
             delay(100)
             binding.cameraContainer.foreground = null
         }
+    }
+
+    companion object {
+        private val PERMISSIONS_REQUIRED = arrayOf(
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.CAMERA,
+            Manifest.permission.READ_EXTERNAL_STORAGE
+        )
     }
 }
