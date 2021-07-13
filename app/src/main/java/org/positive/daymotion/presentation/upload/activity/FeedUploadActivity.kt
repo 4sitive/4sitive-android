@@ -17,27 +17,33 @@ class FeedUploadActivity :
     BaseActivity<ActivityFeedUploadBinding>(R.layout.activity_feed_upload) {
 
     private val viewModel by viewModelOf<FeedUploadViewModel>()
+    private val handler = Handler()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding.viewModel = viewModel
-
-        binding.cameraSwitchImageView.setOnClickListener {
-            val cameraFragment = supportFragmentManager.fragments
-                .filterIsInstance(CameraFragment::class.java)
-                .firstOrNull()
-            cameraFragment?.toggleLens()
-        }
-
-        binding.capture.setOnClickListener {
-            val cameraFragment = supportFragmentManager.fragments
-                .filterIsInstance(CameraFragment::class.java)
-                .firstOrNull()
-            cameraFragment?.capture()
-        }
+        binding.handler = handler
 
         supportFragmentManager.commit {
             add(R.id.container, CameraFragment::class.java, null)
+        }
+    }
+
+    inner class Handler {
+        fun close() = finish()
+
+        fun toggleLensFacing() {
+            supportFragmentManager.fragments
+                .filterIsInstance(CameraFragment::class.java)
+                .firstOrNull()
+                ?.toggleLens()
+        }
+
+        fun takePicture() {
+            supportFragmentManager.fragments
+                .filterIsInstance(CameraFragment::class.java)
+                .firstOrNull()
+                ?.capture()
         }
     }
 
