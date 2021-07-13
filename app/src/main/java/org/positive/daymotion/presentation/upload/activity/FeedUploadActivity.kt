@@ -22,6 +22,12 @@ class FeedUploadActivity :
         super.onCreate(savedInstanceState)
         binding.viewModel = viewModel
 
+        binding.cameraSwitchImageView.setOnClickListener {
+            val cameraFragment = supportFragmentManager.fragments
+                .filterIsInstance(CameraFragment::class.java)
+                .firstOrNull()
+            cameraFragment?.toggleLens()
+        }
         supportFragmentManager.commit {
             add(R.id.container, CameraFragment::class.java, null)
         }
