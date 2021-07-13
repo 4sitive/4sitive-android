@@ -1,9 +1,13 @@
 package org.positive.daymotion.presentation.upload.fragment
 
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.View
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import org.positive.daymotion.R
 import org.positive.daymotion.databinding.FragmentCameraBinding
 import org.positive.daymotion.presentation.common.base.BaseFragment
@@ -19,6 +23,10 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>(R.layout.fragment_cam
         setUpCamera()
     }
 
+    override fun onResume() {
+        super.onResume()
+    }
+
     private fun setUpCamera() {
         val cameraProviderFuture = ProcessCameraProvider.getInstance(requireContext())
         val mainExecutors = ContextCompat.getMainExecutor(requireContext())
@@ -29,7 +37,10 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>(R.layout.fragment_cam
     }
 
     private fun setupCameraManager(cameraProvider: ProcessCameraProvider) {
-        currentCameraManager = CameraManager(cameraProvider).also {
+        currentCameraManager = CameraManager(
+            cameraProvider,
+            requireContext()
+        ).also {
             it.bindToLifecycle(lifecycleOwner, cameraProvider)
             it.setSurfaceProvider(binding.previewView.surfaceProvider)
         }
@@ -42,4 +53,17 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>(R.layout.fragment_cam
         }
     }
 
+    fun capture() {
+        currentCameraManager.takePicture()
+        startFlashAnimation()
+    }
+
+    private fun startFlashAnimation() {
+        lifecycleScope.launch {
+            val color = ContextCompat.getColor(requireContext(), R.color._000000)
+            binding.cameraContainer.foreground = ColorDrawable(color)
+            delay(100)
+            binding.cameraContainer.foreground = null
+        }
+    }
 }
