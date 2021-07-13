@@ -28,6 +28,14 @@ class FeedUploadActivity :
                 .firstOrNull()
             cameraFragment?.toggleLens()
         }
+
+        binding.capture.setOnClickListener {
+            val cameraFragment = supportFragmentManager.fragments
+                .filterIsInstance(CameraFragment::class.java)
+                .firstOrNull()
+            cameraFragment?.capture()
+        }
+
         supportFragmentManager.commit {
             add(R.id.container, CameraFragment::class.java, null)
         }
