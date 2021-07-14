@@ -10,35 +10,53 @@ import org.positive.daymotion.presentation.common.base.BaseFragment
 import org.positive.daymotion.presentation.common.base.viewModelOf
 import org.positive.daymotion.presentation.common.showPopupDialog
 import org.positive.daymotion.presentation.login.LoginActivity
+import org.positive.daymotion.presentation.terms.Terms
+import org.positive.daymotion.presentation.terms.TermsActivity
 
 @AndroidEntryPoint
 class SettingTabFragment : BaseFragment<FragmentSettingTabBinding>(R.layout.fragment_setting_tab) {
 
     private val viewModel by viewModelOf<SettingTabViewModel>()
+    private val handler = Handler()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.viewModel = viewModel
+        binding.handler = handler
 
-        binding.logoutTextView.setOnClickListener {
-            // TODO(je): logout api
-            val logoutMsg = requireContext().resources.getString(R.string.logoutMsg)
-            Toast.makeText(requireContext(), logoutMsg, Toast.LENGTH_SHORT).show()
-            LoginActivity.startOnTop(requireContext())
+        setupObservers()
+    }
+
+    private fun setupObservers() {
+        with(viewModel) {
+            logoutComplete.observe {
+                val logoutMsg = requireContext().resources.getString(R.string.logoutMsg)
+                Toast.makeText(requireContext(), logoutMsg, Toast.LENGTH_SHORT).show()
+                LoginActivity.startOnTop(requireContext())
+            }
+            secessionComplete.observe {
+                Toast.makeText(requireContext(), "탈퇴가 완료되었습니다.", Toast.LENGTH_SHORT).show()
+                LoginActivity.startOnTop(requireContext())
+            }
+        }
+    }
+
+    inner class Handler {
+        fun startTermsActivity(terms: Terms) {
+            TermsActivity.start(requireContext(), terms)
         }
 
-        binding.pushSwitch.setOnCheckedChangeListener { _, isChecked ->
-            onPushAlarm(isChecked)
+        fun onPushAlarm(isChecked: Boolean) {
+            if (isChecked) {
+                Toast.makeText(requireContext(), "푸시 알림 ON", Toast.LENGTH_SHORT).show()
+                // TODO(je): push alarm on
+            } else {
+                Toast.makeText(requireContext(), "푸시 알림 OFF", Toast.LENGTH_SHORT).show()
+                // TODO(je): push alarm off
+            }
         }
 
-        binding.serviceButton.setOnClickListener {
-            ServiceTermsActivity.start(requireContext())
-        }
-        binding.privacyButton.setOnClickListener {
-            PrivacyPolicyActivity.start(requireContext())
-        }
-
-        binding.secessionButton.setOnClickListener {
+        fun showSecessionAlert() {
             showPopupDialog {
                 title = "탈퇴하시려구요?"
                 content = "서비스를 탈퇴하면 모든 데이터는 다 사라져요.\n" +
@@ -48,24 +66,8 @@ class SettingTabFragment : BaseFragment<FragmentSettingTabBinding>(R.layout.frag
                 grayButtonText = "탈퇴할래요"
                 isVisibleGrayButton = true
                 isCancelable = true
-                onClickGrayButton { setSecessionApi() }
+                onClickGrayButton { viewModel.secession() }
             }
         }
-    }
-
-    private fun onPushAlarm(isChecked: Boolean) {
-        if (isChecked) {
-            Toast.makeText(requireContext(), "푸시 알림 ON", Toast.LENGTH_SHORT).show()
-            // TODO(je): push alarm on
-        } else {
-            Toast.makeText(requireContext(), "푸시 알림 OFF", Toast.LENGTH_SHORT).show()
-            // TODO(je): push alarm off
-        }
-    }
-
-    private fun setSecessionApi() {
-        // TODO(je): secession api
-        Toast.makeText(requireContext(), "탈퇴가 완료되었습니다.", Toast.LENGTH_SHORT).show()
-        LoginActivity.startOnTop(requireContext())
     }
 }
