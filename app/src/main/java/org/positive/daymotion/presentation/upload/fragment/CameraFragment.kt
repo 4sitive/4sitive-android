@@ -1,8 +1,10 @@
 package org.positive.daymotion.presentation.upload.fragment
 
 import android.Manifest
+import android.content.Context
 import android.content.pm.PackageManager
 import android.graphics.drawable.ColorDrawable
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
@@ -21,6 +23,7 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>(R.layout.fragment_cam
 
     private lateinit var cameraProvider: ProcessCameraProvider
     private lateinit var currentCameraManager: CameraManager
+    private var eventListener: EventListener? = null
 
     private val requestPermissionLauncher =
         registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) {
@@ -28,6 +31,13 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>(R.layout.fragment_cam
                 showRequirePermissionPopup()
             }
         }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is EventListener) {
+            eventListener = context
+        }
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -45,13 +55,16 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>(R.layout.fragment_cam
         cameraProviderFuture.addListener({
             cameraProvider = cameraProviderFuture.get()
             setupCameraManager(cameraProvider)
+            eventListener?.onReadyCamera(currentCameraManager.isAvailableToggle)
         }, mainExecutors)
     }
 
     private fun setupCameraManager(cameraProvider: ProcessCameraProvider) {
         currentCameraManager = CameraManager(
             cameraProvider,
-            requireContext()
+            requireContext(),
+            { eventListener?.onImageSaved(it) },
+            { showImageCaptureErrorPopup(it) }
         ).also {
             it.bindToLifecycle(lifecycleOwner, cameraProvider)
             it.setSurfaceProvider(binding.previewView.surfaceProvider)
@@ -96,6 +109,18 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>(R.layout.fragment_cam
             title = "권한이 필요합니다."
             content = "위치, 저장공간, 카메라에 대한 권한이 없으면\n글을 작성할 수 없습니다."
             blueButtonText = "확인"
+            isCancelable = false
+            isVisibleGrayButton = false
+            onClickBlueButton { activity?.finish() }
+        }
+    }
+
+    private fun showImageCaptureErrorPopup(throwable: Throwable) {
+        showPopupDialog {
+            title = "사진 촬영 중 알 수 없는 문제가 발생하였습니다."
+            content = throwable.message.orEmpty()
+            blueButtonText = "확인"
+            isCancelable = false
             isVisibleGrayButton = false
             onClickBlueButton { activity?.finish() }
         }
@@ -108,6 +133,13 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>(R.layout.fragment_cam
             delay(100)
             binding.cameraContainer.foreground = null
         }
+    }
+
+    interface EventListener {
+
+        fun onReadyCamera(isAvailableToggle: Boolean)
+
+        fun onImageSaved(uri: Uri)
     }
 
     companion object {
