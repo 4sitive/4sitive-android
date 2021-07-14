@@ -1,7 +1,5 @@
 <resources>
 	
-	<!-- app name -->
-	
 	<!-- login -->
 	<string name="sub_title">오늘은 어떤 미션이 기다리고 있을까?\n가입하고 바로 참여해 보세요!</string>
 	<string name="login_button">%1$s로 참여하기</string>
@@ -12,7 +10,7 @@
 	<string name="bottom_menu_setting">설정</string>
 	
 	<!-- logout -->
-	<string name="logout">로그아웃</string>
+	<string name="logout"><u>로그아웃</u></string>
 	<string name="logoutMsg">로그아웃 되었습니다.\n곧 다시 만나요~!!</string>
 
 </resources>

@@ -37,8 +37,6 @@
 				<data android:scheme="positive" />
 			</intent-filter>
 		</activity>
-		<activity android:name=".presentation.login.TermsActivity"
-			android:screenOrientation="portrait" />
 		<activity
 			android:name="org.positive.daymotion.presentation.home.HomeDetailActivity"
 			android:screenOrientation="portrait" />
@@ -71,7 +69,7 @@
 			android:name=".presentation.upload.MissionUploadActivity"
 			android:screenOrientation="portrait" />
 		<activity
-			android:name=".presentation.login.AgreementActivity"
+			android:name=".presentation.terms.TermsActivity"
 			android:screenOrientation="portrait" />
 	</application>
 
