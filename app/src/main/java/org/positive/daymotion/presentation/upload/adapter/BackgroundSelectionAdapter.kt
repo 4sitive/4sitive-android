@@ -9,9 +9,12 @@ import org.positive.daymotion.databinding.ItemCameraButtonBinding
 import org.positive.daymotion.databinding.ItemDefaultBackgroundButtonBinding
 import org.positive.daymotion.presentation.common.BindingViewHolder
 import org.positive.daymotion.presentation.common.createBindingViewHolder
+import org.positive.daymotion.presentation.upload.activity.FeedUploadActivity
 import org.positive.daymotion.presentation.upload.model.BackgroundSelection
 
-class BackgroundSelectionAdapter : RecyclerView.Adapter<BindingViewHolder<out ViewDataBinding>>() {
+class BackgroundSelectionAdapter(
+    private val handler: FeedUploadActivity.Handler
+) : RecyclerView.Adapter<BindingViewHolder<out ViewDataBinding>>() {
 
     val selections = listOf(
         BackgroundSelection.Camera(),
@@ -40,7 +43,10 @@ class BackgroundSelectionAdapter : RecyclerView.Adapter<BindingViewHolder<out Vi
         holder: BindingViewHolder<out ViewDataBinding>,
         position: Int
     ) {
-        holder.binding.setVariable(BR.item, selections[position])
+        with(holder.binding) {
+            setVariable(BR.handler, handler)
+            setVariable(BR.item, selections[position])
+        }
     }
 
     override fun getItemCount() = selections.size

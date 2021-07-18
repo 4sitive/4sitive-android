@@ -9,15 +9,8 @@ import javax.inject.Inject
 @HiltViewModel
 class FeedUploadViewModel @Inject constructor() : BaseViewModel() {
 
-    private val _isCameraReady = MutableLiveData(false)
-    val isCameraReady: LiveData<Boolean> get() = _isCameraReady
-
     private val _isToggleAvailable = MutableLiveData(false)
     val isToggleAvailable: LiveData<Boolean> get() = _isToggleAvailable
-
-    fun setCameraAvailable(isAvailable: Boolean) {
-        _isCameraReady.value = isAvailable
-    }
 
     fun setToggleAvailable(isAvailable: Boolean) {
         _isToggleAvailable.value = isAvailable
