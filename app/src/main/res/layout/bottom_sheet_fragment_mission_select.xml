@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools">
+	
+	<data>
+		
+		<import type="java.util.List" />
+		
+		<variable
+			name="handler"
+			type="org.positive.daymotion.presentation.upload.fragment.MissionSelectBottomSheetDialogFragment.Handler" />
+		
+		<variable
+			name="selected"
+			type="String" />
+		
+		<variable
+			name="missions"
+			type="List&lt;String>" />
+	</data>
+	
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:background="@drawable/background_rounded_bottom_sheet"
+		android:orientation="vertical">
+		
+		<LinearLayout
+			android:id="@+id/mission1Container"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="20dp"
+			android:clickable="true"
+			android:focusable="true"
+			android:onClick="@{() -> handler.select(missions.get(0))}"
+			android:orientation="horizontal">
+			
+			<CheckBox
+				android:id="@+id/mission1CheckBox"
+				android:layout_width="18dp"
+				android:layout_height="18dp"
+				android:layout_gravity="center_vertical"
+				android:layout_marginStart="30dp"
+				android:layout_marginTop="16dp"
+				android:layout_marginBottom="16dp"
+				android:background="@drawable/background_checkbox"
+				android:button="@null"
+				android:checked="@{selected == missions.get(0)}"
+				android:clickable="false"
+				android:focusable="false" />
+			
+			<TextView
+				android:id="@+id/mission1TextView"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center_vertical"
+				android:layout_marginStart="8dp"
+				android:layout_marginTop="16dp"
+				android:layout_marginEnd="30dp"
+				android:layout_marginBottom="16dp"
+				android:clickable="false"
+				android:ellipsize="end"
+				android:focusable="false"
+				android:fontFamily="@font/kopub_dotum_bold"
+				android:maxLines="2"
+				android:text="@{missions.get(0)}"
+				android:textColor="@color/_171717"
+				android:textSize="16dp"
+				tools:text="아아? 라떼? 커피를 추천해줘!" />
+		</LinearLayout>
+		
+		<LinearLayout
+			android:id="@+id/mission2Container"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="2dp"
+			android:clickable="true"
+			android:focusable="true"
+			android:onClick="@{() -> handler.select(missions.get(1))}"
+			android:orientation="horizontal">
+			
+			<CheckBox
+				android:id="@+id/mission2CheckBox"
+				android:layout_width="18dp"
+				android:layout_height="18dp"
+				android:layout_gravity="center_vertical"
+				android:layout_marginStart="30dp"
+				android:layout_marginTop="16dp"
+				android:layout_marginBottom="16dp"
+				android:background="@drawable/background_checkbox"
+				android:button="@null"
+				android:checked="@{selected == missions.get(1)}"
+				android:clickable="false"
+				android:focusable="false" />
+			
+			<TextView
+				android:id="@+id/mission2TextView"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center_vertical"
+				android:layout_marginStart="8dp"
+				android:layout_marginTop="16dp"
+				android:layout_marginEnd="30dp"
+				android:layout_marginBottom="16dp"
+				android:clickable="false"
+				android:ellipsize="end"
+				android:focusable="false"
+				android:fontFamily="@font/kopub_dotum_bold"
+				android:maxLines="2"
+				android:text="@{missions.get(1)}"
+				android:textColor="@color/_171717"
+				android:textSize="16dp"
+				tools:text="텍스트 두줄일 경우 텍스트 두줄일 경우 두줄 초과시 말줄임표 표시 텍스트텍스트텍스트텍스트텍스트텍스트" />
+		</LinearLayout>
+		
+		<LinearLayout
+			android:id="@+id/mission3Container"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="2dp"
+			android:clickable="true"
+			android:focusable="true"
+			android:onClick="@{() -> handler.select(missions.get(2))}"
+			android:orientation="horizontal">
+			
+			<CheckBox
+				android:id="@+id/mission3CheckBox"
+				android:layout_width="18dp"
+				android:layout_height="18dp"
+				android:layout_gravity="center_vertical"
+				android:layout_marginStart="30dp"
+				android:layout_marginTop="16dp"
+				android:layout_marginBottom="16dp"
+				android:background="@drawable/background_checkbox"
+				android:button="@null"
+				android:checked="@{selected == missions.get(2)}"
+				android:clickable="false"
+				android:focusable="false" />
+			
+			<TextView
+				android:id="@+id/mission3TextView"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center_vertical"
+				android:layout_marginStart="8dp"
+				android:layout_marginTop="16dp"
+				android:layout_marginEnd="30dp"
+				android:layout_marginBottom="16dp"
+				android:clickable="false"
+				android:ellipsize="end"
+				android:focusable="false"
+				android:fontFamily="@font/kopub_dotum_bold"
+				android:maxLines="2"
+				android:text="@{missions.get(2)}"
+				android:textColor="@color/_171717"
+				android:textSize="16dp"
+				tools:text="미션텍스트 미션텍스트미션텍스트미션텍" />
+		</LinearLayout>
+		
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="50dp"
+			android:layout_marginStart="30dp"
+			android:layout_marginTop="10dp"
+			android:layout_marginEnd="30dp"
+			android:layout_marginBottom="30dp"
+			android:background="@drawable/backgroud_dialog_gray_btn"
+			android:fontFamily="@font/kopub_dotum_medium"
+			android:gravity="center"
+			android:onClick="@{() -> handler.cancel()}"
+			android:text="취소"
+			android:textColor="@color/_171717"
+			android:textSize="15dp"
+			app:pressEffectRadius="@{@dimen/_8dp}"
+			app:useWhitePressEffect="@{true}" />
+	</LinearLayout>
+
+</layout>

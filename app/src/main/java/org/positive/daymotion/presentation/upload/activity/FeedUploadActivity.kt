@@ -25,6 +25,7 @@ import org.positive.daymotion.presentation.upload.FragmentChangeManager
 import org.positive.daymotion.presentation.upload.adapter.BackgroundSelectionAdapter
 import org.positive.daymotion.presentation.upload.fragment.CameraFragment
 import org.positive.daymotion.presentation.upload.fragment.EditFragment
+import org.positive.daymotion.presentation.upload.fragment.MissionSelectBottomSheetDialogFragment
 import org.positive.daymotion.presentation.upload.model.BackgroundSelection
 import java.util.*
 
@@ -32,7 +33,8 @@ import java.util.*
 @AndroidEntryPoint
 class FeedUploadActivity :
     BaseActivity<ActivityFeedUploadBinding>(R.layout.activity_feed_upload),
-    CameraFragment.EventListener {
+    CameraFragment.EventListener,
+    MissionSelectBottomSheetDialogFragment.EventListener {
 
     private val viewModel by viewModelOf<FeedUploadViewModel>()
     private val handler = Handler()
@@ -51,6 +53,8 @@ class FeedUploadActivity :
         setupFragments()
         setupViews()
         setupObservers()
+
+        viewModel.loadTodayMissions()
     }
 
     override fun onBackPressed() {
@@ -63,6 +67,10 @@ class FeedUploadActivity :
 
     override fun onImageSaved(uri: Uri) {
         viewModel.selectCustomImage(BackgroundSelection.Custom(uri))
+    }
+
+    override fun onMissionSelected(mission: String) {
+        viewModel.selectMission(mission)
     }
 
     private fun setupFragments() {
@@ -86,11 +94,15 @@ class FeedUploadActivity :
             mode.observeWithPrevious { old, new ->
                 fragmentChangeManager.change(old, new)
             }
-            selected.observeNonNull {
+            selectedBackgroundSelection.observeNonNull {
                 updateBackground(it)
             }
             finish.observe {
                 showFinishAlert()
+            }
+            showMissionList.observeNonNull {
+                val (selected, missions) = it
+                showMissionSelectBottomSheet(selected, missions)
             }
         }
     }
@@ -119,7 +131,7 @@ class FeedUploadActivity :
             )
 
             addOnItemChangedListener { _, position ->
-                viewModel.changedSelection(position)
+                viewModel.changedBackgroundSelection(position)
             }
 
             adapter = backgroundSelectionAdapter
@@ -145,6 +157,17 @@ class FeedUploadActivity :
             isCancelable = true
             onClickBlueButton { finish() }
         }
+    }
+
+    private fun showMissionSelectBottomSheet(selected: String, missions: List<String>) {
+        val fragment = MissionSelectBottomSheetDialogFragment.newInstance(
+            selected,
+            missions.toTypedArray()
+        )
+        fragment.show(
+            supportFragmentManager,
+            MissionSelectBottomSheetDialogFragment::class.simpleName
+        )
     }
 
     inner class Handler {
