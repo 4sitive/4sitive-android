@@ -3,6 +3,7 @@ package org.positive.daymotion.presentation.upload
 import android.content.Context
 import android.media.MediaScannerConnection
 import android.net.Uri
+import android.os.Handler
 import android.webkit.MimeTypeMap
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
@@ -28,6 +29,7 @@ class CameraManager(
     private val preview: Preview
     private val imageCapture: ImageCapture
     private val cameraExecutor: ExecutorService
+    private val handler = Handler(context.mainLooper)
     private var lensFacing: Int
     val isAvailableToggle: Boolean
 
@@ -85,7 +87,7 @@ class CameraManager(
                     MediaScannerConnection.scanFile(
                         context, arrayOf(savedUri.toFile().absolutePath), arrayOf(mimeType)
                     ) { _, uri ->
-                        onCaptureComplete(uri)
+                        handler.post { onCaptureComplete(uri) }
                     }
                 }
 

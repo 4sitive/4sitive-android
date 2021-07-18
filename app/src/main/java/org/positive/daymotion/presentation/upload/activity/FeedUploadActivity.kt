@@ -38,12 +38,8 @@ class FeedUploadActivity :
     private val backgroundSelectionAdapter = BackgroundSelectionAdapter(handler)
     private val fragmentChangeManager by lazy { FragmentChangeManager(supportFragmentManager) }
 
-    private val galleryLauncher = registerForActivityResult(
-        ActivityResultContracts.GetContent()
-    ) {
-        it?.let {
-
-        }
+    private val galleryLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) {
+        it?.let { viewModel.selectCustomImage(BackgroundSelection.Custom(it)) }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,6 +49,7 @@ class FeedUploadActivity :
 
         setupFragments()
         setupViews()
+        setupObservers()
     }
 
     override fun onCameraStateChange(isAvailableToggle: Boolean) {
@@ -60,7 +57,7 @@ class FeedUploadActivity :
     }
 
     override fun onImageSaved(uri: Uri) {
-
+        viewModel.selectCustomImage(BackgroundSelection.Custom(uri))
     }
 
     private fun setupFragments() {
@@ -74,6 +71,20 @@ class FeedUploadActivity :
     private fun setupViews() {
         loadGalleryThumbnail()
         setupBackgroundSelectionContainer()
+    }
+
+    private fun setupObservers() {
+        with(viewModel) {
+            selections.observeNonNull {
+                backgroundSelectionAdapter.selections = it
+            }
+            mode.observeWithPrevious { old, new ->
+                fragmentChangeManager.change(old, new)
+            }
+            selected.observe {
+                updateBackground(it)
+            }
+        }
     }
 
     private fun loadGalleryThumbnail() {
@@ -100,21 +111,21 @@ class FeedUploadActivity :
                     .build()
             )
 
-            addOnItemChangedListener { _, adapterPosition ->
-                if (adapterPosition > -1) {
-                    val item = backgroundSelectionAdapter.selections[adapterPosition]
-                    updateBackground(item)
-                    fragmentChangeManager.updateWithBackgroundSelection(item)
-                }
+            addOnItemChangedListener { _, position ->
+                viewModel.changedSelection(position)
             }
 
             adapter = backgroundSelectionAdapter
         }
     }
 
-    private fun updateBackground(backgroundSelection: BackgroundSelection) {
+    private fun updateBackground(backgroundSelection: BackgroundSelection?) {
+        backgroundSelection ?: return
         if (backgroundSelection is BackgroundSelection.Default) {
             findFragment<EditFragment>()?.updateBackground(backgroundSelection.background)
+        } else if(backgroundSelection is BackgroundSelection.Custom) {
+            binding.backgroundSelectionContainer.scrollToPosition(0)
+            findFragment<EditFragment>()?.updateBackground(backgroundSelection.uri)
         }
     }
 
@@ -123,13 +134,9 @@ class FeedUploadActivity :
 
         fun startGallery() = galleryLauncher.launch("image/*")
 
-        fun toggleLensFacing() {
-            findFragment<CameraFragment>()?.toggleLens()
-        }
+        fun toggleLensFacing() = findFragment<CameraFragment>()?.toggleLens()
 
-        fun takePicture() {
-            findFragment<CameraFragment>()?.capture()
-        }
+        fun takePicture() = findFragment<CameraFragment>()?.capture()
     }
 
     companion object {

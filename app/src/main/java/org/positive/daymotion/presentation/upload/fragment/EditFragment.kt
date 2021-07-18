@@ -1,5 +1,6 @@
 package org.positive.daymotion.presentation.upload.fragment
 
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.annotation.DrawableRes
@@ -13,7 +14,11 @@ class EditFragment : BaseFragment<FragmentEditBinding>(R.layout.fragment_edit) {
         super.onViewCreated(view, savedInstanceState)
     }
 
-    fun updateBackground(@DrawableRes drawableRes: Int) {
-        binding.background = drawableRes
+    fun updateBackground(@DrawableRes drawableRes: Int?) {
+        binding.backgroundImageView.setImageResource(drawableRes ?: return)
+    }
+
+    fun updateBackground(uri: Uri) {
+        binding.backgroundImageView.setImageURI(uri)
     }
 }
