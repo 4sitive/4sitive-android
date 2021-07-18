@@ -35,7 +35,7 @@ class FeedUploadActivity :
 
     private val viewModel by viewModelOf<FeedUploadViewModel>()
     private val handler = Handler()
-    private val backgroundSelectionAdapter = BackgroundSelectionAdapter()
+    private val backgroundSelectionAdapter = BackgroundSelectionAdapter(handler)
     private val fragmentChangeManager by lazy { FragmentChangeManager(supportFragmentManager) }
 
     private val galleryLauncher = registerForActivityResult(
@@ -55,8 +55,7 @@ class FeedUploadActivity :
         setupViews()
     }
 
-    override fun onCameraStateChange(isAvailableCamera: Boolean, isAvailableToggle: Boolean) {
-        viewModel.setCameraAvailable(isAvailableCamera)
+    override fun onCameraStateChange(isAvailableToggle: Boolean) {
         viewModel.setToggleAvailable(isAvailableToggle)
     }
 

@@ -29,7 +29,6 @@ class CameraManager(
     private val imageCapture: ImageCapture
     private val cameraExecutor: ExecutorService
     private var lensFacing: Int
-
     val isAvailableToggle: Boolean
 
     init {

@@ -5,6 +5,10 @@
 	<data>
 		
 		<variable
+			name="handler"
+			type="org.positive.daymotion.presentation.upload.activity.FeedUploadActivity.Handler" />
+		
+		<variable
 			name="item"
 			type="org.positive.daymotion.presentation.upload.model.BackgroundSelection.Camera" />
 	</data>
@@ -21,6 +25,7 @@
 			android:id="@+id/cameraButton"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
+			android:onClick="@{() -> handler.takePicture()}"
 			android:scaleType="fitCenter"
 			android:src="@drawable/background_camera_button" />
 	</FrameLayout>

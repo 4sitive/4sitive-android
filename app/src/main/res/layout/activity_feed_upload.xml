@@ -43,7 +43,7 @@
 				android:layout_gravity="center_vertical|center_horizontal"
 				android:background="@drawable/ic_top_switch_camera"
 				android:onClick="@{() -> handler.toggleLensFacing()}"
-				app:isVisible="@{viewModel.isCameraReady() &amp;&amp; viewModel.isToggleAvailable()}"
+				app:isVisible="@{viewModel.isToggleAvailable()}"
 				app:useWhitePressEffect="@{true}" />
 			
 			<androidx.cardview.widget.CardView

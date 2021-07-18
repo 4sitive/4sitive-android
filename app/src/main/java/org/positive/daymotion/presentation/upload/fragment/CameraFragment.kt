@@ -24,6 +24,7 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>(R.layout.fragment_cam
     private lateinit var cameraProvider: ProcessCameraProvider
     private lateinit var currentCameraManager: CameraManager
     private var eventListener: EventListener? = null
+    private var isCameraReady: Boolean = false
 
     private val requestPermissionLauncher =
         registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) {
@@ -51,12 +52,7 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>(R.layout.fragment_cam
 
     override fun onHiddenChanged(hidden: Boolean) {
         if (hidden) {
-            currentCameraManager.shutDown()
-            cameraProvider.unbindAll()
-            eventListener?.onCameraStateChange(
-                isAvailableCamera = false,
-                isAvailableToggle = false
-            )
+            clearCamera()
         } else {
             setUpCamera()
         }
@@ -68,11 +64,16 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>(R.layout.fragment_cam
         cameraProviderFuture.addListener({
             cameraProvider = cameraProviderFuture.get()
             setupCameraManager(cameraProvider)
-            eventListener?.onCameraStateChange(
-                isAvailableCamera = true,
-                isAvailableToggle = currentCameraManager.isAvailableToggle
-            )
+            isCameraReady = true
+            eventListener?.onCameraStateChange(currentCameraManager.isAvailableToggle)
         }, mainExecutors)
+    }
+
+    private fun clearCamera() {
+        currentCameraManager.shutDown()
+        cameraProvider.unbindAll()
+        isCameraReady = false
+        eventListener?.onCameraStateChange(false)
     }
 
     private fun setupCameraManager(cameraProvider: ProcessCameraProvider) {
@@ -152,7 +153,7 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>(R.layout.fragment_cam
     }
 
     interface EventListener {
-        fun onCameraStateChange(isAvailableCamera: Boolean, isAvailableToggle: Boolean)
+        fun onCameraStateChange(isAvailableToggle: Boolean)
         fun onImageSaved(uri: Uri)
     }
 
