@@ -49,13 +49,29 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>(R.layout.fragment_cam
         checkPermission()
     }
 
+    override fun onHiddenChanged(hidden: Boolean) {
+        if (hidden) {
+            currentCameraManager.shutDown()
+            cameraProvider.unbindAll()
+            eventListener?.onCameraStateChange(
+                isAvailableCamera = false,
+                isAvailableToggle = false
+            )
+        } else {
+            setUpCamera()
+        }
+    }
+
     private fun setUpCamera() {
         val cameraProviderFuture = ProcessCameraProvider.getInstance(requireContext())
         val mainExecutors = ContextCompat.getMainExecutor(requireContext())
         cameraProviderFuture.addListener({
             cameraProvider = cameraProviderFuture.get()
             setupCameraManager(cameraProvider)
-            eventListener?.onReadyCamera(currentCameraManager.isAvailableToggle)
+            eventListener?.onCameraStateChange(
+                isAvailableCamera = true,
+                isAvailableToggle = currentCameraManager.isAvailableToggle
+            )
         }, mainExecutors)
     }
 
@@ -136,9 +152,7 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>(R.layout.fragment_cam
     }
 
     interface EventListener {
-
-        fun onReadyCamera(isAvailableToggle: Boolean)
-
+        fun onCameraStateChange(isAvailableCamera: Boolean, isAvailableToggle: Boolean)
         fun onImageSaved(uri: Uri)
     }
 

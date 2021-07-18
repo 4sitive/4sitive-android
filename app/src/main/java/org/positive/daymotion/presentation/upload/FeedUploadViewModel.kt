@@ -15,11 +15,11 @@ class FeedUploadViewModel @Inject constructor() : BaseViewModel() {
     private val _isToggleAvailable = MutableLiveData(false)
     val isToggleAvailable: LiveData<Boolean> get() = _isToggleAvailable
 
-    fun setReadyCamera() {
-        _isCameraReady.value = true
+    fun setCameraAvailable(isAvailable: Boolean) {
+        _isCameraReady.value = isAvailable
     }
 
-    fun setToggleAvailable() {
-        _isToggleAvailable.value = true
+    fun setToggleAvailable(isAvailable: Boolean) {
+        _isToggleAvailable.value = isAvailable
     }
 }

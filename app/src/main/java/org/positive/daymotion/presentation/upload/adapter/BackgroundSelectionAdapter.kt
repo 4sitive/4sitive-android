@@ -1,7 +1,6 @@
 package org.positive.daymotion.presentation.upload.adapter
 
 import android.view.ViewGroup
-import androidx.annotation.DrawableRes
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import org.positive.daymotion.BR
@@ -14,7 +13,7 @@ import org.positive.daymotion.presentation.upload.model.BackgroundSelection
 
 class BackgroundSelectionAdapter : RecyclerView.Adapter<BindingViewHolder<out ViewDataBinding>>() {
 
-    private val selections = listOf(
+    val selections = listOf(
         BackgroundSelection.Camera(),
         BackgroundSelection.Default(R.drawable.img_feed_thumb_01, R.drawable.img_feed_01),
         BackgroundSelection.Default(R.drawable.img_feed_thumb_02, R.drawable.img_feed_02),
@@ -25,16 +24,6 @@ class BackgroundSelectionAdapter : RecyclerView.Adapter<BindingViewHolder<out Vi
         BackgroundSelection.Default(R.drawable.img_feed_thumb_07, R.drawable.img_feed_07),
         BackgroundSelection.Default(R.drawable.img_feed_thumb_08, R.drawable.img_feed_08)
     )
-
-    @DrawableRes
-    fun getBackgroundRes(position: Int): Int? {
-        val item = selections[position]
-        return if (item is BackgroundSelection.Default) {
-            item.background
-        } else {
-            null
-        }
-    }
 
     override fun onCreateViewHolder(
         parent: ViewGroup,

@@ -96,6 +96,10 @@ class CameraManager(
             })
     }
 
+    fun shutDown() {
+        cameraExecutor.shutdown()
+    }
+
     private fun getOrCreateOutputDir(context: Context): File {
         val mediaDir = context.externalMediaDirs.firstOrNull()?.let {
             File(it, context.getString(R.string.app_name)).apply { mkdirs() }
