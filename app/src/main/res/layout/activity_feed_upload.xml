@@ -11,7 +11,7 @@
 		
 		<variable
 			name="viewModel"
-			type="org.positive.daymotion.presentation.upload.FeedUploadViewModel" />
+			type="org.positive.daymotion.presentation.upload.viewmodel.FeedUploadViewModel" />
 	</data>
 	
 	<androidx.constraintlayout.widget.ConstraintLayout
@@ -110,7 +110,7 @@
 				android:fontFamily="@font/kopub_dotum_bold"
 				android:maxLines="2"
 				android:onClick="@{() -> viewModel.showMissionList()}"
-				android:text="@{viewModel.selectedMission}"
+				android:text="@{viewModel.selectedMission.content}"
 				android:textColor="@color/_171717"
 				android:textSize="16dp"
 				app:drawableStartCompat="@drawable/icon_feed_upload"

@@ -13,11 +13,11 @@
 		
 		<variable
 			name="selected"
-			type="String" />
+			type="org.positive.daymotion.presentation.upload.model.Mission" />
 		
 		<variable
 			name="missions"
-			type="List&lt;String>" />
+			type="List&lt;org.positive.daymotion.presentation.upload.model.Mission>" />
 	</data>
 	
 	<LinearLayout
@@ -64,7 +64,7 @@
 				android:focusable="false"
 				android:fontFamily="@font/kopub_dotum_bold"
 				android:maxLines="2"
-				android:text="@{missions.get(0)}"
+				android:text="@{missions.get(0).content}"
 				android:textColor="@color/_171717"
 				android:textSize="16dp"
 				tools:text="아아? 라떼? 커피를 추천해줘!" />
@@ -108,7 +108,7 @@
 				android:focusable="false"
 				android:fontFamily="@font/kopub_dotum_bold"
 				android:maxLines="2"
-				android:text="@{missions.get(1)}"
+				android:text="@{missions.get(1).content}"
 				android:textColor="@color/_171717"
 				android:textSize="16dp"
 				tools:text="텍스트 두줄일 경우 텍스트 두줄일 경우 두줄 초과시 말줄임표 표시 텍스트텍스트텍스트텍스트텍스트텍스트" />
@@ -152,7 +152,7 @@
 				android:focusable="false"
 				android:fontFamily="@font/kopub_dotum_bold"
 				android:maxLines="2"
-				android:text="@{missions.get(2)}"
+				android:text="@{missions.get(2).content}"
 				android:textColor="@color/_171717"
 				android:textSize="16dp"
 				tools:text="미션텍스트 미션텍스트미션텍스트미션텍" />

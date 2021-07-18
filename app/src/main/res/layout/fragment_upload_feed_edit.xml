@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools">
+	
+	<data>
+		
+		<variable
+			name="viewModel"
+			type="org.positive.daymotion.presentation.upload.viewmodel.UploadFeedEditViewModel" />
+	</data>
+	
+	<androidx.constraintlayout.widget.ConstraintLayout
+		android:id="@+id/container"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		tools:background="@color/_171717">
+		
+		<ImageView
+			android:id="@+id/backgroundImageView"
+			android:layout_width="0dp"
+			android:layout_height="0dp"
+			android:scaleType="centerCrop"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent"
+			app:src="@{viewModel.background}" />
+		
+		<TextView
+			android:id="@+id/categoryTagTextView"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="30dp"
+			android:layout_marginTop="30dp"
+			android:background="@drawable/background_feed_upload_tag"
+			android:fontFamily="@font/kopub_dotum_bold"
+			android:includeFontPadding="false"
+			android:onClick="@{v -> v.setSelected(!v.isSelected())}"
+			android:paddingStart="14dp"
+			android:paddingTop="7dp"
+			android:paddingEnd="14dp"
+			android:paddingBottom="6dp"
+			android:text="@{@string/tag_prefix(viewModel.selectedMission.category)}"
+			android:textColor="@color/_FFFFFF"
+			android:textSize="14dp"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent"
+			tools:text="일상" />
+		
+		<TextView
+			android:id="@+id/missionContentTagTextView"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="30dp"
+			android:layout_marginTop="12dp"
+			android:background="@drawable/background_feed_upload_tag"
+			android:fontFamily="@font/kopub_dotum_bold"
+			android:includeFontPadding="false"
+			android:onClick="@{v -> v.setSelected(!v.isSelected())}"
+			android:paddingStart="14dp"
+			android:paddingTop="7dp"
+			android:paddingEnd="14dp"
+			android:paddingBottom="6dp"
+			android:text="@{@string/tag_prefix(viewModel.selectedMission.content)}"
+			android:textColor="@color/_FFFFFF"
+			android:textSize="14dp"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/categoryTagTextView"
+			tools:text="#아아?라떼? 커피를 추천해줘!" />
+	</androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

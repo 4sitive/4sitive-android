@@ -1,4 +1,4 @@
-package org.positive.daymotion.presentation.upload
+package org.positive.daymotion.presentation.upload.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -7,20 +7,21 @@ import org.positive.daymotion.R
 import org.positive.daymotion.presentation.common.SingleLiveEvent
 import org.positive.daymotion.presentation.common.base.BaseViewModel
 import org.positive.daymotion.presentation.upload.model.BackgroundSelection
+import org.positive.daymotion.presentation.upload.model.Mission
 import org.positive.daymotion.presentation.upload.model.Mode
 import javax.inject.Inject
 
 @HiltViewModel
 class FeedUploadViewModel @Inject constructor() : BaseViewModel() {
 
-    private val _todayMissions = MutableLiveData<List<String>>()
-    val todayMissions: LiveData<List<String>> get() = _todayMissions
+    private val _todayMissions = MutableLiveData<List<Mission>>()
+    val todayMissions: LiveData<List<Mission>> get() = _todayMissions
 
-    private val _selectedMission = MutableLiveData<String>()
-    val selectedMission: LiveData<String> get() = _selectedMission
+    private val _selectedMission = MutableLiveData<Mission>()
+    val selectedMission: LiveData<Mission> get() = _selectedMission
 
-    private val _showMissionList = SingleLiveEvent<Pair<String, List<String>>>()
-    val showMissionList: LiveData<Pair<String, List<String>>> get() = _showMissionList
+    private val _showMissionList = SingleLiveEvent<Pair<Mission, List<Mission>>>()
+    val showMissionList: LiveData<Pair<Mission, List<Mission>>> get() = _showMissionList
 
     private val _isToggleAvailable = MutableLiveData(false)
     val isToggleAvailable: LiveData<Boolean> get() = _isToggleAvailable
@@ -54,9 +55,9 @@ class FeedUploadViewModel @Inject constructor() : BaseViewModel() {
 
     fun loadTodayMissions() {
         val todayMissions = listOf(
-            "아아? 라떼? 커피를 추천해줘!",
-            "텍스트 두줄일 경우 텍스트 두줄일 경우\n두줄 초과시 말줄임표 표시 텍스트텍스트...",
-            "미션텍스트 미션텍스트미션텍스트미션텍"
+            Mission("일상", "아아? 라떼? 커피를 추천해줘!"),
+            Mission("일상", "텍스트 두줄일 경우 텍스트 두줄일 경우\n두줄 초과시 말줄임표 표시 텍스트텍스트..."),
+            Mission("일상", "미션텍스트 미션텍스트미션텍스트미션텍")
         )
 
         _todayMissions.value = todayMissions
@@ -99,7 +100,7 @@ class FeedUploadViewModel @Inject constructor() : BaseViewModel() {
         _showMissionList.value = selected to missions
     }
 
-    fun selectMission(mission: String) {
+    fun selectMission(mission: Mission) {
         _selectedMission.value = mission
     }
 }
