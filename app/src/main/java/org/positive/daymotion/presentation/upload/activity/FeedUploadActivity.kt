@@ -18,6 +18,7 @@ import org.positive.daymotion.presentation.common.base.BaseActivity
 import org.positive.daymotion.presentation.common.base.viewModelOf
 import org.positive.daymotion.presentation.common.extension.findFragment
 import org.positive.daymotion.presentation.common.extension.startWith
+import org.positive.daymotion.presentation.common.showPopupDialog
 import org.positive.daymotion.presentation.common.util.recursiveFileSearch
 import org.positive.daymotion.presentation.upload.FeedUploadViewModel
 import org.positive.daymotion.presentation.upload.FragmentChangeManager
@@ -52,6 +53,10 @@ class FeedUploadActivity :
         setupObservers()
     }
 
+    override fun onBackPressed() {
+        viewModel.close()
+    }
+
     override fun onCameraStateChange(isAvailableToggle: Boolean) {
         viewModel.setToggleAvailable(isAvailableToggle)
     }
@@ -81,8 +86,11 @@ class FeedUploadActivity :
             mode.observeWithPrevious { old, new ->
                 fragmentChangeManager.change(old, new)
             }
-            selected.observe {
+            selected.observeNonNull {
                 updateBackground(it)
+            }
+            finish.observe {
+                showFinishAlert()
             }
         }
     }
@@ -104,7 +112,6 @@ class FeedUploadActivity :
 
     private fun setupBackgroundSelectionContainer() {
         binding.backgroundSelectionContainer.apply {
-            setSlideOnFling(true)
             setItemTransformer(
                 ScaleTransformer.Builder()
                     .setMinScale(0.6428f)
@@ -119,18 +126,28 @@ class FeedUploadActivity :
         }
     }
 
-    private fun updateBackground(backgroundSelection: BackgroundSelection?) {
-        backgroundSelection ?: return
-        if (backgroundSelection is BackgroundSelection.Default) {
-            findFragment<EditFragment>()?.updateBackground(backgroundSelection.background)
-        } else if(backgroundSelection is BackgroundSelection.Custom) {
+    private fun updateBackground(backgroundSelection: BackgroundSelection) {
+        if (backgroundSelection is BackgroundSelection.Custom) {
             binding.backgroundSelectionContainer.scrollToPosition(0)
             findFragment<EditFragment>()?.updateBackground(backgroundSelection.uri)
+        } else if (backgroundSelection is BackgroundSelection.Default) {
+            findFragment<EditFragment>()?.updateBackground(backgroundSelection.background)
+        }
+    }
+
+    private fun showFinishAlert() {
+        showPopupDialog {
+            title = "피드를 삭제할까요?"
+            content = "삭제하시면 지금까지 작업한\n모든 내용이 삭제됩니다."
+            blueButtonText = "삭제 할래요!"
+            grayButtonText = "아니에요. 이어서 작업할래요."
+            isVisibleGrayButton = true
+            isCancelable = true
+            onClickBlueButton { finish() }
         }
     }
 
     inner class Handler {
-        fun close() = finish()
 
         fun startGallery() = galleryLauncher.launch("image/*")
 

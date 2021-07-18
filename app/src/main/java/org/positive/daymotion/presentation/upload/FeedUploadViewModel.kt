@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import org.positive.daymotion.R
+import org.positive.daymotion.presentation.common.SingleLiveEvent
 import org.positive.daymotion.presentation.common.base.BaseViewModel
 import org.positive.daymotion.presentation.upload.model.BackgroundSelection
 import org.positive.daymotion.presentation.upload.model.Mode
@@ -23,6 +24,9 @@ class FeedUploadViewModel @Inject constructor() : BaseViewModel() {
 
     private val _selected = MutableLiveData<BackgroundSelection>()
     val selected: LiveData<BackgroundSelection> get() = _selected
+
+    private val _finish = SingleLiveEvent<Nothing>()
+    val finish: LiveData<Nothing> get() = _finish
 
     private val constSelections = listOf(
         BackgroundSelection.Default(R.drawable.img_feed_thumb_01, R.drawable.img_feed_01),
@@ -56,6 +60,17 @@ class FeedUploadViewModel @Inject constructor() : BaseViewModel() {
 
     fun selectCustomImage(custom: BackgroundSelection.Custom) {
         _selected.value = custom
+        _mode.value = Mode.EDIT
         _selections.value = mutableListOf(custom) + constSelections
+    }
+
+    fun close() {
+        val selected = _selected.value
+        if (_mode.value == Mode.EDIT && selected is BackgroundSelection.Custom) {
+            _mode.value = Mode.CAMERA
+            _selections.value = mutableListOf(BackgroundSelection.Camera) + constSelections
+        } else {
+            _finish.call()
+        }
     }
 }
