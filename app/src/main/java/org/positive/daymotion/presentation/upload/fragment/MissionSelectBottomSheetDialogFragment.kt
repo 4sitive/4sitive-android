@@ -12,12 +12,13 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import org.positive.daymotion.R
 import org.positive.daymotion.databinding.BottomSheetFragmentMissionSelectBinding
 import org.positive.daymotion.presentation.common.bundle
+import org.positive.daymotion.presentation.upload.model.Mission
 
 
 class MissionSelectBottomSheetDialogFragment : BottomSheetDialogFragment() {
 
-    private val missions by bundle<Array<String>>()
-    private val selected by bundle<String>()
+    private val missions by bundle<Array<Mission>>()
+    private val selected by bundle<Mission>()
 
     private var eventListener: EventListener? = null
     private lateinit var binding: BottomSheetFragmentMissionSelectBinding
@@ -57,7 +58,7 @@ class MissionSelectBottomSheetDialogFragment : BottomSheetDialogFragment() {
     }
 
     inner class Handler {
-        fun select(mission: String) {
+        fun select(mission: Mission) {
             eventListener?.onMissionSelected(mission)
             dismiss()
         }
@@ -66,13 +67,13 @@ class MissionSelectBottomSheetDialogFragment : BottomSheetDialogFragment() {
     }
 
     interface EventListener {
-        fun onMissionSelected(mission: String)
+        fun onMissionSelected(mission: Mission)
     }
 
     companion object {
         fun newInstance(
-            selected: String,
-            missions: Array<String>
+            selected: Mission,
+            missions: Array<Mission>
         ) = MissionSelectBottomSheetDialogFragment().apply {
             arguments = bundleOf(
                 "missions" to missions,

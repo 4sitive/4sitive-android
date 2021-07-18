@@ -12,5 +12,8 @@
 	<!-- logout -->
 	<string name="logout"><u>로그아웃</u></string>
 	<string name="logoutMsg">로그아웃 되었습니다.\n곧 다시 만나요~!!</string>
+	
+	<!-- upload -->
+	<string name="tag_prefix">#%1$s</string>
 
 </resources>

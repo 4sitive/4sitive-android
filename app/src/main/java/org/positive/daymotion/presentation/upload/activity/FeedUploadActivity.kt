@@ -20,13 +20,14 @@ import org.positive.daymotion.presentation.common.extension.findFragment
 import org.positive.daymotion.presentation.common.extension.startWith
 import org.positive.daymotion.presentation.common.showPopupDialog
 import org.positive.daymotion.presentation.common.util.recursiveFileSearch
-import org.positive.daymotion.presentation.upload.FeedUploadViewModel
 import org.positive.daymotion.presentation.upload.FragmentChangeManager
 import org.positive.daymotion.presentation.upload.adapter.BackgroundSelectionAdapter
 import org.positive.daymotion.presentation.upload.fragment.CameraFragment
-import org.positive.daymotion.presentation.upload.fragment.EditFragment
 import org.positive.daymotion.presentation.upload.fragment.MissionSelectBottomSheetDialogFragment
+import org.positive.daymotion.presentation.upload.fragment.UploadFeedEditFragment
 import org.positive.daymotion.presentation.upload.model.BackgroundSelection
+import org.positive.daymotion.presentation.upload.model.Mission
+import org.positive.daymotion.presentation.upload.viewmodel.FeedUploadViewModel
 import java.util.*
 
 
@@ -69,15 +70,14 @@ class FeedUploadActivity :
         viewModel.selectCustomImage(BackgroundSelection.Custom(uri))
     }
 
-    override fun onMissionSelected(mission: String) {
+    override fun onMissionSelected(mission: Mission) {
         viewModel.selectMission(mission)
     }
 
     private fun setupFragments() {
         supportFragmentManager.commit {
+            add(R.id.container, UploadFeedEditFragment::class.java, null)
             add(R.id.container, CameraFragment::class.java, null)
-            add(R.id.container, EditFragment::class.java, null)
-            findFragment<EditFragment>()?.let { hide(it) }
         }
     }
 
@@ -103,6 +103,9 @@ class FeedUploadActivity :
             showMissionList.observeNonNull {
                 val (selected, missions) = it
                 showMissionSelectBottomSheet(selected, missions)
+            }
+            selectedMission.observeNonNull {
+                findFragment<UploadFeedEditFragment>()?.updateSelectedMission(it)
             }
         }
     }
@@ -141,9 +144,9 @@ class FeedUploadActivity :
     private fun updateBackground(backgroundSelection: BackgroundSelection) {
         if (backgroundSelection is BackgroundSelection.Custom) {
             binding.backgroundSelectionContainer.scrollToPosition(0)
-            findFragment<EditFragment>()?.updateBackground(backgroundSelection.uri)
+            findFragment<UploadFeedEditFragment>()?.updateBackground(backgroundSelection.uri)
         } else if (backgroundSelection is BackgroundSelection.Default) {
-            findFragment<EditFragment>()?.updateBackground(backgroundSelection.background)
+            findFragment<UploadFeedEditFragment>()?.updateBackground(backgroundSelection.background)
         }
     }
 
@@ -159,7 +162,7 @@ class FeedUploadActivity :
         }
     }
 
-    private fun showMissionSelectBottomSheet(selected: String, missions: List<String>) {
+    private fun showMissionSelectBottomSheet(selected: Mission, missions: List<Mission>) {
         val fragment = MissionSelectBottomSheetDialogFragment.newInstance(
             selected,
             missions.toTypedArray()
