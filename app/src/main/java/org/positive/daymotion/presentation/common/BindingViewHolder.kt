@@ -21,7 +21,6 @@ inline fun <reified B : ViewDataBinding> createBindingViewHolder(
     return BindingViewHolder(binding)
 }
 
-
 object LayoutIdMapper {
 
     private const val replacement = "$1_$2"

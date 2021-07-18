@@ -7,6 +7,7 @@ import android.os.Environment
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.commit
 import androidx.lifecycle.lifecycleScope
+import com.yarolegovich.discretescrollview.transform.ScaleTransformer
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -18,8 +19,10 @@ import org.positive.daymotion.presentation.common.base.viewModelOf
 import org.positive.daymotion.presentation.common.extension.startWith
 import org.positive.daymotion.presentation.common.util.recursiveFileSearch
 import org.positive.daymotion.presentation.upload.FeedUploadViewModel
+import org.positive.daymotion.presentation.upload.adapter.BackgroundSelectionAdapter
 import org.positive.daymotion.presentation.upload.fragment.CameraFragment
 import java.util.*
+
 
 @AndroidEntryPoint
 class FeedUploadActivity :
@@ -62,6 +65,7 @@ class FeedUploadActivity :
 
     private fun setupViews() {
         loadGalleryThumbnail()
+        setupBackgroundSelectionButtons()
     }
 
     private fun loadGalleryThumbnail() {
@@ -76,6 +80,18 @@ class FeedUploadActivity :
             if (file != null) {
                 binding.galleryImageView.setImageURI(Uri.fromFile(file))
             }
+        }
+    }
+
+    private fun setupBackgroundSelectionButtons() {
+        binding.backgroundSelectionContainer.apply {
+            setSlideOnFling(true)
+            setItemTransformer(
+                ScaleTransformer.Builder()
+                    .setMinScale(0.6428f)
+                    .build()
+            )
+            adapter = BackgroundSelectionAdapter(context)
         }
     }
 
