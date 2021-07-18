@@ -51,6 +51,9 @@ ext {
     cameraVersion = '1.1.0-alpha06'
     cameraViewVersion = '1.0.0-alpha26'
 
+    // DiscreteScrollView
+    discreteScrollViewVersion = '1.5.1'
+
     // Test
     junitVersion = '4.13.2'
     androidJunitVersion = '1.1.2'

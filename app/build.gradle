@@ -132,8 +132,10 @@ dependencies {
     implementation "androidx.camera:camera-core:$cameraVersion"
     implementation "androidx.camera:camera-camera2:$cameraVersion"
     implementation "androidx.camera:camera-lifecycle:$cameraVersion"
-    // CameraX View class
     implementation "androidx.camera:camera-view:$cameraViewVersion"
+
+    // DiscreteScrollView
+    implementation "com.yarolegovich:discrete-scrollview:$discreteScrollViewVersion"
 
     // Test
     testImplementation "junit:junit:$junitVersion"

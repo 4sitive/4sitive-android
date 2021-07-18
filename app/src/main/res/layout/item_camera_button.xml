@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools">
+	
+	<data>
+		
+		<variable
+			name="item"
+			type="org.positive.daymotion.presentation.upload.model.BackgroundSelection.Camera" />
+	</data>
+	
+	<FrameLayout
+		android:id="@+id/button"
+		android:layout_width="70dp"
+		android:layout_height="70dp"
+		android:layout_marginStart="3dp"
+		android:layout_marginEnd="3dp"
+		tools:background="@color/_E3E3E3">
+		
+		<ImageView
+			android:id="@+id/cameraButton"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:scaleType="fitCenter"
+			android:src="@drawable/background_camera_button" />
+	</FrameLayout>
+</layout>
