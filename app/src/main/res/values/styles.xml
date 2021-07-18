@@ -12,5 +12,16 @@
 		<item name="colorSwitchThumbNormal">@color/_B9B9B9</item>
 		<item name="android:colorForeground">@color/_B9B9B9</item>
 	</style>
+	
+	<style name="BottomSheetDialogTheme" parent="BaseBottomSheetDialog" />
+	
+	<style name="BaseBottomSheetDialog" parent="Theme.Design.Light.BottomSheetDialog">
+		<item name="android:windowIsFloating">false</item>
+		<item name="bottomSheetStyle">@style/BottomSheet</item>
+	</style>
+	
+	<style name="BottomSheet" parent="Widget.Design.BottomSheet.Modal">
+		<item name="android:background">@drawable/background_rounded_bottom_sheet</item>
+	</style>
 
 </resources>
