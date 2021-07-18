@@ -33,7 +33,7 @@
 				android:layout_gravity="center_vertical|start"
 				android:layout_marginStart="15dp"
 				android:background="@drawable/ic_top_close"
-				android:onClick="@{() -> handler.close()}"
+				android:onClick="@{() -> viewModel.close()}"
 				app:useWhitePressEffect="@{true}" />
 			
 			<ImageView

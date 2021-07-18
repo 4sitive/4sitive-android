@@ -4,6 +4,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.annotation.DrawableRes
+import com.bumptech.glide.Glide
 import org.positive.daymotion.R
 import org.positive.daymotion.databinding.FragmentEditBinding
 import org.positive.daymotion.presentation.common.base.BaseFragment
@@ -15,10 +16,14 @@ class EditFragment : BaseFragment<FragmentEditBinding>(R.layout.fragment_edit) {
     }
 
     fun updateBackground(@DrawableRes drawableRes: Int?) {
-        binding.backgroundImageView.setImageResource(drawableRes ?: return)
+        Glide.with(this)
+            .load(drawableRes)
+            .into(binding.backgroundImageView)
     }
 
     fun updateBackground(uri: Uri) {
-        binding.backgroundImageView.setImageURI(uri)
+        Glide.with(this)
+            .load(uri)
+            .into(binding.backgroundImageView)
     }
 }
