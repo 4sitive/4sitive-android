@@ -2,6 +2,7 @@ package org.positive.daymotion.presentation.common.base
 
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
 
 interface LiveDataObservable {
 
@@ -15,5 +16,21 @@ interface LiveDataObservable {
         this.observe(lifecycleOwner) {
             it?.let { onChange(it) }
         }
+    }
+
+    fun <T> LiveData<T>.observeWithPrevious(onChange: (old: T, new: T) -> Unit) {
+        val diffObserver = object : Observer<T> {
+            private var previous: T? = null
+
+            override fun onChanged(new: T?) {
+                val old = previous
+                if (old != null && new != null && old != new) {
+                    onChange(old, new)
+                }
+                previous = new
+            }
+        }
+
+        this.observe(lifecycleOwner, diffObserver)
     }
 }

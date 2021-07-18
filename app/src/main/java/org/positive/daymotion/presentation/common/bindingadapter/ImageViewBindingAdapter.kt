@@ -1,6 +1,7 @@
 package org.positive.daymotion.presentation.common.bindingadapter
 
 import android.graphics.drawable.Drawable
+import android.net.Uri
 import android.widget.ImageView
 import androidx.annotation.DrawableRes
 import androidx.databinding.BindingAdapter
@@ -23,6 +24,14 @@ fun ImageView.setImageWithCircleCropBindingAdapter(drawable: Drawable?) {
 
 @BindingAdapter("srcWithCircle")
 fun ImageView.setImageWithCircleCropBindingAdapter(uri: String?) {
+    Glide.with(this)
+        .load(uri)
+        .circleCrop()
+        .into(this)
+}
+
+@BindingAdapter("srcWithCircle")
+fun ImageView.setImageWithCircleCropBindingAdapter(uri: Uri?) {
     Glide.with(this)
         .load(uri)
         .circleCrop()
