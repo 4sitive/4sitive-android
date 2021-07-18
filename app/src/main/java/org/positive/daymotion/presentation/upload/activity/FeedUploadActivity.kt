@@ -5,6 +5,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.DrawableRes
 import androidx.fragment.app.commit
 import androidx.lifecycle.lifecycleScope
 import com.yarolegovich.discretescrollview.transform.ScaleTransformer
@@ -21,6 +22,7 @@ import org.positive.daymotion.presentation.common.util.recursiveFileSearch
 import org.positive.daymotion.presentation.upload.FeedUploadViewModel
 import org.positive.daymotion.presentation.upload.adapter.BackgroundSelectionAdapter
 import org.positive.daymotion.presentation.upload.fragment.CameraFragment
+import org.positive.daymotion.presentation.upload.fragment.EditFragment
 import java.util.*
 
 
@@ -31,6 +33,7 @@ class FeedUploadActivity :
 
     private val viewModel by viewModelOf<FeedUploadViewModel>()
     private val handler = Handler()
+    private val backgroundSelectionAdapter = BackgroundSelectionAdapter()
 
     private val galleryLauncher = registerForActivityResult(
         ActivityResultContracts.GetContent()
@@ -47,6 +50,11 @@ class FeedUploadActivity :
 
         supportFragmentManager.commit {
             add(R.id.container, CameraFragment::class.java, null)
+            add(R.id.container, EditFragment::class.java, null)
+            supportFragmentManager.fragments
+                .filterIsInstance(EditFragment::class.java)
+                .firstOrNull()
+                ?.let { hide(it) }
         }
 
         setupViews()
@@ -65,7 +73,7 @@ class FeedUploadActivity :
 
     private fun setupViews() {
         loadGalleryThumbnail()
-        setupBackgroundSelectionButtons()
+        setupBackgroundSelectionContainer()
     }
 
     private fun loadGalleryThumbnail() {
@@ -83,7 +91,7 @@ class FeedUploadActivity :
         }
     }
 
-    private fun setupBackgroundSelectionButtons() {
+    private fun setupBackgroundSelectionContainer() {
         binding.backgroundSelectionContainer.apply {
             setSlideOnFling(true)
             setItemTransformer(
@@ -91,8 +99,33 @@ class FeedUploadActivity :
                     .setMinScale(0.6428f)
                     .build()
             )
-            adapter = BackgroundSelectionAdapter(context)
+
+            addOnItemChangedListener { _, adapterPosition ->
+                if (adapterPosition > -1) {
+                    val drawableRes = backgroundSelectionAdapter
+                        .getBackgroundRes(adapterPosition)
+
+                    if (drawableRes != null) {
+                        supportFragmentManager.commit {
+                            supportFragmentManager.fragments
+                                .filterIsInstance(EditFragment::class.java)
+                                .firstOrNull()
+                                ?.let { show(it) }
+                        }
+                        updateBackground(drawableRes)
+                    }
+                }
+            }
+
+            adapter = backgroundSelectionAdapter
         }
+    }
+
+    private fun updateBackground(@DrawableRes drawableRes: Int) {
+        supportFragmentManager.fragments
+            .filterIsInstance(EditFragment::class.java)
+            .firstOrNull()
+            ?.updateBackground(drawableRes)
     }
 
     inner class Handler {

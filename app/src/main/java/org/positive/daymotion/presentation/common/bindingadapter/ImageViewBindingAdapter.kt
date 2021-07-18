@@ -2,8 +2,16 @@ package org.positive.daymotion.presentation.common.bindingadapter
 
 import android.graphics.drawable.Drawable
 import android.widget.ImageView
+import androidx.annotation.DrawableRes
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
+
+@BindingAdapter("src")
+fun ImageView.setImageView(@DrawableRes resourceId: Int?) {
+    Glide.with(this)
+        .load(resourceId)
+        .into(this)
+}
 
 @BindingAdapter("srcWithCircle")
 fun ImageView.setImageWithCircleCropBindingAdapter(drawable: Drawable?) {

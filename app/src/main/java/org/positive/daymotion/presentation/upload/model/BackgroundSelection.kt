@@ -1,6 +1,6 @@
 package org.positive.daymotion.presentation.upload.model
 
-import android.graphics.drawable.Drawable
+import androidx.annotation.DrawableRes
 
 sealed class BackgroundSelection {
 
@@ -9,7 +9,8 @@ sealed class BackgroundSelection {
     ) : BackgroundSelection()
 
     data class Default(
-        val defaultBackground: Drawable
+        @DrawableRes val thumbnail: Int,
+        @DrawableRes val background: Int
     ) : BackgroundSelection()
 }
 

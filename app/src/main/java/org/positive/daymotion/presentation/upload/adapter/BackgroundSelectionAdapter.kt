@@ -1,8 +1,7 @@
 package org.positive.daymotion.presentation.upload.adapter
 
-import android.content.Context
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
+import androidx.annotation.DrawableRes
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import org.positive.daymotion.BR
@@ -13,10 +12,29 @@ import org.positive.daymotion.presentation.common.BindingViewHolder
 import org.positive.daymotion.presentation.common.createBindingViewHolder
 import org.positive.daymotion.presentation.upload.model.BackgroundSelection
 
-class BackgroundSelectionAdapter(context: Context) :
-    RecyclerView.Adapter<BindingViewHolder<out ViewDataBinding>>() {
+class BackgroundSelectionAdapter : RecyclerView.Adapter<BindingViewHolder<out ViewDataBinding>>() {
 
-    private val selections = initSelections(context)
+    private val selections = listOf(
+        BackgroundSelection.Camera(),
+        BackgroundSelection.Default(R.drawable.img_feed_thumb_01, R.drawable.img_feed_01),
+        BackgroundSelection.Default(R.drawable.img_feed_thumb_02, R.drawable.img_feed_02),
+        BackgroundSelection.Default(R.drawable.img_feed_thumb_03, R.drawable.img_feed_03),
+        BackgroundSelection.Default(R.drawable.img_feed_thumb_04, R.drawable.img_feed_04),
+        BackgroundSelection.Default(R.drawable.img_feed_thumb_05, R.drawable.img_feed_05),
+        BackgroundSelection.Default(R.drawable.img_feed_thumb_06, R.drawable.img_feed_06),
+        BackgroundSelection.Default(R.drawable.img_feed_thumb_07, R.drawable.img_feed_07),
+        BackgroundSelection.Default(R.drawable.img_feed_thumb_08, R.drawable.img_feed_08)
+    )
+
+    @DrawableRes
+    fun getBackgroundRes(position: Int): Int? {
+        val item = selections[position]
+        return if (item is BackgroundSelection.Default) {
+            item.background
+        } else {
+            null
+        }
+    }
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -41,24 +59,6 @@ class BackgroundSelectionAdapter(context: Context) :
     override fun getItemViewType(position: Int) = when (selections[position]) {
         is BackgroundSelection.Camera -> CAMERA_BUTTON_TYPE
         is BackgroundSelection.Default -> DEFAULT_BACKGROUND_TYPE
-    }
-
-    private fun initSelections(context: Context): List<BackgroundSelection> {
-        val default = requireNotNull(ContextCompat.getDrawable(context, R.color._171717))
-        val defaultSelections = listOf(
-            R.drawable.img_feed_thumb_01,
-            R.drawable.img_feed_thumb_02,
-            R.drawable.img_feed_thumb_03,
-            R.drawable.img_feed_thumb_04,
-            R.drawable.img_feed_thumb_05,
-            R.drawable.img_feed_thumb_06,
-            R.drawable.img_feed_thumb_07,
-            R.drawable.img_feed_thumb_08,
-        ).map {
-            val drawable = ContextCompat.getDrawable(context, it) ?: default
-            BackgroundSelection.Default(drawable)
-        }
-        return mutableListOf(BackgroundSelection.Camera()) + defaultSelections
     }
 
     companion object {
