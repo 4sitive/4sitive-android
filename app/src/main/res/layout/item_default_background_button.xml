@@ -24,6 +24,6 @@
 			android:layout_height="match_parent"
 			android:foreground="@drawable/background_default_selection"
 			android:scaleType="fitCenter"
-			app:imageDrawable="@{item.defaultBackground}" />
+			app:src="@{item.thumbnail}" />
 	</FrameLayout>
 </layout>
