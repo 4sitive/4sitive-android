@@ -25,6 +25,14 @@ fun ImageView.setImageView(@DrawableRes resourceId: Int?) {
 }
 
 @BindingAdapter("srcWithCircle")
+fun ImageView.setImageWithCircleCropBindingAdapter(@DrawableRes resourceId: Int?) {
+    Glide.with(this)
+        .load(resourceId)
+        .transition(DrawableTransitionOptions.withCrossFade())
+        .into(this)
+}
+
+@BindingAdapter("srcWithCircle")
 fun ImageView.setImageWithCircleCropBindingAdapter(drawable: Drawable?) {
     Glide.with(this)
         .load(drawable)

@@ -146,7 +146,7 @@
 				android:background="@drawable/background_my_profile_edit_input_text"
 				android:fontFamily="@font/kopub_dotum_bold"
 				android:gravity="top"
-				android:inputType="text"
+				android:inputType="text|textMultiLine"
 				android:padding="10dp"
 				android:text="@={viewModel.introduce}"
 				android:textColor="@{viewModel.introduceValidation ? @color/_171717 : @color/_989898}"

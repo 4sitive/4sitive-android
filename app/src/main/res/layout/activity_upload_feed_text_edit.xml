@@ -4,6 +4,8 @@
 	
 	<data>
 		
+		<import type="androidx.databinding.adapters.Converters" />
+		
 		<variable
 			name="viewModel"
 			type="org.positive.daymotion.presentation.upload.viewmodel.UploadFeedTextEditViewModel" />
@@ -27,21 +29,26 @@
 		
 		<org.positive.daymotion.presentation.upload.view.BackButtonCallbackEditText
 			android:id="@+id/feedEditText"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
+			android:layout_width="0dp"
+			android:layout_height="0dp"
 			android:layout_marginStart="30dp"
 			android:layout_marginTop="130dp"
 			android:layout_marginEnd="30dp"
+			android:layout_marginBottom="20dp"
 			android:background="@null"
 			android:fontFamily="@font/montserrat_medium"
+			android:gravity="@{viewModel.textAlignment.value}"
 			android:hint="입력해주세요."
 			android:imeOptions="actionDone"
-			android:inputType="text"
-			android:textColor="@color/_043EFF"
+			android:inputType="text|textMultiLine"
+			android:maxLength="40"
+			android:textColor="@{viewModel.textColor}"
 			android:textSize="40dp"
+			app:layout_constraintBottom_toTopOf="@id/textColorChangeButton"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toTopOf="@id/blurView">
+			app:layout_constraintTop_toTopOf="@id/blurView"
+			app:layout_constraintVertical_bias="0">
 			
 			<requestFocus />
 		</org.positive.daymotion.presentation.upload.view.BackButtonCallbackEditText>
@@ -78,6 +85,20 @@
 				android:button="@null"
 				android:checked="@={viewModel.isSelectedAlignmentRight()}" />
 		</RadioGroup>
+		
+		<ImageView
+			android:id="@+id/textColorChangeButton"
+			android:layout_width="40dp"
+			android:layout_height="40dp"
+			android:layout_marginEnd="15dp"
+			android:layout_marginBottom="15dp"
+			android:background="@drawable/background_default_text_color_selection"
+			android:onClick="@{() -> viewModel.nextTextColor()}"
+			android:padding="2dp"
+			android:scaleType="centerCrop"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:srcWithCircle="@{Converters.convertColorToDrawable(viewModel.textColor)}" />
 	</androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

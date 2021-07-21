@@ -1,6 +1,7 @@
 package org.positive.daymotion.presentation.upload.activity
 
 import android.content.Context
+import android.os.Build
 import android.os.Bundle
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
@@ -18,7 +19,9 @@ class UploadFeedTextEditActivity :
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding.viewModel = viewModel
         setupViews()
+        setupObservers()
     }
 
     private fun setupViews() {
@@ -36,6 +39,21 @@ class UploadFeedTextEditActivity :
             })
         }
         binding.container.setOnClickListener { finishWithResult() }
+    }
+
+    private fun setupObservers() {
+        with(viewModel) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                textColor.observeNonNull {
+                    binding.feedEditText.apply {
+                        textSelectHandle?.setTint(it)
+                        textSelectHandleLeft?.setTint(it)
+                        textSelectHandleRight?.setTint(it)
+                        textCursorDrawable?.setTint(it)
+                    }
+                }
+            }
+        }
     }
 
     private fun finishWithResult() {
