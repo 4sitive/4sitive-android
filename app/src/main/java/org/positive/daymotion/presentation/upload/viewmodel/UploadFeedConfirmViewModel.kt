@@ -8,7 +8,7 @@ import org.positive.daymotion.presentation.upload.model.Mission
 import javax.inject.Inject
 
 @HiltViewModel
-class UploadFeedEditViewModel @Inject constructor() : BaseViewModel() {
+class UploadFeedConfirmViewModel @Inject constructor() : BaseViewModel() {
 
     private val _background = MutableLiveData<Any?>()
     val background: LiveData<Any?> get() = _background

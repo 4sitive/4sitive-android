@@ -11,8 +11,12 @@ class FragmentChangeManager(private val fragmentManager: FragmentManager) {
         fragmentManager.commit {
             val oldFragment = findFragment(old.fragmentClazz)
             val newFragment = findFragment(new.fragmentClazz)
-            oldFragment?.let { hide(it) }
-            newFragment?.let { show(it) }
+            oldFragment?.let {
+                hide(it)
+            }
+            newFragment?.let {
+                show(it)
+            }
         }
     }
 
