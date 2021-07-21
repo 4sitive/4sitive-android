@@ -3,7 +3,10 @@
 	xmlns:app="http://schemas.android.com/apk/res-auto">
 	
 	<data>
-	
+		
+		<variable
+			name="viewModel"
+			type="org.positive.daymotion.presentation.upload.viewmodel.UploadFeedTextEditViewModel" />
 	</data>
 	
 	<androidx.constraintlayout.widget.ConstraintLayout
@@ -27,6 +30,7 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_marginStart="30dp"
+			android:layout_marginTop="130dp"
 			android:layout_marginEnd="30dp"
 			android:background="@null"
 			android:fontFamily="@font/montserrat_medium"
@@ -35,14 +39,45 @@
 			android:inputType="text"
 			android:textColor="@color/_043EFF"
 			android:textSize="40dp"
-			app:layout_constraintBottom_toBottomOf="parent"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toTopOf="@id/blurView"
-			app:layout_constraintVertical_bias="0.25">
+			app:layout_constraintTop_toTopOf="@id/blurView">
 			
 			<requestFocus />
 		</org.positive.daymotion.presentation.upload.view.BackButtonCallbackEditText>
+		
+		<RadioGroup
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="15dp"
+			android:layout_marginBottom="15dp"
+			android:orientation="horizontal"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintStart_toStartOf="parent">
+			
+			<RadioButton
+				android:layout_width="40dp"
+				android:layout_height="40dp"
+				android:background="@drawable/background_alignment_left"
+				android:button="@null"
+				android:checked="@={viewModel.isSelectedAlignmentLeft()}" />
+			
+			<RadioButton
+				android:layout_width="40dp"
+				android:layout_height="40dp"
+				android:layout_marginStart="8dp"
+				android:background="@drawable/background_alignment_center"
+				android:button="@null"
+				android:checked="@={viewModel.isSelectedAlignmentCenter()}" />
+			
+			<RadioButton
+				android:layout_width="40dp"
+				android:layout_height="40dp"
+				android:layout_marginStart="8dp"
+				android:background="@drawable/background_alignment_right"
+				android:button="@null"
+				android:checked="@={viewModel.isSelectedAlignmentRight()}" />
+		</RadioGroup>
 	</androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
