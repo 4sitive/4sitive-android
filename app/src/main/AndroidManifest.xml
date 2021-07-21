@@ -82,7 +82,7 @@
 			android:name=".presentation.upload.activity.UploadFeedTextEditActivity"
 			android:screenOrientation="portrait"
 			android:theme="@style/AppTransparentTheme"
-			android:windowSoftInputMode="stateAlwaysVisible" />
+			android:windowSoftInputMode="stateAlwaysVisible|adjustResize" />
 	</application>
 
 </manifest>
