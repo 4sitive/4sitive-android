@@ -1,15 +1,24 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 	
 	<style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
 		<item name="android:statusBarColor">@color/_00000000</item>
 		<item name="android:windowLightStatusBar">true</item>
+		<item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item>
 		<item name="android:windowBackground">@color/_FFFFFF</item>
-		<item name="android:navigationBarColor">@color/_00000000</item>
+		<item name="android:navigationBarColor">@color/_FFFFFF</item>
 		<item name="colorPrimary">@color/_171717</item>
 		<item name="colorPrimaryDark">@color/_171717</item>
 		<item name="colorAccent">@color/_171717</item>
 		<item name="android:textViewStyle">@style/TextStyle</item>
 		<item name="android:windowActivityTransitions">true</item>
+	</style>
+	
+	<style name="AppTransparentTheme" parent="AppTheme">
+		<item name="android:windowBackground">@android:color/transparent</item>
+		<item name="android:colorBackgroundCacheHint">@null</item>
+		<item name="android:windowIsTranslucent">true</item>
+		<item name="android:windowContentOverlay">@null</item>
+		<item name="android:backgroundDimEnabled">false</item>
 	</style>
 	
 	<style name="TextStyle">

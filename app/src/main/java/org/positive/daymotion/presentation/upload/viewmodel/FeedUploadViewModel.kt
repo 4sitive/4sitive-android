@@ -73,20 +73,20 @@ class FeedUploadViewModel @Inject constructor() : BaseViewModel() {
         _selectedBackgroundSelection.value = item
         when (item) {
             is BackgroundSelection.Camera -> _mode.value = Mode.CAMERA
-            is BackgroundSelection.Custom -> _mode.value = Mode.EDIT
-            is BackgroundSelection.Default -> _mode.value = Mode.EDIT
+            is BackgroundSelection.Custom -> _mode.value = Mode.CONFIRM
+            is BackgroundSelection.Default -> _mode.value = Mode.CONFIRM
         }
     }
 
     fun selectCustomImage(custom: BackgroundSelection.Custom) {
         _selectedBackgroundSelection.value = custom
-        _mode.value = Mode.EDIT
+        _mode.value = Mode.CONFIRM
         _selections.value = mutableListOf(custom) + constSelections
     }
 
     fun close() {
         val selected = _selectedBackgroundSelection.value
-        if (_mode.value == Mode.EDIT && selected is BackgroundSelection.Custom) {
+        if (_mode.value == Mode.CONFIRM && selected is BackgroundSelection.Custom) {
             _mode.value = Mode.CAMERA
             _selections.value = mutableListOf(BackgroundSelection.Camera) + constSelections
         } else {

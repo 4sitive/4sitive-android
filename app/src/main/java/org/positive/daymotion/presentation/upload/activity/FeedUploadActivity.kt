@@ -1,6 +1,7 @@
 package org.positive.daymotion.presentation.upload.activity
 
 import android.content.Context
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
@@ -24,7 +25,7 @@ import org.positive.daymotion.presentation.upload.FragmentChangeManager
 import org.positive.daymotion.presentation.upload.adapter.BackgroundSelectionAdapter
 import org.positive.daymotion.presentation.upload.fragment.CameraFragment
 import org.positive.daymotion.presentation.upload.fragment.MissionSelectBottomSheetDialogFragment
-import org.positive.daymotion.presentation.upload.fragment.UploadFeedEditFragment
+import org.positive.daymotion.presentation.upload.fragment.UploadFeedConfirmFragment
 import org.positive.daymotion.presentation.upload.model.BackgroundSelection
 import org.positive.daymotion.presentation.upload.model.Mission
 import org.positive.daymotion.presentation.upload.viewmodel.FeedUploadViewModel
@@ -75,9 +76,14 @@ class FeedUploadActivity :
     }
 
     private fun setupFragments() {
-        supportFragmentManager.commit {
-            add(R.id.container, UploadFeedEditFragment::class.java, null)
-            add(R.id.container, CameraFragment::class.java, null)
+        with(supportFragmentManager) {
+            commit {
+                add(R.id.container, CameraFragment::class.java, null)
+                add(R.id.container, UploadFeedConfirmFragment::class.java, null)
+                runOnCommit {
+                    commit { findFragment<UploadFeedConfirmFragment>()?.let { hide(it) } }
+                }
+            }
         }
     }
 
@@ -105,7 +111,7 @@ class FeedUploadActivity :
                 showMissionSelectBottomSheet(selected, missions)
             }
             selectedMission.observeNonNull {
-                findFragment<UploadFeedEditFragment>()?.updateSelectedMission(it)
+                findFragment<UploadFeedConfirmFragment>()?.updateSelectedMission(it)
             }
         }
     }
@@ -144,9 +150,9 @@ class FeedUploadActivity :
     private fun updateBackground(backgroundSelection: BackgroundSelection) {
         if (backgroundSelection is BackgroundSelection.Custom) {
             binding.backgroundSelectionContainer.scrollToPosition(0)
-            findFragment<UploadFeedEditFragment>()?.updateBackground(backgroundSelection.uri)
+            findFragment<UploadFeedConfirmFragment>()?.updateBackground(backgroundSelection.uri)
         } else if (backgroundSelection is BackgroundSelection.Default) {
-            findFragment<UploadFeedEditFragment>()?.updateBackground(backgroundSelection.background)
+            findFragment<UploadFeedConfirmFragment>()?.updateBackground(backgroundSelection.background)
         }
     }
 
@@ -180,6 +186,9 @@ class FeedUploadActivity :
         fun toggleLensFacing() = findFragment<CameraFragment>()?.toggleLens()
 
         fun takePicture() = findFragment<CameraFragment>()?.capture()
+
+        fun start() =
+            startActivity(Intent(this@FeedUploadActivity, UploadFeedTextEditActivity::class.java))
     }
 
     companion object {
