@@ -1,7 +1,6 @@
 package org.positive.daymotion.presentation.upload.activity
 
 import android.content.Context
-import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
@@ -186,9 +185,6 @@ class FeedUploadActivity :
         fun toggleLensFacing() = findFragment<CameraFragment>()?.toggleLens()
 
         fun takePicture() = findFragment<CameraFragment>()?.capture()
-
-        fun start() =
-            startActivity(Intent(this@FeedUploadActivity, UploadFeedTextEditActivity::class.java))
     }
 
     companion object {

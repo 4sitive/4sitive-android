@@ -22,7 +22,7 @@
 		android:id="@+id/container"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:onClick="@{() -> handler.startUploadFeedTextEditActivity()}"
+		android:onClick="@{() -> viewModel.toEditMode()}"
 		tools:background="@color/_171717">
 		
 		<ImageView
@@ -79,11 +79,17 @@
 			tools:text="#아아?라떼? 커피를 추천해줘!" />
 		
 		<TextView
-			android:layout_width="wrap_content"
+			android:layout_width="0dp"
 			android:layout_height="wrap_content"
+			android:layout_marginStart="30dp"
+			android:layout_marginEnd="30dp"
 			android:fontFamily="@font/montserrat_medium"
-			android:textColor="@color/_043EFF"
+			android:gravity="@{viewModel.textEditConfig.alignment.value}"
+			android:onClick="@{() -> handler.startUploadFeedTextEditActivity(viewModel.textEditConfig)}"
+			android:text="@{viewModel.textEditConfig.text}"
+			android:textColor="@{viewModel.textEditConfig.textColor}"
 			android:textSize="40dp"
+			app:isInvisible="@{!viewModel.isTextVisible}"
 			app:layout_constraintBottom_toBottomOf="parent"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintStart_toStartOf="parent"

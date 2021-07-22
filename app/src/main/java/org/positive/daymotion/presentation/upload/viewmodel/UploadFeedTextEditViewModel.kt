@@ -6,17 +6,19 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import org.positive.daymotion.presentation.common.base.BaseViewModel
 import org.positive.daymotion.presentation.common.util.liveDataMerge
 import org.positive.daymotion.presentation.upload.model.Alignment
+import org.positive.daymotion.presentation.upload.model.TextEditConfig
 import javax.inject.Inject
 
 @HiltViewModel
 class UploadFeedTextEditViewModel @Inject constructor() : BaseViewModel() {
 
-    val isSelectedAlignmentLeft = MutableLiveData(true)
+    val isSelectedAlignmentLeft = MutableLiveData(false)
     val isSelectedAlignmentCenter = MutableLiveData(false)
     val isSelectedAlignmentRight = MutableLiveData(false)
+    val editingText = MutableLiveData("")
 
-    private val _textColor = MutableLiveData(0xFF043EFF.toInt())
-    val textColor: LiveData<Int> get() = _textColor
+    private val _textColor = MutableLiveData<Int>()
+    val textColor: LiveData<Int> = _textColor
 
     val textAlignment: LiveData<Alignment> = liveDataMerge(
         isSelectedAlignmentLeft,
@@ -24,15 +26,9 @@ class UploadFeedTextEditViewModel @Inject constructor() : BaseViewModel() {
         isSelectedAlignmentRight
     ) { i1, i2, i3 ->
         when {
-            i1 == true -> {
-                Alignment.LEFT
-            }
-            i2 == true -> {
-                Alignment.CENTER
-            }
-            i3 == true -> {
-                Alignment.RIGHT
-            }
+            i1 == true -> Alignment.LEFT
+            i2 == true -> Alignment.CENTER
+            i3 == true -> Alignment.RIGHT
             else -> throw IllegalStateException("Invalid alignment value")
         }
     }
@@ -46,6 +42,16 @@ class UploadFeedTextEditViewModel @Inject constructor() : BaseViewModel() {
         0xFF7B30F8.toInt(),
         0xFF01D8D7.toInt()
     )
+
+    fun initWithConfig(textEditConfig: TextEditConfig) {
+        when (textEditConfig.alignment) {
+            Alignment.LEFT -> isSelectedAlignmentLeft.value = true
+            Alignment.CENTER -> isSelectedAlignmentCenter.value = true
+            Alignment.RIGHT -> isSelectedAlignmentRight.value = true
+        }
+        _textColor.value = textEditConfig.textColor
+        editingText.value = textEditConfig.text
+    }
 
     fun nextTextColor() {
         val currentColor = _textColor.value ?: return
