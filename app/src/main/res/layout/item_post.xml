@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools">
+	
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:orientation="vertical">
+		
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="66dp"
+			android:orientation="horizontal"
+			android:gravity="center_vertical"
+			android:paddingStart="18dp"
+			android:paddingEnd="18dp">
+			
+			<ImageView
+				android:layout_width="26dp"
+				android:layout_height="26dp"
+				app:srcWithCircle="@{@drawable/ic_tmp_profile}" />
+			
+			<TextView
+				android:id="@+id/userNameTextView"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="일이삼사오육칠팔"
+				android:textColor="@color/_000000"
+				android:textSize="13dp"
+				android:letterSpacing="-0.02"
+				android:lineSpacingExtra="1sp"
+				android:layout_marginStart="4dp"
+				android:layout_marginEnd="11dp"/>
+			
+			<androidx.recyclerview.widget.RecyclerView
+				android:id="@+id/emojiRecyclerView"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:orientation="horizontal"
+				app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+				app:layout_behavior="@string/appbar_scrolling_view_behavior"
+				tools:itemCount="5"
+				tools:listitem="@layout/item_post_emoji"
+				android:scrollbars="none"/>
+			
+			<LinearLayout
+				android:id="@+id/emojiPlusButton"
+				android:layout_width="30dp"
+				android:layout_height="30dp"
+				android:layout_marginStart="4dp"
+				android:gravity="center"
+				android:background="@drawable/background_emoji_btn">
+				
+				<ImageView
+					android:layout_width="14dp"
+					android:layout_height="14dp"
+					android:src="@drawable/ic_home_plus"/>
+				
+			</LinearLayout>
+			
+		</LinearLayout>
+		
+		<ImageView
+			android:id="@+id/mainImageView"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"/>
+	
+	</LinearLayout>
+	
+</layout>

@@ -35,7 +35,7 @@
 				android:paddingEnd="12dp">
 				
 				<TextView
-					android:id="@+id/titleTextView"
+					android:id="@+id/greetingTextView"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:layout_marginTop="7dp"
@@ -70,22 +70,19 @@
 			
 			</androidx.constraintlayout.widget.ConstraintLayout>
 			
-			<com.google.android.material.card.MaterialCardView
-				android:id="@+id/homeMissionCard1"
+			<androidx.cardview.widget.CardView
 				android:layout_width="match_parent"
-				android:layout_height="375dp"
-				android:checkable="true"
-				android:clickable="true"
-				android:focusable="true"
-				android:theme="@style/Theme.MaterialComponents.Light"
-				android:transitionName="imageTransition"
-				app:cardBackgroundColor="#CCCCCC"
+				android:layout_height="wrap_content"
+				android:focusable="false"
+				android:focusableInTouchMode="false"
 				app:cardCornerRadius="8dp">
 				
 				<androidx.constraintlayout.widget.ConstraintLayout
-					android:id="@+id/CardLayout"
+					android:id="@+id/homeMissionCard1"
 					android:layout_width="match_parent"
-					android:layout_height="match_parent">
+					android:layout_height="375dp"
+					android:clickable="true"
+					android:focusable="true">
 					
 					<TextView
 						android:id="@+id/missionTextView1"
@@ -96,46 +93,39 @@
 						android:fontFamily="@font/kopub_dotum_medium"
 						android:letterSpacing="-0.01"
 						android:lineSpacingExtra="8dp"
+						android:maxLines="3"
 						android:textColor="@color/_FFFFFF"
 						android:textSize="32dp"
 						app:layout_constraintStart_toStartOf="parent"
 						app:layout_constraintTop_toTopOf="parent" />
 					
 					<ImageView
-						android:id="@+id/cardBigImageView1"
-						android:layout_width="200dp"
-						android:layout_height="185dp"
-						android:background="@drawable/home_card_big_image"
+						android:id="@+id/CardEffectImageView1"
+						android:layout_width="match_parent"
+						android:layout_height="268dp"
+						android:scaleX="1.2"
+						android:scaleY="1.2"
 						app:layout_constraintBottom_toBottomOf="parent"
-						app:layout_constraintEnd_toEndOf="parent" />
-					
-					<ImageView
-						android:id="@+id/cardSmallImageView1"
-						android:layout_width="150dp"
-						android:layout_height="140dp"
-						android:background="@drawable/home_card_small_image"
-						app:layout_constraintBottom_toBottomOf="parent"
-						app:layout_constraintEnd_toEndOf="parent" />
+						app:layout_constraintStart_toStartOf="parent" />
 				
 				</androidx.constraintlayout.widget.ConstraintLayout>
 			
-			</com.google.android.material.card.MaterialCardView>
+			</androidx.cardview.widget.CardView>
 			
-			<com.google.android.material.card.MaterialCardView
-				android:id="@+id/homeMissionCard2"
+			<androidx.cardview.widget.CardView
 				android:layout_width="match_parent"
-				android:layout_height="375dp"
+				android:layout_height="wrap_content"
 				android:layout_marginTop="30dp"
-				android:checkable="true"
-				android:clickable="true"
-				android:focusable="true"
-				android:theme="@style/Theme.MaterialComponents.Light"
-				app:cardBackgroundColor="#CCCCCC"
+				android:focusable="false"
+				android:focusableInTouchMode="false"
 				app:cardCornerRadius="8dp">
 				
 				<androidx.constraintlayout.widget.ConstraintLayout
+					android:id="@+id/homeMissionCard2"
 					android:layout_width="match_parent"
-					android:layout_height="match_parent">
+					android:layout_height="375dp"
+					android:clickable="true"
+					android:focusable="true">
 					
 					<TextView
 						android:id="@+id/missionTextView2"
@@ -146,46 +136,39 @@
 						android:fontFamily="@font/kopub_dotum_medium"
 						android:letterSpacing="-0.01"
 						android:lineSpacingExtra="8dp"
+						android:maxLines="3"
 						android:textColor="@color/_FFFFFF"
 						android:textSize="32dp"
 						app:layout_constraintStart_toStartOf="parent"
 						app:layout_constraintTop_toTopOf="parent" />
 					
 					<ImageView
-						android:id="@+id/cardBigImageView2"
-						android:layout_width="200dp"
-						android:layout_height="185dp"
-						android:background="@drawable/home_card_big_image"
+						android:id="@+id/CardEffectImageView2"
+						android:layout_width="match_parent"
+						android:layout_height="268dp"
+						android:scaleX="1.2"
+						android:scaleY="1.2"
 						app:layout_constraintBottom_toBottomOf="parent"
-						app:layout_constraintEnd_toEndOf="parent" />
-					
-					<ImageView
-						android:id="@+id/cardSmallImageView2"
-						android:layout_width="150dp"
-						android:layout_height="140dp"
-						android:background="@drawable/home_card_small_image"
-						app:layout_constraintBottom_toBottomOf="parent"
-						app:layout_constraintEnd_toEndOf="parent" />
+						app:layout_constraintStart_toStartOf="parent" />
 				
 				</androidx.constraintlayout.widget.ConstraintLayout>
 			
-			</com.google.android.material.card.MaterialCardView>
+			</androidx.cardview.widget.CardView>
 			
-			<com.google.android.material.card.MaterialCardView
-				android:id="@+id/homeMissionCard3"
+			<androidx.cardview.widget.CardView
 				android:layout_width="match_parent"
-				android:layout_height="375dp"
+				android:layout_height="wrap_content"
 				android:layout_marginTop="30dp"
-				android:checkable="true"
-				android:clickable="true"
-				android:focusable="true"
-				android:theme="@style/Theme.MaterialComponents.Light"
-				app:cardBackgroundColor="#CCCCCC"
+				android:focusable="false"
+				android:focusableInTouchMode="false"
 				app:cardCornerRadius="8dp">
 				
 				<androidx.constraintlayout.widget.ConstraintLayout
+					android:id="@+id/homeMissionCard3"
 					android:layout_width="match_parent"
-					android:layout_height="match_parent">
+					android:layout_height="375dp"
+					android:clickable="true"
+					android:focusable="true">
 					
 					<TextView
 						android:id="@+id/missionTextView3"
@@ -196,30 +179,24 @@
 						android:fontFamily="@font/kopub_dotum_medium"
 						android:letterSpacing="-0.01"
 						android:lineSpacingExtra="8dp"
+						android:maxLines="3"
 						android:textColor="@color/_FFFFFF"
 						android:textSize="32dp"
 						app:layout_constraintStart_toStartOf="parent"
 						app:layout_constraintTop_toTopOf="parent" />
 					
 					<ImageView
-						android:id="@+id/cardBigImageView3"
-						android:layout_width="200dp"
-						android:layout_height="185dp"
-						android:background="@drawable/home_card_big_image"
+						android:id="@+id/CardEffectImageView3"
+						android:layout_width="match_parent"
+						android:layout_height="268dp"
+						android:scaleX="1.2"
+						android:scaleY="1.2"
 						app:layout_constraintBottom_toBottomOf="parent"
-						app:layout_constraintEnd_toEndOf="parent" />
-					
-					<ImageView
-						android:id="@+id/cardSmallImageView3"
-						android:layout_width="150dp"
-						android:layout_height="140dp"
-						android:background="@drawable/home_card_small_image"
-						app:layout_constraintBottom_toBottomOf="parent"
-						app:layout_constraintEnd_toEndOf="parent" />
+						app:layout_constraintStart_toStartOf="parent" />
 				
 				</androidx.constraintlayout.widget.ConstraintLayout>
 			
-			</com.google.android.material.card.MaterialCardView>
+			</androidx.cardview.widget.CardView>
 		
 		</LinearLayout>
 	
