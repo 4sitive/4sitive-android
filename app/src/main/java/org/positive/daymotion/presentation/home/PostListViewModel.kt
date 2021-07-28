@@ -5,4 +5,4 @@ import org.positive.daymotion.presentation.common.base.BaseViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeDetailViewModel @Inject constructor() : BaseViewModel()
+class PostListViewModel @Inject constructor() : BaseViewModel()
