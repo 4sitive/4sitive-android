@@ -4,6 +4,20 @@
 	
 	<data>
 		
+		<import type="java.util.List" />
+		
+		<import type="org.positive.daymotion.presentation.home.model.MissionViewItem" />
+		
+		<import type="androidx.core.content.ContextCompat" />
+		
+		<variable
+			name="missionItems"
+			type="List&lt;MissionViewItem>" />
+		
+		<variable
+			name="handler"
+			type="org.positive.daymotion.presentation.home.HomeTabFragment.Handler" />
+		
 		<variable
 			name="viewModel"
 			type="org.positive.daymotion.presentation.home.HomeTabViewModel" />
@@ -81,6 +95,8 @@
 					android:id="@+id/homeMissionCard1"
 					android:layout_width="match_parent"
 					android:layout_height="375dp"
+					android:onClick="@{() -> handler.sendSubject(missionItems[0])}"
+					android:background="@{ContextCompat.getDrawable(context, missionItems[0].background)}"
 					android:clickable="true"
 					android:focusable="true">
 					
@@ -94,6 +110,7 @@
 						android:letterSpacing="-0.01"
 						android:lineSpacingExtra="8dp"
 						android:maxLines="3"
+						android:text="@{missionItems[0].mission}"
 						android:textColor="@color/_FFFFFF"
 						android:textSize="32dp"
 						app:layout_constraintStart_toStartOf="parent"
@@ -101,12 +118,14 @@
 					
 					<ImageView
 						android:id="@+id/CardEffectImageView1"
-						android:layout_width="match_parent"
+						android:layout_width="0dp"
 						android:layout_height="268dp"
 						android:scaleX="1.2"
 						android:scaleY="1.2"
 						app:layout_constraintBottom_toBottomOf="parent"
-						app:layout_constraintStart_toStartOf="parent" />
+						app:layout_constraintEnd_toEndOf="parent"
+						app:layout_constraintStart_toStartOf="parent"
+						app:src="@{missionItems[0].effect}" />
 				
 				</androidx.constraintlayout.widget.ConstraintLayout>
 			
@@ -124,6 +143,8 @@
 					android:id="@+id/homeMissionCard2"
 					android:layout_width="match_parent"
 					android:layout_height="375dp"
+					android:onClick="@{() -> handler.sendSubject(missionItems[1])}"
+					android:background="@{ContextCompat.getDrawable(context, missionItems[1].background)}"
 					android:clickable="true"
 					android:focusable="true">
 					
@@ -137,6 +158,7 @@
 						android:letterSpacing="-0.01"
 						android:lineSpacingExtra="8dp"
 						android:maxLines="3"
+						android:text="@{missionItems[1].mission}"
 						android:textColor="@color/_FFFFFF"
 						android:textSize="32dp"
 						app:layout_constraintStart_toStartOf="parent"
@@ -144,12 +166,14 @@
 					
 					<ImageView
 						android:id="@+id/CardEffectImageView2"
-						android:layout_width="match_parent"
+						android:layout_width="0dp"
 						android:layout_height="268dp"
 						android:scaleX="1.2"
 						android:scaleY="1.2"
 						app:layout_constraintBottom_toBottomOf="parent"
-						app:layout_constraintStart_toStartOf="parent" />
+						app:layout_constraintEnd_toEndOf="parent"
+						app:layout_constraintStart_toStartOf="parent"
+						app:src="@{missionItems[1].effect}" />
 				
 				</androidx.constraintlayout.widget.ConstraintLayout>
 			
@@ -167,6 +191,8 @@
 					android:id="@+id/homeMissionCard3"
 					android:layout_width="match_parent"
 					android:layout_height="375dp"
+					android:onClick="@{() -> handler.sendSubject(missionItems[2])}"
+					android:background="@{ContextCompat.getDrawable(context, missionItems[2].background)}"
 					android:clickable="true"
 					android:focusable="true">
 					
@@ -180,6 +206,7 @@
 						android:letterSpacing="-0.01"
 						android:lineSpacingExtra="8dp"
 						android:maxLines="3"
+						android:text="@{missionItems[2].mission}"
 						android:textColor="@color/_FFFFFF"
 						android:textSize="32dp"
 						app:layout_constraintStart_toStartOf="parent"
@@ -187,12 +214,14 @@
 					
 					<ImageView
 						android:id="@+id/CardEffectImageView3"
-						android:layout_width="match_parent"
+						android:layout_width="0dp"
 						android:layout_height="268dp"
 						android:scaleX="1.2"
 						android:scaleY="1.2"
 						app:layout_constraintBottom_toBottomOf="parent"
-						app:layout_constraintStart_toStartOf="parent" />
+						app:layout_constraintEnd_toEndOf="parent"
+						app:layout_constraintStart_toStartOf="parent"
+						app:src="@{missionItems[2].effect}" />
 				
 				</androidx.constraintlayout.widget.ConstraintLayout>
 			

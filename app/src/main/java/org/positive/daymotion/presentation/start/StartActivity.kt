@@ -15,6 +15,7 @@ import org.positive.daymotion.databinding.ActivityStartBinding
 import org.positive.daymotion.presentation.common.base.BaseActivity
 import org.positive.daymotion.presentation.common.base.viewModelOf
 import org.positive.daymotion.presentation.common.extension.dpToPx
+import org.positive.daymotion.presentation.common.extension.setStatusBarNoLimit
 import org.positive.daymotion.presentation.common.showPopupDialog
 import org.positive.daymotion.presentation.login.LoginActivity
 import org.positive.daymotion.presentation.root.RootActivity
@@ -26,10 +27,12 @@ class StartActivity : BaseActivity<ActivityStartBinding>(R.layout.activity_start
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel.checkVersionAndToken(BuildConfig.VERSION_NAME)
+        setStatusBarNoLimit()
 
         setupViews()
         setupObservers()
+
+        viewModel.checkVersionAndToken(BuildConfig.VERSION_NAME)
     }
 
     private fun setupViews() {
