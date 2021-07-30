@@ -3,6 +3,7 @@ package org.positive.daymotion.presentation.upload.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import dagger.hilt.android.lifecycle.HiltViewModel
+import org.positive.daymotion.data.pref.AppSharedPreference
 import org.positive.daymotion.presentation.common.SingleLiveEvent
 import org.positive.daymotion.presentation.common.base.BaseViewModel
 import org.positive.daymotion.presentation.upload.model.Mission
@@ -10,7 +11,9 @@ import org.positive.daymotion.presentation.upload.model.TextEditConfig
 import javax.inject.Inject
 
 @HiltViewModel
-class UploadFeedConfirmViewModel @Inject constructor() : BaseViewModel() {
+class UploadFeedConfirmViewModel @Inject constructor(
+    private val appSharedPreference: AppSharedPreference
+) : BaseViewModel() {
 
     private val _background = MutableLiveData<Any?>()
     val background: LiveData<Any?> get() = _background
