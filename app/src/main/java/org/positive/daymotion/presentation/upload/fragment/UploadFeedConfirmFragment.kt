@@ -2,6 +2,7 @@ package org.positive.daymotion.presentation.upload.fragment
 
 import android.os.Bundle
 import android.view.View
+import dagger.hilt.android.AndroidEntryPoint
 import org.positive.daymotion.R
 import org.positive.daymotion.databinding.FragmentUploadFeedConfirmBinding
 import org.positive.daymotion.presentation.common.base.BaseFragment
@@ -10,9 +11,11 @@ import org.positive.daymotion.presentation.common.base.viewModelOf
 import org.positive.daymotion.presentation.upload.activity.UploadFeedTextEditActivity
 import org.positive.daymotion.presentation.upload.model.Mission
 import org.positive.daymotion.presentation.upload.model.TextEditConfig
+import org.positive.daymotion.presentation.upload.view.DragTouchListener
 import org.positive.daymotion.presentation.upload.viewmodel.FeedUploadViewModel
 import org.positive.daymotion.presentation.upload.viewmodel.UploadFeedConfirmViewModel
 
+@AndroidEntryPoint
 class UploadFeedConfirmFragment :
     BaseFragment<FragmentUploadFeedConfirmBinding>(R.layout.fragment_upload_feed_confirm) {
 
@@ -33,9 +36,16 @@ class UploadFeedConfirmFragment :
         binding.viewModel = viewModel
         binding.sharedViewModel = sharedViewModel
 
+        setupViews()
         setupObservers()
 
         viewModel.updateTextConfig(TextEditConfig.default)
+    }
+
+    private fun setupViews() {
+        binding.feedTextView.setOnTouchListener(DragTouchListener())
+        binding.categoryTagTextView.setOnTouchListener(DragTouchListener())
+        binding.missionContentTagTextView.setOnTouchListener(DragTouchListener())
     }
 
     private fun setupObservers() {

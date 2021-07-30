@@ -79,6 +79,7 @@
 			tools:text="#아아?라떼? 커피를 추천해줘!" />
 		
 		<TextView
+			android:id="@+id/feedTextView"
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
 			android:layout_marginStart="30dp"
