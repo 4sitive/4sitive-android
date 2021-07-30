@@ -165,7 +165,7 @@
 			android:layout_marginTop="10dp"
 			android:layout_marginEnd="30dp"
 			android:layout_marginBottom="30dp"
-			android:background="@drawable/backgroud_dialog_gray_btn"
+			android:background="@drawable/background_dialog_gray_btn"
 			android:fontFamily="@font/kopub_dotum_medium"
 			android:gravity="center"
 			android:onClick="@{() -> handler.cancel()}"
