@@ -84,7 +84,7 @@
 			android:theme="@style/AppTransparentTheme"
 			android:windowSoftInputMode="stateAlwaysVisible|adjustResize" />
 		<activity
-			android:name=".presentation.home.PostListActivity"
+			android:name=".presentation.home.activity.PostListActivity"
 			android:screenOrientation="portrait" />
 	</application>
 

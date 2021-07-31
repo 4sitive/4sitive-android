@@ -16,11 +16,11 @@
 		
 		<variable
 			name="handler"
-			type="org.positive.daymotion.presentation.home.HomeTabFragment.Handler" />
+			type="org.positive.daymotion.presentation.home.fragment.HomeTabFragment.Handler" />
 		
 		<variable
 			name="viewModel"
-			type="org.positive.daymotion.presentation.home.HomeTabViewModel" />
+			type="org.positive.daymotion.presentation.home.viewmodel.HomeTabViewModel" />
 	</data>
 	
 	<ScrollView
