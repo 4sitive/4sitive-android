@@ -1,9 +1,14 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto">
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools">
 	
 	<data>
 		
-		<import type="androidx.core.content.ContextCompat" />
+		<import type="android.widget.ImageView.ScaleType" />
+		
+		<variable
+			name="handler"
+			type="org.positive.daymotion.presentation.home.fragment.HeaderFeedFragment.Handler" />
 		
 		<variable
 			name="missionViewItem"
@@ -42,10 +47,14 @@
 					android:fitsSystemWindows="true">
 					
 					<ImageView
-						android:layout_width="match_parent"
-						android:layout_height="match_parent"
+						android:layout_width="0dp"
+						android:layout_height="0dp"
 						android:fitsSystemWindows="true"
 						android:scaleType="centerCrop"
+						app:layout_constraintBottom_toBottomOf="parent"
+						app:layout_constraintEnd_toEndOf="parent"
+						app:layout_constraintStart_toStartOf="parent"
+						app:layout_constraintTop_toTopOf="parent"
 						app:src="@{missionViewItem.background}" />
 					
 					<androidx.constraintlayout.widget.Guideline
@@ -77,6 +86,7 @@
 						android:background="@drawable/background_upload_btn"
 						android:fontFamily="@font/kopub_dotum_bold"
 						android:letterSpacing="-0.02"
+						android:onClick="@{() -> handler.startFeedUploadActivity()}"
 						android:text="참여하기"
 						android:textColor="@color/_171717"
 						android:textSize="18dp"
@@ -100,8 +110,7 @@
 						android:layout_height="40dp"
 						android:layout_marginStart="10dp"
 						android:layout_marginTop="12dp"
-						android:clickable="true"
-						android:focusable="true"
+						android:onClick="@{() -> handler.finish()}"
 						android:src="@drawable/ic_title_back_white"
 						app:layout_constraintStart_toStartOf="parent"
 						app:layout_constraintTop_toTopOf="parent" />
@@ -144,6 +153,7 @@
 							android:layout_height="40dp"
 							android:clickable="true"
 							android:focusable="true"
+							android:onClick="@{() -> handler.finish()}"
 							android:src="@drawable/ic_title_back" />
 						
 						<TextView
@@ -165,6 +175,7 @@
 							android:layout_width="42dp"
 							android:layout_height="62dp"
 							android:layout_marginEnd="17dp"
+							android:onClick="@{() -> handler.startFeedUploadActivity()}"
 							android:src="@drawable/btn_write"
 							app:useWhitePressEffect="@{true}" />
 					
@@ -179,32 +190,94 @@
 			android:layout_height="match_parent"
 			app:layout_behavior="@string/appbar_scrolling_view_behavior">
 			
-			<LinearLayout
-				android:id="@+id/emptyFeed"
+			<FrameLayout
 				android:layout_width="match_parent"
-				android:layout_height="match_parent"
-				android:gravity="center_horizontal"
-				android:orientation="vertical"
-				app:isVisible="@{feedViewItem == null}">
+				android:layout_height="match_parent">
 				
-				<ImageView
-					android:layout_width="59dp"
-					android:layout_height="89dp"
-					android:layout_marginTop="83dp"
-					android:src="@drawable/ic_home_empty" />
+				<LinearLayout
+					android:id="@+id/emptyFeed"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:gravity="center_horizontal"
+					android:orientation="vertical"
+					app:isVisible="@{feedViewItem == null}"
+					tools:ignore="UseCompoundDrawables"
+					tools:visibility="gone">
+					
+					<ImageView
+						android:layout_width="59dp"
+						android:layout_height="89dp"
+						android:layout_marginTop="83dp"
+						android:src="@drawable/ic_home_empty" />
+					
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_marginTop="24dp"
+						android:alpha="0.3"
+						android:fontFamily="@font/kopub_dotum_bold"
+						android:letterSpacing="-0.01"
+						android:lineSpacingExtra="6dp"
+						android:text="0피드! 어서 참여해줘!"
+						android:textColor="@color/_171717"
+						android:textSize="16dp" />
+				</LinearLayout>
 				
-				<TextView
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_marginTop="24dp"
-					android:alpha="0.3"
-					android:fontFamily="@font/kopub_dotum_bold"
-					android:letterSpacing="-0.01"
-					android:lineSpacingExtra="6dp"
-					android:text="0피드! 어서 참여해줘!"
-					android:textColor="@color/_171717"
-					android:textSize="16dp" />
-			</LinearLayout>
+				<LinearLayout
+					android:id="@+id/feedContainer"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:orientation="vertical"
+					app:isVisible="@{feedViewItem != null}">
+					
+					<LinearLayout
+						android:id="@+id/feedInfoContainer"
+						android:layout_width="match_parent"
+						android:layout_height="66dp"
+						android:orientation="horizontal">
+						
+						<ImageView
+							android:id="@+id/authorProfileImageView"
+							android:layout_width="26dp"
+							android:layout_height="26dp"
+							android:layout_gravity="center_vertical"
+							android:layout_marginStart="20dp"
+							app:srcWithCircle="@{@drawable/ic_tmp_profile}" />
+						
+						<TextView
+							android:id="@+id/authorNameTextView"
+							android:layout_width="97dp"
+							android:layout_height="wrap_content"
+							android:layout_gravity="center_vertical"
+							android:layout_marginStart="4dp"
+							android:ellipsize="end"
+							android:fontFamily="@font/kopub_dotum_bold"
+							android:letterSpacing="-0.02"
+							android:text="@{feedViewItem.author}"
+							android:textSize="13dp" />
+						
+						<androidx.recyclerview.widget.RecyclerView
+							android:id="@+id/emojiRecyclerView"
+							android:layout_width="0dp"
+							android:layout_height="match_parent"
+							android:layout_marginStart="11dp"
+							android:layout_weight="1"
+							android:orientation="horizontal"
+							app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+						
+						<ImageView
+							android:layout_width="50dp"
+							android:layout_height="match_parent" />
+					</LinearLayout>
+					
+					<ImageView
+						android:id="@+id/feedImageView"
+						android:layout_width="match_parent"
+						android:layout_height="match_parent"
+						app:imageResource="@{feedViewItem.image}"
+						app:scaleType="@{feedViewItem.landscapeImage ? ScaleType.CENTER_INSIDE : ScaleType.CENTER_CROP}" />
+				</LinearLayout>
+			</FrameLayout>
 		</androidx.core.widget.NestedScrollView>
 	</androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

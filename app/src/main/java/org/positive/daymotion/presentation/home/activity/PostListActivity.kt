@@ -27,13 +27,29 @@ class PostListActivity :
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding.feedViewPager.adapter = feedPagerAdapter
-        binding.feedViewPager.orientation = ORIENTATION_VERTICAL
+        setupViews()
+        setupObservers()
+
+        viewModel.loadFeedList()
     }
 
     override fun onCollapsingStateChanged(isCollapsed: Boolean) {
         binding.feedViewPager.isUserInputEnabled = isCollapsed
     }
+
+    private fun setupViews() {
+        with(binding) {
+            feedViewPager.adapter = feedPagerAdapter
+            feedViewPager.orientation = ORIENTATION_VERTICAL
+        }
+    }
+
+    private fun setupObservers() {
+        viewModel.feeds.observeNonNull {
+            feedPagerAdapter.replace(it)
+        }
+    }
+
 
     companion object {
         fun start(

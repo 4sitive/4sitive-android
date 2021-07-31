@@ -1,18 +1,121 @@
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto">
 	
 	<data>
-	
+		
+		<import type="android.widget.ImageView.ScaleType" />
+		
+		<variable
+			name="handler"
+			type="org.positive.daymotion.presentation.home.fragment.FeedFragment.Handler" />
+		
+		<variable
+			name="missionViewItem"
+			type="org.positive.daymotion.presentation.home.model.MissionViewItem" />
+		
+		<variable
+			name="feedViewItem"
+			type="org.positive.daymotion.presentation.home.model.FeedViewItem" />
 	</data>
 	
-	<FrameLayout
+	<androidx.coordinatorlayout.widget.CoordinatorLayout
 		android:layout_width="match_parent"
-		android:layout_height="match_parent">
+		android:layout_height="match_parent"
+		android:fitsSystemWindows="true">
 		
-		<TextView
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_gravity="center"
-			android:text="fragment" />
-	</FrameLayout>
-
+		<LinearLayout
+			android:id="@+id/feedContainer"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:fitsSystemWindows="true"
+			android:orientation="vertical">
+			
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="68dp"
+				android:fitsSystemWindows="false"
+				android:gravity="center_vertical"
+				android:orientation="horizontal">
+				
+				<ImageView
+					android:id="@+id/blackBackButton"
+					android:layout_width="40dp"
+					android:layout_height="40dp"
+					android:clickable="true"
+					android:focusable="true"
+					android:onClick="@{() -> handler.finish()}"
+					android:src="@drawable/ic_title_back" />
+				
+				<TextView
+					android:id="@+id/titleTextView"
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_marginStart="3dp"
+					android:layout_marginEnd="10dp"
+					android:layout_weight="1"
+					android:ellipsize="end"
+					android:fontFamily="@font/kopub_dotum_bold"
+					android:maxLines="2"
+					android:text="@{missionViewItem.mission}"
+					android:textColor="@color/_171717"
+					android:textSize="18dp" />
+				
+				<ImageView
+					android:id="@+id/minUploadButton"
+					android:layout_width="42dp"
+					android:layout_height="62dp"
+					android:layout_marginEnd="17dp"
+					android:onClick="@{() -> handler.startFeedUploadActivity()}"
+					android:src="@drawable/btn_write"
+					app:useWhitePressEffect="@{true}" />
+			</LinearLayout>
+			
+			<LinearLayout
+				android:id="@+id/feedInfoContainer"
+				android:layout_width="match_parent"
+				android:layout_height="66dp"
+				android:orientation="horizontal">
+				
+				<ImageView
+					android:id="@+id/authorProfileImageView"
+					android:layout_width="26dp"
+					android:layout_height="26dp"
+					android:layout_gravity="center_vertical"
+					android:layout_marginStart="20dp"
+					app:srcWithCircle="@{@drawable/ic_tmp_profile}" />
+				
+				<TextView
+					android:id="@+id/authorNameTextView"
+					android:layout_width="97dp"
+					android:layout_height="wrap_content"
+					android:layout_gravity="center_vertical"
+					android:layout_marginStart="4dp"
+					android:ellipsize="end"
+					android:fontFamily="@font/kopub_dotum_bold"
+					android:letterSpacing="-0.02"
+					android:text="@{feedViewItem.author}"
+					android:textSize="13dp" />
+				
+				<androidx.recyclerview.widget.RecyclerView
+					android:id="@+id/emojiRecyclerView"
+					android:layout_width="0dp"
+					android:layout_height="match_parent"
+					android:layout_marginStart="11dp"
+					android:layout_weight="1"
+					android:orientation="horizontal"
+					app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+				
+				<ImageView
+					android:layout_width="50dp"
+					android:layout_height="match_parent" />
+			</LinearLayout>
+			
+			<ImageView
+				android:id="@+id/feedImageView"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				app:imageResource="@{feedViewItem.image}"
+				app:scaleType="@{feedViewItem.landscapeImage ? ScaleType.CENTER_INSIDE : ScaleType.CENTER_CROP}" />
+		</LinearLayout>
+	</androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>
