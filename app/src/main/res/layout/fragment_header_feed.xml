@@ -30,7 +30,8 @@
 			android:layout_width="match_parent"
 			android:layout_height="422dp"
 			android:background="@color/_FFFFFF"
-			android:fitsSystemWindows="true">
+			android:fitsSystemWindows="true"
+			app:elevation="0dp">
 			
 			<com.google.android.material.appbar.CollapsingToolbarLayout
 				android:layout_width="match_parent"
@@ -230,7 +231,7 @@
 					android:orientation="vertical"
 					app:isVisible="@{feedViewItem != null}">
 					
-					<LinearLayout
+					<androidx.constraintlayout.widget.ConstraintLayout
 						android:id="@+id/feedInfoContainer"
 						android:layout_width="match_parent"
 						android:layout_height="66dp"
@@ -240,8 +241,10 @@
 							android:id="@+id/authorProfileImageView"
 							android:layout_width="26dp"
 							android:layout_height="26dp"
-							android:layout_gravity="center_vertical"
 							android:layout_marginStart="20dp"
+							app:layout_constraintBottom_toBottomOf="parent"
+							app:layout_constraintStart_toStartOf="parent"
+							app:layout_constraintTop_toTopOf="parent"
 							app:srcWithCircle="@{@drawable/ic_tmp_profile}" />
 						
 						<TextView
@@ -254,21 +257,62 @@
 							android:fontFamily="@font/kopub_dotum_bold"
 							android:letterSpacing="-0.02"
 							android:text="@{feedViewItem.author}"
-							android:textSize="13dp" />
+							android:textSize="13dp"
+							app:layout_constraintBottom_toBottomOf="parent"
+							app:layout_constraintStart_toEndOf="@id/authorProfileImageView"
+							app:layout_constraintTop_toTopOf="parent" />
 						
 						<androidx.recyclerview.widget.RecyclerView
 							android:id="@+id/emojiRecyclerView"
 							android:layout_width="0dp"
-							android:layout_height="match_parent"
+							android:layout_height="wrap_content"
+							android:layout_gravity="center_vertical"
 							android:layout_marginStart="11dp"
-							android:layout_weight="1"
 							android:orientation="horizontal"
-							app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+							android:overScrollMode="never"
+							app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+							app:layout_constraintBottom_toBottomOf="parent"
+							app:layout_constraintEnd_toStartOf="@id/emojiAddButton"
+							app:layout_constraintStart_toEndOf="@id/authorNameTextView"
+							app:layout_constraintTop_toTopOf="parent" />
+						
+						<View
+							android:layout_width="10dp"
+							android:layout_height="0dp"
+							android:background="@drawable/background_white_shadow"
+							app:layout_constraintBottom_toBottomOf="parent"
+							app:layout_constraintEnd_toEndOf="@id/emojiRecyclerView"
+							app:layout_constraintTop_toTopOf="parent" />
+						
+						<View
+							android:id="@+id/emojiAddButton"
+							android:layout_width="30dp"
+							android:layout_height="30dp"
+							android:layout_marginEnd="20dp"
+							android:background="@drawable/background_emoji_button_unselected"
+							app:layout_constraintBottom_toBottomOf="parent"
+							app:layout_constraintEnd_toEndOf="parent"
+							app:layout_constraintStart_toEndOf="@id/emojiRecyclerView"
+							app:layout_constraintTop_toTopOf="parent" />
 						
 						<ImageView
-							android:layout_width="50dp"
-							android:layout_height="match_parent" />
-					</LinearLayout>
+							android:layout_width="14dp"
+							android:layout_height="14dp"
+							android:src="@drawable/ic_home_plus"
+							app:layout_constraintBottom_toBottomOf="@id/emojiAddButton"
+							app:layout_constraintEnd_toEndOf="@id/emojiAddButton"
+							app:layout_constraintStart_toStartOf="@id/emojiAddButton"
+							app:layout_constraintTop_toTopOf="@id/emojiAddButton" />
+						
+						<View
+							android:layout_width="0dp"
+							android:layout_height="1dp"
+							android:background="@color/_F3F3F3"
+							app:layout_constraintEnd_toEndOf="parent"
+							app:layout_constraintStart_toStartOf="parent"
+							app:layout_constraintTop_toTopOf="parent" />
+						
+					</androidx.constraintlayout.widget.ConstraintLayout>
 					
 					<ImageView
 						android:id="@+id/feedImageView"

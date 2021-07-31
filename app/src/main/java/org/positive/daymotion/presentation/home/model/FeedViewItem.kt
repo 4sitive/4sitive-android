@@ -10,5 +10,5 @@ data class FeedViewItem(
     @DrawableRes val image: Int, // TODO: replace url
     val isLandscapeImage: Boolean,
     val author: String,
-    val emoji: List<EmojiItem>
+    val emojis: List<EmojiItem>
 ) : Parcelable

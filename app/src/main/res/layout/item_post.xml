@@ -51,7 +51,7 @@
 				android:layout_height="30dp"
 				android:layout_marginStart="4dp"
 				android:gravity="center"
-				android:background="@drawable/background_emoji_btn">
+				android:background="@drawable/background_emoji_button_unselected">
 				
 				<ImageView
 					android:layout_width="14dp"

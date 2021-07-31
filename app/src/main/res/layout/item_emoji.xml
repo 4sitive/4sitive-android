@@ -6,25 +6,36 @@
 	<data>
 		
 		<variable
-			name="handler"
-			type="org.positive.daymotion.presentation.feed.FeedActivity.Handler" />
-		
-		<variable
 			name="item"
-			type="org.positive.daymotion.presentation.feed.model.EmojiItem.Emoji" />
+			type="org.positive.daymotion.presentation.home.model.EmojiItem" />
 	</data>
 	
-	<TextView
+	<LinearLayout
 		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_margin="8dp"
-		android:drawablePadding="4dp"
-		android:gravity="center"
-		android:onClick="@{() -> handler.updateLikes()}"
-		android:padding="6dp"
-		android:text="@{item.count}"
-		android:textSize="10dp"
-		app:drawableStartCompat="@drawable/ic_tmp_thumb_up"
-		app:useWhitePressEffect="@{true}"
-		tools:text="0" />
+		android:layout_height="30dp"
+		android:layout_marginEnd="8dp"
+		android:background="@drawable/background_emoji_button">
+		
+		<ImageView
+			android:id="@+id/emojiImageView"
+			android:layout_width="14dp"
+			android:layout_height="14dp"
+			android:layout_gravity="center_vertical"
+			android:layout_marginStart="7dp"
+			app:imageResource="@{item.emojiType.resourceId}" />
+		
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center_vertical"
+			android:layout_marginStart="4dp"
+			android:layout_marginEnd="7dp"
+			android:fontFamily="@font/montserrat_medium"
+			android:gravity="center"
+			android:includeFontPadding="false"
+			android:letterSpacing="-0.02"
+			android:text="@{item.countStr}"
+			android:textSize="13dp"
+			tools:text="0" />
+	</LinearLayout>
 </layout>
