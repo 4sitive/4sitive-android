@@ -7,6 +7,7 @@ import org.positive.daymotion.R
 import org.positive.daymotion.databinding.FragmentFeedBinding
 import org.positive.daymotion.presentation.common.base.BaseFragment
 import org.positive.daymotion.presentation.common.bundle
+import org.positive.daymotion.presentation.home.adapter.EmojiItemAdapter
 import org.positive.daymotion.presentation.home.model.FeedViewItem
 import org.positive.daymotion.presentation.home.model.MissionViewItem
 import org.positive.daymotion.presentation.upload.activity.FeedUploadActivity
@@ -15,12 +16,20 @@ class FeedFragment : BaseFragment<FragmentFeedBinding>(R.layout.fragment_feed) {
 
     private val missionViewItem by bundle<MissionViewItem>()
     private val feedViewItem by bundle<FeedViewItem>()
+    private val emojiItemAdapter by lazy { EmojiItemAdapter() }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.handler = Handler()
         binding.missionViewItem = missionViewItem
         binding.feedViewItem = feedViewItem
+
+        setupViews()
+    }
+
+    private fun setupViews() {
+        binding.emojiRecyclerView.adapter = emojiItemAdapter
+        emojiItemAdapter.replaceAll(feedViewItem.emojis)
     }
 
     inner class Handler {
