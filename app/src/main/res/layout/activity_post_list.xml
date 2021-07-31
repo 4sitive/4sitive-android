@@ -7,7 +7,7 @@
 		
 		<variable
 			name="handler"
-			type="org.positive.daymotion.presentation.home.PostListActivity.Handler" />
+			type="org.positive.daymotion.presentation.home.activity.PostListActivity.Handler" />
 		
 		<variable
 			name="missionViewItem"
@@ -15,7 +15,7 @@
 		
 		<variable
 			name="viewModel"
-			type="org.positive.daymotion.presentation.home.PostListViewModel" />
+			type="org.positive.daymotion.presentation.home.viewmodel.PostListViewModel" />
 	</data>
 	
 	<androidx.coordinatorlayout.widget.CoordinatorLayout

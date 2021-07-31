@@ -1,4 +1,4 @@
-package org.positive.daymotion.presentation.home
+package org.positive.daymotion.presentation.home.viewmodel
 
 import dagger.hilt.android.lifecycle.HiltViewModel
 import org.positive.daymotion.presentation.common.base.BaseViewModel

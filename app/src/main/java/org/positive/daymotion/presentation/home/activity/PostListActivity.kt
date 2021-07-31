@@ -1,4 +1,4 @@
-package org.positive.daymotion.presentation.home
+package org.positive.daymotion.presentation.home.activity
 
 import android.content.Context
 import android.os.Bundle
@@ -11,6 +11,7 @@ import org.positive.daymotion.presentation.common.base.viewModelOf
 import org.positive.daymotion.presentation.common.bundle
 import org.positive.daymotion.presentation.common.extension.startWith
 import org.positive.daymotion.presentation.home.model.MissionViewItem
+import org.positive.daymotion.presentation.home.viewmodel.PostListViewModel
 import org.positive.daymotion.presentation.upload.activity.FeedUploadActivity
 
 @AndroidEntryPoint
@@ -26,7 +27,7 @@ class PostListActivity :
         binding.viewModel = viewModel
         binding.missionViewItem = missionViewItem
         binding.handler = handler
-        
+
         setupViews()
     }
 

@@ -11,7 +11,7 @@ import org.positive.daymotion.presentation.common.ScrollableFragment
 import org.positive.daymotion.presentation.common.base.BaseActivity
 import org.positive.daymotion.presentation.common.base.viewModelOf
 import org.positive.daymotion.presentation.common.extension.startOnTop
-import org.positive.daymotion.presentation.home.HomeTabFragment
+import org.positive.daymotion.presentation.home.fragment.HomeTabFragment
 import org.positive.daymotion.presentation.root.model.Tab
 
 @AndroidEntryPoint
