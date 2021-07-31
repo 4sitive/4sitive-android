@@ -39,7 +39,6 @@
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:scaleType="centerInside"
-				
 				app:imageResource="@{item.background}"
 				tools:src="@drawable/img_category_01" />
 			
