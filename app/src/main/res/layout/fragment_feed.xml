@@ -42,6 +42,7 @@
 					android:id="@+id/blackBackButton"
 					android:layout_width="40dp"
 					android:layout_height="40dp"
+					android:layout_marginStart="10dp"
 					android:clickable="true"
 					android:focusable="true"
 					android:onClick="@{() -> handler.finish()}"
