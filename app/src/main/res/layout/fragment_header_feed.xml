@@ -140,6 +140,8 @@
 					android:layout_height="68dp"
 					android:alpha="0"
 					android:fitsSystemWindows="false"
+					app:contentInsetEnd="0dp"
+					app:contentInsetStart="0dp"
 					app:layout_collapseMode="pin">
 					
 					<LinearLayout
@@ -152,6 +154,7 @@
 							android:id="@+id/blackBackButton"
 							android:layout_width="40dp"
 							android:layout_height="40dp"
+							android:layout_marginStart="10dp"
 							android:clickable="true"
 							android:focusable="true"
 							android:onClick="@{() -> handler.finish()}"
@@ -311,7 +314,7 @@
 							app:layout_constraintEnd_toEndOf="parent"
 							app:layout_constraintStart_toStartOf="parent"
 							app:layout_constraintTop_toTopOf="parent" />
-						
+					
 					</androidx.constraintlayout.widget.ConstraintLayout>
 					
 					<ImageView
