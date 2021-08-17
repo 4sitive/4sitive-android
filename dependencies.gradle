@@ -1,5 +1,5 @@
 ext {
-    kotlinVersion = '1.4.32'
+    kotlinVersion = '1.5.21'
     gradleVersion = '4.1.3'
 
     // Google Service
@@ -9,14 +9,14 @@ ext {
     crashlyticsVersion = '2.7.0'
 
     // Android Basic
-    appCompatVersion = '1.3.0'
-    materialVirsion = '1.3.0'
-    constraintLayoutVersion = '2.0.4'
+    appCompatVersion = '1.3.1'
+    materialVirsion = '1.4.0'
+    constraintLayoutVersion = '2.1.0'
     recyclerViewVersion = '1.2.1'
 
     // KTX
-    coreKtxVersion = '1.5.0'
-    fragmentKtxVersion = '1.3.4'
+    coreKtxVersion = '1.6.0'
+    fragmentKtxVersion = '1.3.6'
 
     // DataStore
     dataStoreVersion = '1.0.0-alpha07'
@@ -26,9 +26,10 @@ ext {
     protobufJavaliteVersion = '3.10.0'
 
     // Networking lib
-    okhttpVersion = '4.2.2'
+    okhttpVersion = '4.9.1'
     retrofitVersion = '2.9.0'
     chuckerVersion = '3.4.0'
+    gsonVersion = '2.8.7'
 
     // RxJava
     rxJavaVersion = '3.0.12'
@@ -39,7 +40,7 @@ ext {
     glideVersion = '4.12.0'
 
     // Dagger Hilt
-    hiltCoreVersion = '2.35.1'
+    hiltCoreVersion = '2.37'
 
     // Chrome Custom Tabs
     chromeCustomTabsVersion = '1.3.0'
@@ -48,14 +49,14 @@ ext {
     firebaseVersion = '28.1.0'
 
     // Camera
-    cameraVersion = '1.1.0-alpha06'
-    cameraViewVersion = '1.0.0-alpha26'
+    cameraVersion = '1.1.0-alpha07'
+    cameraViewVersion = '1.0.0-alpha27'
 
     // DiscreteScrollView
     discreteScrollViewVersion = '1.5.1'
 
     // Test
     junitVersion = '4.13.2'
-    androidJunitVersion = '1.1.2'
-    espressoVersion = '3.3.0'
+    androidJunitVersion = '1.1.3'
+    espressoVersion = '3.4.0'
 }
