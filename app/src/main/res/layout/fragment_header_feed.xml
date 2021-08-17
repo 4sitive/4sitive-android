@@ -126,7 +126,7 @@
 						android:letterSpacing="-0.01"
 						android:lineSpacingExtra="8dp"
 						android:maxLines="3"
-						android:text="@{missionViewItem.mission}"
+						android:text="@{missionViewItem.content}"
 						android:textColor="@color/_FFFFFF"
 						android:textSize="32dp"
 						app:layout_constraintStart_toStartOf="parent"
@@ -170,7 +170,7 @@
 							android:ellipsize="end"
 							android:fontFamily="@font/kopub_dotum_bold"
 							android:maxLines="2"
-							android:text="@{missionViewItem.mission}"
+							android:text="@{missionViewItem.content}"
 							android:textColor="@color/_171717"
 							android:textSize="18dp" />
 						
