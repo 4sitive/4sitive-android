@@ -24,4 +24,9 @@ abstract class RepositoryModule {
     abstract fun provideRemoteConfigRepository(
         remoteConfigRepositoryImpl: RemoteConfigRepositoryImpl
     ): RemoteConfigRepository
+
+    @Binds
+    abstract fun provideMissionRepository(
+        missionRepositoryImpl: MissionRepositoryImpl
+    ): MissionRepository
 }
