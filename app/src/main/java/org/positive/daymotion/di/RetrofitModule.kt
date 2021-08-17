@@ -41,5 +41,18 @@ object RetrofitModule {
         .addCallAdapterFactory(callAdapterFactory)
         .addConverterFactory(gsonConverterFactory)
         .build()
+
+    @Provides
+    @Named("api")
+    fun provideApiServerRetrofit(
+        @Named("certified") okHttpClient: OkHttpClient,
+        callAdapterFactory: CallAdapter.Factory,
+        gsonConverterFactory: GsonConverterFactory
+    ): Retrofit = Retrofit.Builder()
+        .baseUrl(DmConstants.API_SERVER_BASE_URL)
+        .client(okHttpClient)
+        .addCallAdapterFactory(callAdapterFactory)
+        .addConverterFactory(gsonConverterFactory)
+        .build()
 }
 

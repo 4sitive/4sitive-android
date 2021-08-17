@@ -45,7 +45,8 @@
 						android:layout_height="81dp"
 						android:layout_gravity="center_horizontal"
 						android:layout_marginTop="20dp"
-						app:srcWithCircle="@{@drawable/ic_tmp_profile}" />
+						app:defaultImage="@{@drawable/background_default_profile}"
+						app:srcWithCircle="@{viewModel.userProfile.image}" />
 					
 					<TextView
 						android:layout_width="wrap_content"
@@ -53,9 +54,10 @@
 						android:layout_gravity="center_horizontal"
 						android:layout_marginTop="23dp"
 						android:fontFamily="@font/kopub_dotum_bold"
-						android:text="멋쟁이 시루"
+						android:text="@{viewModel.userProfile.nickName}"
 						android:textColor="@color/_171717"
-						android:textSize="17dp" />
+						android:textSize="17dp"
+						tools:text="멋쟁이 시루" />
 					
 					<TextView
 						android:layout_width="match_parent"
@@ -70,9 +72,10 @@
 						android:gravity="center_horizontal"
 						android:lineSpacingExtra="6dp"
 						android:maxWidth="140dp"
-						android:text="안녕하세요 시루랑 함께하는 일상을 보내고 있어요."
+						android:text="@{viewModel.userProfile.introduce}"
 						android:textColor="@color/_171717"
-						android:textSize="12dp" />
+						android:textSize="12dp"
+						tools:text="안녕하세요 시루랑 함께하는 일상을 보내고 있어요." />
 				</LinearLayout>
 				
 				<androidx.appcompat.widget.Toolbar

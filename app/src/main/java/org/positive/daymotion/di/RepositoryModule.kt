@@ -29,4 +29,9 @@ abstract class RepositoryModule {
     abstract fun provideMissionRepository(
         missionRepositoryImpl: MissionRepositoryImpl
     ): MissionRepository
+
+    @Binds
+    abstract fun provideUserRepository(
+        userRepositoryImpl: UserRepositoryImpl
+    ): UserRepository
 }

@@ -19,7 +19,7 @@
 			<ImageView
 				android:layout_width="26dp"
 				android:layout_height="26dp"
-				app:srcWithCircle="@{@drawable/ic_tmp_profile}" />
+				app:srcWithCircle="@{@drawable/background_default_profile}" />
 			
 			<TextView
 				android:id="@+id/userNameTextView"
