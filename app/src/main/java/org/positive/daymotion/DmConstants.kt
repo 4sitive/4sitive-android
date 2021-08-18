@@ -7,5 +7,7 @@ object DmConstants {
 
     const val API_SERVER_BASE_URL = "https://api.4sitive.com/"
 
+    const val IMAGE_SERVER_BASE_URL = "https://cdn.4sitive.com"
+
     const val APP_SCHEME = "positive"
 }

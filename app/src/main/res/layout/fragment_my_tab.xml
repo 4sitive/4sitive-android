@@ -106,7 +106,7 @@
 							android:layout_height="24dp"
 							android:layout_gravity="center_vertical|end"
 							android:layout_marginEnd="8dp"
-							android:onClick="@{() -> handler.goToProfileEdit()}"
+							android:onClick="@{() -> handler.goToProfileEdit(viewModel.userProfile)}"
 							android:paddingStart="10dp"
 							android:paddingTop="4dp"
 							android:paddingEnd="10dp"

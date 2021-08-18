@@ -37,6 +37,10 @@ class MyTabViewModel @Inject constructor(
             }
     }
 
+    fun updateProfile(userProfileViewData: UserProfileViewData) {
+        _userProfile.value = userProfileViewData
+    }
+
     fun loadMyFeeds() {
         _myFeedsThumbnails.value = emptyList()
 //        if (Random.nextInt().rem(5) == 0) {

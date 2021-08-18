@@ -1,5 +1,6 @@
 package org.positive.daymotion.presentation.my.fragment
 
+import android.app.Activity.RESULT_OK
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
@@ -14,6 +15,7 @@ import org.positive.daymotion.presentation.common.base.BaseFragment
 import org.positive.daymotion.presentation.common.base.viewModelOf
 import org.positive.daymotion.presentation.common.extension.registerActivityResult
 import org.positive.daymotion.presentation.my.activity.MyProfileEditActivity
+import org.positive.daymotion.presentation.my.model.UserProfileViewData
 import org.positive.daymotion.presentation.my.viewmodel.MyTabViewModel
 import org.positive.daymotion.presentation.upload.activity.FeedUploadActivity
 
@@ -26,7 +28,13 @@ class MyTabFragment : BaseFragment<FragmentMyTabBinding>(R.layout.fragment_my_ta
     private val feedThumbnailAdapter by lazy { FeedThumbnailAdapter() }
 
     private val myProfileEditActivityLauncher = registerActivityResult {
-        // TODO(yh): reload updated profile
+        val data = it.data
+        val resultCode = it.resultCode
+        if (data != null && resultCode == RESULT_OK) {
+            data.getParcelableExtra<UserProfileViewData>("userProfileViewData")?.let { profile ->
+                viewModel.updateProfile(profile)
+            }
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -63,12 +71,12 @@ class MyTabFragment : BaseFragment<FragmentMyTabBinding>(R.layout.fragment_my_ta
     }
 
     inner class Handler {
-        fun goToProfileEdit() = MyProfileEditActivity.startForResult(
+        fun goToProfileEdit(
+            userProfileViewData: UserProfileViewData
+        ) = MyProfileEditActivity.startForResult(
             requireContext(),
             myProfileEditActivityLauncher,
-            "",
-            "시루",
-            "시루랑 함께하는 일상"
+            userProfileViewData
         )
 
         fun startFeedUploadActivity() = FeedUploadActivity.start(requireContext())

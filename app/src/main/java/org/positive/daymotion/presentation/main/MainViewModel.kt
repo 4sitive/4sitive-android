@@ -20,7 +20,7 @@ class MainViewModel @Inject constructor(
             .apiLoadingCompose()
             .autoDispose {
                 success {
-                    _image.value = it.contentsLocation
+
                 }
                 error {
                     showErrorMessage(it.message.orEmpty())

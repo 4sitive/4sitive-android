@@ -7,7 +7,6 @@ import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.RequestBody.Companion.toRequestBody
 import org.positive.daymotion.data.api.ImageApi
-import org.positive.daymotion.data.model.ImageUploadResponse
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
@@ -20,14 +19,14 @@ class ImageRepositoryImpl @Inject constructor(
     private val imageApi: ImageApi
 ) : ImageRepository {
 
-    override fun imageUpload(path: String): Single<ImageUploadResponse> {
+    override fun imageUpload(path: String): Single<String> {
         val uri = Uri.parse(path)
         val fileName = dateFormat.format(Date())
         return readImageToByteArray(uri).flatMap { byteArray ->
             imageApi.imageUpload(fileName, byteArray.toRequestBody(imagePngMediaType))
         }.map { response ->
             val contentLocation = requireNotNull(response.headers()["Content-Location"])
-            ImageUploadResponse(contentLocation)
+            contentLocation
         }
     }
 
@@ -43,7 +42,7 @@ class ImageRepositoryImpl @Inject constructor(
     }
 
     companion object {
-        private val imagePngMediaType: MediaType = "image/png".toMediaType()
+        private val imagePngMediaType: MediaType = "image/*".toMediaType()
         private val dateFormat = SimpleDateFormat("yyyyMMddHHmm'.png'", Locale.KOREA)
     }
 }

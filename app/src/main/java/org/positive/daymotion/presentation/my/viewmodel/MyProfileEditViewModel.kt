@@ -4,16 +4,22 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import dagger.hilt.android.lifecycle.HiltViewModel
+import org.positive.daymotion.data.repository.ImageRepository
+import org.positive.daymotion.data.repository.UserRepository
 import org.positive.daymotion.presentation.common.SingleLiveEvent
 import org.positive.daymotion.presentation.common.base.BaseViewModel
 import org.positive.daymotion.presentation.common.util.liveDataMerge
 import org.positive.daymotion.presentation.my.model.NickNameValidation
+import org.positive.daymotion.presentation.my.model.UserProfileViewData
 import javax.inject.Inject
 
 @HiltViewModel
-class MyProfileEditViewModel @Inject constructor() : BaseViewModel() {
+class MyProfileEditViewModel @Inject constructor(
+    private val userRepository: UserRepository,
+    private val imageRepository: ImageRepository
+) : BaseViewModel() {
 
-    val profileImage = MutableLiveData<String>()
+    val profileImage = MutableLiveData<String?>()
 
     val name = MutableLiveData<String>()
 
@@ -30,17 +36,35 @@ class MyProfileEditViewModel @Inject constructor() : BaseViewModel() {
         introduceValidation == true && nickNameValidation == NickNameValidation.OK
     }
 
-    private val _doneProfileUpdate = SingleLiveEvent<Nothing>()
-    val doneProfileUpdate: LiveData<Nothing> get() = _doneProfileUpdate
+    private var userProfileViewData: UserProfileViewData? = null
 
-    fun initProfile(originProfile: String, originName: String, originIntroduce: String) {
-        profileImage.value = originProfile
-        name.value = originName
-        introduce.value = originIntroduce
+    private val _doneProfileUpdate = SingleLiveEvent<UserProfileViewData>()
+    val doneProfileUpdate: LiveData<UserProfileViewData> get() = _doneProfileUpdate
+
+    fun initProfile(userProfileViewData: UserProfileViewData) {
+        this.userProfileViewData = userProfileViewData
+        profileImage.value = userProfileViewData.image
+        name.value = userProfileViewData.nickName
+        introduce.value = userProfileViewData.introduce.orEmpty()
     }
 
     fun updateProfile() {
-        _doneProfileUpdate.call()
+        val origin = userProfileViewData ?: return
+        val imageUri = profileImage.value ?: return
+        val introduce = introduce.value ?: return
+        val name = name.value ?: return
+
+        imageRepository.imageUpload(imageUri)
+            .flatMap { userRepository.putUserProfile(origin.id, it, introduce, name) }
+            .apiLoadingCompose()
+            .autoDispose {
+                success {
+                    _doneProfileUpdate.value = UserProfileViewData.of(it)
+                }
+                error {
+                    showErrorMessage(it.message.orEmpty())
+                }
+            }
     }
 
     private fun checkNickNameValidation(input: String) = when {
