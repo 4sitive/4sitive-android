@@ -12,6 +12,7 @@ import org.positive.daymotion.presentation.common.base.BaseActivity
 import org.positive.daymotion.presentation.common.base.viewModelOf
 import org.positive.daymotion.presentation.common.bundle
 import org.positive.daymotion.presentation.common.extension.startForResultWith
+import org.positive.daymotion.presentation.my.model.UserProfileViewData
 import org.positive.daymotion.presentation.my.viewmodel.MyProfileEditViewModel
 
 
@@ -22,9 +23,7 @@ class MyProfileEditActivity :
     private val viewModel by viewModelOf<MyProfileEditViewModel>()
     private val handler by lazy { Handler() }
 
-    private val originProfile by bundle<String>()
-    private val originName by bundle<String>()
-    private val originIntroduce by bundle<String>()
+    private val originUserProfile by bundle<UserProfileViewData>()
 
     private val galleryLauncher = registerForActivityResult(
         ActivityResultContracts.GetContent()
@@ -41,11 +40,12 @@ class MyProfileEditActivity :
 
         setupObservers()
 
-        viewModel.initProfile(originProfile, originName, originIntroduce)
+        viewModel.initProfile(originUserProfile)
     }
 
     private fun setupObservers() {
         viewModel.doneProfileUpdate.observe {
+            setResult(RESULT_OK, Intent().apply { putExtra("userProfileViewData", it) })
             finish()
         }
     }
@@ -62,14 +62,10 @@ class MyProfileEditActivity :
         fun startForResult(
             context: Context,
             launcher: ActivityResultLauncher<Intent>,
-            originProfile: String,
-            originName: String,
-            originIntroduce: String
+            originUserProfile: UserProfileViewData
         ) = context.startForResultWith<MyProfileEditActivity>(
             launcher,
-            "originProfile" to originProfile,
-            "originName" to originName,
-            "originIntroduce" to originIntroduce
+            "originUserProfile" to originUserProfile
         )
     }
 }

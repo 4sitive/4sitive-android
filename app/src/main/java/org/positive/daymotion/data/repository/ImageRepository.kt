@@ -5,5 +5,5 @@ import org.positive.daymotion.data.model.ImageUploadResponse
 
 interface ImageRepository {
 
-    fun imageUpload(path: String): Single<ImageUploadResponse>
+    fun imageUpload(path: String): Single<String>
 }

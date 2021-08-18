@@ -9,7 +9,7 @@ import retrofit2.http.Path
 
 interface ImageApi {
 
-    @PUT("/{fileName}")
+    @PUT("/api/{fileName}")
     fun imageUpload(
         @Path("fileName") fileName: String,
         @Body requestBody: RequestBody

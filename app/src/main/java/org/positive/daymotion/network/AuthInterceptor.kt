@@ -18,7 +18,7 @@ class AuthInterceptor @Inject constructor(
         val request: Request = chain.request()
         val authenticatedRequest: Request = request
             .newBuilder()
-            .addHeader("Authorization", "${authToken?.tokenType} ${authToken?.accessToken}")
+            .addHeader("Authorization", "Bearer ${authToken?.accessToken}")
             .build()
 
         return chain.proceed(authenticatedRequest)
