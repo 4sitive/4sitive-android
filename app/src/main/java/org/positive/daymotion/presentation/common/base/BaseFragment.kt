@@ -32,17 +32,13 @@ abstract class BaseFragment<B : ViewDataBinding>(
 
     fun observeBaseLiveData(viewModel: BaseViewModel) {
         with(viewModel) {
-            isLoading.observe {
-                showLoadingDialog(it)
+            loadingCount.observeNonNull {
+                baseActivity?.updateLoadingCount(it)
             }
             showErrorMessageEvent.observeNonNull {
                 showErrorMessage(it)
             }
         }
-    }
-
-    fun showLoadingDialog(isLoading: Boolean?) {
-        baseActivity?.showLoadingDialog(isLoading)
     }
 
     fun showErrorMessage(message: String) {

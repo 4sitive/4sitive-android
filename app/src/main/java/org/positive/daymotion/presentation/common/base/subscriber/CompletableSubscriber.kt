@@ -20,7 +20,13 @@ interface CompletableSubscriber : BaseSubscriber {
     fun Completable.apiLoadingCompose(): Completable = compose {
         it.subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .doOnSubscribe { loadingMutableLiveData.value = true }
-            .doFinally { loadingMutableLiveData.value = false }
+            .doOnSubscribe {
+                val value = loadingCountMutableLiveData.value ?: return@doOnSubscribe
+                loadingCountMutableLiveData.value = value + 1
+            }
+            .doFinally {
+                val value = loadingCountMutableLiveData.value ?: return@doFinally
+                loadingCountMutableLiveData.value = value - 1
+            }
     }
 }

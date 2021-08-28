@@ -23,8 +23,17 @@ class HomeTabViewModel @Inject constructor(
     val userProfile: LiveData<UserProfile> get() = _userProfile
 
     fun loadTodayMissions() {
-        _todayMissions.value = missionRepository.loadTodayMissions()
-            .mapIndexed { i, mission -> MissionViewItem.of(mission, i) }
+        missionRepository.loadTodayMissions()
+            .apiLoadingCompose()
+            .autoDispose {
+                success {
+                    _todayMissions.value =
+                        it.mapIndexed { i, mission -> MissionViewItem.of(mission, i) }
+                }
+                error {
+                    showErrorMessage(it.message.orEmpty())
+                }
+            }
     }
 
     fun loadUserProfile() {

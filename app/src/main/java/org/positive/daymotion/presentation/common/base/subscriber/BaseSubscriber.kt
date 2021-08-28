@@ -7,6 +7,5 @@ interface BaseSubscriber {
 
     val disposables: CompositeDisposable
 
-    val loadingMutableLiveData: MutableLiveData<Boolean>
-
+    val loadingCountMutableLiveData: MutableLiveData<Int>
 }

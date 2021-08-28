@@ -26,8 +26,8 @@ abstract class BaseActivity<B : ViewDataBinding>(
 
     fun observeBaseLiveData(viewModel: BaseViewModel) {
         with(viewModel) {
-            isLoading.observe {
-                showLoadingDialog(it)
+            loadingCount.observeNonNull {
+                updateLoadingCount(it)
             }
             showErrorMessageEvent.observeNonNull {
                 showErrorMessage(it)
@@ -35,12 +35,8 @@ abstract class BaseActivity<B : ViewDataBinding>(
         }
     }
 
-    fun showLoadingDialog(isLoading: Boolean?) {
-        if (isLoading == true) {
-            loadingHandler.show()
-        } else {
-            loadingHandler.hide()
-        }
+    fun updateLoadingCount(loadingCount: Int) {
+        loadingHandler.updateLoadingCount(loadingCount)
     }
 
     fun showErrorMessage(message: String) {

@@ -9,6 +9,7 @@ import org.positive.daymotion.presentation.common.ScrollableFragment
 import org.positive.daymotion.presentation.common.base.BaseFragment
 import org.positive.daymotion.presentation.common.base.viewModelOf
 import org.positive.daymotion.presentation.home.activity.PostListActivity
+import org.positive.daymotion.presentation.home.adapter.TodayMissionAdapter
 import org.positive.daymotion.presentation.home.model.MissionViewItem
 import org.positive.daymotion.presentation.home.viewmodel.HomeTabViewModel
 
@@ -18,11 +19,15 @@ class HomeTabFragment : BaseFragment<FragmentHomeTabBinding>(R.layout.fragment_h
     ScrollableFragment {
 
     private val viewModel by viewModelOf<HomeTabViewModel>()
+    private val handler = Handler()
+    private val adapter = TodayMissionAdapter(handler)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.handler = Handler()
         binding.viewModel = viewModel
+
+        setupViews()
+        setupObservers()
 
         viewModel.loadTodayMissions()
         viewModel.loadUserProfile()
@@ -30,6 +35,20 @@ class HomeTabFragment : BaseFragment<FragmentHomeTabBinding>(R.layout.fragment_h
 
     override fun scrollToTop() {
         binding.scrollView.smoothScrollTo(0, binding.profileLayout.top)
+    }
+
+    private fun setupViews() {
+        with(binding) {
+            todayRecyclerView.adapter = adapter
+        }
+    }
+
+    private fun setupObservers() {
+        with(viewModel) {
+            todayMissions.observeNonNull {
+                adapter.replaceAll(it)
+            }
+        }
     }
 
     inner class Handler {

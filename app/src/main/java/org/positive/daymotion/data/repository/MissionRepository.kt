@@ -5,7 +5,8 @@ import org.positive.daymotion.domain.DayMission
 import org.positive.daymotion.domain.Mission
 
 interface MissionRepository {
-    fun loadTodayMissions(): List<Mission>
+
+    fun loadTodayMissions(): Single<List<Mission>>
 
     fun loadLastMissions(): Single<List<DayMission>>
 }

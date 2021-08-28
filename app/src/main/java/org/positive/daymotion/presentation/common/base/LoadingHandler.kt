@@ -15,15 +15,22 @@ class LoadingHandler(context: Context) {
             .create()
     }
 
-    fun show() {
-        loadingCount++
+    fun updateLoadingCount(loadingCount: Int) {
+        this.loadingCount = loadingCount
+        if (loadingCount > 0) {
+            show()
+        } else {
+            hide()
+        }
+    }
+
+    private fun show() {
         if (!loadingDialog.isShowing) {
             loadingDialog.show()
         }
     }
 
-    fun hide() {
-        loadingCount--
+    private fun hide() {
         if (loadingCount == 0) {
             loadingDialog.hide()
         }
