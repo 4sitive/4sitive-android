@@ -18,7 +18,7 @@ class UserRepositoryImpl @Inject constructor(
 
     override fun putUserProfile(
         id: String,
-        image: String,
+        image: String?,
         introduce: String,
         name: String
     ): Single<UserProfile> {
