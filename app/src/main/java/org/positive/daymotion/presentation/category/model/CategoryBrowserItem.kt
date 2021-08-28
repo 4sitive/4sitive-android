@@ -3,10 +3,12 @@ package org.positive.daymotion.presentation.category.model
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import org.positive.daymotion.R
+import org.positive.daymotion.domain.Category
 import java.text.DecimalFormat
 import kotlin.random.Random
 
 data class CategoryBrowserItem(
+    val id: String,
     val categoryName: String,
     val participants: Int
 ) {
@@ -44,5 +46,13 @@ data class CategoryBrowserItem(
     companion object {
         private var RANDOM_SEED = Random.nextInt(0, 2)
         private val decimalFormatter = DecimalFormat("###,###")
+
+        fun of(category: Category): CategoryBrowserItem {
+            return CategoryBrowserItem(
+                category.id,
+                category.name,
+                category.feedElements
+            )
+        }
     }
 }

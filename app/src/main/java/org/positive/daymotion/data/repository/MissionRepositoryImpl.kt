@@ -1,9 +1,14 @@
 package org.positive.daymotion.data.repository
 
+import io.reactivex.rxjava3.core.Single
+import org.positive.daymotion.data.api.MissionApi
+import org.positive.daymotion.domain.DayMission
 import org.positive.daymotion.domain.Mission
 import javax.inject.Inject
 
-class MissionRepositoryImpl @Inject constructor() : MissionRepository {
+class MissionRepositoryImpl @Inject constructor(
+    private val missionApi: MissionApi
+) : MissionRepository {
     override fun loadTodayMissions(): List<Mission> {
         return listOf(
             Mission(
@@ -31,5 +36,9 @@ class MissionRepositoryImpl @Inject constructor() : MissionRepository {
                 "question"
             )
         )
+    }
+
+    override fun loadLastMissions(): Single<List<DayMission>> {
+        return missionApi.getLastMissions().map { emptyList() }
     }
 }

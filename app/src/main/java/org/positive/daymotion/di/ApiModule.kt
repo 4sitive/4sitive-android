@@ -4,9 +4,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import org.positive.daymotion.data.api.AuthApi
-import org.positive.daymotion.data.api.ImageApi
-import org.positive.daymotion.data.api.UserApi
+import org.positive.daymotion.data.api.*
 import retrofit2.Retrofit
 import javax.inject.Named
 
@@ -25,4 +23,12 @@ object ApiModule {
     @Provides
     fun provideUserApi(@Named("api") retrofit: Retrofit): UserApi =
         retrofit.create(UserApi::class.java)
+
+    @Provides
+    fun provideCategoryApi(@Named("api") retrofit: Retrofit): CategoryApi =
+        retrofit.create(CategoryApi::class.java)
+
+    @Provides
+    fun provideMissionApi(@Named("api") retrofit: Retrofit): MissionApi =
+        retrofit.create(MissionApi::class.java)
 }
