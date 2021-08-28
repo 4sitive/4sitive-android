@@ -34,6 +34,7 @@ class MissionHistoryAdapter(
         with(holder.binding) {
             item = items[position]
             handler = this@MissionHistoryAdapter.handler
+            executePendingBindings()
         }
     }
 

@@ -1,10 +1,11 @@
 package org.positive.daymotion.presentation.category.model
 
 import org.positive.daymotion.domain.DayMission
+import org.positive.daymotion.domain.Mission
 
 data class MissionHistoryItem(
     val date: String,
-    val missions: List<MissionHistoryInnerItem>
+    val missions: List<Mission>
 ) {
 
     val isMissionEmpty = missions.isEmpty()
@@ -19,20 +20,7 @@ data class MissionHistoryItem(
         fun of(dayMission: DayMission): MissionHistoryItem {
             return MissionHistoryItem(
                 dayMission.date,
-                listOf(
-                    MissionHistoryInnerItem(
-                        dayMission.firstMission.question,
-                        dayMission.firstMission.image
-                    ),
-                    MissionHistoryInnerItem(
-                        dayMission.secondMission.question,
-                        dayMission.secondMission.image
-                    ),
-                    MissionHistoryInnerItem(
-                        dayMission.thirdMission.question,
-                        dayMission.thirdMission.image
-                    ),
-                )
+                dayMission.missions
             )
         }
     }

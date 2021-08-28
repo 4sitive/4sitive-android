@@ -22,7 +22,6 @@ object NetworkConverterModule {
     fun provideGsonConverterFactory(): GsonConverterFactory {
         val gson = GsonBuilder()
             .registerTypeAdapterFactory(NullableTypeAdapterFactory())
-            .setFieldNamingStrategy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
             .create()
         return GsonConverterFactory.create(gson)
     }
