@@ -5,6 +5,6 @@ data class Mission(
     val content: String,
     val date: String,
     val id: String,
-    val image: String,
+    val image: String?,
     val question: String
 )

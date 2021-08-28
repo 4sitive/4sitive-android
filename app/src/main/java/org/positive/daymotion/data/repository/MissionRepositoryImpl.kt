@@ -39,6 +39,23 @@ class MissionRepositoryImpl @Inject constructor(
     }
 
     override fun loadLastMissions(): Single<List<DayMission>> {
-        return missionApi.getLastMissions().map { emptyList() }
+        return missionApi.getLastMissions().map { response ->
+            val grouping = response.content.groupBy { it.date }
+            grouping.map {
+                DayMission(
+                    it.key,
+                    it.value.map { v ->
+                        Mission(
+                            v.categoryName.orEmpty(),
+                            v.content.orEmpty(),
+                            v.date,
+                            v.id,
+                            v.image,
+                            v.question.orEmpty()
+                        )
+                    }
+                )
+            }
+        }
     }
 }

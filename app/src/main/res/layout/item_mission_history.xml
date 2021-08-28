@@ -14,7 +14,6 @@
 			type="org.positive.daymotion.presentation.category.model.MissionHistoryItem" />
 	</data>
 	
-	<!--TODO(yh): link image url-->
 	<androidx.constraintlayout.widget.ConstraintLayout
 		android:id="@+id/itemContainer"
 		android:layout_width="match_parent"
@@ -50,9 +49,10 @@
 				android:id="@+id/firstMissionImageView"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
-				android:background="@color/_CDCDCD"
-				android:onClick="@{() -> handler.startCategoryDetail(item.firstMission.missionName)}"
+				android:background="@color/_F1F1F1"
+				android:onClick="@{() -> handler.startCategoryDetail(item.firstMission.question)}"
 				app:pressEffectRadius="@{@dimen/_8dp}"
+				app:src="@{item.firstMission.image}"
 				app:useWhitePressEffect="@{true}" />
 		</androidx.cardview.widget.CardView>
 		
@@ -74,9 +74,10 @@
 				android:id="@+id/secondMissionImageView"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
-				android:background="@color/_CDCDCD"
-				android:onClick="@{() -> handler.startCategoryDetail(item.secondMission.missionName)}"
+				android:background="@color/_F1F1F1"
+				android:onClick="@{() -> handler.startCategoryDetail(item.secondMission.question)}"
 				app:pressEffectRadius="@{@dimen/_8dp}"
+				app:src="@{item.secondMission.image}"
 				app:useWhitePressEffect="@{true}" />
 		</androidx.cardview.widget.CardView>
 		
@@ -98,9 +99,10 @@
 				android:id="@+id/thirdMissionImageView"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
-				android:background="@color/_CDCDCD"
-				android:onClick="@{() -> handler.startCategoryDetail(item.thirdMission.missionName)}"
+				android:background="@color/_F1F1F1"
+				android:onClick="@{() -> handler.startCategoryDetail(item.thirdMission.question)}"
 				app:pressEffectRadius="@{@dimen/_8dp}"
+				app:src="@{item.thirdMission.image}"
 				app:useWhitePressEffect="@{true}" />
 		</androidx.cardview.widget.CardView>
 		

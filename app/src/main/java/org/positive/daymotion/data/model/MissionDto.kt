@@ -6,9 +6,10 @@ data class GetLastMissionsResponse(
 ) {
     data class Mission(
         val id: String,
+        val categoryName: String,
         val image: String?,
         val question: String?,
         val content: String?,
-        val date: String?
+        val date: String
     )
 }
