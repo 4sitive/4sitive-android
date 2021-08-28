@@ -6,6 +6,8 @@ import org.positive.daymotion.R
 
 class LoadingHandler(context: Context) {
 
+    private var loadingCount = 0
+
     private val loadingDialog: AlertDialog by lazy {
         AlertDialog.Builder(context, R.style.LoadingDialog)
             .setCancelable(false)
@@ -14,10 +16,16 @@ class LoadingHandler(context: Context) {
     }
 
     fun show() {
-        loadingDialog.show()
+        loadingCount++
+        if (!loadingDialog.isShowing) {
+            loadingDialog.show()
+        }
     }
 
     fun hide() {
-        loadingDialog.hide()
+        loadingCount--
+        if (loadingCount == 0) {
+            loadingDialog.hide()    
+        }
     }
 }
