@@ -45,11 +45,11 @@
 				android:layout_height="105dp"
 				android:layout_gravity="center_horizontal"
 				android:layout_marginTop="59dp"
-				app:defaultImage="@{@color/_171717}"
+				app:defaultImage="@{@drawable/background_default_profile}"
 				app:layout_constraintEnd_toEndOf="parent"
 				app:layout_constraintStart_toStartOf="parent"
 				app:layout_constraintTop_toBottomOf="@id/title"
-				app:srcWithCircle="@{viewModel.profileImage}" />
+				app:srcWithCircle="@{viewModel.profileImage.url}" />
 			
 			<ImageView
 				android:id="@+id/profileEditButton"

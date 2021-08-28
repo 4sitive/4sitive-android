@@ -29,7 +29,7 @@ class MyProfileEditActivity :
         ActivityResultContracts.GetContent()
     ) {
         it?.let {
-            viewModel.profileImage.value = it.toString()
+            viewModel.updateProfileImage(it.toString())
         }
     }
 

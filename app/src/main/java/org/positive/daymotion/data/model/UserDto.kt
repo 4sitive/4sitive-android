@@ -22,7 +22,7 @@ data class GetUserResponse(
 }
 
 data class PutUserRequest(
-    val image: String,
+    val image: String?,
     val introduce: String,
     val name: String
 )
