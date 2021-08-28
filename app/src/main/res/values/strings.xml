@@ -15,5 +15,8 @@
 	
 	<!-- upload -->
 	<string name="tag_prefix">#%1$s</string>
+	
+	<!-- home -->
+	<string name="hello_text">%1$s님, Hello!</string>
 
 </resources>
