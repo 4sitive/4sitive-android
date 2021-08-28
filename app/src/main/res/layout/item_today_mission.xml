@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto">
+	
+	<data>
+		
+		<import type="androidx.core.content.ContextCompat" />
+		
+		<variable
+			name="item"
+			type="org.positive.daymotion.presentation.home.model.MissionViewItem" />
+		
+		<variable
+			name="handler"
+			type="org.positive.daymotion.presentation.home.fragment.HomeTabFragment.Handler" />
+	</data>
+	
+	<androidx.cardview.widget.CardView
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="30dp"
+		android:focusable="false"
+		android:focusableInTouchMode="false"
+		app:cardCornerRadius="8dp">
+		
+		<androidx.constraintlayout.widget.ConstraintLayout
+			android:id="@+id/homeMissionCard1"
+			android:layout_width="match_parent"
+			android:layout_height="375dp"
+			android:background="@{ContextCompat.getDrawable(context, item.background)}"
+			android:clickable="true"
+			android:focusable="true"
+			android:onClick="@{() -> handler.sendSubject(item)}">
+			
+			<TextView
+				android:id="@+id/missionTextView1"
+				android:layout_width="240dp"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="40dp"
+				android:layout_marginTop="44dp"
+				android:fontFamily="@font/kopub_dotum_medium"
+				android:letterSpacing="-0.01"
+				android:lineSpacingExtra="8dp"
+				android:maxLines="3"
+				android:text="@{item.content}"
+				android:textColor="@color/_FFFFFF"
+				android:textSize="32dp"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toTopOf="parent" />
+			
+			<ImageView
+				android:id="@+id/CardEffectImageView1"
+				android:layout_width="0dp"
+				android:layout_height="268dp"
+				android:scaleX="1.2"
+				android:scaleY="1.2"
+				app:layout_constraintBottom_toBottomOf="parent"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:src="@{item.effect}" />
+		</androidx.constraintlayout.widget.ConstraintLayout>
+	</androidx.cardview.widget.CardView>
+</layout>
