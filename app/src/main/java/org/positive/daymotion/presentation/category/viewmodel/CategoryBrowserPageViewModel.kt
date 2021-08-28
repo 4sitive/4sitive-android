@@ -3,28 +3,30 @@ package org.positive.daymotion.presentation.category.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import dagger.hilt.android.lifecycle.HiltViewModel
-import org.positive.daymotion.presentation.common.base.BaseViewModel
+import org.positive.daymotion.data.repository.CategoryRepository
 import org.positive.daymotion.presentation.category.model.CategoryBrowserItem
+import org.positive.daymotion.presentation.common.base.BaseViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class CategoryBrowserPageViewModel @Inject constructor() : BaseViewModel() {
+class CategoryBrowserPageViewModel @Inject constructor(
+    private val categoryRepository: CategoryRepository
+) : BaseViewModel() {
 
     private val _categoryBrowserItems = MutableLiveData<List<CategoryBrowserItem>>()
     val categoryBrowserItems: LiveData<List<CategoryBrowserItem>> get() = _categoryBrowserItems
 
     fun loadMissionHistories() {
-        val items = buildList {
-            add(CategoryBrowserItem(categoryName = "취미", participants = 123))
-            add(CategoryBrowserItem(categoryName = "개인", participants = 5))
-            add(CategoryBrowserItem(categoryName = "날씨", participants = 3))
-            add(CategoryBrowserItem(categoryName = "유머", participants = 40))
-            add(CategoryBrowserItem(categoryName = "일상", participants = 80))
-            add(CategoryBrowserItem(categoryName = "친구", participants = 334))
-            add(CategoryBrowserItem(categoryName = "음악", participants = 1200))
-            add(CategoryBrowserItem(categoryName = "고민", participants = 3))
-        }
+        categoryRepository.getCategories()
+            .apiLoadingCompose()
+            .autoDispose {
+                success { result ->
+                    _categoryBrowserItems.value = result.map { CategoryBrowserItem.of(it) }
+                }
+                error {
+                    showErrorMessage(it.message.orEmpty())
+                }
+            }
 
-        _categoryBrowserItems.value = items
     }
 }
