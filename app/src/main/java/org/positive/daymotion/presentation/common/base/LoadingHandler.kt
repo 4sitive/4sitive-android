@@ -25,7 +25,7 @@ class LoadingHandler(context: Context) {
     fun hide() {
         loadingCount--
         if (loadingCount == 0) {
-            loadingDialog.hide()    
+            loadingDialog.hide()
         }
     }
 }

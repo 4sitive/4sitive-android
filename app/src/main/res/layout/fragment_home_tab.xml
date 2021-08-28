@@ -56,9 +56,10 @@
 					android:fontFamily="@font/kopub_dotum_medium"
 					android:letterSpacing="-0.02"
 					android:lineSpacingExtra="7dp"
-					android:text="민정님, Hello!"
+					android:text="@{@string/hello_text(viewModel.userProfile.name != null ? viewModel.userProfile.name : viewModel.userProfile.userName)}"
 					android:textColor="@color/_000000"
 					android:textSize="17dp"
+					app:isInvisible="@{viewModel.userProfile == null}"
 					app:layout_constraintStart_toStartOf="parent"
 					app:layout_constraintTop_toTopOf="parent" />
 				
@@ -78,9 +79,10 @@
 				<ImageView
 					android:layout_width="54dp"
 					android:layout_height="54dp"
+					app:defaultImage="@{@drawable/background_default_profile}"
 					app:layout_constraintEnd_toEndOf="parent"
 					app:layout_constraintTop_toTopOf="parent"
-					app:srcWithCircle="@{@drawable/background_default_profile}" />
+					app:srcWithCircle="@{viewModel.userProfile.image}" />
 			
 			</androidx.constraintlayout.widget.ConstraintLayout>
 			

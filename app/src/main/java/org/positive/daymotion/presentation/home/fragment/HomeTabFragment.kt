@@ -25,6 +25,7 @@ class HomeTabFragment : BaseFragment<FragmentHomeTabBinding>(R.layout.fragment_h
         binding.viewModel = viewModel
 
         viewModel.loadTodayMissions()
+        viewModel.loadUserProfile()
     }
 
     override fun scrollToTop() {
