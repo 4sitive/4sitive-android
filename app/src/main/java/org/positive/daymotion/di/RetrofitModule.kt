@@ -21,7 +21,7 @@ object RetrofitModule {
     fun provideAccountServerRetrofit(
         @Named("oauth") okHttpClient: OkHttpClient,
         callAdapterFactory: CallAdapter.Factory,
-        gsonConverterFactory: GsonConverterFactory
+        @Named("lowerUnderscore") gsonConverterFactory: GsonConverterFactory
     ): Retrofit = Retrofit.Builder()
         .baseUrl(DmConstants.ACCOUNT_SERVER_BASE_URL)
         .client(okHttpClient)
@@ -34,7 +34,7 @@ object RetrofitModule {
     fun provideCdnServerRetrofit(
         @Named("certified") okHttpClient: OkHttpClient,
         callAdapterFactory: CallAdapter.Factory,
-        gsonConverterFactory: GsonConverterFactory
+        @Named("identity") gsonConverterFactory: GsonConverterFactory
     ): Retrofit = Retrofit.Builder()
         .baseUrl(DmConstants.CDN_SERVER_BASE_URL)
         .client(okHttpClient)
@@ -47,7 +47,7 @@ object RetrofitModule {
     fun provideApiServerRetrofit(
         @Named("certified") okHttpClient: OkHttpClient,
         callAdapterFactory: CallAdapter.Factory,
-        gsonConverterFactory: GsonConverterFactory
+        @Named("identity") gsonConverterFactory: GsonConverterFactory
     ): Retrofit = Retrofit.Builder()
         .baseUrl(DmConstants.API_SERVER_BASE_URL)
         .client(okHttpClient)
