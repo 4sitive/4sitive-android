@@ -39,4 +39,9 @@ abstract class RepositoryModule {
     abstract fun provideCategoryRepository(
         categoryRepositoryImpl: CategoryRepositoryImpl
     ): CategoryRepository
+
+    @Binds
+    abstract fun provideFeedRepository(
+        feedRepositoryImpl: FeedRepositoryImpl
+    ): FeedRepository
 }

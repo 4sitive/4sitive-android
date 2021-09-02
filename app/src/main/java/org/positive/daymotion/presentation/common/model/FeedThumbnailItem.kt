@@ -3,7 +3,7 @@ package org.positive.daymotion.presentation.common.model
 
 data class FeedThumbnailItem(
     val missionName: String = "",
-    val imageUrl: String,
+    val imageUrl: String?,
     val imageType: ImageType
 ) {
 

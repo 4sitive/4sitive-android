@@ -45,8 +45,7 @@ class MyTabFragment : BaseFragment<FragmentMyTabBinding>(R.layout.fragment_my_ta
         setupViews()
         setupObservers()
 
-        viewModel.loadMyFeeds()
-        viewModel.loadMyProfile()
+        viewModel.loadMyProfileAndFeeds()
     }
 
     private fun setupViews() {
