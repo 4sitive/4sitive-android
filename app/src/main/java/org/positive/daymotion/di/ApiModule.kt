@@ -31,4 +31,8 @@ object ApiModule {
     @Provides
     fun provideMissionApi(@Named("api") retrofit: Retrofit): MissionApi =
         retrofit.create(MissionApi::class.java)
+
+    @Provides
+    fun provideFeedApi(@Named("api") retrofit: Retrofit): FeedApi =
+        retrofit.create(FeedApi::class.java)
 }
