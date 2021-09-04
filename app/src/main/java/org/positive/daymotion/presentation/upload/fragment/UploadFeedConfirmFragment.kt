@@ -9,7 +9,7 @@ import org.positive.daymotion.presentation.common.base.BaseFragment
 import org.positive.daymotion.presentation.common.base.sharedViewModelOf
 import org.positive.daymotion.presentation.common.base.viewModelOf
 import org.positive.daymotion.presentation.upload.activity.UploadFeedTextEditActivity
-import org.positive.daymotion.presentation.upload.model.Mission
+import org.positive.daymotion.presentation.upload.model.MissionViewItem
 import org.positive.daymotion.presentation.upload.model.TextEditConfig
 import org.positive.daymotion.presentation.upload.view.DragTouchListener
 import org.positive.daymotion.presentation.upload.viewmodel.FeedUploadViewModel
@@ -56,7 +56,7 @@ class UploadFeedConfirmFragment :
         viewModel.updateBackground(background)
     }
 
-    fun updateSelectedMission(mission: Mission) {
+    fun updateSelectedMission(mission: MissionViewItem) {
         viewModel.updateSelectedMission(mission)
     }
 

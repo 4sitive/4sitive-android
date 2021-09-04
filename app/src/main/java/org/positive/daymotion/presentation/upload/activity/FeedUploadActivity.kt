@@ -26,7 +26,7 @@ import org.positive.daymotion.presentation.upload.fragment.CameraFragment
 import org.positive.daymotion.presentation.upload.fragment.MissionSelectBottomSheetDialogFragment
 import org.positive.daymotion.presentation.upload.fragment.UploadFeedConfirmFragment
 import org.positive.daymotion.presentation.upload.model.BackgroundSelection
-import org.positive.daymotion.presentation.upload.model.Mission
+import org.positive.daymotion.presentation.upload.model.MissionViewItem
 import org.positive.daymotion.presentation.upload.viewmodel.FeedUploadViewModel
 import java.util.*
 
@@ -70,7 +70,7 @@ class FeedUploadActivity :
         viewModel.selectCustomImage(BackgroundSelection.Custom(uri))
     }
 
-    override fun onMissionSelected(mission: Mission) {
+    override fun onMissionSelected(mission: MissionViewItem) {
         viewModel.selectMission(mission)
     }
 
@@ -167,7 +167,7 @@ class FeedUploadActivity :
         }
     }
 
-    private fun showMissionSelectBottomSheet(selected: Mission, missions: List<Mission>) {
+    private fun showMissionSelectBottomSheet(selected: MissionViewItem, missions: List<MissionViewItem>) {
         val fragment = MissionSelectBottomSheetDialogFragment.newInstance(
             selected,
             missions.toTypedArray()

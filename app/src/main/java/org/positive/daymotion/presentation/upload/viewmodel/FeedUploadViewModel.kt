@@ -4,24 +4,31 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import org.positive.daymotion.R
+import org.positive.daymotion.data.repository.FeedRepository
+import org.positive.daymotion.data.repository.ImageRepository
+import org.positive.daymotion.data.repository.MissionRepository
 import org.positive.daymotion.presentation.common.SingleLiveEvent
 import org.positive.daymotion.presentation.common.base.BaseViewModel
 import org.positive.daymotion.presentation.upload.model.BackgroundSelection
-import org.positive.daymotion.presentation.upload.model.Mission
+import org.positive.daymotion.presentation.upload.model.MissionViewItem
 import org.positive.daymotion.presentation.upload.model.Mode
 import javax.inject.Inject
 
 @HiltViewModel
-class FeedUploadViewModel @Inject constructor() : BaseViewModel() {
+class FeedUploadViewModel @Inject constructor(
+    private val missionRepository: MissionRepository,
+    private val feedRepository: FeedRepository,
+    private val imageRepository: ImageRepository
+) : BaseViewModel() {
 
-    private val _todayMissions = MutableLiveData<List<Mission>>()
-    val todayMissions: LiveData<List<Mission>> get() = _todayMissions
+    private val _todayMissions = MutableLiveData<List<MissionViewItem>>()
+    val todayMissions: LiveData<List<MissionViewItem>> get() = _todayMissions
 
-    private val _selectedMission = MutableLiveData<Mission>()
-    val selectedMission: LiveData<Mission> get() = _selectedMission
+    private val _selectedMission = MutableLiveData<MissionViewItem>()
+    val selectedMission: LiveData<MissionViewItem> get() = _selectedMission
 
-    private val _showMissionList = SingleLiveEvent<Pair<Mission, List<Mission>>>()
-    val showMissionList: LiveData<Pair<Mission, List<Mission>>> get() = _showMissionList
+    private val _showMissionList = SingleLiveEvent<Pair<MissionViewItem, List<MissionViewItem>>>()
+    val showMissionList: LiveData<Pair<MissionViewItem, List<MissionViewItem>>> get() = _showMissionList
 
     private val _isToggleAvailable = MutableLiveData(false)
     val isToggleAvailable: LiveData<Boolean> get() = _isToggleAvailable
@@ -54,14 +61,21 @@ class FeedUploadViewModel @Inject constructor() : BaseViewModel() {
     }
 
     fun loadTodayMissions() {
-        val todayMissions = listOf(
-            Mission("일상", "아아? 라떼? 커피를 추천해줘!"),
-            Mission("일상", "텍스트 두줄일 경우 텍스트 두줄일 경우\n두줄 초과시 말줄임표 표시 텍스트텍스트..."),
-            Mission("일상", "미션텍스트 미션텍스트미션텍스트미션텍")
-        )
-
-        _todayMissions.value = todayMissions
-        _selectedMission.value = todayMissions[0]
+        missionRepository.loadTodayMissions()
+            .apiLoadingCompose()
+            .autoDispose {
+                success { missions ->
+                    val todayMissions = missions.map {
+                        MissionViewItem(
+                            it.id,
+                            it.categoryName,
+                            it.question
+                        )
+                    }
+                    _todayMissions.value = todayMissions
+                    _selectedMission.value = todayMissions[0]
+                }
+            }
     }
 
     fun setToggleAvailable(isAvailable: Boolean) {
@@ -100,7 +114,25 @@ class FeedUploadViewModel @Inject constructor() : BaseViewModel() {
         _showMissionList.value = selected to missions
     }
 
-    fun selectMission(mission: Mission) {
+    fun selectMission(mission: MissionViewItem) {
         _selectedMission.value = mission
     }
+
+    fun uploadFeed() {
+        val image = _selectedBackgroundSelection.value ?: return
+        val mission = _selectedMission.value ?: return
+
+        imageRepository.imageUpload((image as BackgroundSelection.Custom).uri.toString())
+            .flatMapCompletable { feedRepository.postFeed(it, mission.id) }
+            .apiLoadingCompose()
+            .autoDispose {
+                complete {
+                    _finish.call()
+                }
+                error {
+                    showErrorMessage(it.message.orEmpty())
+                }
+            }
+    }
+
 }

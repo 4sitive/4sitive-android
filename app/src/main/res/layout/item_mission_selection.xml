@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools">
+	
+	<data>
+		
+		<variable
+			name="handler"
+			type="org.positive.daymotion.presentation.upload.fragment.MissionSelectBottomSheetDialogFragment.Handler" />
+		
+		<variable
+			name="item"
+			type="org.positive.daymotion.presentation.upload.model.MissionViewItem" />
+		
+		<variable
+			name="selected"
+			type="Boolean" />
+	</data>
+	
+	<LinearLayout
+		android:id="@+id/mission1Container"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="20dp"
+		android:clickable="true"
+		android:focusable="true"
+		android:onClick="@{() -> handler.select(item)}"
+		android:orientation="horizontal">
+		
+		<CheckBox
+			android:id="@+id/mission1CheckBox"
+			android:layout_width="18dp"
+			android:layout_height="18dp"
+			android:layout_gravity="center_vertical"
+			android:layout_marginStart="30dp"
+			android:layout_marginTop="16dp"
+			android:layout_marginBottom="16dp"
+			android:background="@drawable/background_checkbox"
+			android:button="@null"
+			android:checked="@{selected}"
+			android:clickable="false"
+			android:focusable="false" />
+		
+		<TextView
+			android:id="@+id/mission1TextView"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center_vertical"
+			android:layout_marginStart="8dp"
+			android:layout_marginTop="16dp"
+			android:layout_marginEnd="30dp"
+			android:layout_marginBottom="16dp"
+			android:clickable="false"
+			android:ellipsize="end"
+			android:focusable="false"
+			android:fontFamily="@font/kopub_dotum_bold"
+			android:maxLines="2"
+			android:text="@{item.content}"
+			android:textColor="@color/_171717"
+			android:textSize="16dp"
+			tools:text="아아? 라떼? 커피를 추천해줘!" />
+	</LinearLayout>
+</layout>

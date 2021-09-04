@@ -20,3 +20,9 @@ data class User(
     val name: String?,
     val username: String
 )
+
+data class PostFeedRequest(
+    val image: String,
+    val missionId: String,
+    val requestId: String = "test"
+)

@@ -124,6 +124,7 @@
 				android:layout_marginEnd="15dp"
 				android:background="@drawable/background_feed_upload_button"
 				android:fontFamily="@font/kopub_dotum_bold"
+				android:onClick="@{() -> viewModel.uploadFeed()}"
 				android:paddingStart="10dp"
 				android:paddingTop="6dp"
 				android:paddingEnd="10dp"

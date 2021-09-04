@@ -12,13 +12,18 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import org.positive.daymotion.R
 import org.positive.daymotion.databinding.BottomSheetFragmentMissionSelectBinding
 import org.positive.daymotion.presentation.common.bundle
-import org.positive.daymotion.presentation.upload.model.Mission
+import org.positive.daymotion.presentation.upload.adapter.MissionSelectionAdapter
+import org.positive.daymotion.presentation.upload.model.MissionViewItem
 
 
 class MissionSelectBottomSheetDialogFragment : BottomSheetDialogFragment() {
 
-    private val missions by bundle<Array<Mission>>()
-    private val selected by bundle<Mission>()
+    private val handler = Handler()
+
+    private val adapter by lazy { MissionSelectionAdapter(handler, selected) }
+
+    private val missions by bundle<Array<MissionViewItem>>()
+    private val selected by bundle<MissionViewItem>()
 
     private var eventListener: EventListener? = null
     private lateinit var binding: BottomSheetFragmentMissionSelectBinding
@@ -46,8 +51,9 @@ class MissionSelectBottomSheetDialogFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.handler = Handler()
-        binding.missions = missions.toList()
-        binding.selected = selected
+
+        binding.missionSelectionRecyclerView.adapter = adapter
+        adapter.replaceAll(missions.toList())
     }
 
     override fun onAttach(context: Context) {
@@ -58,7 +64,7 @@ class MissionSelectBottomSheetDialogFragment : BottomSheetDialogFragment() {
     }
 
     inner class Handler {
-        fun select(mission: Mission) {
+        fun select(mission: MissionViewItem) {
             eventListener?.onMissionSelected(mission)
             dismiss()
         }
@@ -67,13 +73,13 @@ class MissionSelectBottomSheetDialogFragment : BottomSheetDialogFragment() {
     }
 
     interface EventListener {
-        fun onMissionSelected(mission: Mission)
+        fun onMissionSelected(mission: MissionViewItem)
     }
 
     companion object {
         fun newInstance(
-            selected: Mission,
-            missions: Array<Mission>
+            selected: MissionViewItem,
+            missions: Array<MissionViewItem>
         ) = MissionSelectBottomSheetDialogFragment().apply {
             arguments = bundleOf(
                 "missions" to missions,

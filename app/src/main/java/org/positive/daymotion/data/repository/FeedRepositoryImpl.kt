@@ -1,7 +1,9 @@
 package org.positive.daymotion.data.repository
 
+import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 import org.positive.daymotion.data.api.FeedApi
+import org.positive.daymotion.data.model.PostFeedRequest
 import org.positive.daymotion.domain.Feed
 import javax.inject.Inject
 
@@ -39,5 +41,14 @@ class FeedRepositoryImpl @Inject constructor(
                 )
             }
         }
+    }
+
+    override fun postFeed(feedImage: String, missionId: String): Completable {
+        return feedApi.postFeeds(
+            PostFeedRequest(
+                feedImage,
+                missionId
+            )
+        )
     }
 }
