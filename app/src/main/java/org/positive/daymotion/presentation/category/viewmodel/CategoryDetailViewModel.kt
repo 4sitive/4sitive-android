@@ -4,13 +4,16 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import dagger.hilt.android.lifecycle.HiltViewModel
+import org.positive.daymotion.data.repository.FeedRepository
+import org.positive.daymotion.presentation.category.model.DetailQueryType
 import org.positive.daymotion.presentation.common.base.BaseViewModel
 import org.positive.daymotion.presentation.common.model.FeedThumbnailItem
 import javax.inject.Inject
-import kotlin.random.Random
 
 @HiltViewModel
-class CategoryDetailViewModel @Inject constructor() : BaseViewModel() {
+class CategoryDetailViewModel @Inject constructor(
+    private val feedRepository: FeedRepository
+) : BaseViewModel() {
 
     private val _categorizedFeedThumbnails = MutableLiveData<List<FeedThumbnailItem>>()
     val categorizedFeedThumbnails: LiveData<List<FeedThumbnailItem>> get() = _categorizedFeedThumbnails
@@ -18,16 +21,36 @@ class CategoryDetailViewModel @Inject constructor() : BaseViewModel() {
     val isEmptyList: LiveData<Boolean> =
         Transformations.map(_categorizedFeedThumbnails) { items -> items.isEmpty() }
 
-    fun loadCategorizedFeed() {
-        if (Random.nextInt().rem(5) == 0) {
-            _categorizedFeedThumbnails.value = emptyList()
-        } else {
-            _categorizedFeedThumbnails.value = buildList {
-                add(FeedThumbnailItem("mission1", "", FeedThumbnailItem.ImageType.PORTRAIT))
-                add(FeedThumbnailItem("mission1", "", FeedThumbnailItem.ImageType.LANDSCAPE))
-                add(FeedThumbnailItem("mission1", "", FeedThumbnailItem.ImageType.PORTRAIT))
-                add(FeedThumbnailItem("mission1", "", FeedThumbnailItem.ImageType.LANDSCAPE))
-            }
+    fun loadFeeds(
+        id: String,
+        detailQueryType: DetailQueryType
+    ) {
+        when (detailQueryType) {
+            DetailQueryType.MISSION -> loadFeedsOfMission(id)
+            DetailQueryType.CATEGORY -> loadFeedsOfCategory(id)
         }
+    }
+
+    private fun loadFeedsOfMission(id: String) {
+        // TODO
+    }
+
+    private fun loadFeedsOfCategory(id: String) {
+        feedRepository.getFeedWithCategoryId(id)
+            .apiLoadingCompose()
+            .autoDispose {
+                success { feeds ->
+                    _categorizedFeedThumbnails.value = feeds.map {
+                        FeedThumbnailItem(
+                            missionName = it.missionQuestion,
+                            imageUrl = it.feedImage,
+                            imageType = FeedThumbnailItem.ImageType.PORTRAIT
+                        )
+                    }
+                }
+                error {
+                    showErrorMessage(it.message.orEmpty())
+                }
+            }
     }
 }

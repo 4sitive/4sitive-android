@@ -5,6 +5,8 @@
 	
 	<data>
 		
+		<import type="org.positive.daymotion.presentation.category.model.DetailQueryType" />
+		
 		<variable
 			name="handler"
 			type="org.positive.daymotion.presentation.category.fragment.MissionHistoryPageFragment.Handler" />
@@ -50,7 +52,7 @@
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:background="@color/_F1F1F1"
-				android:onClick="@{() -> handler.startCategoryDetail(item.firstMission.question)}"
+				android:onClick="@{() -> handler.goToCategoryDetail(item.firstMission.question, item.firstMission.id, DetailQueryType.MISSION)}"
 				app:pressEffectRadius="@{@dimen/_8dp}"
 				app:src="@{item.firstMission.image}"
 				app:useWhitePressEffect="@{true}" />
@@ -75,7 +77,7 @@
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:background="@color/_F1F1F1"
-				android:onClick="@{() -> handler.startCategoryDetail(item.secondMission.question)}"
+				android:onClick="@{() -> handler.goToCategoryDetail(item.secondMission.question, item.secondMission.id, DetailQueryType.MISSION)}"
 				app:pressEffectRadius="@{@dimen/_8dp}"
 				app:src="@{item.secondMission.image}"
 				app:useWhitePressEffect="@{true}" />
@@ -100,7 +102,7 @@
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:background="@color/_F1F1F1"
-				android:onClick="@{() -> handler.startCategoryDetail(item.thirdMission.question)}"
+				android:onClick="@{() -> handler.goToCategoryDetail(item.thirdMission.question, item.thirdMission.id, DetailQueryType.MISSION)}"
 				app:pressEffectRadius="@{@dimen/_8dp}"
 				app:src="@{item.thirdMission.image}"
 				app:useWhitePressEffect="@{true}" />

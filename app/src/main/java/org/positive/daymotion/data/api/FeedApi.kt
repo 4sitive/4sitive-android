@@ -8,5 +8,8 @@ import retrofit2.http.Query
 interface FeedApi {
 
     @GET("/feeds")
-    fun getFeeds(@Query("userId") userId: String): Single<GetFeedsResponse>
+    fun getFeeds(
+        @Query("userId") userId: String? = null,
+        @Query("categoryId") categoryId: String? = null
+    ): Single<GetFeedsResponse>
 }

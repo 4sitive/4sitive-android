@@ -5,6 +5,8 @@
 	
 	<data>
 		
+		<import type="org.positive.daymotion.presentation.category.model.DetailQueryType" />
+		
 		<variable
 			name="handler"
 			type="org.positive.daymotion.presentation.category.fragment.CategoryBrowserPageFragment.Handler" />
@@ -19,7 +21,7 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_margin="5dp"
-		android:onClick="@{() -> handler.goToCategoryDetail(item.categoryName)}"
+		android:onClick="@{() -> handler.goToCategoryDetail(item.categoryName, item.id, DetailQueryType.CATEGORY)}"
 		app:pressEffectRadius="@{@dimen/_8dp}"
 		app:useWhitePressEffect="@{true}">
 		

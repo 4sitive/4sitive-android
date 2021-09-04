@@ -7,11 +7,12 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import org.positive.daymotion.R
 import org.positive.daymotion.databinding.FragmentCategoryBrowserPageBinding
-import org.positive.daymotion.presentation.common.base.BaseFragment
 import org.positive.daymotion.presentation.category.activity.CategoryDetailActivity
 import org.positive.daymotion.presentation.category.adapter.CategoryBrowserAdapter
+import org.positive.daymotion.presentation.category.model.DetailQueryType
 import org.positive.daymotion.presentation.category.viewmodel.CategoryBrowserPageViewModel
 import org.positive.daymotion.presentation.common.ScrollableFragment
+import org.positive.daymotion.presentation.common.base.BaseFragment
 import org.positive.daymotion.presentation.common.base.viewModelOf
 
 @AndroidEntryPoint
@@ -50,7 +51,7 @@ class CategoryBrowserPageFragment :
     }
 
     inner class Handler {
-        fun goToCategoryDetail(title: String) =
-            CategoryDetailActivity.start(requireContext(), title)
+        fun goToCategoryDetail(title: String, id: String, detailQueryType: DetailQueryType) =
+            CategoryDetailActivity.start(requireContext(), title, id, detailQueryType)
     }
 }
