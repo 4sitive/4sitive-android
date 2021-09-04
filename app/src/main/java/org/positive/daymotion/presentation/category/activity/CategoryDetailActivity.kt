@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import org.positive.daymotion.R
 import org.positive.daymotion.databinding.ActivityCategoryDetailBinding
+import org.positive.daymotion.presentation.category.model.DetailQueryType
 import org.positive.daymotion.presentation.category.viewmodel.CategoryDetailViewModel
 import org.positive.daymotion.presentation.common.adapter.FeedThumbnailAdapter
 import org.positive.daymotion.presentation.common.base.BaseActivity
@@ -25,6 +26,8 @@ class CategoryDetailActivity :
     private val feedThumbnailAdapter by lazy { FeedThumbnailAdapter(handler::startFeedActivity) }
 
     private val title by bundle<String>()
+    private val id by bundle<String>()
+    private val detailQueryType by bundle<DetailQueryType>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +38,7 @@ class CategoryDetailActivity :
         setupViews()
         setupObservers()
 
-        viewModel.loadCategorizedFeed()
+        viewModel.loadFeeds(id, detailQueryType)
     }
 
     private fun setupViews() {
@@ -61,7 +64,13 @@ class CategoryDetailActivity :
     companion object {
         fun start(
             context: Context,
-            title: String
-        ) = context.startWith<CategoryDetailActivity>("title" to title)
+            title: String,
+            id: String,
+            detailQueryType: DetailQueryType
+        ) = context.startWith<CategoryDetailActivity>(
+            "title" to title,
+            "id" to id,
+            "detailQueryType" to detailQueryType
+        )
     }
 }

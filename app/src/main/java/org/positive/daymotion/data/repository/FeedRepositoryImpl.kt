@@ -10,7 +10,23 @@ class FeedRepositoryImpl @Inject constructor(
 ) : FeedRepository {
 
     override fun getFeedWithUserId(userId: String): Single<List<Feed>> {
-        return feedApi.getFeeds(userId).map { response ->
+        return feedApi.getFeeds(userId = userId).map { response ->
+            response.content.map {
+                Feed(
+                    it.id,
+                    it.image,
+                    it.categoryName,
+                    it.missionQuestion,
+                    it.user.id,
+                    it.user.image,
+                    it.user.name ?: it.user.username
+                )
+            }
+        }
+    }
+
+    override fun getFeedWithCategoryId(categoryId: String): Single<List<Feed>> {
+        return feedApi.getFeeds(categoryId = categoryId).map { response ->
             response.content.map {
                 Feed(
                     it.id,
