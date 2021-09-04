@@ -6,7 +6,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import org.positive.daymotion.data.pref.AppSharedPreference
 import org.positive.daymotion.presentation.common.SingleLiveEvent
 import org.positive.daymotion.presentation.common.base.BaseViewModel
-import org.positive.daymotion.presentation.upload.model.Mission
+import org.positive.daymotion.presentation.upload.model.MissionViewItem
 import org.positive.daymotion.presentation.upload.model.TextEditConfig
 import javax.inject.Inject
 
@@ -18,8 +18,8 @@ class UploadFeedConfirmViewModel @Inject constructor(
     private val _background = MutableLiveData<Any?>()
     val background: LiveData<Any?> get() = _background
 
-    private val _selectedMission = MutableLiveData<Mission>()
-    val selectedMission: LiveData<Mission> get() = _selectedMission
+    private val _selectedMission = MutableLiveData<MissionViewItem>()
+    val selectedMission: LiveData<MissionViewItem> get() = _selectedMission
 
     private val _textEditConfig = MutableLiveData<TextEditConfig>()
     val textEditConfig: LiveData<TextEditConfig> get() = _textEditConfig
@@ -41,7 +41,7 @@ class UploadFeedConfirmViewModel @Inject constructor(
         _background.value = background
     }
 
-    fun updateSelectedMission(mission: Mission) {
+    fun updateSelectedMission(mission: MissionViewItem) {
         _selectedMission.value = mission
     }
 

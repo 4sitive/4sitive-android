@@ -42,7 +42,7 @@
 				android:letterSpacing="-0.01"
 				android:lineSpacingExtra="8dp"
 				android:maxLines="3"
-				android:text="@{item.content}"
+				android:text="@{item.question}"
 				android:textColor="@color/_FFFFFF"
 				android:textSize="32dp"
 				app:layout_constraintStart_toStartOf="parent"

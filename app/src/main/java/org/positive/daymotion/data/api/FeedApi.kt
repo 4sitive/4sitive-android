@@ -1,9 +1,10 @@
 package org.positive.daymotion.data.api
 
+import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 import org.positive.daymotion.data.model.GetFeedsResponse
-import retrofit2.http.GET
-import retrofit2.http.Query
+import org.positive.daymotion.data.model.PostFeedRequest
+import retrofit2.http.*
 
 interface FeedApi {
 
@@ -12,4 +13,9 @@ interface FeedApi {
         @Query("userId") userId: String? = null,
         @Query("categoryId") categoryId: String? = null
     ): Single<GetFeedsResponse>
+
+    @POST("/feeds")
+    fun postFeeds(
+        @Body request: PostFeedRequest
+    ): Completable
 }
