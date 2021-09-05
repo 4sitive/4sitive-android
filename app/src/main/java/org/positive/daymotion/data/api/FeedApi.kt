@@ -11,6 +11,7 @@ interface FeedApi {
     @GET("/feeds")
     fun getFeeds(
         @Query("userId") userId: String? = null,
+        @Query("missionId") missionId: String? = null,
         @Query("categoryId") categoryId: String? = null
     ): Single<GetFeedsResponse>
 

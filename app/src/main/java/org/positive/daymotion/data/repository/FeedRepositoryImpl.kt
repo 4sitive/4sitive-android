@@ -43,6 +43,22 @@ class FeedRepositoryImpl @Inject constructor(
         }
     }
 
+    override fun getFeedWithMissionId(missionId: String): Single<List<Feed>> {
+        return feedApi.getFeeds(missionId = missionId).map { response ->
+            response.content.map {
+                Feed(
+                    it.id,
+                    it.image,
+                    it.categoryName,
+                    it.missionQuestion,
+                    it.user.id,
+                    it.user.image,
+                    it.user.name ?: it.user.username
+                )
+            }
+        }
+    }
+
     override fun postFeed(feedImage: String, missionId: String): Completable {
         return feedApi.postFeeds(
             PostFeedRequest(

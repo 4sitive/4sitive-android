@@ -10,5 +10,7 @@ interface FeedRepository {
 
     fun getFeedWithCategoryId(categoryId: String): Single<List<Feed>>
 
+    fun getFeedWithMissionId(missionId: String): Single<List<Feed>>
+
     fun postFeed(feedImage: String, missionId: String): Completable
 }

@@ -33,7 +33,7 @@ class MissionRepositoryImpl @Inject constructor(
                     it.key,
                     it.value.map { v ->
                         Mission(
-                            v.categoryName.orEmpty(),
+                            v.categoryName,
                             v.content.orEmpty(),
                             v.date,
                             v.id,
