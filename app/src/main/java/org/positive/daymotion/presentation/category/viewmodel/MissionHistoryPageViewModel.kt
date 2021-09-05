@@ -17,7 +17,8 @@ class MissionHistoryPageViewModel @Inject constructor(
     val missionHistories: LiveData<List<MissionHistoryItem>> get() = _missionHistories
 
     fun loadMissionHistories() {
-        missionRepository.loadLastMissions().apiLoadingCompose()
+        missionRepository.loadLastMissions()
+            .apiLoadingCompose()
             .autoDispose {
                 success { result ->
                     _missionHistories.value = result.map { MissionHistoryItem.of(it) }

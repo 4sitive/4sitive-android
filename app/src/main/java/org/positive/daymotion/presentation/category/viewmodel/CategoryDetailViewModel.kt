@@ -32,7 +32,22 @@ class CategoryDetailViewModel @Inject constructor(
     }
 
     private fun loadFeedsOfMission(id: String) {
-        // TODO
+        feedRepository.getFeedWithMissionId(id)
+            .apiLoadingCompose()
+            .autoDispose {
+                success { feeds ->
+                    _categorizedFeedThumbnails.value = feeds.map {
+                        FeedThumbnailItem(
+                            missionName = it.missionQuestion,
+                            imageUrl = it.feedImage,
+                            imageType = FeedThumbnailItem.ImageType.PORTRAIT
+                        )
+                    }
+                }
+                error {
+                    showErrorMessage(it.message.orEmpty())
+                }
+            }
     }
 
     private fun loadFeedsOfCategory(id: String) {
