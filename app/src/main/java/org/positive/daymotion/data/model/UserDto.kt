@@ -35,7 +35,7 @@ data class PutUserResponse(
     companion object {
         fun to(putUserResponse: PutUserResponse, id: String) = UserProfile(
             id,
-            attachImageBaseUrl(putUserResponse.image),
+            putUserResponse.image,
             putUserResponse.introduce,
             putUserResponse.name,
             putUserResponse.name

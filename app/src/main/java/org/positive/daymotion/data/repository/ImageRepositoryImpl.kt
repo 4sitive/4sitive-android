@@ -10,6 +10,7 @@ import io.reactivex.rxjava3.core.Single
 import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.RequestBody.Companion.toRequestBody
+import org.positive.daymotion.DmConstants.IMAGE_SERVER_BASE_URL
 import org.positive.daymotion.data.api.ImageApi
 import java.io.ByteArrayOutputStream
 import java.text.SimpleDateFormat
@@ -31,7 +32,9 @@ class ImageRepositoryImpl @Inject constructor(
                 val fileName = dateFormat.format(Date())
                 imageApi.imageUpload(fileName, byteArray.toRequestBody(imagePngMediaType))
             }.map { response ->
-                val contentLocation = requireNotNull(response.headers()["Content-Location"])
+                val contentLocation = response.headers()["Content-Location"]?.let {
+                    IMAGE_SERVER_BASE_URL + it
+                }.orEmpty()
                 contentLocation
             }
 
