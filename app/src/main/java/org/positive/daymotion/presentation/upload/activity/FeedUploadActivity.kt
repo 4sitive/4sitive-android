@@ -16,6 +16,7 @@ import org.positive.daymotion.R
 import org.positive.daymotion.databinding.ActivityFeedUploadBinding
 import org.positive.daymotion.presentation.common.base.BaseActivity
 import org.positive.daymotion.presentation.common.base.viewModelOf
+import org.positive.daymotion.presentation.common.bundle
 import org.positive.daymotion.presentation.common.extension.findFragment
 import org.positive.daymotion.presentation.common.extension.startWith
 import org.positive.daymotion.presentation.common.showPopupDialog
@@ -37,6 +38,7 @@ class FeedUploadActivity :
     CameraFragment.EventListener,
     MissionSelectBottomSheetDialogFragment.EventListener {
 
+    private val missionId by bundle<String?>()
     private val viewModel by viewModelOf<FeedUploadViewModel>()
     private val handler = Handler()
     private val backgroundSelectionAdapter = BackgroundSelectionAdapter(handler)
@@ -55,7 +57,7 @@ class FeedUploadActivity :
         setupViews()
         setupObservers()
 
-        viewModel.loadTodayMissions()
+        viewModel.loadTodayMissions(missionId)
     }
 
     override fun onBackPressed() {
@@ -167,7 +169,10 @@ class FeedUploadActivity :
         }
     }
 
-    private fun showMissionSelectBottomSheet(selected: MissionViewItem, missions: List<MissionViewItem>) {
+    private fun showMissionSelectBottomSheet(
+        selected: MissionViewItem,
+        missions: List<MissionViewItem>
+    ) {
         val fragment = MissionSelectBottomSheetDialogFragment.newInstance(
             selected,
             missions.toTypedArray()
@@ -189,6 +194,13 @@ class FeedUploadActivity :
 
     companion object {
         fun start(context: Context) = context.startWith<FeedUploadActivity>()
+
+        fun start(
+            context: Context,
+            missionId: String
+        ) = context.startWith<FeedUploadActivity>(
+            "missionId" to missionId
+        )
 
         private val EXTENSION_WHITELIST = arrayOf("PNG", "JPG")
     }

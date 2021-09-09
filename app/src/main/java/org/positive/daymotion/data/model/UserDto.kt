@@ -13,7 +13,7 @@ data class GetUserResponse(
     companion object {
         fun to(getUserResponse: GetUserResponse) = UserProfile(
             getUserResponse.id,
-            getUserResponse.image?.let { attachImageBaseUrl(it) },
+            getUserResponse.image,
             getUserResponse.introduce,
             getUserResponse.name,
             getUserResponse.username

@@ -30,7 +30,7 @@ class PostListActivity :
         setupViews()
         setupObservers()
 
-        viewModel.loadFeedList()
+        viewModel.loadFeedList(missionViewItem.id)
     }
 
     override fun onCollapsingStateChanged(isCollapsed: Boolean) {
@@ -39,13 +39,13 @@ class PostListActivity :
 
     private fun setupViews() {
         with(binding) {
-            feedViewPager.adapter = feedPagerAdapter
             feedViewPager.orientation = ORIENTATION_VERTICAL
         }
     }
 
     private fun setupObservers() {
         viewModel.feeds.observeNonNull {
+            binding.feedViewPager.adapter = feedPagerAdapter
             feedPagerAdapter.replace(it)
         }
     }

@@ -1,14 +1,29 @@
 package org.positive.daymotion.presentation.home.model
 
 import android.os.Parcelable
-import androidx.annotation.DrawableRes
 import kotlinx.parcelize.Parcelize
+import org.positive.daymotion.domain.Feed
 
 @Parcelize
 data class FeedViewItem(
     val title: String,
-    @DrawableRes val image: Int, // TODO: replace url
+    val image: String?,
     val isLandscapeImage: Boolean,
     val author: String,
+    val authorProfile: String?,
     val emojis: List<EmojiItem>
-) : Parcelable
+) : Parcelable {
+
+    companion object {
+        fun of(feed: Feed): FeedViewItem {
+            return FeedViewItem(
+                feed.missionQuestion,
+                feed.feedImage,
+                false,
+                feed.authorName,
+                feed.authorProfileImage,
+                emptyList()
+            )
+        }
+    }
+}

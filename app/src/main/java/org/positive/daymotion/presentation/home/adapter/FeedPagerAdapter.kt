@@ -22,7 +22,6 @@ class FeedPagerAdapter(
 
     override fun getItemCount() = if (items.isEmpty()) 1 else items.size
 
-
     override fun createFragment(position: Int) = if (position == 0) {
         HeaderFeedFragment.newInstance(missionViewItem, items.getOrNull(0))
     } else {

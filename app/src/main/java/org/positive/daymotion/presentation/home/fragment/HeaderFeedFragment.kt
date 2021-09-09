@@ -63,7 +63,10 @@ class HeaderFeedFragment : BaseFragment<FragmentHeaderFeedBinding>(R.layout.frag
 
     inner class Handler {
         fun finish() = requireActivity().finish()
-        fun startFeedUploadActivity() = FeedUploadActivity.start(requireContext())
+        fun startFeedUploadActivity() = FeedUploadActivity.start(
+            requireContext(),
+            missionViewItem.id
+        )
     }
 
     companion object {

@@ -58,7 +58,7 @@
 					android:ellipsize="end"
 					android:fontFamily="@font/kopub_dotum_bold"
 					android:maxLines="2"
-					android:text="@{missionViewItem.content}"
+					android:text="@{missionViewItem.question}"
 					android:textColor="@color/_171717"
 					android:textSize="18dp" />
 				
@@ -75,8 +75,7 @@
 			<androidx.constraintlayout.widget.ConstraintLayout
 				android:id="@+id/feedInfoContainer"
 				android:layout_width="match_parent"
-				android:layout_height="66dp"
-				android:orientation="horizontal">
+				android:layout_height="66dp">
 				
 				<ImageView
 					android:id="@+id/authorProfileImageView"
@@ -86,7 +85,7 @@
 					app:layout_constraintBottom_toBottomOf="parent"
 					app:layout_constraintStart_toStartOf="parent"
 					app:layout_constraintTop_toTopOf="parent"
-					app:srcWithCircle="@{@drawable/background_default_profile}" />
+					app:srcWithCircle="@{feedViewItem.authorProfile}" />
 				
 				<TextView
 					android:id="@+id/authorNameTextView"
@@ -158,8 +157,8 @@
 				android:id="@+id/feedImageView"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
-				app:imageResource="@{feedViewItem.image}"
-				app:scaleType="@{feedViewItem.landscapeImage ? ScaleType.CENTER_INSIDE : ScaleType.CENTER_CROP}" />
+				app:scaleType="@{feedViewItem.landscapeImage ? ScaleType.CENTER_INSIDE : ScaleType.CENTER_CROP}"
+				app:src="@{feedViewItem.image}" />
 		</LinearLayout>
 	</androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>
