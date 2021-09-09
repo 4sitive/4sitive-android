@@ -60,7 +60,7 @@ class FeedUploadViewModel @Inject constructor(
         _selections.value = mutableListOf(BackgroundSelection.Camera) + constSelections
     }
 
-    fun loadTodayMissions() {
+    fun loadTodayMissions(missionId: String?) {
         missionRepository.loadTodayMissions()
             .apiLoadingCompose()
             .autoDispose {
@@ -73,7 +73,9 @@ class FeedUploadViewModel @Inject constructor(
                         )
                     }
                     _todayMissions.value = todayMissions
-                    _selectedMission.value = todayMissions[0]
+                    _selectedMission.value = todayMissions.firstOrNull {
+                        it.id == missionId
+                    } ?: todayMissions[0]
                 }
             }
     }

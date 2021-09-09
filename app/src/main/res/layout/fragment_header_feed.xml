@@ -126,7 +126,7 @@
 						android:letterSpacing="-0.01"
 						android:lineSpacingExtra="8dp"
 						android:maxLines="3"
-						android:text="@{missionViewItem.content}"
+						android:text="@{missionViewItem.question}"
 						android:textColor="@color/_FFFFFF"
 						android:textSize="32dp"
 						app:layout_constraintStart_toStartOf="parent"
@@ -170,7 +170,7 @@
 							android:ellipsize="end"
 							android:fontFamily="@font/kopub_dotum_bold"
 							android:maxLines="2"
-							android:text="@{missionViewItem.content}"
+							android:text="@{missionViewItem.question}"
 							android:textColor="@color/_171717"
 							android:textSize="18dp" />
 						
@@ -190,8 +190,10 @@
 		</com.google.android.material.appbar.AppBarLayout>
 		
 		<androidx.core.widget.NestedScrollView
+			android:id="@+id/scrollView"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
+			android:fillViewport="true"
 			app:layout_behavior="@string/appbar_scrolling_view_behavior">
 			
 			<FrameLayout
@@ -232,6 +234,7 @@
 					android:layout_width="match_parent"
 					android:layout_height="match_parent"
 					android:orientation="vertical"
+					android:visibility="visible"
 					app:isVisible="@{feedViewItem != null}">
 					
 					<androidx.constraintlayout.widget.ConstraintLayout
@@ -248,7 +251,7 @@
 							app:layout_constraintBottom_toBottomOf="parent"
 							app:layout_constraintStart_toStartOf="parent"
 							app:layout_constraintTop_toTopOf="parent"
-							app:srcWithCircle="@{@drawable/background_default_profile}" />
+							app:srcWithCircle="@{feedViewItem.authorProfile}" />
 						
 						<TextView
 							android:id="@+id/authorNameTextView"
@@ -321,8 +324,8 @@
 						android:id="@+id/feedImageView"
 						android:layout_width="match_parent"
 						android:layout_height="match_parent"
-						app:imageResource="@{feedViewItem.image}"
-						app:scaleType="@{feedViewItem.landscapeImage ? ScaleType.CENTER_INSIDE : ScaleType.CENTER_CROP}" />
+						app:scaleType="@{feedViewItem.landscapeImage ? ScaleType.CENTER_INSIDE : ScaleType.CENTER_CROP}"
+						app:src="@{feedViewItem.image}" />
 				</LinearLayout>
 			</FrameLayout>
 		</androidx.core.widget.NestedScrollView>
