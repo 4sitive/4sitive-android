@@ -44,7 +44,10 @@ class MyTabFragment : BaseFragment<FragmentMyTabBinding>(R.layout.fragment_my_ta
 
         setupViews()
         setupObservers()
+    }
 
+    override fun onResume() {
+        super.onResume()
         viewModel.loadMyProfileAndFeeds()
     }
 
