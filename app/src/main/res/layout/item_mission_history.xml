@@ -27,7 +27,7 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:fontFamily="@font/montserrat_semi_bold"
-			android:text="@{item.date}"
+			android:text="@{item.formattedDate}"
 			android:textColor="@color/_171717"
 			android:textSize="16dp"
 			app:layout_constraintStart_toStartOf="parent"
