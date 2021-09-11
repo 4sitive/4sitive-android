@@ -4,9 +4,12 @@ import org.positive.daymotion.domain.DayMission
 import org.positive.daymotion.domain.Mission
 
 data class MissionHistoryItem(
+    val isYesterday: Boolean,
     val date: String,
     val missions: List<Mission>
 ) {
+
+    val formattedDate = if (isYesterday) "Yesterday" else date
 
     val isMissionEmpty = missions.isEmpty()
 
@@ -19,6 +22,7 @@ data class MissionHistoryItem(
     companion object {
         fun of(dayMission: DayMission): MissionHistoryItem {
             return MissionHistoryItem(
+                dayMission.isYesterday,
                 dayMission.date,
                 dayMission.missions
             )
