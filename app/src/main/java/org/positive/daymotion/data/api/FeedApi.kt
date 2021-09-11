@@ -2,12 +2,18 @@ package org.positive.daymotion.data.api
 
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
+import org.positive.daymotion.data.model.GetFeedResponse
 import org.positive.daymotion.data.model.GetFeedsResponse
 import org.positive.daymotion.data.model.PostFeedRequest
 import org.positive.daymotion.data.model.PutEmojiRequest
 import retrofit2.http.*
 
 interface FeedApi {
+
+    @GET("/feeds/{id}")
+    fun getFeed(
+        @Path("id") id: String
+    ): Single<GetFeedResponse>
 
     @GET("/feeds")
     fun getFeeds(

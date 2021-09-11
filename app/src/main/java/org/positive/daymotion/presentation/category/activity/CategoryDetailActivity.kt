@@ -58,7 +58,7 @@ class CategoryDetailActivity :
         fun finish() = this@CategoryDetailActivity.finish()
 
         fun startFeedActivity(item: FeedThumbnailItem) =
-            FeedActivity.start(this@CategoryDetailActivity, item.missionName)
+            FeedActivity.start(this@CategoryDetailActivity, item.feedId)
     }
 
     companion object {

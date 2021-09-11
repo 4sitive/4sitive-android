@@ -6,6 +6,8 @@ import org.positive.daymotion.domain.Feed
 
 interface FeedRepository {
 
+    fun getFeed(feedId: String): Single<Feed>
+
     fun getFeedWithUserId(userId: String): Single<List<Feed>>
 
     fun getFeedWithCategoryId(categoryId: String): Single<List<Feed>>

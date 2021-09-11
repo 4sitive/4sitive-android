@@ -14,6 +14,8 @@ import org.positive.daymotion.presentation.common.adapter.FeedThumbnailAdapter
 import org.positive.daymotion.presentation.common.base.BaseFragment
 import org.positive.daymotion.presentation.common.base.viewModelOf
 import org.positive.daymotion.presentation.common.extension.registerActivityResult
+import org.positive.daymotion.presentation.common.model.FeedThumbnailItem
+import org.positive.daymotion.presentation.feed.FeedActivity
 import org.positive.daymotion.presentation.my.activity.MyProfileEditActivity
 import org.positive.daymotion.presentation.my.model.UserProfileViewData
 import org.positive.daymotion.presentation.my.viewmodel.MyTabViewModel
@@ -25,7 +27,7 @@ class MyTabFragment : BaseFragment<FragmentMyTabBinding>(R.layout.fragment_my_ta
 
     private val viewModel by viewModelOf<MyTabViewModel>()
     private val handler by lazy { Handler() }
-    private val feedThumbnailAdapter by lazy { FeedThumbnailAdapter() }
+    private val feedThumbnailAdapter by lazy { FeedThumbnailAdapter(handler::startFeedActivity) }
 
     private val myProfileEditActivityLauncher = registerActivityResult {
         val data = it.data
@@ -84,5 +86,8 @@ class MyTabFragment : BaseFragment<FragmentMyTabBinding>(R.layout.fragment_my_ta
         )
 
         fun startFeedUploadActivity() = FeedUploadActivity.start(requireContext())
+
+        fun startFeedActivity(item: FeedThumbnailItem) =
+            FeedActivity.start(requireContext(), item.feedId)
     }
 }

@@ -1,5 +1,17 @@
 package org.positive.daymotion.data.model
 
+data class GetFeedResponse(
+    val id: String,
+    val image: String?,
+    val categoryId: String,
+    val categoryName: String,
+    val missionId: String,
+    val missionQuestion: String,
+    val user: User,
+    val emoji: Emoji,
+    val author: Boolean
+)
+
 data class GetFeedsResponse(
     val content: List<Feed>,
     val token: String
