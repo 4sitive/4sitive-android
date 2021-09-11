@@ -14,28 +14,33 @@ data class CategoryBrowserItem(
 ) {
 
     @get:DrawableRes
-    val background = when {
-        participants > 100 -> {
-            when (RANDOM_SEED++.rem(3)) {
+    val background = when (categoryName) {
+        "일상", "상황", "표현", "상상" -> {
+            when (RANDOM_SEED++.rem(4)) {
                 0 -> R.drawable.img_category_01
                 1 -> R.drawable.img_category_02
-                else -> R.drawable.img_category_03
+                2 -> R.drawable.img_category_03
+                else -> R.drawable.img_category_04
             }
         }
-        participants in 11..100 -> R.drawable.background_category_browser_item
+        "회고", "취향", "인생팁", "명언", "표정" -> {
+            R.drawable.background_category_browser_item
+        }
         else -> R.color._F1F1F1
     }
 
-    val isVisibleParticipants = participants > 100
+    val isVisibleParticipants
+        get() = categoryName == "일상" || categoryName == "상황" ||
+                categoryName == "표현" || categoryName == "상상"
 
     @get:ColorRes
-    val nameTextColorRes = if (participants > 100) {
+    val nameTextColorRes = if (isVisibleParticipants) {
         R.color._FFFFFF
     } else {
         R.color._000000
     }
 
-    val nameTextAlpha = if (participants > 100) {
+    val nameTextAlpha = if (isVisibleParticipants) {
         1.0f
     } else {
         0.6f
@@ -44,7 +49,7 @@ data class CategoryBrowserItem(
     val formattedParticipants = "# ${decimalFormatter.format(participants)}"
 
     companion object {
-        private var RANDOM_SEED = Random.nextInt(0, 2)
+        private var RANDOM_SEED = Random.nextInt(0, 3)
         private val decimalFormatter = DecimalFormat("###,###")
 
         fun of(category: Category): CategoryBrowserItem {
