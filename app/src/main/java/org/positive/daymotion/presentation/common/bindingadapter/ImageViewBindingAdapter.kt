@@ -18,6 +18,7 @@ fun ImageView.setImageView(model: Any?) {
 fun ImageView.setImageWithCircleCropBindingAdapter(model: Any?) {
     Glide.with(this)
         .load(model)
+        .circleCrop()
         .transition(DrawableTransitionOptions.withCrossFade())
         .into(this)
 }
