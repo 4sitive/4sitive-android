@@ -45,7 +45,7 @@ fun View.setWhitePressEffect(usePressEffect: Boolean?) {
 fun View.setGrayPressEffect(usePressEffect: Boolean?) {
     if (usePressEffect == true) {
         foreground =
-            createPressEffectDrawable(ContextCompat.getColor(context, R.color._80000000), null)
+            createPressEffectDrawable(ContextCompat.getColor(context, R.color._0D000000), null)
     }
 }
 
@@ -61,7 +61,7 @@ fun View.setWhitePressEffectWithRadius(usePressEffect: Boolean?, radius: Float?)
 fun View.setGrayPressEffectWithRadius(usePressEffect: Boolean?, radius: Float?) {
     if (usePressEffect == true) {
         foreground =
-            createPressEffectDrawable(ContextCompat.getColor(context, R.color._80000000), radius)
+            createPressEffectDrawable(ContextCompat.getColor(context, R.color._0D000000), radius)
     }
 }
 

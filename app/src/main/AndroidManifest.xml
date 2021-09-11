@@ -87,6 +87,10 @@
 		<activity
 			android:name=".presentation.home.activity.PostListActivity"
 			android:screenOrientation="portrait" />
+		<activity
+			android:name=".presentation.home.activity.AddEmojiActivity"
+			android:screenOrientation="portrait"
+			android:theme="@style/AppTransparentTheme" />
 	</application>
 
 </manifest>

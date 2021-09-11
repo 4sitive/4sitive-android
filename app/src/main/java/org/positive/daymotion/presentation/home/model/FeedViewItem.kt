@@ -6,6 +6,7 @@ import org.positive.daymotion.domain.Feed
 
 @Parcelize
 data class FeedViewItem(
+    val id: String,
     val title: String,
     val image: String?,
     val isLandscapeImage: Boolean,
@@ -17,6 +18,7 @@ data class FeedViewItem(
     companion object {
         fun of(feed: Feed): FeedViewItem {
             return FeedViewItem(
+                feed.feedId,
                 feed.missionQuestion,
                 feed.feedImage,
                 false,
