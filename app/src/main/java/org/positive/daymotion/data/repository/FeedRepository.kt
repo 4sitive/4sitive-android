@@ -13,4 +13,9 @@ interface FeedRepository {
     fun getFeedWithMissionId(missionId: String): Single<List<Feed>>
 
     fun postFeed(feedImage: String, missionId: String): Completable
+
+    fun updateEmoji(
+        emojis: List<String>,
+        feedId: String
+    ): Completable
 }

@@ -2,7 +2,12 @@
 	xmlns:app="http://schemas.android.com/apk/res-auto">
 	
 	<data>
-	
+		
+		<import type="org.positive.daymotion.presentation.home.model.EmojiType"/>
+		
+		<variable
+			name="viewModel"
+			type="org.positive.daymotion.presentation.home.viewmodel.AddEmojiViewModel" />
 	</data>
 	
 	<androidx.constraintlayout.widget.ConstraintLayout
@@ -17,6 +22,7 @@
 			android:layout_height="40dp"
 			android:layout_marginStart="11dp"
 			android:layout_marginEnd="11dp"
+			android:onClick="@{() -> viewModel.addEmoji(EmojiType.HEART)}"
 			android:src="@drawable/emo_heart_big"
 			app:layout_constraintBottom_toBottomOf="parent"
 			app:layout_constraintEnd_toStartOf="@id/emoEyes"
@@ -30,6 +36,7 @@
 			android:layout_height="40dp"
 			android:layout_marginStart="11dp"
 			android:layout_marginEnd="11dp"
+			android:onClick="@{() -> viewModel.addEmoji(EmojiType.EYES)}"
 			android:src="@drawable/emo_eyes_big"
 			app:layout_constraintBottom_toBottomOf="parent"
 			app:layout_constraintEnd_toStartOf="@id/emoGood"
@@ -42,6 +49,7 @@
 			android:layout_height="40dp"
 			android:layout_marginStart="11dp"
 			android:layout_marginEnd="11dp"
+			android:onClick="@{() -> viewModel.addEmoji(EmojiType.GOOD)}"
 			android:src="@drawable/emo_good_big"
 			app:layout_constraintBottom_toBottomOf="parent"
 			app:layout_constraintEnd_toStartOf="@id/emoCry"
@@ -54,6 +62,7 @@
 			android:layout_height="40dp"
 			android:layout_marginStart="11dp"
 			android:layout_marginEnd="11dp"
+			android:onClick="@{() -> viewModel.addEmoji(EmojiType.CRY)}"
 			android:src="@drawable/emo_cry_big"
 			app:layout_constraintBottom_toBottomOf="parent"
 			app:layout_constraintEnd_toEndOf="parent"

@@ -4,7 +4,9 @@ import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 import org.positive.daymotion.data.api.FeedApi
 import org.positive.daymotion.data.model.PostFeedRequest
+import org.positive.daymotion.data.model.PutEmojiRequest
 import org.positive.daymotion.domain.Feed
+import org.positive.daymotion.domain.UpdatedEmoji
 import javax.inject.Inject
 
 class FeedRepositoryImpl @Inject constructor(
@@ -21,7 +23,13 @@ class FeedRepositoryImpl @Inject constructor(
                     it.missionQuestion,
                     it.user.id,
                     it.user.image,
-                    it.user.name ?: it.user.username
+                    it.user.name ?: it.user.username,
+                    UpdatedEmoji(
+                        it.emoji.heart,
+                        it.emoji.eyes,
+                        it.emoji.good,
+                        it.emoji.cry
+                    )
                 )
             }
         }
@@ -37,7 +45,13 @@ class FeedRepositoryImpl @Inject constructor(
                     it.missionQuestion,
                     it.user.id,
                     it.user.image,
-                    it.user.name ?: it.user.username
+                    it.user.name ?: it.user.username,
+                    UpdatedEmoji(
+                        it.emoji.heart,
+                        it.emoji.eyes,
+                        it.emoji.good,
+                        it.emoji.cry
+                    )
                 )
             }
         }
@@ -53,7 +67,13 @@ class FeedRepositoryImpl @Inject constructor(
                     it.missionQuestion,
                     it.user.id,
                     it.user.image,
-                    it.user.name ?: it.user.username
+                    it.user.name ?: it.user.username,
+                    UpdatedEmoji(
+                        it.emoji.heart,
+                        it.emoji.eyes,
+                        it.emoji.good,
+                        it.emoji.cry
+                    )
                 )
             }
         }
@@ -66,5 +86,12 @@ class FeedRepositoryImpl @Inject constructor(
                 missionId
             )
         )
+    }
+
+    override fun updateEmoji(
+        emojis: List<String>,
+        feedId: String
+    ): Completable {
+        return feedApi.putEmoji(feedId, PutEmojiRequest(emojis))
     }
 }

@@ -12,6 +12,7 @@ import org.positive.daymotion.presentation.common.base.BaseActivity
 import org.positive.daymotion.presentation.common.base.viewModelOf
 import org.positive.daymotion.presentation.common.bundle
 import org.positive.daymotion.presentation.common.extension.startForResultWith
+import org.positive.daymotion.presentation.home.model.EmojiItem
 import org.positive.daymotion.presentation.home.viewmodel.AddEmojiViewModel
 
 @AndroidEntryPoint
@@ -19,17 +20,21 @@ class AddEmojiActivity : BaseActivity<ActivityAddEmojiBinding>(R.layout.activity
 
     private val viewModel by viewModelOf<AddEmojiViewModel>()
     private val feedId by bundle<String>()
+    private val emojis by bundle<ArrayList<EmojiItem>>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.statusBarColor = ContextCompat.getColor(this, R.color._99000000)
-//        setupViews()
+        binding.viewModel = viewModel
+        viewModel.setupData(feedId, emojis.toList())
         setupObservers()
-
     }
 
     private fun setupObservers() {
-
+        viewModel.updatedEmojis.observeNonNull {
+            setResult(RESULT_OK, Intent().apply { putExtra("updatedEmojis", ArrayList(it)) })
+            finish()
+        }
     }
 
 
@@ -37,9 +42,12 @@ class AddEmojiActivity : BaseActivity<ActivityAddEmojiBinding>(R.layout.activity
         fun startForResult(
             context: Context,
             launcher: ActivityResultLauncher<Intent>,
-            feedId: String
+            feedId: String,
+            emojis: ArrayList<EmojiItem>
         ) = context.startForResultWith<AddEmojiActivity>(
-            launcher, "feedId" to feedId
+            launcher,
+            "feedId" to feedId,
+            "emojis" to emojis
         )
     }
 }
