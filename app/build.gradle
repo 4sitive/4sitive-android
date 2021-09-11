@@ -35,23 +35,31 @@ android {
         buildConfigField("String", "OAUTH_CLIENT_SECRET", secretProperties['OAUTH_CLIENT_SECRET'] ?: System.getenv('OAUTH_CLIENT_SECRET') ?: "")
     }
 
+    flavorDimensions "type"
+
     buildTypes {
         debug {
             debuggable true
             applicationIdSuffix ".debug"
-            resValue("string", "app_name", "Daymotion-Debug")
-        }
-
-        qa {
-            debuggable true
-            applicationIdSuffix ".qa"
-            resValue("string", "app_name", "Daymotion-Qa")
         }
 
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             resValue("string", "app_name", "Daymotion")
+        }
+    }
+
+    productFlavors {
+        dev {
+            dimension "type"
+            applicationIdSuffix ".dev"
+            resValue("string", "app_name", "Daymotion-DEV")
+        }
+        qa {
+            dimension "type"
+            applicationIdSuffix ".qa"
+            resValue("string", "app_name", "Daymotion-QA")
         }
     }
 

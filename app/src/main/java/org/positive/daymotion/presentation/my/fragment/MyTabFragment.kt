@@ -39,6 +39,12 @@ class MyTabFragment : BaseFragment<FragmentMyTabBinding>(R.layout.fragment_my_ta
         }
     }
 
+    private val launcher = registerActivityResult {
+        if (it.resultCode == RESULT_OK) {
+            viewModel.loadMyProfileAndFeeds()
+        }
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.viewModel = viewModel
@@ -85,7 +91,8 @@ class MyTabFragment : BaseFragment<FragmentMyTabBinding>(R.layout.fragment_my_ta
             userProfileViewData
         )
 
-        fun startFeedUploadActivity() = FeedUploadActivity.start(requireContext())
+        fun startFeedUploadActivity() =
+            FeedUploadActivity.startForResult(requireContext(), launcher)
 
         fun startFeedActivity(item: FeedThumbnailItem) =
             FeedActivity.start(requireContext(), item.feedId)

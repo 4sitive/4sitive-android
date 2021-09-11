@@ -5,6 +5,8 @@
 	
 	<data>
 		
+		<import type="org.positive.daymotion.presentation.upload.model.Mode" />
+		
 		<variable
 			name="handler"
 			type="org.positive.daymotion.presentation.upload.activity.FeedUploadActivity.Handler" />
@@ -131,7 +133,8 @@
 				android:paddingBottom="6dp"
 				android:text="올리기"
 				android:textColor="@color/_FFFFFF"
-				android:textSize="14dp" />
+				android:textSize="14dp"
+				app:isInvisible="@{viewModel.mode == Mode.CAMERA}" />
 		</LinearLayout>
 	
 	</androidx.constraintlayout.widget.ConstraintLayout>

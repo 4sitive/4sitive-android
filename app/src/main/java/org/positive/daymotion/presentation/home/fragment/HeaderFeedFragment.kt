@@ -34,6 +34,12 @@ class HeaderFeedFragment : BaseFragment<FragmentHeaderFeedBinding>(R.layout.frag
         }
     }
 
+    private val uploadLauncher = registerActivityResult {
+        if (it.resultCode == Activity.RESULT_OK) {
+            eventListener?.reload()
+        }
+    }
+
     private var eventListener: EventListener? = null
 
     override fun onAttach(context: Context) {
@@ -73,13 +79,16 @@ class HeaderFeedFragment : BaseFragment<FragmentHeaderFeedBinding>(R.layout.frag
 
     interface EventListener {
         fun onCollapsingStateChanged(isCollapsed: Boolean)
+
+        fun reload()
     }
 
     inner class Handler {
         fun finish() = requireActivity().finish()
 
-        fun startFeedUploadActivity() = FeedUploadActivity.start(
+        fun startFeedUploadActivity() = FeedUploadActivity.startForResult(
             requireContext(),
+            uploadLauncher,
             missionViewItem.id
         )
 
