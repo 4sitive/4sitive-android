@@ -1,10 +1,12 @@
 package org.positive.daymotion.presentation.upload.activity
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
+import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.commit
 import androidx.lifecycle.lifecycleScope
@@ -19,7 +21,7 @@ import org.positive.daymotion.presentation.common.base.BaseActivity
 import org.positive.daymotion.presentation.common.base.viewModelOf
 import org.positive.daymotion.presentation.common.bundle
 import org.positive.daymotion.presentation.common.extension.findFragment
-import org.positive.daymotion.presentation.common.extension.startWith
+import org.positive.daymotion.presentation.common.extension.startForResultWith
 import org.positive.daymotion.presentation.common.showPopupDialog
 import org.positive.daymotion.presentation.common.util.recursiveFileSearch
 import org.positive.daymotion.presentation.upload.FragmentChangeManager
@@ -119,6 +121,7 @@ class FeedUploadActivity :
                 findFragment<UploadFeedConfirmFragment>()?.updateSelectedMission(it)
             }
             uploadDone.observe {
+                setResult(RESULT_OK)
                 finish()
             }
         }
@@ -172,7 +175,10 @@ class FeedUploadActivity :
             grayButtonText = "아니에요. 이어서 작업할래요."
             isVisibleGrayButton = true
             isCancelable = true
-            onClickBlueButton { finish() }
+            onClickBlueButton {
+                setResult(RESULT_OK)
+                finish()
+            }
         }
     }
 
@@ -242,12 +248,17 @@ class FeedUploadActivity :
     }
 
     companion object {
-        fun start(context: Context) = context.startWith<FeedUploadActivity>()
-
-        fun start(
+        fun startForResult(
             context: Context,
+            launcher: ActivityResultLauncher<Intent>
+        ) = context.startForResultWith<FeedUploadActivity>(launcher)
+
+        fun startForResult(
+            context: Context,
+            launcher: ActivityResultLauncher<Intent>,
             missionId: String
-        ) = context.startWith<FeedUploadActivity>(
+        ) = context.startForResultWith<FeedUploadActivity>(
+            launcher,
             "missionId" to missionId
         )
 

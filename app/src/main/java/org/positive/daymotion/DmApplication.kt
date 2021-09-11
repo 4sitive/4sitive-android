@@ -40,7 +40,7 @@ class DmApplication : Application() {
     private fun setupCrashlytics() {
         FirebaseCrashlytics
             .getInstance()
-            .setCrashlyticsCollectionEnabled(BuildConfig.BUILD_TYPE != "debug")
+            .setCrashlyticsCollectionEnabled(BuildConfig.FLAVOR == "qa")
     }
 
     private fun setupRemoteConfig() {

@@ -11,6 +11,7 @@ import org.positive.daymotion.presentation.common.base.viewModelOf
 import org.positive.daymotion.presentation.common.bundle
 import org.positive.daymotion.presentation.common.extension.startWith
 import org.positive.daymotion.presentation.home.adapter.FeedPagerAdapter
+import org.positive.daymotion.presentation.home.fragment.FeedFragment
 import org.positive.daymotion.presentation.home.fragment.HeaderFeedFragment
 import org.positive.daymotion.presentation.home.model.MissionViewItem
 import org.positive.daymotion.presentation.home.viewmodel.PostListViewModel
@@ -18,7 +19,8 @@ import org.positive.daymotion.presentation.home.viewmodel.PostListViewModel
 @AndroidEntryPoint
 class PostListActivity :
     BaseActivity<ActivityPostListBinding>(R.layout.activity_post_list),
-    HeaderFeedFragment.EventListener {
+    HeaderFeedFragment.EventListener,
+    FeedFragment.EventListener {
 
     private val viewModel by viewModelOf<PostListViewModel>()
     private val missionViewItem by bundle<MissionViewItem>()
@@ -35,6 +37,11 @@ class PostListActivity :
 
     override fun onCollapsingStateChanged(isCollapsed: Boolean) {
         binding.feedViewPager.isUserInputEnabled = isCollapsed
+    }
+
+    override fun reload() {
+        binding.feedViewPager.isUserInputEnabled = false
+        viewModel.loadFeedList(missionViewItem.id)
     }
 
     private fun setupViews() {

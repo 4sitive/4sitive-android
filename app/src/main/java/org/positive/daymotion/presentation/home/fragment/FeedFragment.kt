@@ -1,6 +1,7 @@
 package org.positive.daymotion.presentation.home.fragment
 
 import android.app.Activity
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
@@ -32,6 +33,21 @@ class FeedFragment : BaseFragment<FragmentFeedBinding>(R.layout.fragment_feed) {
         }
     }
 
+    private val uploadLauncher = registerActivityResult {
+        if (it.resultCode == Activity.RESULT_OK) {
+            eventListener?.reload()
+        }
+    }
+
+    private var eventListener: EventListener? = null
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is EventListener) {
+            eventListener = context
+        }
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.handler = Handler()
@@ -46,11 +62,16 @@ class FeedFragment : BaseFragment<FragmentFeedBinding>(R.layout.fragment_feed) {
         emojiItemAdapter.replaceAll(feedViewItem.emojis)
     }
 
+    interface EventListener {
+        fun reload()
+    }
+
     inner class Handler {
         fun finish() = requireActivity().finish()
 
-        fun startFeedUploadActivity() = FeedUploadActivity.start(
+        fun startFeedUploadActivity() = FeedUploadActivity.startForResult(
             requireContext(),
+            uploadLauncher,
             missionViewItem.id
         )
 
