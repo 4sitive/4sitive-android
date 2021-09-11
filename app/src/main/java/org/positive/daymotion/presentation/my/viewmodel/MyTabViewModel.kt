@@ -38,6 +38,7 @@ class MyTabViewModel @Inject constructor(
                     _userProfile.value = UserProfileViewData.of(profile)
                     _myFeedsThumbnails.value = feeds.map {
                         FeedThumbnailItem(
+                            feedId = it.feedId,
                             missionName = it.missionQuestion,
                             imageUrl = it.feedImage,
                             imageType = FeedThumbnailItem.ImageType.PORTRAIT

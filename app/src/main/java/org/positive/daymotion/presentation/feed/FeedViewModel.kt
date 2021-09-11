@@ -3,32 +3,31 @@ package org.positive.daymotion.presentation.feed
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import dagger.hilt.android.lifecycle.HiltViewModel
+import org.positive.daymotion.data.repository.FeedRepository
 import org.positive.daymotion.presentation.common.base.BaseViewModel
 import org.positive.daymotion.presentation.feed.model.EmojiItem
 import org.positive.daymotion.presentation.feed.model.FeedInformation
+import org.positive.daymotion.presentation.home.model.FeedViewItem
 import javax.inject.Inject
 
 @HiltViewModel
-class FeedViewModel @Inject constructor() : BaseViewModel() {
+class FeedViewModel @Inject constructor(
+    private val feedRepository: FeedRepository
+) : BaseViewModel() {
 
-    private val _feedInformation = MutableLiveData<FeedInformation>()
-    val feedInformation: LiveData<FeedInformation> get() = _feedInformation
+    private val _feed = MutableLiveData<FeedViewItem>()
+    val feed: LiveData<FeedViewItem> get() = _feed
 
-    fun loadFeedInformation() {
-        _feedInformation.value = FeedInformation(
-            "",
-            true,
-            "용훈",
-            listOf(
-                EmojiItem.Emoji("1", 5.toString()),
-                EmojiItem.Emoji("2", 6.toString()),
-                EmojiItem.Emoji("3", 7.toString())
-            ),
-            "#1700192"
-        )
-    }
-
-    fun updateLikes() {
-
+    fun getFeed(feedId: String) {
+        feedRepository.getFeed(feedId)
+            .apiLoadingCompose()
+            .autoDispose {
+                success {
+                    _feed.value = FeedViewItem.of(it)
+                }
+                error {
+                    showErrorMessage(it.message.orEmpty())
+                }
+            }
     }
 }

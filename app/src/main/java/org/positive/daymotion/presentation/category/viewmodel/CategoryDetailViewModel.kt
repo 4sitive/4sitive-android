@@ -38,6 +38,7 @@ class CategoryDetailViewModel @Inject constructor(
                 success { feeds ->
                     _categorizedFeedThumbnails.value = feeds.map {
                         FeedThumbnailItem(
+                            feedId = it.feedId,
                             missionName = it.missionQuestion,
                             imageUrl = it.feedImage,
                             imageType = FeedThumbnailItem.ImageType.PORTRAIT
@@ -57,6 +58,7 @@ class CategoryDetailViewModel @Inject constructor(
                 success { feeds ->
                     _categorizedFeedThumbnails.value = feeds.map {
                         FeedThumbnailItem(
+                            feedId = it.feedId,
                             missionName = it.missionQuestion,
                             imageUrl = it.feedImage,
                             imageType = FeedThumbnailItem.ImageType.PORTRAIT

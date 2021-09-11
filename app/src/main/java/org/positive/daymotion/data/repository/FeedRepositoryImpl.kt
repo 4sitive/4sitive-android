@@ -13,6 +13,27 @@ class FeedRepositoryImpl @Inject constructor(
     private val feedApi: FeedApi
 ) : FeedRepository {
 
+    override fun getFeed(feedId: String): Single<Feed> {
+        return feedApi.getFeed(feedId)
+            .map {
+                Feed(
+                    it.id,
+                    it.image,
+                    it.categoryName,
+                    it.missionQuestion,
+                    it.user.id,
+                    it.user.image,
+                    it.user.name ?: it.user.username,
+                    UpdatedEmoji(
+                        it.emoji.heart,
+                        it.emoji.eyes,
+                        it.emoji.good,
+                        it.emoji.cry
+                    )
+                )
+            }
+    }
+
     override fun getFeedWithUserId(userId: String): Single<List<Feed>> {
         return feedApi.getFeeds(userId = userId).map { response ->
             response.content.map {

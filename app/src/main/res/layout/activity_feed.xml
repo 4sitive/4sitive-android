@@ -1,88 +1,161 @@
-<?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto"
-	xmlns:tools="http://schemas.android.com/tools">
+	xmlns:app="http://schemas.android.com/apk/res-auto">
 	
 	<data>
 		
 		<import type="android.widget.ImageView.ScaleType" />
 		
 		<variable
-			name="title"
-			type="String" />
-		
-		<variable
 			name="handler"
 			type="org.positive.daymotion.presentation.feed.FeedActivity.Handler" />
+		
+		<variable
+			name="mission"
+			type="String" />
 		
 		<variable
 			name="viewModel"
 			type="org.positive.daymotion.presentation.feed.FeedViewModel" />
 	</data>
 	
-	<androidx.constraintlayout.widget.ConstraintLayout
+	<androidx.coordinatorlayout.widget.CoordinatorLayout
 		android:layout_width="match_parent"
-		android:layout_height="match_parent">
+		android:layout_height="match_parent"
+		android:fitsSystemWindows="true">
 		
-		<ImageView
-			android:id="@+id/feedImageView"
-			android:layout_width="0dp"
-			android:layout_height="0dp"
-			android:background="@{viewModel.feedInformation.keyColorResource}"
-			android:scaleType="fitCenter"
-			android:src="@drawable/img_tmp_feed2"
-			app:layout_constraintBottom_toBottomOf="parent"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toTopOf="parent"
-			app:scaleType="@{viewModel.feedInformation.landscapeImage ? ScaleType.CENTER_INSIDE : ScaleType.CENTER_CROP}" />
+		<LinearLayout
+			android:id="@+id/feedContainer"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:fitsSystemWindows="true"
+			android:orientation="vertical">
+			
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="68dp"
+				android:elevation="4dp"
+				android:fitsSystemWindows="false"
+				android:gravity="center_vertical"
+				android:orientation="horizontal">
+				
+				<ImageView
+					android:id="@+id/blackBackButton"
+					android:layout_width="40dp"
+					android:layout_height="40dp"
+					android:layout_marginStart="10dp"
+					android:clickable="true"
+					android:focusable="true"
+					android:onClick="@{() -> handler.finish()}"
+					android:src="@drawable/ic_title_back" />
+				
+				<TextView
+					android:id="@+id/titleTextView"
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_marginStart="3dp"
+					android:layout_marginEnd="10dp"
+					android:layout_weight="1"
+					android:ellipsize="end"
+					android:fontFamily="@font/kopub_dotum_bold"
+					android:maxLines="2"
+					android:text="@{viewModel.feed.title}"
+					android:textColor="@color/_171717"
+					android:textSize="18dp" />
+			
+			</LinearLayout>
+			
+			<androidx.constraintlayout.widget.ConstraintLayout
+				android:id="@+id/feedInfoContainer"
+				android:layout_width="match_parent"
+				android:layout_height="66dp">
+				
+				<ImageView
+					android:id="@+id/authorProfileImageView"
+					android:layout_width="26dp"
+					android:layout_height="26dp"
+					android:layout_marginStart="20dp"
+					app:layout_constraintBottom_toBottomOf="parent"
+					app:layout_constraintStart_toStartOf="parent"
+					app:layout_constraintTop_toTopOf="parent"
+					app:srcWithCircle="@{viewModel.feed.authorProfile}" />
+				
+				<TextView
+					android:id="@+id/authorNameTextView"
+					android:layout_width="97dp"
+					android:layout_height="wrap_content"
+					android:layout_gravity="center_vertical"
+					android:layout_marginStart="4dp"
+					android:ellipsize="end"
+					android:fontFamily="@font/kopub_dotum_bold"
+					android:letterSpacing="-0.02"
+					android:text="@{viewModel.feed.author}"
+					android:textSize="13dp"
+					app:layout_constraintBottom_toBottomOf="parent"
+					app:layout_constraintStart_toEndOf="@id/authorProfileImageView"
+					app:layout_constraintTop_toTopOf="parent" />
+				
+				<androidx.recyclerview.widget.RecyclerView
+					android:id="@+id/emojiRecyclerView"
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_gravity="center_vertical"
+					android:clipToPadding="false"
+					android:orientation="horizontal"
+					android:overScrollMode="never"
+					android:paddingStart="11dp"
+					app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+					app:layout_constraintBottom_toBottomOf="parent"
+					app:layout_constraintEnd_toStartOf="@id/emojiImageViewButton"
+					app:layout_constraintStart_toEndOf="@id/authorNameTextView"
+					app:layout_constraintTop_toTopOf="parent" />
+				
+				<View
+					android:layout_width="10dp"
+					android:layout_height="0dp"
+					android:background="@drawable/background_white_shadow"
+					app:layout_constraintBottom_toBottomOf="parent"
+					app:layout_constraintEnd_toEndOf="@id/emojiRecyclerView"
+					app:layout_constraintTop_toTopOf="parent" />
+				
+				<View
+					android:layout_width="10dp"
+					android:layout_height="0dp"
+					android:background="@drawable/background_white_shadow"
+					app:layout_constraintBottom_toBottomOf="parent"
+					app:layout_constraintStart_toStartOf="@id/emojiRecyclerView"
+					app:layout_constraintTop_toTopOf="parent" />
+				
+				<ImageView
+					android:id="@+id/emojiImageViewButton"
+					android:layout_width="30dp"
+					android:layout_height="30dp"
+					android:layout_marginEnd="20dp"
+					android:background="@drawable/background_emoji_button_unselected"
+					android:onClick="@{() -> handler.addEmoji()}"
+					android:padding="8dp"
+					android:src="@drawable/ic_home_plus"
+					app:layout_constraintBottom_toBottomOf="parent"
+					app:layout_constraintEnd_toEndOf="parent"
+					app:layout_constraintStart_toEndOf="@id/emojiRecyclerView"
+					app:layout_constraintTop_toTopOf="parent"
+					app:useWhitePressEffect="@{true}" />
+				
+				<View
+					android:layout_width="0dp"
+					android:layout_height="1dp"
+					android:background="@color/_F3F3F3"
+					app:layout_constraintEnd_toEndOf="parent"
+					app:layout_constraintStart_toStartOf="parent"
+					app:layout_constraintTop_toTopOf="parent" />
+			</androidx.constraintlayout.widget.ConstraintLayout>
+			
+			<ImageView
+				android:id="@+id/feedImageView"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				app:scaleType="@{viewModel.feed.landscapeImage ? ScaleType.CENTER_INSIDE : ScaleType.CENTER_CROP}"
+				app:src="@{viewModel.feed.image}" />
 		
-		<org.positive.daymotion.presentation.views.DmAppBarLayout
-			android:layout_width="0dp"
-			android:layout_height="wrap_content"
-			app:backgroundColor="@{@color/_00000000}"
-			app:elevation="0dp"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toTopOf="parent"
-			app:onBackButtonClick="@{() -> handler.finish()}"
-			app:title="@{title}" />
-		
-		<ImageView
-			android:id="@+id/profileImageView"
-			android:layout_width="40dp"
-			android:layout_height="40dp"
-			android:layout_marginBottom="16dp"
-			app:layout_constraintBottom_toTopOf="@id/emojiRecyclerView"
-			app:layout_constraintStart_toStartOf="@id/emojiRecyclerView"
-			app:srcWithCircle="@{@drawable/background_default_profile}" />
-		
-		<TextView
-			android:id="@+id/userNameTextView"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_marginStart="8dp"
-			android:text="@{viewModel.feedInformation.author}"
-			app:layout_constraintBottom_toBottomOf="@id/profileImageView"
-			app:layout_constraintStart_toEndOf="@id/profileImageView"
-			app:layout_constraintTop_toTopOf="@id/profileImageView"
-			tools:text="User Name" />
-		
-		<androidx.recyclerview.widget.RecyclerView
-			android:id="@+id/emojiRecyclerView"
-			android:layout_width="0dp"
-			android:layout_height="wrap_content"
-			android:layout_marginStart="24dp"
-			android:layout_marginEnd="24dp"
-			android:layout_marginBottom="24dp"
-			android:orientation="horizontal"
-			android:overScrollMode="never"
-			app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-			app:layout_constraintBottom_toBottomOf="parent"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintStart_toStartOf="parent"
-			tools:itemCount="3"
-			tools:listitem="@layout/item_emoji" />
-	
-	</androidx.constraintlayout.widget.ConstraintLayout>
+		</LinearLayout>
+	</androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>
