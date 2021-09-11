@@ -11,9 +11,10 @@ data class Feed(
     val categoryName: String,
     val missionQuestion: String,
     val user: User,
-//    val emoji: Emoji, TODO: emoji
+    val emoji: Emoji,
     val author: Boolean
 )
+
 data class User(
     val id: String,
     val image: String?,
@@ -21,8 +22,23 @@ data class User(
     val username: String
 )
 
+data class Emoji(
+    val heart: Int?,
+    val eyes: Int?,
+    val good: Int?,
+    val cry: Int?,
+)
+
 data class PostFeedRequest(
     val image: String,
     val missionId: String,
     val requestId: String = "test"
+)
+
+data class PutEmojiRequest(
+    val emoji: List<String>
+)
+
+data class PutEmojiResponse(
+    val emoji: List<String>
 )

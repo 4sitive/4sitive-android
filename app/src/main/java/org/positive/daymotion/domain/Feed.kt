@@ -7,5 +7,6 @@ data class Feed(
     val missionQuestion: String,
     val authorId: String,
     val authorProfileImage: String?,
-    val authorName: String
+    val authorName: String,
+    val emojis: UpdatedEmoji
 )

@@ -1,5 +1,6 @@
 package org.positive.daymotion.presentation.home.fragment
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
@@ -10,6 +11,7 @@ import org.positive.daymotion.presentation.common.bundle
 import org.positive.daymotion.presentation.common.extension.registerActivityResult
 import org.positive.daymotion.presentation.home.activity.AddEmojiActivity
 import org.positive.daymotion.presentation.home.adapter.EmojiItemAdapter
+import org.positive.daymotion.presentation.home.model.EmojiItem
 import org.positive.daymotion.presentation.home.model.FeedViewItem
 import org.positive.daymotion.presentation.home.model.MissionViewItem
 import org.positive.daymotion.presentation.upload.activity.FeedUploadActivity
@@ -21,7 +23,13 @@ class FeedFragment : BaseFragment<FragmentFeedBinding>(R.layout.fragment_feed) {
     private val emojiItemAdapter by lazy { EmojiItemAdapter() }
 
     private val launcher = registerActivityResult {
-
+        val data = it.data
+        val resultCode = it.resultCode
+        if (data != null && resultCode == Activity.RESULT_OK) {
+            data.getParcelableArrayListExtra<EmojiItem>("updatedEmojis")?.let { emojis ->
+                emojiItemAdapter.replaceAll(emojis)
+            }
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -47,7 +55,12 @@ class FeedFragment : BaseFragment<FragmentFeedBinding>(R.layout.fragment_feed) {
         )
 
         fun addEmoji() {
-            AddEmojiActivity.startForResult(requireContext(), launcher, feedViewItem.id)
+            AddEmojiActivity.startForResult(
+                requireContext(),
+                launcher,
+                feedViewItem.id,
+                ArrayList(emojiItemAdapter.getItems())
+            )
         }
     }
 

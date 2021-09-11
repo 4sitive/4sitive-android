@@ -8,17 +8,18 @@ import org.positive.daymotion.R
 @Parcelize
 data class EmojiItem(
     val emojiType: EmojiType,
-    val count: Int
+    var count: Int
 ) : Parcelable {
     val countStr: String
         get() = count.toString()
 }
 
 enum class EmojiType(
-    @DrawableRes val resourceId: Int
+    @DrawableRes val resourceId: Int,
+    val rawName: String
 ) {
-    HEART(R.drawable.emo_heart),
-    EYES(R.drawable.emo_eyes),
-    GOOD(R.drawable.emo_good),
-    CRY(R.drawable.emo_cry)
+    HEART(R.drawable.emo_heart, "heart"),
+    EYES(R.drawable.emo_eyes, "eyes"),
+    GOOD(R.drawable.emo_good, "good"),
+    CRY(R.drawable.emo_cry, "cry")
 }

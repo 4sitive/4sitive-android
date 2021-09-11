@@ -17,6 +17,8 @@ class EmojiItemAdapter : RecyclerView.Adapter<BindingViewHolder<ItemEmojiBinding
         notifyDataSetChanged()
     }
 
+    fun getItems() :List<EmojiItem> = items
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int

@@ -3,6 +3,7 @@ package org.positive.daymotion.presentation.home.model
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 import org.positive.daymotion.domain.Feed
+import org.positive.daymotion.domain.UpdatedEmoji
 
 @Parcelize
 data class FeedViewItem(
@@ -24,8 +25,25 @@ data class FeedViewItem(
                 false,
                 feed.authorName,
                 feed.authorProfileImage,
-                emptyList()
+                toEmojis(feed.emojis)
             )
+        }
+
+        private fun toEmojis(updatedEmoji: UpdatedEmoji): List<EmojiItem> {
+            val emojis = mutableListOf<EmojiItem>()
+            updatedEmoji.heart?.let {
+                emojis.add(EmojiItem(EmojiType.HEART, it))
+            }
+            updatedEmoji.eyes?.let {
+                emojis.add(EmojiItem(EmojiType.EYES, it))
+            }
+            updatedEmoji.good?.let {
+                emojis.add(EmojiItem(EmojiType.GOOD, it))
+            }
+            updatedEmoji.cry?.let {
+                emojis.add(EmojiItem(EmojiType.CRY, it))
+            }
+            return emojis
         }
     }
 }
