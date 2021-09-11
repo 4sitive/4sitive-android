@@ -9,6 +9,8 @@ import org.positive.daymotion.R
 import org.positive.daymotion.databinding.FragmentHeaderFeedBinding
 import org.positive.daymotion.presentation.common.base.BaseFragment
 import org.positive.daymotion.presentation.common.bundle
+import org.positive.daymotion.presentation.common.extension.registerActivityResult
+import org.positive.daymotion.presentation.home.activity.AddEmojiActivity
 import org.positive.daymotion.presentation.home.adapter.EmojiItemAdapter
 import org.positive.daymotion.presentation.home.model.FeedViewItem
 import org.positive.daymotion.presentation.home.model.MissionViewItem
@@ -19,6 +21,10 @@ class HeaderFeedFragment : BaseFragment<FragmentHeaderFeedBinding>(R.layout.frag
     private val missionViewItem by bundle<MissionViewItem>()
     private val feedViewItem by bundle<FeedViewItem?>()
     private val emojiItemAdapter by lazy { EmojiItemAdapter() }
+
+    private val launcher = registerActivityResult {
+
+    }
 
     private var eventListener: EventListener? = null
 
@@ -43,9 +49,9 @@ class HeaderFeedFragment : BaseFragment<FragmentHeaderFeedBinding>(R.layout.frag
                 AppBarLayout.OnOffsetChangedListener { appBarLayout, offset ->
                     val total = appBarLayout.totalScrollRange
                     val percentage = (total + offset) / total.toFloat()
-                    binding.imageViewContainer.alpha = percentage
-                    binding.homeMissionCard.alpha = percentage
-                    binding.toolbar.alpha = 1 - percentage
+                    imageViewContainer.alpha = percentage
+                    homeMissionCard.alpha = percentage
+                    toolbar.alpha = 1 - percentage
                     eventListener?.onCollapsingStateChanged(percentage == 0f)
                 }
             )
@@ -63,10 +69,17 @@ class HeaderFeedFragment : BaseFragment<FragmentHeaderFeedBinding>(R.layout.frag
 
     inner class Handler {
         fun finish() = requireActivity().finish()
+
         fun startFeedUploadActivity() = FeedUploadActivity.start(
             requireContext(),
             missionViewItem.id
         )
+
+        fun addEmoji() {
+            feedViewItem?.let {
+                AddEmojiActivity.startForResult(requireContext(), launcher, it.id)
+            }
+        }
     }
 
     companion object {
