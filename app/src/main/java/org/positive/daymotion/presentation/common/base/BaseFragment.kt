@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.Observer
 
 abstract class BaseFragment<B : ViewDataBinding>(
     @LayoutRes private val layoutId: Int
@@ -16,6 +17,12 @@ abstract class BaseFragment<B : ViewDataBinding>(
 
     protected lateinit var binding: B
         private set
+
+    private val loadingObserver = Observer<Boolean> {
+        showLoading(it)
+    }
+
+    private var viewModel: BaseViewModel? = null
 
     override val lifecycleOwner: LifecycleOwner
         get() = this
@@ -30,15 +37,23 @@ abstract class BaseFragment<B : ViewDataBinding>(
         return binding.root
     }
 
+    override fun onDestroy() {
+        viewModel?.loadingCount?.removeObserver(loadingObserver)
+        super.onDestroy()
+    }
+
     fun observeBaseLiveData(viewModel: BaseViewModel) {
+        this.viewModel = viewModel
         with(viewModel) {
-            loadingCount.observeNonNull {
-                baseActivity?.updateLoadingCount(it)
-            }
+            loadingCount.observeForever(loadingObserver::onChanged)
             showErrorMessageEvent.observeNonNull {
                 showErrorMessage(it)
             }
         }
+    }
+
+    fun showLoading(isLoading: Boolean) {
+        baseActivity?.showLoading(isLoading)
     }
 
     fun showErrorMessage(message: String) {

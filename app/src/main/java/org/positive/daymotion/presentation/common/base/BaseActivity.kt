@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.Observer
 
 abstract class BaseActivity<B : ViewDataBinding>(
     @LayoutRes private val layoutId: Int
@@ -16,6 +17,12 @@ abstract class BaseActivity<B : ViewDataBinding>(
 
     private val loadingHandler by lazy { LoadingHandler(this) }
 
+    private val loadingObserver = Observer<Boolean> {
+        showLoading(it)
+    }
+
+    private var viewModel: BaseViewModel? = null
+
     override val lifecycleOwner: LifecycleOwner
         get() = this
 
@@ -24,19 +31,24 @@ abstract class BaseActivity<B : ViewDataBinding>(
         binding.lifecycleOwner = this
     }
 
+    override fun onDestroy() {
+        viewModel?.loadingCount?.removeObserver(loadingObserver)
+        loadingHandler.clear()
+        super.onDestroy()
+    }
+
     fun observeBaseLiveData(viewModel: BaseViewModel) {
+        this.viewModel = viewModel
         with(viewModel) {
-            loadingCount.observeNonNull {
-                updateLoadingCount(it)
-            }
+            loadingCount.observeForever(loadingObserver::onChanged)
             showErrorMessageEvent.observeNonNull {
                 showErrorMessage(it)
             }
         }
     }
 
-    fun updateLoadingCount(loadingCount: Int) {
-        loadingHandler.updateLoadingCount(loadingCount)
+    fun showLoading(isLoading: Boolean) {
+        loadingHandler.updateLoadingCount(isLoading)
     }
 
     fun showErrorMessage(message: String) {

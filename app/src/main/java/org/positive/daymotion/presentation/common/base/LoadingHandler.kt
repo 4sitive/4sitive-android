@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.appcompat.app.AlertDialog
 import org.positive.daymotion.R
 
-class LoadingHandler(context: Context) {
+class LoadingHandler(private val context: Context) {
 
     private var loadingCount = 0
 
@@ -15,24 +15,26 @@ class LoadingHandler(context: Context) {
             .create()
     }
 
-    fun updateLoadingCount(loadingCount: Int) {
-        this.loadingCount = loadingCount
-        if (loadingCount > 0) {
-            show()
+    fun updateLoadingCount(isLoading: Boolean) {
+        if (isLoading) {
+            loadingCount++
         } else {
-            hide()
+            loadingCount--
+        }
+
+        if (loadingCount > 0) {
+            if (!loadingDialog.isShowing) {
+                loadingDialog.show()
+            }
+        } else {
+            loadingCount = 0
+            if (loadingDialog.isShowing) {
+                loadingDialog.dismiss()
+            }
         }
     }
 
-    private fun show() {
-        if (!loadingDialog.isShowing) {
-            loadingDialog.show()
-        }
-    }
-
-    private fun hide() {
-        if (loadingCount == 0) {
-            loadingDialog.hide()
-        }
+    fun clear() {
+        loadingDialog.dismiss()
     }
 }

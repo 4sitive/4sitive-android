@@ -230,12 +230,12 @@ class FeedUploadActivity :
 
         fun viewCapture() {
             lifecycleScope.launch {
-                updateLoadingCount(1)
+                showLoading(true)
                 val imageUri = withContext(Dispatchers.IO) {
                     val bitmap = screenShot()
                     createCapturedImageFile(bitmap)
                 }
-                updateLoadingCount(0)
+                showLoading(false)
                 viewModel.uploadFeed(imageUri)
             }
         }
