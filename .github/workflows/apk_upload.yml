@@ -47,4 +47,4 @@ jobs:
         env:
           SLACK_TOKEN: ${{secrets.SLACK_TOKEN}}
           SLACK_CHANNEL: ${{secrets.SLACK_CHANNEL}}
-        run: curl -H "Authorization:$SLACK_TOKEN" -F "channels=$SLACK_CHANNEL" -F "filename=app-debug.apk" -F "file=@app/build/outputs/apk/qa/debug/signed-app-qa-debug.apk" https://slack.com/api/files.upload
+        run: curl -H "Authorization:$SLACK_TOKEN" -F "channels=$SLACK_CHANNEL" -F "filename=app-debug.apk" -F "file=@app/build/outputs/apk/qa/debug/signed-app-qa-debug.apk" -F "initial_comment=QA앱 배포" https://slack.com/api/files.upload
