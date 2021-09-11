@@ -20,13 +20,7 @@ interface MaybeSubscriber : BaseSubscriber {
     fun <T> Maybe<T>.apiLoadingCompose(): Maybe<T> = compose {
         it.subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .doOnSubscribe {
-                val value = loadingCountMutableLiveData.value ?: return@doOnSubscribe
-                loadingCountMutableLiveData.value = value + 1
-            }
-            .doFinally {
-                val value = loadingCountMutableLiveData.value ?: return@doFinally
-                loadingCountMutableLiveData.value = value - 1
-            }
+            .doOnSubscribe { loadingLiveData.value = true }
+            .doFinally { loadingLiveData.value = false }
     }
 }

@@ -16,15 +16,19 @@ class ViewModelHolder<VM : BaseViewModel>(
     override val value: VM
         get() {
             val cached = _cached
-            val viewModel = if (cached == null) {
+            return if (cached == null) {
                 val store = storeProducer()
                 val factory = factoryProducer()
-                ViewModelProvider(store, factory).get(viewModelClass.java).also { _cached = it }
+                ViewModelProvider(
+                    store,
+                    factory
+                ).get(viewModelClass.java).also {
+                    _cached = it
+                    viewModelSetup(it)
+                }
             } else {
                 cached
             }
-
-            return viewModel.apply { viewModelSetup(this) }
         }
 
     override fun isInitialized() = _cached != null

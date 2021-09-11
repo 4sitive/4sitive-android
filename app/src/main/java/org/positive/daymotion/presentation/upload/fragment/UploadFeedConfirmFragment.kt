@@ -26,6 +26,7 @@ class UploadFeedConfirmFragment :
     private val launcher = registerForActivityResult(
         UploadFeedTextEditActivity.contract
     ) { textEditConfig ->
+        showLoading(false)
         viewModel.setTextVisible(true)
         textEditConfig?.let { viewModel.updateTextConfig(it) }
     }

@@ -14,8 +14,8 @@ abstract class BaseViewModel : ViewModel(),
 
     private val _disposables = CompositeDisposable()
 
-    private val _loadingCount = MutableLiveData(0)
-    val loadingCount: LiveData<Int> = _loadingCount
+    private val _loadingCount = SingleLiveEvent(false)
+    val loadingCount: LiveData<Boolean> = _loadingCount
 
     private val _showErrorMessageEvent: SingleLiveEvent<String> = SingleLiveEvent()
     val showErrorMessageEvent: LiveData<String> = _showErrorMessageEvent
@@ -23,7 +23,7 @@ abstract class BaseViewModel : ViewModel(),
     override val disposables: CompositeDisposable
         get() = _disposables
 
-    override val loadingCountMutableLiveData: MutableLiveData<Int>
+    override val loadingLiveData: MutableLiveData<Boolean>
         get() = _loadingCount
 
     protected fun showErrorMessage(message: String) {
