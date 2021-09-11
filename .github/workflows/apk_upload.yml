@@ -15,6 +15,12 @@ jobs:
       - name: Checkout reopsitory
         uses: actions/checkout@v2
         
+      - name: Prepare private file
+        env:
+          GOOGLE_SERVICES_CONTENTS: ${{secrets.GOOGLE_SERVICES_CONTENTS}}
+          GOOGLE_SERVICES_FILE: ${{secrets.GOOGLE_SERVICES_FILE}}
+        run: echo $GOOGLE_SERVICES_CONTENTS | base64 -d > $GOOGLE_SERVICES_FILE
+        
       - name: Assemble apk
         env:
           OAUTH_CLIENT_ID: ${{secrets.OAUTH_CLIENT_ID}}
