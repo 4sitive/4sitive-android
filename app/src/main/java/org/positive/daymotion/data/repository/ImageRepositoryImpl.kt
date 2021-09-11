@@ -32,9 +32,9 @@ class ImageRepositoryImpl @Inject constructor(
                 val fileName = dateFormat.format(Date())
                 imageApi.imageUpload(fileName, byteArray.toRequestBody(imagePngMediaType))
             }.map { response ->
-                val contentLocation = response.headers()["Content-Location"]?.let {
+                val contentLocation = requireNotNull(response.headers()["Content-Location"]).let {
                     IMAGE_SERVER_BASE_URL + it
-                }.orEmpty()
+                }
                 contentLocation
             }
 
