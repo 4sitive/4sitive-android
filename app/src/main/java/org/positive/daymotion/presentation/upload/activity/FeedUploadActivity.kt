@@ -1,6 +1,7 @@
 package org.positive.daymotion.presentation.upload.activity
 
 import android.content.Context
+import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
@@ -29,6 +30,9 @@ import org.positive.daymotion.presentation.upload.fragment.UploadFeedConfirmFrag
 import org.positive.daymotion.presentation.upload.model.BackgroundSelection
 import org.positive.daymotion.presentation.upload.model.MissionViewItem
 import org.positive.daymotion.presentation.upload.viewmodel.FeedUploadViewModel
+import java.io.ByteArrayOutputStream
+import java.io.File
+import java.io.FileOutputStream
 import java.util.*
 
 
@@ -114,6 +118,9 @@ class FeedUploadActivity :
             selectedMission.observeNonNull {
                 findFragment<UploadFeedConfirmFragment>()?.updateSelectedMission(it)
             }
+            uploadDone.observe {
+                finish()
+            }
         }
     }
 
@@ -183,6 +190,36 @@ class FeedUploadActivity :
         )
     }
 
+    private fun screenShot(): Bitmap {
+        val captureTarget = binding.container
+        captureTarget.isDrawingCacheEnabled = true
+        return captureTarget.drawingCache
+    }
+
+    private fun getOrCreateOutputDir(context: Context): File {
+        val mediaDir = context.externalMediaDirs.firstOrNull()?.let {
+            File(it, context.getString(R.string.app_name)).apply { mkdirs() }
+        }
+        return if (mediaDir != null && mediaDir.exists())
+            mediaDir else context.filesDir
+    }
+
+    @Suppress("BlockingMethodInNonBlockingContext")
+    private fun createCapturedImageFile(bitmap: Bitmap): String {
+        val bytes = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 40, bytes)
+        val file = File(getOrCreateOutputDir(this), "capture.jpg")
+        try {
+            file.createNewFile()
+            val outputStream = FileOutputStream(file)
+            outputStream.write(bytes.toByteArray())
+            outputStream.close()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        return Uri.fromFile(file).toString()
+    }
+
     inner class Handler {
 
         fun startGallery() = galleryLauncher.launch("image/*")
@@ -190,6 +227,18 @@ class FeedUploadActivity :
         fun toggleLensFacing() = findFragment<CameraFragment>()?.toggleLens()
 
         fun takePicture() = findFragment<CameraFragment>()?.capture()
+
+        fun viewCapture() {
+            lifecycleScope.launch {
+                updateLoadingCount(1)
+                val imageUri = withContext(Dispatchers.IO) {
+                    val bitmap = screenShot()
+                    createCapturedImageFile(bitmap)
+                }
+                updateLoadingCount(0)
+                viewModel.uploadFeed(imageUri)
+            }
+        }
     }
 
     companion object {
