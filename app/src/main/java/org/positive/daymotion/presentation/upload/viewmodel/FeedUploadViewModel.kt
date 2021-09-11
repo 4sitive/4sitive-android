@@ -45,6 +45,9 @@ class FeedUploadViewModel @Inject constructor(
     private val _finish = SingleLiveEvent<Nothing>()
     val finish: LiveData<Nothing> get() = _finish
 
+    private val _uploadDone = SingleLiveEvent<Nothing>()
+    val uploadDone: LiveData<Nothing> get() = _uploadDone
+
     private val constSelections = listOf(
         BackgroundSelection.Default(R.drawable.img_feed_thumb_01, R.drawable.img_feed_01),
         BackgroundSelection.Default(R.drawable.img_feed_thumb_02, R.drawable.img_feed_02),
@@ -120,16 +123,15 @@ class FeedUploadViewModel @Inject constructor(
         _selectedMission.value = mission
     }
 
-    fun uploadFeed() {
-        val image = _selectedBackgroundSelection.value ?: return
+    fun uploadFeed(uri: String) {
         val mission = _selectedMission.value ?: return
 
-        imageRepository.imageUpload((image as BackgroundSelection.Custom).uri.toString())
+        imageRepository.imageUpload(uri)
             .flatMapCompletable { feedRepository.postFeed(it, mission.id) }
             .apiLoadingCompose()
             .autoDispose {
                 complete {
-                    _finish.call()
+                    _uploadDone.call()
                 }
                 error {
                     showErrorMessage(it.message.orEmpty())
